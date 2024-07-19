@@ -1,0 +1,308 @@
+body,
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+.main-container {
+    height: 100vh;
+    background-color: #f8f9fa;
+    color: #333;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.full-height {
+    flex: 1;
+    display: flex;
+    transition: margin-left 0.3s ease;
+    overflow: hidden;
+}
+
+.menu-button {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    z-index: 1002; /* 사이드바보다 위에 오도록 */
+    padding: 10px;
+}
+
+.main-content {
+    padding: 20px;
+    background-color: #f8f9fa;
+    height: 100%;
+    flex: 1;
+    transition: margin-left 0.3s ease;
+    border-right: 1px solid #ddd; /* 가운데와 구분을 위한 선 추가 */
+    overflow-y: auto; /* PC 버전에서 스크롤 가능하도록 수정 */
+}
+
+.sidebar-right {
+    background-color: #f8f9fa;
+    padding: 20px;
+    height: 100%;
+    border-left: 1px solid #ddd; /* 가운데와 구분을 위한 선 추가 */
+    overflow-y: auto; /* PC 버전에서 스크롤 가능하도록 수정 */
+}
+
+.sidebar {
+    z-index: 1001; /* 사이드바를 최상단에 배치 */
+    position: fixed; /* 고정 위치 */
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.sidebar.open + .full-height {
+    margin-left: 250px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    color: black;
+}
+
+.school-logo {
+    width: 100px;
+    height: 100px;
+    background-color: #adb5bd;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.school-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.content-section {
+    border: 1px solid rgb(53, 58, 63);
+    padding: 20px;
+    border-radius: 10px;
+    color: black;
+}
+
+.notice-section {
+    grid-column: span 2;
+}
+
+.notice-section h2 {
+    margin-left: 5px;
+}
+
+.content-section h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.content-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.content-section ul li {
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-avatar {
+    width: 50px;
+    height: 50px;
+    background-color: #adb5bd;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #212529;
+}
+
+.profile-status {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.search-bar {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.contact-list .list-group-item {
+    background-color: #f8f9fa;
+    border: none;
+    padding: 10px 0;
+    transition: background-color 0.3s;
+}
+
+.contact-list .list-group-item:hover {
+    background-color: #e9ecef;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+}
+
+.contact-avatar {
+    width: 50px;
+    height: 50px;
+    background-color: #adb5bd;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.contact-info {
+    flex-grow: 1;
+}
+
+.contact-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.contact-message {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+@media (max-width: 1200px) {
+    .full-height {
+        flex-direction: column; /* 수직 정렬 */
+    }
+    .main-content {
+        height: auto;
+    }
+    .sidebar-right {
+        height: auto;
+        padding: 10px;
+        order: 2; /* 하단에 위치하도록 */
+        flex: 1;
+    }
+    .content-grid {
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+    }
+    .profile {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .profile-avatar {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .profile-info {
+        align-items: flex-start;
+    }
+    .search-bar {
+        margin-bottom: 10px;
+    }
+    .contact-list .list-group-item {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 992px) {
+    .menu-button {
+        display: block;
+    }
+    .sidebar {
+        position: absolute; /* 고정 위치 */
+    }
+    .main-container {
+        overflow: auto; /* 상하 스크롤 가능하도록 수정 */
+    }
+    .main-content {
+        overflow: visible;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+    }
+    .school-logo {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .school-name {
+        text-align: center;
+    }
+    .main-content {
+        padding: 10px;
+    }
+    .sidebar-right {
+        padding: 10px;
+    }
+    .content-section {
+        padding: 10px;
+    }
+    .content-section h2 {
+        font-size: 1.2em;
+    }
+    .content-section ul li {
+        padding: 5px;
+    }
+}
+
+@media (max-width: 576px) {
+    .content-grid {
+        grid-gap: 5px;
+    }
+    .header {
+        padding: 10px;
+    }
+    .menu-button {
+        top: 10px;
+        left: 5px;
+    }
+    .content-section h2 {
+        font-size: 1em;
+    }
+    .profile-name {
+        font-size: 16px;
+    }
+    .profile-status {
+        font-size: 12px;
+    }
+    .contact-name {
+        font-size: 16px;
+    }
+    .contact-message {
+        font-size: 12px;
+    }
+}

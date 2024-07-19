@@ -1,0 +1,98 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(40, 40, 50);
+    color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    padding: 0 20px 0px 20px;
+    margin-top: -50px;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 150px; /* 원하는 로고 크기로 수정하세요 */
+    height: auto; /* 자동으로 높이를 맞추도록 설정 */
+    margin-bottom: 10px; /* 로고와 텍스트 사이의 여백 설정 */
+}
+
+.title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+}
+
+.loginInput {
+    padding: 15px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+    background-color: rgb(60, 60, 70);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button {
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold; /* 글씨를 두껍게 설정 */
+    cursor: pointer;
+    background-color: rgb(116, 120, 240);
+    color: rgb(20, 20, 20);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.linkButton {
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold; /* 글씨를 두껍게 설정 */
+    cursor: pointer;
+    background-color: rgb(116, 120, 240);
+    color: rgb(20, 20, 20);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover,
+.linkButton:hover {
+    background-color: rgb(100, 100, 220);
+}
+
+.error {
+    color: #ff4d4d;
+    margin-top: 10px;
+}
