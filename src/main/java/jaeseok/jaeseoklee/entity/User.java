@@ -1,5 +1,6 @@
 package jaeseok.jaeseoklee.entity;
 
+import jaeseok.jaeseoklee.dto.LoginDto;
 import jaeseok.jaeseoklee.dto.SignUpDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long uid;
-    @Column(unique = true, nullable = false, length = 50)
+    @Column(unique = true, nullable = false, length = 50, name = "user_id")
     private String user_id;
     @Column(nullable = false)
     private String user_pw;
@@ -50,5 +51,10 @@ public class User {
         this.user_email = dto.getUser_email();
         this.school_num = dto.getSchool_num();
         this.class_num = dto.getClass_num();
+    }
+
+    public User(LoginDto dto){
+        this.user_id = dto.getUser_id();
+        this.user_pw = dto.getUser_pw();
     }
 }
