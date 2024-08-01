@@ -4,9 +4,12 @@ html {
     overflow: hidden;
 }
 
+a {
+    text-decoration: none !important;
+}
+
 .main-container {
-    height: 100vh;
-    background-color: #f8f9fa;
+    height: calc(100vh - 10vh);
     color: #333;
     position: relative;
     display: flex;
@@ -21,42 +24,11 @@ html {
     overflow: hidden;
 }
 
-.menu-button {
-    position: absolute;
-    top: 15px;
-    left: 10px;
-    z-index: 1002; /* 사이드바보다 위에 오도록 */
-    padding: 10px;
-}
-
 .main-content {
     padding: 20px;
-    background-color: #f8f9fa;
     height: 100%;
     flex: 1;
-    transition: margin-left 0.3s ease;
-    border-right: 1px solid #ddd; /* 가운데와 구분을 위한 선 추가 */
-    overflow-y: auto; /* PC 버전에서 스크롤 가능하도록 수정 */
-}
-
-.sidebar-right {
-    background-color: #f8f9fa;
-    padding: 20px;
-    height: 100%;
-    border-left: 1px solid #ddd; /* 가운데와 구분을 위한 선 추가 */
-    overflow-y: auto; /* PC 버전에서 스크롤 가능하도록 수정 */
-}
-
-.sidebar {
-    z-index: 1001; /* 사이드바를 최상단에 배치 */
-    position: fixed; /* 고정 위치 */
-    top: 0;
-    left: 0;
-    height: 100%;
-}
-
-.sidebar.open + .full-height {
-    margin-left: 250px;
+    overflow-y: auto;
 }
 
 .header {
@@ -66,17 +38,17 @@ html {
     margin-bottom: 20px;
     padding: 20px;
     color: black;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 2px solid #e6e6fa;
+    background-color: white;
 }
 
 .school-logo {
-    width: 100px;
-    height: 100px;
-    background-color: #adb5bd;
-    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
     margin-right: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .school-name {
@@ -86,29 +58,89 @@ html {
 
 .content-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr); /* 한 줄에 4칸씩 배치 */
     grid-gap: 20px;
 }
 
 .content-section {
-    border: 1px solid rgb(53, 58, 63);
+    border: 2px solid #e6e6fa;
     padding: 20px;
     border-radius: 10px;
     color: black;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 400px; /* 높이 증가 */
 }
 
+.content-section:hover:not(.notice-section) {
+    transform: translateY(-5px);
+}
+
+.icon-large {
+    font-size: 6em; /* 아이콘 크기 증가 */
+    margin-bottom: 20px;
+}
+
+.title-large {
+    font-size: 2.5em; /* 제목 크기 증가 */
+    font-weight: bold;
+}
+
+/* 공지사항 섹션 추가 */
 .notice-section {
-    grid-column: span 2;
+    grid-column: span 4; /* 한 줄 전체를 차지하도록 설정 */
+    border: 2px solid #e6e6fa;
+    padding: 20px;
+    border-radius: 10px;
+    color: black;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
 .notice-section h2 {
     margin-left: 5px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.notice-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.notice-section ul li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.notice-section ul li:hover {
+    background-color: #e9ecef;
+}
+
+.content-section a {
+    text-decoration: none !important;
+    color: black !important;
 }
 
 .content-section h2 {
     font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.content-section h2 svg {
+    margin-right: 10px;
 }
 
 .content-section ul {
@@ -120,189 +152,4 @@ html {
     margin-bottom: 5px;
     padding: 10px;
     border-radius: 5px;
-}
-
-.profile {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.profile-avatar {
-    width: 50px;
-    height: 50px;
-    background-color: #adb5bd;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.profile-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.profile-name {
-    font-size: 18px;
-    font-weight: bold;
-    color: #212529;
-}
-
-.profile-status {
-    font-size: 14px;
-    color: #6c757d;
-}
-
-.search-bar {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.search-input {
-    border-radius: 20px;
-    padding: 10px;
-}
-
-.contact-list .list-group-item {
-    background-color: #f8f9fa;
-    border: none;
-    padding: 10px 0;
-    transition: background-color 0.3s;
-}
-
-.contact-list .list-group-item:hover {
-    background-color: #e9ecef;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-}
-
-.contact-avatar {
-    width: 50px;
-    height: 50px;
-    background-color: #adb5bd;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.contact-info {
-    flex-grow: 1;
-}
-
-.contact-name {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.contact-message {
-    font-size: 14px;
-    color: #6c757d;
-}
-
-@media (max-width: 1200px) {
-    .full-height {
-        flex-direction: column; /* 수직 정렬 */
-    }
-    .main-content {
-        height: auto;
-    }
-    .sidebar-right {
-        height: auto;
-        padding: 10px;
-        order: 2; /* 하단에 위치하도록 */
-        flex: 1;
-    }
-    .content-grid {
-        grid-template-columns: 1fr;
-        grid-gap: 10px;
-    }
-    .profile {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .profile-avatar {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-    .profile-info {
-        align-items: flex-start;
-    }
-    .search-bar {
-        margin-bottom: 10px;
-    }
-    .contact-list .list-group-item {
-        padding: 10px;
-    }
-}
-
-@media (max-width: 992px) {
-    .menu-button {
-        display: block;
-    }
-    .sidebar {
-        position: absolute; /* 고정 위치 */
-    }
-    .main-container {
-        overflow: auto; /* 상하 스크롤 가능하도록 수정 */
-    }
-    .main-content {
-        overflow: visible;
-    }
-}
-
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-    }
-    .school-logo {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-    .school-name {
-        text-align: center;
-    }
-    .main-content {
-        padding: 10px;
-    }
-    .sidebar-right {
-        padding: 10px;
-    }
-    .content-section {
-        padding: 10px;
-    }
-    .content-section h2 {
-        font-size: 1.2em;
-    }
-    .content-section ul li {
-        padding: 5px;
-    }
-}
-
-@media (max-width: 576px) {
-    .content-grid {
-        grid-gap: 5px;
-    }
-    .header {
-        padding: 10px;
-    }
-    .menu-button {
-        top: 10px;
-        left: 5px;
-    }
-    .content-section h2 {
-        font-size: 1em;
-    }
-    .profile-name {
-        font-size: 16px;
-    }
-    .profile-status {
-        font-size: 12px;
-    }
-    .contact-name {
-        font-size: 16px;
-    }
-    .contact-message {
-        font-size: 12px;
-    }
 }

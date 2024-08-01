@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { createGlobalStyle, styled } from 'styled-components';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import Header from './components/Header/Header';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -42,6 +43,7 @@ function Root() {
                 <title>LeeJaeSeok</title>
             </Helmet>
             <GlobalStyle />
+            {location.pathname !== '/' && <Header />}
             <TransitionGroup>
                 <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
                     <AnimationContainer>

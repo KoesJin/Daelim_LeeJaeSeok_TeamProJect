@@ -1,103 +1,69 @@
-import React from 'react';
-import '../css/MainPage/MainPage.css';
-import { Container, Row, Col, ListGroup, InputGroup, FormControl, Button } from 'react-bootstrap';
-import Sidebar from '../components/SideBar/SideBar';
+import React, { useState } from 'react';
+import { Container, Row, Col, Navbar, Button, Modal } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import {
+    FaUserGraduate,
+    FaBook,
+    FaCalendarAlt,
+    FaVoteYea,
+    FaEnvelope,
+    FaChair,
+    FaBars,
+    FaComments,
+} from 'react-icons/fa';
+import SideBar from '../components/SideBar/SideBar'; // SideBar 컴포넌트 import
+import schoolLogo from '../img/schoolLogo.jpg'; // 로고 이미지 import
+import '../css/MainPage/MainPage.css'; // 스타일 import
 
 const MainPage = () => {
     return (
         <Container fluid className="main-container">
-            <Sidebar />
             <Row className="full-height">
-                <Col lg={9} md={9} className="main-content">
+                <Col className="main-content">
                     <div className="header">
-                        <div className="school-logo"></div>
-                        <div className="school-name">(학교 이름)</div>
+                        <img src={schoolLogo} alt="School Logo" className="school-logo" /> {/* 로고 이미지 적용 */}
+                        <div className="school-name">성보중학교</div>
                     </div>
                     <div className="content-grid">
+                        <Link to="/student-management" className="content-section">
+                            <FaUserGraduate className="icon-large" />
+                            <h2 className="title-large">학생 관리</h2>
+                        </Link>
+                        <Link to="/ai-workbook" className="content-section">
+                            <FaBook className="icon-large" />
+                            <h2 className="title-large">AI 문제집</h2>
+                        </Link>
+                        <Link to="/schedule" className="content-section">
+                            <FaCalendarAlt className="icon-large" />
+                            <h2 className="title-large">시간표</h2>
+                        </Link>
+                        <Link to="/vote" className="content-section">
+                            <FaVoteYea className="icon-large" />
+                            <h2 className="title-large">투표</h2>
+                        </Link>
+                        <Link to="/send-message" className="content-section">
+                            <FaEnvelope className="icon-large" />
+                            <h2 className="title-large">문자 발송</h2>
+                        </Link>
+                        <Link to="/seat-assignment" className="content-section">
+                            <FaChair className="icon-large" />
+                            <h2 className="title-large">자리 선정</h2>
+                        </Link>
                         <div className="content-section">
-                            <h2>학생 관리</h2>
+                            <h2 className="title-large">빈칸</h2>
                         </div>
                         <div className="content-section">
-                            <h2>AI 문제집</h2>
-                        </div>
-                        <div className="content-section">
-                            <h2>시간표</h2>
-                        </div>
-                        <div className="content-section">
-                            <h2>투표</h2>
-                        </div>
-                        <div className="content-section">
-                            <h2>문자 발송</h2>
-                        </div>
-                        <div className="content-section">
-                            <h2>빈칸</h2>
-                        </div>
-                        <div className="content-section">
-                            <h2>빈칸</h2>
-                        </div>
-                        <div className="content-section">
-                            <h2>빈칸</h2>
-                        </div>
-                        <div className="content-section notice-section">
-                            <h2>공지사항</h2>
-                            <ul>
-                                <li>1. 여긴 공지사항이 들어갈 칸 입니다. </li>
-                                <li>2. 여긴 공지사항이 들어갈 칸 입니다.</li>
-                                <li>3. 여긴 공지사항이 들어갈 칸 입니다.</li>
-                            </ul>
+                            <h2 className="title-large">빈칸</h2>
                         </div>
                     </div>
-                </Col>
-                <Col lg={3} md={3} className="sidebar-right">
-                    <div className="profile">
-                        <div className="profile-avatar"></div>
-                        <div className="profile-info">
-                            <div className="profile-name">김진석</div>
-                            <div className="profile-status">내 정보</div>
-                        </div>
+                    <div className="notice-section">
+                        <h2>공지사항</h2>
+                        <ul>
+                            <li>1. 여긴 공지사항이 들어갈 칸 입니다. </li>
+                            <li>2. 여긴 공지사항이 들어갈 칸 입니다.</li>
+                            <li>3. 여긴 공지사항이 들어갈 칸 입니다.</li>
+                        </ul>
                     </div>
-                    <InputGroup className="search-bar">
-                        <FormControl placeholder="이름으로 검색" aria-label="Search" className="search-input" />
-                        <InputGroup.Text>검색</InputGroup.Text>
-                    </InputGroup>
-                    <ListGroup className="contact-list">
-                        <ListGroup.Item>
-                            <div className="contact-item">
-                                <div className="contact-avatar"></div>
-                                <div className="contact-info">
-                                    <div className="contact-name">이하늘 교사</div>
-                                    <div className="contact-message">오늘 수업 참 힘드네요</div>
-                                </div>
-                            </div>
-                        </ListGroup.Item>
-                        <ListGroup.Item>
-                            <div className="contact-item">
-                                <div className="contact-avatar"></div>
-                                <div className="contact-info">
-                                    <div className="contact-name">심재휘 교사</div>
-                                    <div className="contact-message">담배 마렵네요</div>
-                                </div>
-                            </div>
-                        </ListGroup.Item>
-                        <ListGroup.Item>
-                            <div className="contact-item">
-                                <div className="contact-avatar"></div>
-                                <div className="contact-info">
-                                    <div className="contact-name">김옥지 교사</div>
-                                    <div className="contact-message">해윙</div>
-                                </div>
-                            </div>
-                        </ListGroup.Item>
-                        <ListGroup.Item>
-                            <div className="contact-item">
-                                <div className="contact-avatar"></div>
-                                <div className="contact-info">
-                                    <div className="contact-name">곰모띠 교장</div>
-                                    <div className="contact-message">수업 끝나고 올라와요</div>
-                                </div>
-                            </div>
-                        </ListGroup.Item>
-                    </ListGroup>
                 </Col>
             </Row>
         </Container>
