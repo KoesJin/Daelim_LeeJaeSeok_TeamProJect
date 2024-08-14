@@ -1,0 +1,245 @@
+/* 공통 스타일 */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8f8f8;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.headerButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 메뉴 모달 스타일 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+}
+
+.modalContent {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.closeButton {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.addButton {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    color: #007bff;
+    margin-right: auto;
+}
+
+.modalBody {
+    padding-top: 10px;
+}
+
+.sidebarHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.menuList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.listItem {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.emptyItem {
+    color: #999;
+}
+
+.companyInfo {
+    font-size: 14px;
+    color: #666;
+}
+
+.companyDetails {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #999;
+}
+
+/* 채팅 모달 스타일 */
+.chatModal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end; /* 우측에 모달 위치 */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+}
+
+.chatModalContent {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 500px; /* 넓게 조정 */
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* 채팅 프로필 사이드바 스타일 */
+.profile {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.profileAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileName {
+    font-weight: bold;
+}
+
+.profileStatus {
+    color: gray;
+}
+
+.searchBar {
+    margin: 10px 0;
+}
+
+.searchInput {
+    flex-grow: 1;
+}
+
+.contactList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.contactAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.contactName {
+    font-weight: bold;
+}
+
+.contactMessage {
+    color: gray;
+}
+
+/* 개별 채팅 창 스타일 */
+.chatWindow {
+    height: calc(100vh - 180px); /* 필요에 따라 조정 */
+    overflow-y: auto;
+    background: #f8f8f8;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.chatInput {
+    min-width: 450px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 20px;
+    margin: 0 10px;
+}
+
+.backButton {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.chatTitle {
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* 모달 오픈 스타일 */
+.open {
+    opacity: 1;
+    visibility: visible;
+}
