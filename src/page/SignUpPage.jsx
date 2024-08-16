@@ -198,10 +198,8 @@ function SignUpPage() {
                         회원가입
                     </button>
                 </form>
-                <div className={styles.button}>
-                    <span className={styles.link} onClick={() => navigate('/')}>
-                        로그인
-                    </span>
+                <div className={styles.button} onClick={() => navigate('/')}>
+                    <span className={styles.link}>로그인</span>
                 </div>
             </div>
         </div>

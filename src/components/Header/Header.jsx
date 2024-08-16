@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styles from '../../css/Header/Header.module.css';
 import { FaBars, FaComments, FaTimes, FaArrowLeft, FaUserPlus } from 'react-icons/fa';
 import ProfileSidebar from '../ProfileSideBar/ProfileSidebar';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../utils/context/UserContext';
 
 const Header = () => {
     const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
     const [isChatModalOpen, setIsChatModalOpen] = useState(false);
     const [selectedChat, setSelectedChat] = useState(null);
+    const { userId, setUserId } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // 새로고침 시 localStorage에서 userId를 불러오게함
+        const storedUserId = localStorage.getItem('userId');
+        if (storedUserId) {
+            setUserId(storedUserId);
+        }
+    }, [setUserId]);
 
     const toggleMenuModal = () => {
         setIsMenuModalOpen(!isMenuModalOpen);
@@ -33,12 +45,21 @@ const Header = () => {
         setSelectedChat(null);
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userId'); // 로그아웃 시 userId도 삭제
+        sessionStorage.removeItem('accessToken');
+        navigate('/');
+    };
+
     return (
         <div className={styles.header}>
             <button onClick={toggleMenuModal} className={styles.headerButton}>
                 <FaBars />
             </button>
-            <div className={styles.title}>우리 이름좀 넣자</div>
+            <div className={styles.title} onClick={() => navigate('/mainpage')}>
+                TeacHub
+            </div>
             <button onClick={toggleChatModal} className={styles.headerButton}>
                 <FaComments />
             </button>
@@ -61,7 +82,9 @@ const Header = () => {
                             <li className={styles.listItem}>시간표</li>
                             <li className={styles.listItem}>투표</li>
                             <li className={styles.listItem}>문자 발송</li>
-                            <li className={`${styles.listItem} ${styles.emptyItem}`}>빈칸</li>
+                            <li className={styles.listItem} onClick={handleLogout}>
+                                로그 아웃
+                            </li>
                             <li className={`${styles.listItem} ${styles.emptyItem}`}>빈칸</li>
                             <li className={`${styles.listItem} ${styles.emptyItem}`}>빈칸</li>
                         </ul>
@@ -92,6 +115,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
+            <div>{userId}</div> {/* userId를 표시 */}
             {/* 개별 채팅 모달 */}
             <div className={`${styles.chatModal} ${selectedChat ? styles.open : ''}`}>
                 <div className={styles.chatModalContent}>

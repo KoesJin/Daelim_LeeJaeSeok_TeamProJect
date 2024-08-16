@@ -9,6 +9,7 @@ import SchedulePage from '../page/SchedulePage';
 import VotePage from '../page/VotePage';
 import SendMessagePage from '../page/SendMessagePage';
 import SeatAssignmentPage from '../page/SeatAssignmentPage';
+import SignUpPage from '../page/SignUpPage';
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
             {
                 path: '',
                 element: <LoginPage />,
+            },
+            {
+                path: '/signuppage',
+                element: <SignUpPage />,
             },
             {
                 path: '/mainpage',

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import styles from '../css/LoginPage/LoginPage.module.css'; // CSS 모듈 import
-import UserIcon from '../svg/UserIcon'; // User 아이콘 import
-import PasswordIcon from '../svg/PasswordIcon'; // Password 아이콘 import
-import KakaoIcon from '../svg/KakaoIcon'; // Kakao 아이콘 import
-import GoogleIcon from '../svg/GoogleIcon'; // Google 아이콘 import
-import NaverIcon from '../svg/NaverIcon'; // Naver 아이콘 import
-import AppleIcon from '../svg/AppleIcon';
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import styles from '../css/LoginPage/LoginPage.module.css';
+import UserIcon from '../svg/LoginPage/UserIcon';
+import PasswordIcon from '../svg/LoginPage/PasswordIcon';
+import KakaoIcon from '../svg/LoginPage/KakaoIcon';
+import GoogleIcon from '../svg/LoginPage/GoogleIcon';
+import NaverIcon from '../svg/LoginPage/NaverIcon';
+import AppleIcon from '../svg/LoginPage/AppleIcon';
+import { UserContext } from '../utils/context/UserContext';
 
 function LoginPage() {
     const [userId, setUserId] = useState('');
@@ -15,17 +15,18 @@ function LoginPage() {
     const [rememberMe, setRememberMe] = useState(false);
     const [modalContent, setModalContent] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [error, setError] = useState('');
     const navigate = useNavigate();
+    const { setUserId: setGlobalUserId } = useContext(UserContext);
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        if (!userId) {
-            setError('아이디를 입력하세요.');
+        if (!userId && !userPw) {
+            alert('아이디 또는 비밀번호를 입력하세요.');
+        } else if (!userId) {
+            alert('아이디를 입력하세요.');
             return;
-        }
-        if (!userPw) {
-            setError('비밀번호를 입력하세요.');
+        } else if (!userPw) {
+            alert('비밀번호를 입력하세요.');
             return;
         }
 
@@ -39,26 +40,37 @@ function LoginPage() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    Accept: 'application/json',
                 },
-                body: JSON.stringify({ userId, userPw }),
+                body: JSON.stringify({ userId, userPw }), // userIdInput을 userId로 변경
             });
 
             if (response.ok) {
                 const data = await response.json();
                 const jwtToken = data.data.accessToken; // 서버로부터 받은 액세스 토큰
 
+                //중복 로그인을 막기위한 코드
+                const accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
+                if (accessToken) {
+                    localStorage.removeItem('accessToken');
+                    sessionStorage.removeItem('accessToken');
+                }
+
                 // JWT 토큰을 로컬 스토리지와 세션 스토리지에 저장
                 localStorage.setItem('accessToken', jwtToken);
                 sessionStorage.setItem('accessToken', jwtToken);
 
-                console.log('로그인 성공:', jwtToken);
+                //userId를 새로고침해도 남아있게 하기위해 localStorage로 받아옴
+                localStorage.setItem('userId', userId);
+
+                setGlobalUserId(userId); // 로그인 성공 시 globalUserId 설정 -> 전역으로 userId 뿌려줌
                 navigate('/mainpage');
             } else {
                 console.error('로그인 실패:', await response.text());
             }
         } catch (error) {
             console.error('Error logging in:', error);
-            setError('로그인 오류가 발생했습니다.');
+            alert('아이디 또는 비밀번호가 잘못되었습니다.');
         }
     };
 
@@ -74,7 +86,7 @@ function LoginPage() {
     return (
         <div className={styles.LoginBody}>
             <div className={styles.logo}>
-                <h1>LeeJaeSeok</h1>
+                <h1>TeacHub</h1>
             </div>
             <div className={styles.container}>
                 <form className={styles.form} onSubmit={handleLogin}>
@@ -83,7 +95,7 @@ function LoginPage() {
                         <input
                             type="text"
                             placeholder="아이디"
-                            value={userId}
+                            value={userId} //
                             onChange={(e) => setUserId(e.target.value)}
                             className={styles.loginInput}
                         />
@@ -112,9 +124,10 @@ function LoginPage() {
                     </button>
                 </form>
                 <div className={styles.links}>
-                    <span className={styles.link}>회원가입</span>
-                    <span className={styles.link}>계정 찾기</span>
-                    <span className={styles.link}>비밀번호 찾기</span>
+                    <span className={styles.link} onClick={() => navigate('/signuppage')}>
+                        회원가입
+                    </span>{' '}
+                    |<span className={styles.link}>계정 찾기</span> |<span className={styles.link}>비밀번호 찾기</span>
                 </div>
                 <div className={styles.socialLoginContainer}>
                     <button className={styles.socialLoginButton}>
