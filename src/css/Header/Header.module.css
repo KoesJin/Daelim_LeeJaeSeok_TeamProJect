@@ -1,10 +1,10 @@
-/* 공통 스타일 */
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
     border-bottom: 1.5px solid rgb(238, 238, 238);
+    position: relative; /* 제목과 사용자 이름 간의 위치 조정을 위해 */
 }
 
 .headerButton {
@@ -15,10 +15,23 @@
 }
 
 .title {
-    flex-grow: 1;
-    text-align: center;
-    font-size: 18px;
+    font-size: 1.3rem;
+    color: #333;
     font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.userName {
+    font-size: 1rem;
+    color: #333;
+}
+
+.chatButtonContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 아이콘과 이름 사이의 간격을 위한 조정 */
 }
 
 /* 메뉴 모달 스타일 */

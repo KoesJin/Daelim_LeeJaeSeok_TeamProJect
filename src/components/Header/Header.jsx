@@ -66,10 +66,12 @@ const Header = () => {
             <div className={styles.title} onClick={() => navigate('/mainpage')}>
                 TeacHub
             </div>
-            <div className={styles.userName}>{userName}님</div>
-            <button onClick={toggleChatModal} className={styles.headerButton}>
-                <FaComments style={{ marginBottom: '5px' }} />
-            </button>
+            <div className={styles.chatButtonContainer}>
+                <div className={styles.userName}>{userName}님</div>
+                <button onClick={toggleChatModal} className={styles.headerButton}>
+                    <FaComments style={{ marginBottom: '5px' }} />
+                </button>
+            </div>
             {/* 메뉴 모달 */}
             <div className={`${styles.modal} ${isMenuModalOpen ? styles.open : ''}`}>
                 <div className={styles.modalContent}>
