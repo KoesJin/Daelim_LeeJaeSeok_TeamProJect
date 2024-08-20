@@ -1,26 +1,37 @@
+.ScrollContainer {
+    height: 100vh;
+    overflow-y: auto; /* 화면이 작을 때 스크롤이 가능하도록 설정 */
+}
+
 .LoginBody {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* 최소 높이를 100vh로 설정 */
     margin: 0;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* 화면이 작을 때 스크롤이 가능하도록 설정 */
 }
 
 .container {
     background: #fff;
     padding: 40px 30px;
-    max-width: 500px; /* 카카오톡과 비슷한 너비 */
     width: 100%;
+    max-width: 500px;
     text-align: center;
+    box-sizing: border-box;
+    margin-top: 20px; /* 여백을 줄여서 화면이 작을 때 더 잘 보이도록 */
 }
 
 .logo {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
-    text-align: center;
+    font-size: 1.8rem; /* 로고 크기를 줄여서 더 잘 보이도록 */
+    margin-bottom: 20px;
     color: #333;
     font-weight: bold;
+    text-align: center;
 }
 
 .form {
@@ -33,7 +44,7 @@
 .inputContainer {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #ccc; /* 밑줄 스타일 */
+    border-bottom: 1px solid #ccc;
     margin-bottom: 15px;
     padding-bottom: 5px;
 }
@@ -69,12 +80,12 @@
 .button {
     padding: 15px;
     border: none;
-    border-radius: 0; /* 직각으로 변경 */
+    border-radius: 0;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
-    background-color: #e6e6fa; /* 버튼 배경색 */
-    color: #333; /* 텍스트 색상 */
+    background-color: #e6e6fa;
+    color: #333;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     margin-top: 20px;
     text-align: center;
@@ -82,7 +93,7 @@
 
 .button:hover {
     background-color: #d8bfd8;
-    box-shadow: none; /* 그림자 제거 */
+    box-shadow: none;
 }
 
 .links {
@@ -155,52 +166,33 @@
     color: #666;
 }
 
-.modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .LoginBody {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 20px;
+        margin-top: 10px; /* 화면이 작아질 때 여백을 줄임 */
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
 }
 
-.modal {
-    background: #fff;
-    border-radius: 0; /* 직각으로 변경 */
-    padding: 30px;
-    max-width: 600px; /* 모달 창 너비 조정 */
-    width: 90%;
-    border: 1px solid #e6e6fa; /* 테두리 색상 변경 */
-}
+@media (max-width: 480px) {
+    .LoginBody {
+        padding: 5px;
+    }
 
-.modalHeader {
-    display: flex;
-    justify-content: flex-end;
-}
+    .container {
+        padding: 15px;
+        margin-top: 5px; /* 화면이 아주 작아질 때 여백을 줄임 */
+    }
 
-.closeButton {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-.modalContent {
-    margin-top: 10px;
-    font-size: 1rem;
-    text-align: left; /* 내용이 정렬되도록 설정 */
-}
-
-.modalContent h2 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-}
-
-.modalContent ul {
-    padding-left: 20px;
-    list-style-type: disc;
+    .logo {
+        font-size: 1.2rem;
+    }
 }
