@@ -48,7 +48,9 @@ function Root() {
             </Helmet>
             <UserContext.Provider value={{ userId, setUserId }}>
                 <GlobalStyle />
-                {location.pathname !== '/' && location.pathname !== '/signuppage' && <Header />}
+                {location.pathname !== '/' &&
+                    location.pathname !== '/signuppage' &&
+                    location.pathname !== '/checksignuppage' && <Header />}
                 <TransitionGroup>
                     <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
                         <AnimationContainer>

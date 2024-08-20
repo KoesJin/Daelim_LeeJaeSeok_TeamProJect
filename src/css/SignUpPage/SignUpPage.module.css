@@ -30,11 +30,12 @@
     color: inherit; /* 부모의 색상을 상속받음 */
 }
 
-.logo {
-    font-size: 2rem;
-    color: inherit; /* 로고도 부모의 색상을 상속받음 */
-    font-weight: bold;
+.container h1 {
+    font-size: 2rem; /* 로고 크기를 줄여서 더 잘 보이도록 */
     margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
 }
 
 .form {

@@ -1,0 +1,107 @@
+/* 스크롤 컨테이너 */
+.ScrollContainer {
+    height: 100vh;
+    overflow-y: hidden; /* 기본적으로 스크롤을 비활성화 */
+}
+
+/* 회원가입 본문 */
+.SignUpBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+    color: #333; /* 기본 텍스트 색상 */
+}
+
+/* 컨테이너 */
+.container {
+    background: #fff;
+    padding: 30px 30px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    box-sizing: border-box;
+    color: inherit; /* 부모의 색상을 상속받음 */
+}
+
+/* 환영 메시지 */
+.welcomeMessage {
+    margin-bottom: 30px;
+}
+
+.welcomeMessage h1 {
+    font-size: 2rem; /* 로고 크기를 줄여서 더 잘 보이도록 */
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+}
+
+.welcomeMessage p {
+    font-size: 16px;
+    color: #777;
+}
+
+/* 회원가입 옵션들 */
+.signupOptions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+}
+
+/* 회원가입 옵션 버튼 */
+.optionButton {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-align: left;
+}
+
+/* CheckSignUpPage.module.css */
+
+.optionButton svg {
+    margin-right: 20px;
+    margin-left: 10px;
+    width: 25px;
+    height: 30px;
+}
+
+.optionButton:hover {
+    background-color: #f7f7f7;
+}
+
+/* 메인 텍스트 스타일 */
+.mainText {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px; /* 메인 텍스트와 서브 텍스트 사이의 간격 */
+}
+
+/* 서브 텍스트 스타일 */
+.subText {
+    font-size: 12px;
+    color: #777;
+    margin-left: 10px;
+}
+
+/* 작은 화면에서 스크롤 활성화 */
+@media (max-height: 850px) {
+    .ScrollContainer {
+        overflow-y: auto; /* 작은 화면에서만 스크롤을 활성화 */
+    }
+}

@@ -26,8 +26,8 @@
     margin-top: 20px; /* 여백을 줄여서 화면이 작을 때 더 잘 보이도록 */
 }
 
-.logo {
-    font-size: 1.8rem; /* 로고 크기를 줄여서 더 잘 보이도록 */
+.container h1 {
+    font-size: 2rem; /* 로고 크기를 줄여서 더 잘 보이도록 */
     margin-bottom: 20px;
     color: #333;
     font-weight: bold;
