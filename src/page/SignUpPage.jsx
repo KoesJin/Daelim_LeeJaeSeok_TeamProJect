@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../css/SignUpPage/SignUpPage.module.css'; // CSS 모듈 import
 import UserIcon from '../svg/SignUpPage/UserIcon'; // User 아이콘 import
@@ -8,6 +8,7 @@ import PhoneIcon from '../svg/SignUpPage/PhoneIcon'; // Phone 아이콘 import
 import DateIcon from '../svg/SignUpPage/DateIcon'; // Date 아이콘 import
 import SchoolIcon from '../svg/SignUpPage/SchoolIcon'; // School 아이콘 import
 import ClassIcon from '../svg/SignUpPage/ClassIcon'; // Class 아이콘 import
+import UserContext from '../utils/context/UserContext';
 
 function SignUpPage() {
     //회원가입 정보
@@ -21,11 +22,15 @@ function SignUpPage() {
     const [schoolName, setSchoolName] = useState('');
     const [classNum, setClassNum] = useState('');
 
-    //중복체크 정보
+    // userName 값 저장
+    const { setUserName: globalsetUserName } = useContext(UserContext);
+
+    // 중복체크 정보
     const [idDuplicateChecked, setIdDuplicateChecked] = useState(false);
     const [numDuplicateChecked, setNumDuplicateChecked] = useState(false);
     const [emailDuplicateChecked, setEmailDuplicateChecked] = useState(false);
 
+    // navigate 훅
     const navigate = useNavigate();
 
     //baseURL 설정
@@ -283,8 +288,10 @@ function SignUpPage() {
             const result = await signUp_response.json();
 
             if (result.status === '200') {
+                globalsetUserName(userName);
+                localStorage.setItem('userName', userName);
                 alert(result.message);
-                navigate('/'); // 회원가입 성공 시 로그인 페이지로 이동
+                navigate('/');
             } else {
                 alert(result.message);
             }

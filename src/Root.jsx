@@ -39,14 +39,14 @@ const AnimationContainer = styled.div`
 
 function Root() {
     const location = useLocation();
-    const [userId, setUserId] = useState(''); // userId 상태 정의
+    const [userName, setUserName] = useState('');
 
     return (
         <>
             <Helmet>
                 <title>LeeJaeSeok</title>
             </Helmet>
-            <UserContext.Provider value={{ userId, setUserId }}>
+            <UserContext.Provider value={{ userName, setUserName }}>
                 <GlobalStyle />
                 {location.pathname !== '/' &&
                     location.pathname !== '/signuppage' &&

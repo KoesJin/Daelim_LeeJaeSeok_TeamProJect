@@ -6,20 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../utils/context/UserContext';
 
 const Header = () => {
+    //모달
     const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
     const [isChatModalOpen, setIsChatModalOpen] = useState(false);
     const [selectedChat, setSelectedChat] = useState(null);
-    const { userId, setUserId } = useContext(UserContext);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        // 새로고침 시 localStorage에서 userId를 불러오게함
-        const storedUserId = localStorage.getItem('userId');
-        if (storedUserId) {
-            setUserId(storedUserId);
-        }
-    }, [setUserId]);
-
     const toggleMenuModal = () => {
         setIsMenuModalOpen(!isMenuModalOpen);
     };
@@ -45,6 +35,22 @@ const Header = () => {
         setSelectedChat(null);
     };
 
+    //userName 저장 값
+    const { userName, setUserName } = useContext(UserContext);
+
+    //navigate 훅
+    const navigate = useNavigate();
+
+    // useEffect 훅
+    useEffect(() => {
+        // 새로고침 시 localStorage에서 userName를 불러오게함
+        const storedUserName = localStorage.getItem('userName');
+        if (storedUserName) {
+            setUserName(storedUserName);
+        }
+    }, [setUserName]);
+
+    // 로그아웃
     const handleLogout = () => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('userId'); // 로그아웃 시 userId도 삭제
@@ -60,8 +66,9 @@ const Header = () => {
             <div className={styles.title} onClick={() => navigate('/mainpage')}>
                 TeacHub
             </div>
+            <div className={styles.userName}>{userName}님</div>
             <button onClick={toggleChatModal} className={styles.headerButton}>
-                <FaComments />
+                <FaComments style={{ marginBottom: '5px' }} />
             </button>
             {/* 메뉴 모달 */}
             <div className={`${styles.modal} ${isMenuModalOpen ? styles.open : ''}`}>
@@ -82,11 +89,11 @@ const Header = () => {
                             <li className={styles.listItem}>시간표</li>
                             <li className={styles.listItem}>투표</li>
                             <li className={styles.listItem}>문자 발송</li>
+                            <li className={styles.listItem}>정보 수정</li>
+                            <li className={`${styles.listItem} ${styles.emptyItem}`}>빈칸</li>
                             <li className={styles.listItem} onClick={handleLogout}>
                                 로그 아웃
                             </li>
-                            <li className={`${styles.listItem} ${styles.emptyItem}`}>빈칸</li>
-                            <li className={`${styles.listItem} ${styles.emptyItem}`}>빈칸</li>
                         </ul>
                         <div className={styles.companyInfo}>
                             회사 정보
@@ -115,7 +122,6 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-            <div>{userId}</div> {/* userId를 표시 */}
             {/* 개별 채팅 모달 */}
             <div className={`${styles.chatModal} ${selectedChat ? styles.open : ''}`}>
                 <div className={styles.chatModalContent}>

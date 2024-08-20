@@ -10,14 +10,27 @@ import AppleIcon from '../svg/LoginPage/AppleIcon';
 import { UserContext } from '../utils/context/UserContext';
 
 function LoginPage() {
+    //로그인 정보
     const [userId, setUserId] = useState('');
     const [userPw, setUserPw] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
+
+    //모달
     const [modalContent, setModalContent] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const navigate = useNavigate();
-    const { setUserId: setGlobalUserId } = useContext(UserContext);
+    const openModal = (content) => {
+        setModalContent(content);
+        setIsModalOpen(true);
+    };
 
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+    // navigate 훅
+    const navigate = useNavigate();
+
+    // 로그인 함수
     const handleLogin = async (e) => {
         e.preventDefault();
         if (!userId && !userPw) {
@@ -64,7 +77,6 @@ function LoginPage() {
                 //userId를 새로고침해도 남아있게 하기위해 localStorage로 받아옴
                 localStorage.setItem('userId', userId);
 
-                setGlobalUserId(userId); // 로그인 성공 시 globalUserId 설정 -> 전역으로 userId 뿌려줌
                 navigate('/mainpage');
             } else {
                 console.error('로그인 실패:', await response.text());
@@ -73,15 +85,6 @@ function LoginPage() {
             console.error('Error logging in:', error);
             alert('아이디 또는 비밀번호가 잘못되었습니다.');
         }
-    };
-
-    const openModal = (content) => {
-        setModalContent(content);
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
     };
 
     return (
