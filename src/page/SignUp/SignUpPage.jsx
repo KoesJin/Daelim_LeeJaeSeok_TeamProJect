@@ -1,13 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../css/SignUpPage/SignUpPage.module.css'; // CSS 모듈 import
-import UserIcon from '../svg/SignUpPage/UserIcon'; // User 아이콘 import
-import EmailIcon from '../svg/SignUpPage/EmailIcon'; // Email 아이콘 import
-import PasswordIcon from '../svg/SignUpPage/PasswordIcon'; // Password 아이콘 import
-import PhoneIcon from '../svg/SignUpPage/PhoneIcon'; // Phone 아이콘 import
-import DateIcon from '../svg/SignUpPage/DateIcon'; // Date 아이콘 import
-import SchoolIcon from '../svg/SignUpPage/SchoolIcon'; // School 아이콘 import
-import ClassIcon from '../svg/SignUpPage/ClassIcon'; // Class 아이콘 import
+import styles from '../../css/SignUpPage/SignUpPage.module.css'; // CSS 모듈 import
+import UserIcon from '../../svg/SignUpPage/UserIcon'; // User 아이콘 import
+import EmailIcon from '../../svg/SignUpPage/EmailIcon'; // Email 아이콘 import
+import PasswordIcon from '../../svg/SignUpPage/PasswordIcon'; // Password 아이콘 import
+import PhoneIcon from '../../svg/SignUpPage/PhoneIcon'; // Phone 아이콘 import
+import DateIcon from '../../svg/SignUpPage/DateIcon'; // Date 아이콘 import
+import SchoolIcon from '../../svg/SignUpPage/SchoolIcon'; // School 아이콘 import
+import ClassIcon from '../../svg/SignUpPage/ClassIcon'; // Class 아이콘 import
 
 function SignUpPage() {
     //회원가입 정보

@@ -1,12 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../css/LoginPage/LoginPage.module.css';
-import UserIcon from '../svg/LoginPage/UserIcon';
-import PasswordIcon from '../svg/LoginPage/PasswordIcon';
-import KakaoIcon from '../svg/LoginPage/KakaoIcon';
-import GoogleIcon from '../svg/LoginPage/GoogleIcon';
-import NaverIcon from '../svg/LoginPage/NaverIcon';
-import AppleIcon from '../svg/LoginPage/AppleIcon';
+import styles from '../../css/LoginPage/LoginPage.module.css';
+import UserIcon from '../../svg/LoginPage/UserIcon';
+import PasswordIcon from '../../svg/LoginPage/PasswordIcon';
+import KakaoIcon from '../../svg/LoginPage/KakaoIcon';
+import GoogleIcon from '../../svg/LoginPage/GoogleIcon';
+import NaverIcon from '../../svg/LoginPage/NaverIcon';
+import AppleIcon from '../../svg/LoginPage/AppleIcon';
 
 function LoginPage() {
     //로그인 정보

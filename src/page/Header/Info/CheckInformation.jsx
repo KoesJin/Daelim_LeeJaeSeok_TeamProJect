@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../css/ChangeInformation/CheckInformation.module.css';
+import styles from '../../../css/Header/CheckInformation/CheckInformation.module.css';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 

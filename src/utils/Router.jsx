@@ -1,17 +1,17 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import Root from '../Root';
-import MainPage from '../page/MainPage';
-import LoginPage from '../page/LoginPage';
-import StudentManagementPage from '../page/StudentManagementPage';
-import AIWorkbookPage from '../page/AIWorkbookPage';
-import SchedulePage from '../page/SchedulePage';
-import VotePage from '../page/VotePage';
-import SendMessagePage from '../page/SendMessagePage';
-import SeatAssignmentPage from '../page/SeatAssignmentPage';
-import SignUpPage from '../page/SignUpPage';
-import CheckSignUpPage from '../page/CheckSignUpPage';
-import CheckInformation from '../page/CheckInformation';
+import MainPage from '../page/Main/MainPage';
+import LoginPage from '../page/Login/LoginPage';
+import StudentManagementPage from '../page/Main/StudentManagementPage';
+import AIWorkbookPage from '../page/Main/AIWorkbookPage';
+import SchedulePage from '../page/Main/SchedulePage';
+import VotePage from '../page/Main/VotePage';
+import SendMessagePage from '../page/Main/SendMessagePage';
+import SeatAssignmentPage from '../page/Main/SeatAssignmentPage';
+import SignUpPage from '../page/SignUp/SignUpPage';
+import CheckSignUpPage from '../page/SignUp/CheckSignUpPage';
+import CheckInformation from '../page/Header/Info/CheckInformation';
 
 const router = createBrowserRouter([
     {

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../css/CheckSignUpPage/CheckSignUpPage.module.css'; // CSS 모듈 import
-import AppleIcon from '../svg/LoginPage/AppleIcon';
-import GoogleIcon from '../svg/LoginPage/GoogleIcon';
-import NaverIcon from '../svg/LoginPage/NaverIcon';
-import EmailIcon from '../svg/SignUpPage/EmailIcon';
+import styles from '../../css/SignUpPage/CheckSignUpPage/CheckSignUpPage.module.css'; // CSS 모듈 import
+import AppleIcon from '../../svg/LoginPage/AppleIcon';
+import GoogleIcon from '../../svg/LoginPage/GoogleIcon';
+import NaverIcon from '../../svg/LoginPage/NaverIcon';
+import EmailIcon from '../../svg/SignUpPage/EmailIcon';
 
 function CheckSignUpPage() {
     const navigate = useNavigate();
