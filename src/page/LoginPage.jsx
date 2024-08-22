@@ -7,7 +7,6 @@ import KakaoIcon from '../svg/LoginPage/KakaoIcon';
 import GoogleIcon from '../svg/LoginPage/GoogleIcon';
 import NaverIcon from '../svg/LoginPage/NaverIcon';
 import AppleIcon from '../svg/LoginPage/AppleIcon';
-import { UserContext } from '../utils/context/UserContext';
 
 function LoginPage() {
     //로그인 정보
@@ -56,12 +55,13 @@ function LoginPage() {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
                 },
-                body: JSON.stringify({ userId, userPw }), // userIdInput을 userId로 변경
+                body: JSON.stringify({ userId, userPw }),
             });
 
             if (response.ok) {
                 const data = await response.json();
                 const jwtToken = data.data.accessToken; // 서버로부터 받은 액세스 토큰
+                const jslName = data.data.userName; // userName 받아옴
 
                 //중복 로그인을 막기위한 코드
                 const accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
@@ -77,9 +77,10 @@ function LoginPage() {
                 //userId를 새로고침해도 남아있게 하기위해 localStorage로 받아옴
                 localStorage.setItem('userId', userId);
 
+                //userName 설정
+                localStorage.setItem('userName', jslName);
+
                 navigate('/mainpage');
-            } else {
-                console.error('로그인 실패:', await response.text());
             }
         } catch (error) {
             console.error('Error logging in:', error);
@@ -99,7 +100,7 @@ function LoginPage() {
                             <input
                                 type="text"
                                 placeholder="아이디"
-                                value={userId} //
+                                value={userId}
                                 onChange={(e) => setUserId(e.target.value)}
                                 className={styles.loginInput}
                             />

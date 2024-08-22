@@ -8,7 +8,6 @@ import PhoneIcon from '../svg/SignUpPage/PhoneIcon'; // Phone 아이콘 import
 import DateIcon from '../svg/SignUpPage/DateIcon'; // Date 아이콘 import
 import SchoolIcon from '../svg/SignUpPage/SchoolIcon'; // School 아이콘 import
 import ClassIcon from '../svg/SignUpPage/ClassIcon'; // Class 아이콘 import
-import UserContext from '../utils/context/UserContext';
 
 function SignUpPage() {
     //회원가입 정보
@@ -21,9 +20,6 @@ function SignUpPage() {
     const [userEmail, setUserEmail] = useState('');
     const [schoolName, setSchoolName] = useState('');
     const [classNum, setClassNum] = useState('');
-
-    // userName 값 저장
-    const { setUserName: globalsetUserName } = useContext(UserContext);
 
     // 중복체크 정보
     const [idDuplicateChecked, setIdDuplicateChecked] = useState(false);
@@ -124,7 +120,6 @@ function SignUpPage() {
 
             // 응답 결과 처리
             const result = await duplicateTest_response.json();
-            console.log(result);
 
             if (result.status === '200') {
                 alert(result.message);
@@ -288,8 +283,6 @@ function SignUpPage() {
             const result = await signUp_response.json();
 
             if (result.status === '200') {
-                globalsetUserName(userName);
-                localStorage.setItem('userName', userName);
                 alert(result.message);
                 navigate('/');
             } else {

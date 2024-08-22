@@ -11,6 +11,7 @@ import SendMessagePage from '../page/SendMessagePage';
 import SeatAssignmentPage from '../page/SeatAssignmentPage';
 import SignUpPage from '../page/SignUpPage';
 import CheckSignUpPage from '../page/CheckSignUpPage';
+import CheckInformation from '../page/CheckInformation';
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             {
                 path: '/mainpage',
                 element: <MainPage />,
+            },
+            {
+                path: '/checkinfo',
+                element: <CheckInformation />,
             },
             {
                 path: '/student-management',

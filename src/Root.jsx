@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet';
 import { createGlobalStyle, styled } from 'styled-components';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Header from './components/Header/Header';
-import { UserContext } from './utils/context/UserContext';
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -39,26 +38,23 @@ const AnimationContainer = styled.div`
 
 function Root() {
     const location = useLocation();
-    const [userName, setUserName] = useState('');
 
     return (
         <>
             <Helmet>
                 <title>LeeJaeSeok</title>
             </Helmet>
-            <UserContext.Provider value={{ userName, setUserName }}>
-                <GlobalStyle />
-                {location.pathname !== '/' &&
-                    location.pathname !== '/signuppage' &&
-                    location.pathname !== '/checksignuppage' && <Header />}
-                <TransitionGroup>
-                    <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
-                        <AnimationContainer>
-                            <Outlet />
-                        </AnimationContainer>
-                    </CSSTransition>
-                </TransitionGroup>
-            </UserContext.Provider>
+            <GlobalStyle />
+            {location.pathname !== '/' &&
+                location.pathname !== '/signuppage' &&
+                location.pathname !== '/checksignuppage' && <Header />}
+            <TransitionGroup>
+                <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
+                    <AnimationContainer>
+                        <Outlet />
+                    </AnimationContainer>
+                </CSSTransition>
+            </TransitionGroup>
         </>
     );
 }

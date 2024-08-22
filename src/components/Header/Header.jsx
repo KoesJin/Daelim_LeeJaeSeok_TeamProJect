@@ -1,15 +1,15 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../../css/Header/Header.module.css';
 import { FaBars, FaComments, FaTimes, FaArrowLeft, FaUserPlus } from 'react-icons/fa';
 import ProfileSidebar from '../ProfileSideBar/ProfileSidebar';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../../utils/context/UserContext';
 
 const Header = () => {
     //모달
     const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
     const [isChatModalOpen, setIsChatModalOpen] = useState(false);
     const [selectedChat, setSelectedChat] = useState(null);
+    const [userName, setUserName] = useState('');
     const toggleMenuModal = () => {
         setIsMenuModalOpen(!isMenuModalOpen);
     };
@@ -35,25 +35,22 @@ const Header = () => {
         setSelectedChat(null);
     };
 
-    //userName 저장 값
-    const { userName, setUserName } = useContext(UserContext);
-
     //navigate 훅
     const navigate = useNavigate();
 
-    // useEffect 훅
+    // userId 가져오는 useEffect 훅
     useEffect(() => {
         // 새로고침 시 localStorage에서 userName를 불러오게함
         const storedUserName = localStorage.getItem('userName');
         if (storedUserName) {
             setUserName(storedUserName);
         }
-    }, [setUserName]);
+    }, []);
 
     // 로그아웃
     const handleLogout = () => {
         localStorage.removeItem('accessToken');
-        localStorage.removeItem('userId'); // 로그아웃 시 userId도 삭제
+        localStorage.removeItem('userName'); // 로그아웃 시 userId도 삭제
         sessionStorage.removeItem('accessToken');
         navigate('/');
     };
@@ -91,7 +88,15 @@ const Header = () => {
                             <li className={styles.listItem}>시간표</li>
                             <li className={styles.listItem}>투표</li>
                             <li className={styles.listItem}>문자 발송</li>
-                            <li className={styles.listItem}>정보 수정</li>
+                            <li
+                                className={styles.listItem}
+                                onClick={() => {
+                                    navigate('/checkinfo');
+                                    closeMenuModal();
+                                }}
+                            >
+                                내 정보 관리
+                            </li>
                             <li className={`${styles.listItem} ${styles.emptyItem}`}>빈칸</li>
                             <li className={styles.listItem} onClick={handleLogout}>
                                 로그 아웃
