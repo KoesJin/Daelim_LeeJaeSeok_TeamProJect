@@ -48,13 +48,13 @@ const CheckInformation = () => {
 
             if (result.status === '200') {
                 alert('회원 정보 확인되었습니다.');
-                navigate('/mainpage');
+                navigate('/setting');
             } else {
                 alert('비밀번호가 일치하지 않습니다');
             }
         } catch (error) {
             console.error('Error logging in:', error);
-            alert('아이디 또는 비밀번호가 잘못되었습니다.');
+            alert('비밀번호가 잘못되었습니다.');
         }
     };
 

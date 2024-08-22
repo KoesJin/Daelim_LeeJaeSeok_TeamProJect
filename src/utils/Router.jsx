@@ -12,6 +12,8 @@ import SeatAssignmentPage from '../page/Main/SeatAssignmentPage';
 import SignUpPage from '../page/SignUp/SignUpPage';
 import CheckSignUpPage from '../page/SignUp/CheckSignUpPage';
 import CheckInformation from '../page/Header/Info/CheckInformation';
+import Settings from '../page/Header/Info/Settings';
+import PersonalInfoChange from '../page/Header/Info/PersonalInfoChange';
 
 const router = createBrowserRouter([
     {
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
             {
                 path: '/checkinfo',
                 element: <CheckInformation />,
+            },
+            {
+                path: '/setting',
+                element: <Settings />,
+            },
+            {
+                path: '/personalinfo',
+                element: <PersonalInfoChange />,
             },
             {
                 path: '/student-management',

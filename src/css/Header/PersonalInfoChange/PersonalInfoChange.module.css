@@ -1,0 +1,65 @@
+.PersonalInfoChangeContainer {
+    height: calc(100vh - 10vh);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+.container {
+    background: #fff;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    box-sizing: border-box;
+    color: inherit;
+}
+
+.container h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+}
+
+.inputContainer {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.inputField {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.saveButton {
+    padding: 15px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #e6e6fa;
+    color: #333;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.saveButton:hover {
+    background-color: #d8bfd8;
+    box-shadow: none;
+}

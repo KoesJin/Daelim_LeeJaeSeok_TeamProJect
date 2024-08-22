@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../css/Settings/Settings.module.css';
+import styles from '../../../css/Header/Settings/Settings.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const Settings = () => {
@@ -8,8 +8,8 @@ const Settings = () => {
     return (
         <div className={styles.SettingsContainer}>
             <div className={styles.container}>
-                <h2>설정</h2>
-                <button className={styles.optionButton} onClick={() => navigate('/personal-info-change')}>
+                <h2>내 설정 변경</h2>
+                <button className={styles.optionButton} onClick={() => navigate('/personalinfo')}>
                     개인정보 변경
                 </button>
                 <button className={styles.optionButton} onClick={() => navigate('/password-change')}>

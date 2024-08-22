@@ -1,0 +1,45 @@
+.SettingsContainer {
+    height: calc(100vh - 10vh);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 10vh;
+    overflow-y: auto;
+}
+
+.container {
+    background: #fff;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    box-sizing: border-box;
+    color: inherit;
+}
+
+.container h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+}
+
+.optionButton {
+    padding: 15px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #e6e6fa;
+    color: #333;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.optionButton:hover {
+    background-color: #d8bfd8;
+    box-shadow: none;
+}
