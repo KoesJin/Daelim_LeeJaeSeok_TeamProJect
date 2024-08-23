@@ -246,18 +246,6 @@ function SignUpPage() {
             return;
         }
 
-        console.log({
-            userId,
-            userPw,
-            userConPw,
-            userName,
-            userNum,
-            userDate,
-            userEmail,
-            schoolName,
-            classNum,
-        });
-
         try {
             //회원가입 앤드포인트
             const signUp_response = await fetch(`${baseURL}/api/user/signup`, {
