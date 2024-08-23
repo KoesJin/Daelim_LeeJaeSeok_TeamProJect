@@ -1,20 +1,10 @@
-import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaUserGraduate, FaBook, FaCalendarAlt, FaVoteYea, FaEnvelope, FaChair } from 'react-icons/fa';
 import schoolLogo from '../../img/schoolLogo.jpg'; // 로고 이미지 import
 import '../../css/MainPage/MainPage.css'; // 스타일 import
 
 const MainPage = () => {
-    const navigate = useNavigate();
-
-    //MainPage에서 accessToken값이 세션과 , 로컬에 없으면 /로 튕기게 하는 코드
-    useEffect(() => {
-        const accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
-        if (!accessToken) {
-            navigate('/');
-        }
-    }, [navigate]);
     return (
         <>
             <Container fluid className="main-container">

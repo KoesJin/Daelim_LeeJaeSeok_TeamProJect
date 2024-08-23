@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { createGlobalStyle, styled } from 'styled-components';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -37,7 +37,18 @@ const AnimationContainer = styled.div`
 `;
 
 function Root() {
+    //useNavigate 훅
+    const navigate = useNavigate();
+    //useLocation 훅
     const location = useLocation();
+
+    //모든페이지에서 accessToken값이 세션과 , 로컬에 없으면 /로 튕기게 하는 코드
+    useEffect(() => {
+        const accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
+        if (!accessToken) {
+            navigate('/');
+        }
+    }, [navigate, location.pathname]);
 
     return (
         <>

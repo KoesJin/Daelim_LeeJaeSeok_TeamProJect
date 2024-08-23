@@ -49,10 +49,13 @@ const Header = () => {
 
     // 로그아웃
     const handleLogout = () => {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('userName'); // 로그아웃 시 userId도 삭제
-        sessionStorage.removeItem('accessToken');
-        navigate('/');
+        const confirmed = window.confirm('정말로 로그아웃 하시겠습니까?');
+        if (confirmed) {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('userName');
+            sessionStorage.removeItem('accessToken');
+            navigate('/'); // 메인 페이지로 부드럽게 전환
+        }
     };
 
     return (
