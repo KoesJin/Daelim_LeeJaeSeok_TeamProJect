@@ -30,7 +30,7 @@ const PasswordChange = () => {
                         <input
                             type="password"
                             className={styles.inputField}
-                            placeholder="비밀번호 확인"
+                            placeholder="새 비밀번호"
                             value={userConPw}
                             onChange={(e) => setUserConPw(e.target.value)}
                         />
@@ -40,7 +40,7 @@ const PasswordChange = () => {
                         <input
                             type="password"
                             className={styles.inputField}
-                            placeholder="새로운 비밀번호"
+                            placeholder="새 비밀번호 확인"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
                         />
