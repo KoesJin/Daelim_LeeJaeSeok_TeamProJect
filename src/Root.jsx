@@ -45,7 +45,7 @@ function Root() {
     //모든페이지에서 accessToken값이 세션과 , 로컬에 없으면 /로 튕기게 하는 코드
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
-        if (!accessToken) {
+        if (!accessToken && location.pathname !== '/signuppage' && location.pathname !== '/checksignuppage') {
             navigate('/');
         }
     }, [navigate, location.pathname]);
