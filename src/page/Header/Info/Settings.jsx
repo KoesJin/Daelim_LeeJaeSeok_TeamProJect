@@ -8,11 +8,11 @@ const Settings = () => {
     return (
         <div className={styles.SettingsContainer}>
             <div className={styles.container}>
-                <h2>내 설정 변경</h2>
+                <h2>내 정보 변경</h2>
                 <button className={styles.optionButton} onClick={() => navigate('/personalinfo')}>
                     개인정보 변경
                 </button>
-                <button className={styles.optionButton} onClick={() => navigate('/password-change')}>
+                <button className={styles.optionButton} onClick={() => navigate('/passwordchange')}>
                     비밀번호 변경
                 </button>
             </div>

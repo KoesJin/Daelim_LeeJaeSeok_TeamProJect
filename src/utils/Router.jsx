@@ -14,6 +14,7 @@ import CheckSignUpPage from '../page/SignUp/CheckSignUpPage';
 import CheckInformation from '../page/Header/Info/CheckInformation';
 import Settings from '../page/Header/Info/Settings';
 import PersonalInfoChange from '../page/Header/Info/PersonalInfoChange';
+import PasswordChange from '../page/Header/Info/PasswordChange';
 
 const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
             {
                 path: '/personalinfo',
                 element: <PersonalInfoChange />,
+            },
+            {
+                path: '/passwordchange',
+                element: <PasswordChange />,
             },
             {
                 path: '/student-management',

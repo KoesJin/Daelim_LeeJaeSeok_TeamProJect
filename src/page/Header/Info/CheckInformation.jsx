@@ -47,7 +47,7 @@ const CheckInformation = () => {
             const result = await response.json();
 
             if (result.status === '200') {
-                alert('회원 정보 확인되었습니다.');
+                alert('회원 정보가 확인되었습니다.');
                 navigate('/setting');
             } else {
                 alert('비밀번호가 일치하지 않습니다');
