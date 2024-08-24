@@ -35,13 +35,13 @@ const CheckInformation = () => {
                 baseURL = 'http://121.139.20.242:8859';
             }
 
-            const response = await fetch(`${baseURL}/api/user/login`, {
+            const response = await fetch(`${baseURL}/api/user/confirmPassword/${userId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
                 },
-                body: JSON.stringify({ userId, userPw }),
+                body: JSON.stringify({ userPw }),
             });
 
             const result = await response.json();
