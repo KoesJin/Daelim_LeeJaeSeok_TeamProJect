@@ -35,11 +35,19 @@ const CheckInformation = () => {
                 baseURL = 'http://121.139.20.242:8859';
             }
 
+            // /user 포함된 앤드포인트에 사용 해야함
+            const bearerToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
+            if (!bearerToken) {
+                alert('사용자가 인증되지 않았습니다.');
+                return;
+            }
+
             const response = await fetch(`${baseURL}/api/user/confirmPassword/${userId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
+                    Authorization: bearerToken, // /user 포함된 앤드포인트에 사용 해야함
                 },
                 body: JSON.stringify({ userPw }),
             });
@@ -47,10 +55,18 @@ const CheckInformation = () => {
             const result = await response.json();
 
             if (result.status === '200') {
-                alert('회원 정보가 확인되었습니다.');
+                // JWT 토큰 설정
+                const jwtToken = result.data.accessPwToken;
+
+                // 'Bearer ' 접두사를 추가하여 JWT 토큰을 로컬 스토리지와 세션 스토리지에 저장
+                const bearerToken = `Bearer ${jwtToken}`;
+                localStorage.setItem('PasswordVerAuth', bearerToken);
+                sessionStorage.setItem('PasswordVerAuth', bearerToken);
+
+                alert(result.message);
                 navigate('/setting');
             } else {
-                alert('비밀번호가 일치하지 않습니다');
+                alert(result.message);
             }
         } catch (error) {
             console.error('Error logging in:', error);

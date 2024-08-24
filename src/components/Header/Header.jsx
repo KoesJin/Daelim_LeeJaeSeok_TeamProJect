@@ -51,9 +51,9 @@ const Header = () => {
     const handleLogout = () => {
         const confirmed = window.confirm('정말로 로그아웃 하시겠습니까?');
         if (confirmed) {
-            localStorage.removeItem('accessToken');
+            localStorage.removeItem('Authorization');
             localStorage.removeItem('userName');
-            sessionStorage.removeItem('accessToken');
+            sessionStorage.removeItem('Authorization');
             navigate('/'); // 메인 페이지로 부드럽게 전환
         }
     };

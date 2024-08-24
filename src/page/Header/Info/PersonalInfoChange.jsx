@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../../css/Header/PersonalInfoChange/PersonalInfoChange.module.css';
 import UserIcon from '../../../svg/SignUpPage/UserIcon';
-import PasswordIcon from '../../../svg/LoginPage/PasswordIcon';
 import PhoneIcon from '../../../svg/SignUpPage/PhoneIcon';
 import DateIcon from '../../../svg/SignUpPage/DateIcon';
 import EmailIcon from '../../../svg/SignUpPage/EmailIcon';
@@ -34,49 +33,79 @@ const PersonalInfoChange = () => {
         }
     }, [userId]); // userId가 변경될 때만 handleTakeInfo 실행
 
-    //모달
-    const [modalOpen, setModalOpen] = useState(false);
-    const [modalType, setModalType] = useState('');
-    const openModal = (type) => {
-        setModalType(type);
-        setModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setModalOpen(false);
-        setNewValue('');
-        setPassword('');
-    };
-
-    const handleModalSubmit = () => {
-        // 모달창 제출 로직 추가 (예: 서버에 업데이트 요청)
-        closeModal();
-    };
-
-    //새로운 값 , 비밀번호
-    const [newValue, setNewValue] = useState('');
-    const [password, setPassword] = useState('');
-
     //useNavigate 훅
     const navigate = useNavigate();
 
     //정보수정 저장 함수
     const handleSaveChanges = async (e) => {
-        // 변경 사항 저장 로직 추가
-    };
-
-    //회원 정보 불러오는 함수
-    const handleTakeInfo = async (e) => {
+        e.preventDefault();
         try {
             let baseURL = '';
             if (process.env.NODE_ENV === 'development') {
                 baseURL = 'http://121.139.20.242:8859';
             }
 
+            // /user 포함된 앤드포인트에 사용 해야함
+            const bearerToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
+            if (!bearerToken) {
+                alert('사용자가 인증되지 않았습니다.');
+                return;
+            }
+
+            // /user/update, /user/updatepassword 포함된 앤드포인트에 사용 해야함
+            const pwbearerToken = localStorage.getItem('PasswordVerAuth') || sessionStorage.getItem('PasswordVerAuth');
+            if (!pwbearerToken) {
+                alert('사용자가 인증되지 않았습니다.');
+                return;
+            }
+
+            const response = await fetch(`${baseURL}/api/user/update/${userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: bearerToken, // /user 포함된 앤드포인트에 사용 해야함
+                    PasswordVerAuth: pwbearerToken, // /user/update, /user/updatepassword 포함된 앤드포인트에 사용 해야함
+                },
+                body: JSON.stringify({
+                    userName,
+                    userNum,
+                    schoolName,
+                    classNum,
+                }),
+            });
+
+            const result = await response.json();
+
+            if (result.status === '200') {
+                alert(result.message);
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            alert('정보를 변경할 수 없습니다.');
+        }
+    };
+
+    //회원 정보 불러오는 함수
+    const handleTakeInfo = async () => {
+        try {
+            let baseURL = '';
+            if (process.env.NODE_ENV === 'development') {
+                baseURL = 'http://121.139.20.242:8859';
+            }
+
+            const bearerToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
+            if (!bearerToken) {
+                alert('사용자가 인증되지 않았습니다.');
+                return;
+            }
+
             const response = await fetch(`${baseURL}/api/user/detail?userId=${userId}`, {
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',
+                    Authorization: bearerToken,
                 },
             });
 
@@ -99,21 +128,6 @@ const PersonalInfoChange = () => {
         }
     };
 
-    const getIcon = () => {
-        switch (modalType) {
-            case 'name':
-                return <UserIcon />;
-            case 'phone':
-                return <PhoneIcon />;
-            case 'school':
-                return <SchoolIcon />;
-            case 'class':
-                return <ClassIcon />;
-            default:
-                return null;
-        }
-    };
-
     return (
         <div className={styles.PersonalInfoChangeContainer}>
             <div className={styles.container}>
@@ -125,8 +139,7 @@ const PersonalInfoChange = () => {
                             type="text"
                             placeholder="아이디"
                             value={userId}
-                            onChange={(e) => setUserId(e.target.value)}
-                            className={styles.inputField}
+                            className={styles.disabledInputField}
                             disabled
                         />
                     </div>
@@ -135,28 +148,20 @@ const PersonalInfoChange = () => {
                         <input
                             type="text"
                             placeholder="이름"
-                            value={userName}
+                            defaultValue={userName}
                             onChange={(e) => setUserName(e.target.value)}
                             className={styles.inputField}
-                            disabled
                         />
-                        <button type="button" className={styles.changeButton} onClick={() => openModal('name')}>
-                            변경
-                        </button>
                     </div>
                     <div className={styles.inputContainer}>
                         <PhoneIcon />
                         <input
                             type="text"
                             placeholder="전화번호"
-                            value={userNum}
+                            defaultValue={userNum}
                             onChange={(e) => setUserNum(e.target.value)}
                             className={styles.inputField}
-                            disabled
                         />
-                        <button type="button" className={styles.changeButton} onClick={() => openModal('phone')}>
-                            변경
-                        </button>
                     </div>
                     <div className={styles.inputContainer}>
                         <DateIcon />
@@ -164,8 +169,7 @@ const PersonalInfoChange = () => {
                             type="date"
                             placeholder="생년월일"
                             value={userDate}
-                            onChange={(e) => setUserDate(e.target.value)}
-                            className={styles.inputField}
+                            className={styles.disabledInputField}
                             disabled
                         />
                     </div>
@@ -175,8 +179,7 @@ const PersonalInfoChange = () => {
                             type="email"
                             placeholder="이메일"
                             value={userEmail}
-                            onChange={(e) => setUserEmail(e.target.value)}
-                            className={styles.inputField}
+                            className={styles.disabledInputField}
                             disabled
                         />
                     </div>
@@ -185,28 +188,20 @@ const PersonalInfoChange = () => {
                         <input
                             type="text"
                             placeholder="학교명"
-                            value={schoolName}
+                            defaultValue={schoolName}
                             onChange={(e) => setSchoolName(e.target.value)}
                             className={styles.inputField}
-                            disabled
                         />
-                        <button type="button" className={styles.changeButton} onClick={() => openModal('school')}>
-                            변경
-                        </button>
                     </div>
                     <div className={styles.inputContainer}>
                         <ClassIcon />
                         <input
                             type="text"
                             placeholder="반"
-                            value={classNum}
+                            defaultValue={classNum}
                             onChange={(e) => setClassNum(e.target.value)}
                             className={styles.inputField}
-                            disabled
                         />
-                        <button type="button" className={styles.changeButton} onClick={() => openModal('class')}>
-                            변경
-                        </button>
                     </div>
                     <button type="submit" className={styles.saveButton}>
                         변경 사항 저장
@@ -221,56 +216,6 @@ const PersonalInfoChange = () => {
                         뒤로가기
                     </button>
                 </form>
-
-                {modalOpen && (
-                    <div className={styles.modalOverlay}>
-                        <div className={styles.modalContent}>
-                            <button className={styles.closeButton} onClick={closeModal}>
-                                &times;
-                            </button>
-                            <h3>{`변경할 ${
-                                modalType === 'phone'
-                                    ? '전화번호'
-                                    : modalType === 'name'
-                                    ? '이름'
-                                    : modalType === 'school'
-                                    ? '학교명'
-                                    : '반'
-                            }`}</h3>
-                            <div className={styles.inputContainer}>
-                                {getIcon()}
-                                <input
-                                    type="text"
-                                    placeholder={`변경할 ${
-                                        modalType === 'phone'
-                                            ? '전화번호'
-                                            : modalType === 'name'
-                                            ? '이름'
-                                            : modalType === 'school'
-                                            ? '학교명'
-                                            : '반'
-                                    }`}
-                                    value={newValue}
-                                    onChange={(e) => setNewValue(e.target.value)}
-                                    className={styles.inputField}
-                                />
-                            </div>
-                            <div className={styles.inputContainer}>
-                                <PasswordIcon />
-                                <input
-                                    type="password"
-                                    placeholder="비밀번호"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    className={styles.inputField}
-                                />
-                            </div>
-                            <button className={styles.saveButton} onClick={handleModalSubmit}>
-                                확인
-                            </button>
-                        </div>
-                    </div>
-                )}
             </div>
         </div>
     );
