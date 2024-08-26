@@ -42,7 +42,7 @@ function Root() {
     //useLocation 훅
     const location = useLocation();
 
-    //모든페이지에서 accessToken값이 세션과 , 로컬에 없으면 /로 튕기게 하는 코드
+    //모든페이지에서 토큰값이 세션과 , 로컬에 없으면 /로 튕기게 하는 코드
     useEffect(() => {
         const accessToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
         if (!accessToken && location.pathname !== '/signuppage' && location.pathname !== '/checksignuppage') {

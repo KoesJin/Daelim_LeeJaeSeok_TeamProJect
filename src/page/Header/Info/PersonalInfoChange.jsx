@@ -18,7 +18,7 @@ const PersonalInfoChange = () => {
     const [schoolName, setSchoolName] = useState('');
     const [classNum, setClassNum] = useState('');
 
-    // userId 가져오는 useEffect 훅
+    // userId 가져오는 useEffect 훅 -> 앤드포인트에서 useId가 있어야만 detail이 가져와지기 떄문
     useEffect(() => {
         const storedUserId = localStorage.getItem('userId');
         if (storedUserId && userId !== storedUserId) {
@@ -39,6 +39,60 @@ const PersonalInfoChange = () => {
     //정보수정 저장 함수
     const handleSaveChanges = async (e) => {
         e.preventDefault();
+
+        // 이름 유효성 검사
+        // 전화번호가 비어있는지 확인
+        if (!userName) {
+            alert('이름을 입력해 주세요.');
+            return;
+        }
+        const nameRegex = /^[가-힣]{2,5}$/;
+        if (!nameRegex.test(userName)) {
+            alert('이름은 2자에서 5자 사이의 한글만 입력 가능합니다.');
+            return;
+        }
+
+        // 전화번호 유효성 검사
+        // 전화번호가 비어있는지 확인
+        if (!userNum) {
+            alert('전화번호를 입력해 주세요.');
+            return;
+        }
+
+        // // 전화번호가 11자리이며, 숫자로만 이루어져 있는지 확인
+        const phoneRegex = /^010\d{8}$/;
+        if (!phoneRegex.test(userNum)) {
+            alert('전화번호는 010으로 시작하고, "-"를 제외한 11자리 숫자로만 이루어져야 합니다. 예: 01012345678');
+            return;
+        }
+
+        // 학교명 유효성 검사
+        // 학교명이 비어있는지 확인
+        if (!schoolName) {
+            alert('학교 이름을 입력해 주세요.');
+            return;
+        }
+
+        const schoolRegex = /^[가-힣]{5,15}$/;
+        if (!schoolRegex.test(schoolName)) {
+            alert('학교이름은 5자에서 15자 사이의 한글만 입력 가능합니다.');
+            return;
+        }
+
+        // 반 유효성 검사
+        // 반이 비어있는지 확인
+        if (!classNum) {
+            alert('반을 입력해 주세요.');
+            return;
+        }
+
+        const classRegex = /^\d{1,2}$/;
+        if (!classRegex.test(classNum)) {
+            alert('반은 1~2자리 숫자로만 이루어져 있어야 합니다.');
+            return;
+        }
+
+        //앤드포인트
         try {
             let baseURL = '';
             if (process.env.NODE_ENV === 'development') {
@@ -79,6 +133,10 @@ const PersonalInfoChange = () => {
 
             if (result.status === '200') {
                 alert(result.message);
+                // Header에 있는 userName localStorage를 변경해주기 위해 사용
+                localStorage.setItem('userName', userName);
+                // Header에 있는 userName이 바로 변경되지 않아 사용
+                window.location.reload();
             } else {
                 alert(result.message);
             }
