@@ -5,9 +5,6 @@ import styles from '../../css/MainPage/AIWorkbookPage/AIWorkbookPage.module.css'
 const AIWorkbookPage = () => {
     return (
         <div className={styles.container}>
-            <header className={styles.header}>
-                <h1>TeacHub</h1>
-            </header>
             <main className={styles.main}>
                 <section className={styles.section}>
                     <h2>학년 선택</h2>

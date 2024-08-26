@@ -38,7 +38,7 @@ const Header = () => {
     //navigate 훅
     const navigate = useNavigate();
 
-    // userId 가져오는 useEffect 훅
+    // userName 가져오는 useEffect 훅
     useEffect(() => {
         // 새로고침 시 localStorage에서 userName를 불러오게함
         const storedUserName = localStorage.getItem('userName');
@@ -51,9 +51,9 @@ const Header = () => {
     const handleLogout = () => {
         const confirmed = window.confirm('정말로 로그아웃 하시겠습니까?');
         if (confirmed) {
-            localStorage.removeItem('accessToken');
+            localStorage.removeItem('Authorization');
             localStorage.removeItem('userName');
-            sessionStorage.removeItem('accessToken');
+            sessionStorage.removeItem('Authorization');
             navigate('/'); // 메인 페이지로 부드럽게 전환
         }
     };
@@ -91,6 +91,7 @@ const Header = () => {
                             <li className={styles.listItem}>시간표</li>
                             <li className={styles.listItem}>투표</li>
                             <li className={styles.listItem}>문자 발송</li>
+                            <li className={styles.listItem}>자리 선정</li>
                             <li
                                 className={styles.listItem}
                                 onClick={() => {
@@ -100,7 +101,7 @@ const Header = () => {
                             >
                                 내 정보 관리
                             </li>
-                            <li className={`${styles.listItem} ${styles.emptyItem}`}>빈칸</li>
+
                             <li className={styles.listItem} onClick={handleLogout}>
                                 로그 아웃
                             </li>

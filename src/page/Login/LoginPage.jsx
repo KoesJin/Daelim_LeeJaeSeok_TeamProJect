@@ -32,6 +32,7 @@ function LoginPage() {
     // 로그인 함수
     const handleLogin = async (e) => {
         e.preventDefault();
+
         if (!userId && !userPw) {
             alert('아이디 또는 비밀번호를 입력하세요.');
             return;
@@ -60,31 +61,37 @@ function LoginPage() {
 
             if (response.ok) {
                 const data = await response.json();
-                const jwtToken = data.data.accessToken; // 서버로부터 받은 액세스 토큰
+                const jwtToken = data.data.jwtToken.accessToken; // 서버로부터 받은 액세스 토큰
                 const jslName = data.data.userName; // userName 받아옴
 
-                //중복 로그인을 막기위한 코드
-                const accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
-                if (accessToken) {
-                    localStorage.removeItem('accessToken');
-                    sessionStorage.removeItem('accessToken');
+                // 중복 로그인을 막기위한 코드
+                const existingToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
+                if (existingToken) {
+                    localStorage.removeItem('Authorization');
+                    sessionStorage.removeItem('Authorization');
                 }
 
-                // JWT 토큰을 로컬 스토리지와 세션 스토리지에 저장
-                localStorage.setItem('accessToken', jwtToken);
-                sessionStorage.setItem('accessToken', jwtToken);
+                // const bearer = data.data.jwtToken.grantType
+                // const loginAccessToken = `${bearer} ${jwtToken}`
 
-                //userId를 새로고침해도 남아있게 하기위해 localStorage로 받아옴
+                // 'Bearer ' 접두사를 추가하여 JWT 토큰을 로컬 스토리지와 세션 스토리지에 저장
+                const bearerToken = `Bearer ${jwtToken}`;
+                localStorage.setItem('Authorization', bearerToken);
+                sessionStorage.setItem('Authorization', bearerToken);
+
+                // userId를 새로고침해도 남아있게 하기 위해 localStorage로 저장
                 localStorage.setItem('userId', userId);
 
-                //userName 설정
+                // userName 설정
                 localStorage.setItem('userName', jslName);
 
                 navigate('/mainpage');
+            } else {
+                alert('아이디 또는 비밀번호가 잘못되었습니다.');
             }
         } catch (error) {
             console.error('Error logging in:', error);
-            alert('아이디 또는 비밀번호가 잘못되었습니다.');
+            alert('로그인 중 오류가 발생했습니다. 다시 시도해주세요.');
         }
     };
 

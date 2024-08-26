@@ -92,7 +92,7 @@ function SignUpPage() {
     const handleCheckuserNum = async (e) => {
         e.preventDefault();
 
-        // 아이디가 비어있는지 확인
+        // 전화번호가 비어있는지 확인
         if (!userNum) {
             alert('전화번호를 입력해 주세요.');
             return;

@@ -1,0 +1,73 @@
+.content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.studentList {
+    width: 20%;
+    padding-right: 20px;
+}
+
+.studentClass {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.student {
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: grab;
+    border-radius: 4px;
+}
+
+.assigned {
+    text-decoration: line-through;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.randomButton {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.randomButton:hover {
+    background-color: #0056b3;
+}
+
+.seatMap {
+    width: 75%;
+}
+
+.board {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.seatGrid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+}
+
+.seat {
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #e0e0e0;
+    text-align: center;
+    border-radius: 4px;
+    min-height: 50px;
+    cursor: pointer;
+}

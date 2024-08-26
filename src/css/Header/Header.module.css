@@ -22,6 +22,7 @@
     left: 50%;
     transform: translateX(-50%);
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .userName {
