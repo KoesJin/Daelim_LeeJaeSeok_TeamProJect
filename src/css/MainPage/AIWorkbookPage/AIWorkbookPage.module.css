@@ -5,12 +5,6 @@
     --header-height: 60px;
 }
 
-body,
-html {
-    height: 100%;
-    overflow: hidden;
-}
-
 a {
     text-decoration: none !important;
 }
@@ -88,16 +82,6 @@ a {
 .list li:hover {
     background-color: #e6e6fa;
     transform: translateY(-5px);
-}
-
-.footer {
-    text-align: center;
-    padding: 10px;
-    background-color: var(--primary-color);
-    color: white;
-    width: 100%;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    border-top: 2px solid #e6e6fa;
 }
 
 .link {
