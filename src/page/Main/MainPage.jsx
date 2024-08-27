@@ -15,7 +15,7 @@ const MainPage = () => {
                             <div className="school-name">성보중학교</div>
                         </div>
                         <div className="content-grid">
-                            <Link to="/student-management" className="content-section">
+                            <Link to="/studentmanagement" className="content-section">
                                 <FaUserGraduate className="icon-large" />
                                 <h2 className="title-large">학생 관리</h2>
                             </Link>
