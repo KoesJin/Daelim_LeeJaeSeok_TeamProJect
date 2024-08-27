@@ -78,7 +78,7 @@ const PasswordChange = () => {
                 return;
             }
 
-            // /user/update, /user/updatepassword 포함된 앤드포인트에 사용 해야함
+            // /user/delete ,/user/update, /user/updatepassword 포함된 앤드포인트에 사용 해야함
             const pwbearerToken = localStorage.getItem('PasswordVerAuth') || sessionStorage.getItem('PasswordVerAuth');
             if (!pwbearerToken) {
                 alert('사용자가 인증되지 않았습니다.');
@@ -91,7 +91,7 @@ const PasswordChange = () => {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
                     Authorization: bearerToken, // /user 포함된 앤드포인트에 사용 해야함
-                    PasswordVerAuth: pwbearerToken, // /user/update, /user/updatepassword 포함된 앤드포인트에 사용 해야함
+                    PasswordVerAuth: pwbearerToken, // /user/delete ,/user/update, /user/updatepassword 포함된 앤드포인트에 사용 해야함
                 },
                 body: JSON.stringify({
                     currentPw,
