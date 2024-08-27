@@ -37,11 +37,6 @@ const AIWorkbookPage = () => {
                     </ul>
                 </section>
             </main>
-            <footer className={styles.footer}>
-                <Link to="/mainpage" className={styles.link}>
-                    뒤로가기
-                </Link>
-            </footer>
         </div>
     );
 };
