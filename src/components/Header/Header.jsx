@@ -52,8 +52,13 @@ const Header = () => {
         const confirmed = window.confirm('정말로 로그아웃 하시겠습니까?');
         if (confirmed) {
             localStorage.removeItem('Authorization');
-            localStorage.removeItem('userName');
             sessionStorage.removeItem('Authorization');
+            localStorage.removeItem('PasswordVerAuth');
+            sessionStorage.removeItem('PasswordVerAuth');
+
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userId');
+
             navigate('/'); // 메인 페이지로 부드럽게 전환
         }
     };
@@ -86,7 +91,15 @@ const Header = () => {
                             <div className={styles.logo}>목록</div>
                         </div>
                         <ul className={styles.menuList}>
-                            <li className={styles.listItem}>학생 관리</li>
+                            <li
+                                className={styles.listItem}
+                                onClick={() => {
+                                    navigate('/studentmanagement');
+                                    closeMenuModal();
+                                }}
+                            >
+                                학생 관리
+                            </li>
                             <li className={styles.listItem}>AI 문제집</li>
                             <li className={styles.listItem}>시간표</li>
                             <li className={styles.listItem}>투표</li>
