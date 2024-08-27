@@ -55,7 +55,7 @@ const router = createBrowserRouter([
                 element: <PasswordChange />,
             },
             {
-                path: '/student-management',
+                path: '/studentmanagement',
                 element: <StudentManagementPage />,
             },
             {
