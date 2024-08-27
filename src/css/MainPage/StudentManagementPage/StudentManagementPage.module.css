@@ -1,0 +1,94 @@
+.ScrollContainer {
+    height: 100vh;
+    overflow-y: auto; /* 기본적으로 스크롤을 활성화 */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    height: calc(100vh - 10vh); /* ScrollContainer 내에서 전체 높이를 사용 */
+    max-width: 1200px;
+    margin: 20px auto 0 auto;
+    background-color: rgba(230, 230, 250, 0.1);
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.classInfo {
+    position: absolute;
+    top: 20px;
+    left: 35px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.addButton {
+    padding: 10px 20px;
+    background-color: rgb(230, 230, 248);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    align-self: flex-end;
+}
+
+.studentBox {
+    width: 100%;
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.studentTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.studentHeader,
+.studentRow {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.numberHeader,
+.number {
+    width: 50px;
+    text-align: center;
+}
+
+.studentNameHeader,
+.studentInfoHeader,
+.actionHeader,
+.studentName,
+.studentInfo,
+.actions {
+    padding: 10px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.separator {
+    margin: 0 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.editButton,
+.deleteButton {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    font-weight: bold;
+}
