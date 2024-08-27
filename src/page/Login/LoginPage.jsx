@@ -59,10 +59,11 @@ function LoginPage() {
                 body: JSON.stringify({ userId, userPw }),
             });
 
-            if (response.ok) {
-                const data = await response.json();
-                const jwtToken = data.data.jwtToken.accessToken; // 서버로부터 받은 액세스 토큰
-                const jslName = data.data.userName; // userName 받아옴
+            const result = await response.json();
+
+            if (result.status === '200') {
+                const jwtToken = result.data.jwtToken.accessToken; // 서버로부터 받은 액세스 토큰
+                const jslName = result.data.userName; // userName 받아옴
 
                 // 중복 로그인을 막기위한 코드
                 const existingToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
@@ -70,9 +71,6 @@ function LoginPage() {
                     localStorage.removeItem('Authorization');
                     sessionStorage.removeItem('Authorization');
                 }
-
-                // const bearer = data.data.jwtToken.grantType
-                // const loginAccessToken = `${bearer} ${jwtToken}`
 
                 // 'Bearer ' 접두사를 추가하여 JWT 토큰을 로컬 스토리지와 세션 스토리지에 저장
                 const bearerToken = `Bearer ${jwtToken}`;
@@ -87,7 +85,7 @@ function LoginPage() {
 
                 navigate('/mainpage');
             } else {
-                alert('아이디 또는 비밀번호가 잘못되었습니다.');
+                alert(result.message);
             }
         } catch (error) {
             console.error('Error logging in:', error);
@@ -100,7 +98,6 @@ function LoginPage() {
             <div className={styles.LoginBody}>
                 <div className={styles.container}>
                     <h1>TeacHub</h1>
-
                     <form className={styles.form} onSubmit={handleLogin}>
                         <div className={styles.inputContainer}>
                             <UserIcon />
@@ -138,10 +135,11 @@ function LoginPage() {
                     <div className={styles.links}>
                         <span className={styles.link} onClick={() => navigate('/checksignuppage')}>
                             회원가입
-                        </span>{' '}
-                        |<span className={styles.link}>계정 찾기</span> |
+                        </span>
+                        <span className={styles.separator}>|</span> {/* 구분 기호 */}
                         <span className={styles.link}>비밀번호 찾기</span>
                     </div>
+
                     <div className={styles.socialLoginContainer}>
                         <button className={styles.socialLoginButton}>
                             <KakaoIcon />
@@ -173,7 +171,7 @@ function LoginPage() {
                         <div className={styles.modal}>
                             <div className={styles.modalHeader}>
                                 <button className={styles.closeButton} onClick={closeModal}>
-                                    x
+                                    &times;
                                 </button>
                             </div>
                             <div className={styles.modalContent}>
