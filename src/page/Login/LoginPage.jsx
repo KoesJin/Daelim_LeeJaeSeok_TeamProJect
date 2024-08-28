@@ -137,7 +137,9 @@ function LoginPage() {
                             회원가입
                         </span>
                         <span className={styles.separator}>|</span> {/* 구분 기호 */}
-                        <span className={styles.link}>비밀번호 찾기</span>
+                        <span className={styles.link} onClick={() => navigate('/findpassword')}>
+                            비밀번호 찾기
+                        </span>
                     </div>
 
                     <div className={styles.socialLoginContainer}>
