@@ -359,7 +359,9 @@ function SignUpPage() {
                             />
                         </div>
                         <div className={styles.inputContainer}>
-                            <EmailIcon />
+                            <div>
+                                <EmailIcon />
+                            </div>
                             <input
                                 type="email"
                                 placeholder="이메일"
