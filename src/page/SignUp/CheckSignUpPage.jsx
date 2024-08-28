@@ -7,6 +7,7 @@ import NaverIcon from '../../svg/LoginPage/NaverIcon';
 import EmailIcon from '../../svg/SignUpPage/EmailIcon';
 
 function CheckSignUpPage() {
+    // useNavigate 훅
     const navigate = useNavigate();
 
     const handleSignUpWithEmail = () => {
@@ -48,6 +49,11 @@ function CheckSignUpPage() {
                             <div>
                                 <span className={styles.mainText}>Apple로 회원가입</span>
                                 <span className={styles.subText}>애플로 인증하여 TeacHub 회원가입</span>
+                            </div>
+                        </button>
+                        <button className={styles.backButton} onClick={() => navigate('/')}>
+                            <div>
+                                <span className={styles.mainText}>뒤로가기</span>
                             </div>
                         </button>
                     </div>

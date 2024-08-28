@@ -99,6 +99,25 @@
     margin-left: 10px;
 }
 
+.backButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-align: left;
+}
+
+.backButton:hover {
+    background-color: #f7f7f7;
+}
+
 /* 작은 화면에서 스크롤 활성화 */
 @media (max-height: 850px) {
     .ScrollContainer {
