@@ -15,6 +15,7 @@ import CheckInformation from '../page/Header/Info/CheckInformation';
 import Settings from '../page/Header/Info/Settings';
 import PersonalInfoChange from '../page/Header/Info/PersonalInfoChange';
 import PasswordChange from '../page/Header/Info/PasswordChange';
+import FindPassword from '../page/Login/FindPassword/FindPassword';
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: '',
                 element: <LoginPage />,
+            },
+            {
+                path: '/findpassword',
+                element: <FindPassword />,
             },
             {
                 path: '/checksignuppage',
