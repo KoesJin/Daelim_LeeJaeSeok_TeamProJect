@@ -45,7 +45,12 @@ function Root() {
     //모든페이지에서 토큰값이 세션과 , 로컬에 없으면 /로 튕기게 하는 코드
     useEffect(() => {
         const accessToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
-        if (!accessToken && location.pathname !== '/signuppage' && location.pathname !== '/checksignuppage') {
+        if (
+            !accessToken &&
+            location.pathname !== '/signuppage' &&
+            location.pathname !== '/checksignuppage' &&
+            location.pathname !== '/findpassword'
+        ) {
             navigate('/');
         }
     }, [navigate, location.pathname]);
@@ -53,12 +58,13 @@ function Root() {
     return (
         <>
             <Helmet>
-                <title>LeeJaeSeok</title>
+                <title>TeacHub</title>
             </Helmet>
             <GlobalStyle />
             {location.pathname !== '/' &&
                 location.pathname !== '/signuppage' &&
-                location.pathname !== '/checksignuppage' && <Header />}
+                location.pathname !== '/checksignuppage' &&
+                location.pathname !== '/findpassword' && <Header />}
             <TransitionGroup>
                 <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
                     <AnimationContainer>
