@@ -7,6 +7,7 @@ import KakaoIcon from '../../svg/LoginPage/KakaoIcon';
 import GoogleIcon from '../../svg/LoginPage/GoogleIcon';
 import NaverIcon from '../../svg/LoginPage/NaverIcon';
 import AppleIcon from '../../svg/LoginPage/AppleIcon';
+import { Title } from 'chart.js';
 
 function LoginPage() {
     //로그인 정보
@@ -97,7 +98,7 @@ function LoginPage() {
         <div className={styles.ScrollContainer}>
             <div className={styles.LoginBody}>
                 <div className={styles.container}>
-                    <h1>TeacHub</h1>
+                    <div className={styles.title}>TeacHub</div>
                     <form className={styles.form} onSubmit={handleLogin}>
                         <div className={styles.inputContainer}>
                             <UserIcon />
@@ -133,12 +134,16 @@ function LoginPage() {
                         </button>
                     </form>
                     <div className={styles.links}>
-                        <span className={styles.link} onClick={() => navigate('/checksignuppage')}>
-                            회원가입
+                        <span className={styles.link} onClick={() => navigate('/findid')}>
+                            아이디 찾기
                         </span>
-                        <span className={styles.separator}>|</span> {/* 구분 기호 */}
+                        <span className={styles.separator}>|</span>
                         <span className={styles.link} onClick={() => navigate('/findpassword')}>
                             비밀번호 찾기
+                        </span>
+                        <span className={styles.separator}>|</span>
+                        <span className={styles.link} onClick={() => navigate('/checksignuppage')}>
+                            회원가입
                         </span>
                     </div>
 

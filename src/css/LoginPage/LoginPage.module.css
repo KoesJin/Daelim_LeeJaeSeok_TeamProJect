@@ -1,3 +1,4 @@
+/* 공통 스타일 */
 .ScrollContainer {
     height: 100vh;
     overflow-y: auto; /* 화면이 작을 때 스크롤이 가능하도록 설정 */
@@ -101,7 +102,7 @@
     cursor: pointer;
     color: #333;
     margin: 0 10px;
-    font-size: 0.8rem; /* 일관된 크기로 조정 */
+    font-size: 0.85rem; /* 일관된 크기로 조정 */
 }
 
 .link:hover {
@@ -119,23 +120,26 @@
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    width: 100%; /* 부모 컨테이너의 전체 너비를 사용 */
 }
 
 .socialLoginButton {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 10px;
+    justify-content: flex-start; /* 아이콘과 텍스트를 왼쪽 정렬 */
+    padding: 15px 20px; /* 버튼 내 여백을 추가하여 더 넓게 보이도록 조정 */
     border: 1px solid #ccc;
-    border-radius: 0;
-    font-size: 0.9rem; /* 일관된 크기로 조정 */
+    border-radius: 8px; /* 모서리를 둥글게 처리 */
+    font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
     background-color: #fff;
     color: #333;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 10px;
-    text-align: center;
+    margin-bottom: 10px; /* 버튼 간의 간격 조정 */
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* 버튼에 가벼운 그림자 추가 */
+    width: 100%; /* 버튼의 너비를 부모 컨테이너에 맞춤 */
 }
 
 .socialLoginButton:hover {
@@ -143,7 +147,20 @@
 }
 
 .socialLoginButton svg {
-    margin-right: 10px;
+    margin-right: 15px; /* 아이콘과 텍스트 사이의 간격 조정 */
+    font-size: 1.5rem; /* 아이콘 크기 조정 */
+}
+
+.socialLoginText {
+    flex-grow: 1; /* 텍스트 부분이 남은 공간을 채우도록 설정 */
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
+    font-weight: bold;
+}
+
+.socialLoginSubText {
+    font-size: 0.875rem;
+    color: #777;
+    margin-left: 40px; /* 서브텍스트를 메인텍스트 오른쪽으로 이동 */
 }
 
 .footer {
