@@ -4,7 +4,19 @@
     justify-content: space-between;
     padding: 10px 20px;
     border-bottom: 1.5px solid rgb(238, 238, 238);
-    position: relative; /* 제목과 사용자 이름 간의 위치 조정을 위해 */
+    position: fixed; /* 헤더를 화면 상단에 고정 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* 헤더가 다른 요소들 위에 표시되도록 설정 */
+    background-color: white; /* 배경색을 설정해 헤더가 읽기 쉽게 유지 */
+    height: 60px; /* 헤더 높이 설정 */
+    box-sizing: border-box;
+}
+
+/* 콘텐츠가 헤더에 가려지지 않도록 margin-top 추가 */
+.content {
+    margin-top: 60px; /* 헤더 높이만큼의 상단 여백 추가 */
 }
 
 .headerButton {

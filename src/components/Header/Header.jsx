@@ -64,107 +64,111 @@ const Header = () => {
     };
 
     return (
-        <div className={styles.header}>
-            <button onClick={toggleMenuModal} className={styles.headerButton}>
-                <FaBars />
-            </button>
-            <div className={styles.title} onClick={() => navigate('/mainpage')}>
-                TeacHub
-            </div>
-            <div className={styles.chatButtonContainer}>
-                <div className={styles.userName}>{userName}님</div>
-                <button onClick={toggleChatModal} className={styles.headerButton}>
-                    <FaComments style={{ marginBottom: '5px' }} />
+        <>
+            <div className={styles.header}>
+                <button onClick={toggleMenuModal} className={styles.headerButton}>
+                    <FaBars />
                 </button>
-            </div>
-            {/* 메뉴 모달 */}
-            <div className={`${styles.modal} ${isMenuModalOpen ? styles.open : ''}`}>
-                <div className={styles.modalContent}>
-                    <div className={styles.modalHeader}>
-                        <h5>로고 위치</h5>
-                        <button className={styles.closeButton} onClick={closeMenuModal}>
-                            <FaTimes />
-                        </button>
-                    </div>
-                    <div className={styles.modalBody}>
-                        <div className={styles.sidebarHeader}>
-                            <div className={styles.logo}>목록</div>
+                <div className={styles.title} onClick={() => navigate('/mainpage')}>
+                    TeacHub
+                </div>
+                <div className={styles.chatButtonContainer}>
+                    <div className={styles.userName}>{userName}님</div>
+                    <button onClick={toggleChatModal} className={styles.headerButton}>
+                        <FaComments style={{ marginBottom: '5px' }} />
+                    </button>
+                </div>
+                {/* 메뉴 모달 */}
+                <div className={`${styles.modal} ${isMenuModalOpen ? styles.open : ''}`}>
+                    <div className={styles.modalContent}>
+                        <div className={styles.modalHeader}>
+                            <h5>로고 위치</h5>
+                            <button className={styles.closeButton} onClick={closeMenuModal}>
+                                <FaTimes />
+                            </button>
                         </div>
-                        <ul className={styles.menuList}>
-                            <li
-                                className={styles.listItem}
-                                onClick={() => {
-                                    navigate('/studentmanagement');
-                                    closeMenuModal();
-                                }}
-                            >
-                                학생 관리
-                            </li>
-                            <li className={styles.listItem}>AI 문제집</li>
-                            <li className={styles.listItem}>시간표</li>
-                            <li className={styles.listItem}>투표</li>
-                            <li className={styles.listItem}>문자 발송</li>
-                            <li className={styles.listItem}>자리 선정</li>
-                            <li
-                                className={styles.listItem}
-                                onClick={() => {
-                                    navigate('/checkinfo');
-                                    closeMenuModal();
-                                }}
-                            >
-                                내 정보 관리
-                            </li>
+                        <div className={styles.modalBody}>
+                            <div className={styles.sidebarHeader}>
+                                <div className={styles.logo}>목록</div>
+                            </div>
+                            <ul className={styles.menuList}>
+                                <li
+                                    className={styles.listItem}
+                                    onClick={() => {
+                                        navigate('/studentmanagement');
+                                        closeMenuModal();
+                                    }}
+                                >
+                                    학생 관리
+                                </li>
+                                <li className={styles.listItem}>AI 문제집</li>
+                                <li className={styles.listItem}>시간표</li>
+                                <li className={styles.listItem}>투표</li>
+                                <li className={styles.listItem}>문자 발송</li>
+                                <li className={styles.listItem}>자리 선정</li>
+                                <li
+                                    className={styles.listItem}
+                                    onClick={() => {
+                                        navigate('/checkinfo');
+                                        closeMenuModal();
+                                    }}
+                                >
+                                    내 정보 관리
+                                </li>
 
-                            <li className={styles.listItem} onClick={handleLogout}>
-                                로그 아웃
-                            </li>
-                        </ul>
-                        <div className={styles.companyInfo}>
-                            회사 정보
-                            <div className={styles.companyDetails}>
-                                여기에는 회사 정보를 입력합니다. 예를 들어, 회사 주소, 연락처, 이메일 등이 들어갈 수
-                                있습니다.
+                                <li className={styles.listItem} onClick={handleLogout}>
+                                    로그 아웃
+                                </li>
+                            </ul>
+                            <div className={styles.companyInfo}>
+                                회사 정보
+                                <div className={styles.companyDetails}>
+                                    여기에는 회사 정보를 입력합니다. 예를 들어, 회사 주소, 연락처, 이메일 등이 들어갈 수
+                                    있습니다.
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            {/* 채팅 목록 모달 */}
-            <div className={`${styles.chatModal} ${isChatModalOpen && !selectedChat ? styles.open : ''}`}>
-                <div className={styles.chatModalContent}>
-                    <div className={styles.modalHeader}>
-                        <button className={styles.addButton}>
-                            <FaUserPlus />
-                        </button>
-                        <h5>채팅 목록</h5>
-                        <button className={styles.closeButton} onClick={closeChatModal}>
-                            <FaTimes />
-                        </button>
+                {/* 채팅 목록 모달 */}
+                <div className={`${styles.chatModal} ${isChatModalOpen && !selectedChat ? styles.open : ''}`}>
+                    <div className={styles.chatModalContent}>
+                        <div className={styles.modalHeader}>
+                            <button className={styles.addButton}>
+                                <FaUserPlus />
+                            </button>
+                            <h5>채팅 목록</h5>
+                            <button className={styles.closeButton} onClick={closeChatModal}>
+                                <FaTimes />
+                            </button>
+                        </div>
+                        <div className={styles.modalBody}>
+                            <ProfileSidebar onSelectContact={openChat} />
+                        </div>
                     </div>
-                    <div className={styles.modalBody}>
-                        <ProfileSidebar onSelectContact={openChat} />
+                </div>
+                {/* 개별 채팅 모달 */}
+                <div className={`${styles.chatModal} ${selectedChat ? styles.open : ''}`}>
+                    <div className={styles.chatModalContent}>
+                        <div className={styles.modalHeader}>
+                            <button className={styles.backButton} onClick={goBack}>
+                                <FaArrowLeft />
+                            </button>
+                            <h5 className={styles.chatTitle}>{selectedChat?.name}</h5>
+                            <button className={styles.closeButton} onClick={closeChatModal}>
+                                <FaTimes />
+                            </button>
+                        </div>
+                        <div className={styles.modalBody}>
+                            <div className={styles.chatWindow}>{/* 채팅 내용이 표시될 부분 */}</div>
+                            <input className={styles.chatInput} type="text" placeholder="메시지를 입력하세요..." />
+                        </div>
                     </div>
                 </div>
             </div>
-            {/* 개별 채팅 모달 */}
-            <div className={`${styles.chatModal} ${selectedChat ? styles.open : ''}`}>
-                <div className={styles.chatModalContent}>
-                    <div className={styles.modalHeader}>
-                        <button className={styles.backButton} onClick={goBack}>
-                            <FaArrowLeft />
-                        </button>
-                        <h5 className={styles.chatTitle}>{selectedChat?.name}</h5>
-                        <button className={styles.closeButton} onClick={closeChatModal}>
-                            <FaTimes />
-                        </button>
-                    </div>
-                    <div className={styles.modalBody}>
-                        <div className={styles.chatWindow}>{/* 채팅 내용이 표시될 부분 */}</div>
-                        <input className={styles.chatInput} type="text" placeholder="메시지를 입력하세요..." />
-                    </div>
-                </div>
-            </div>
-        </div>
+            <div className={styles.content}></div>
+            {/* Heder 아래 공백주기 위함 */}
+        </>
     );
 };
 
