@@ -14,7 +14,7 @@
     margin: 0;
     width: 100%;
     box-sizing: border-box;
-    font-size: 1.1rem;
+    font-size: 0.9rem; /* 기본 텍스트 크기 조정 */
     color: #333; /* 기본 텍스트 색상 */
 }
 
@@ -34,8 +34,8 @@
     margin-bottom: 30px;
 }
 
-.welcomeMessage h1 {
-    font-size: 2rem; /* 로고 크기를 줄여서 더 잘 보이도록 */
+.title {
+    font-size: 1.6rem; /* TeacHub 로고 크기 */
     margin-bottom: 20px;
     color: #333;
     font-weight: bold;
@@ -43,7 +43,7 @@
 }
 
 .welcomeMessage p {
-    font-size: 16px;
+    font-size: 0.9rem; /* 기본 텍스트 크기 조정 */
     color: #777;
 }
 
@@ -59,44 +59,53 @@
 .optionButton {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding: 15px;
-    margin: 10px 0;
+    justify-content: flex-start; /* 아이콘과 텍스트를 왼쪽 정렬 */
+    padding: 15px 20px; /* 버튼 내 여백을 추가하여 더 넓게 보이도록 조정 */
     background-color: white;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 8px; /* 모서리를 둥글게 처리 */
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    text-align: left;
+    font-size: 1rem; /* 기본 텍스트 크기 조정 */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* 버튼에 가벼운 그림자 추가 */
+    margin-bottom: 10px; /* 버튼 간의 간격 조정 */
+    width: 100%; /* 버튼의 너비를 부모 컨테이너에 맞춤 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    overflow: hidden; /* 텍스트가 넘칠 경우 숨김 */
+    text-overflow: ellipsis; /* 넘친 텍스트에 생략(...) 표시 */
 }
 
-/* CheckSignUpPage.module.css */
-
 .optionButton svg {
-    margin-right: 20px;
-    margin-left: 10px;
-    width: 25px;
-    height: 30px;
+    margin-right: 15px;
+    font-size: 1.5rem; /* 아이콘 크기 */
 }
 
 .optionButton:hover {
     background-color: #f7f7f7;
 }
 
-/* 메인 텍스트 스타일 */
-.mainText {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 4px; /* 메인 텍스트와 서브 텍스트 사이의 간격 */
+/* 텍스트 컨테이너 */
+.textContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1; /* 텍스트 부분이 남은 공간을 채우도록 설정 */
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
 }
 
-/* 서브 텍스트 스타일 */
+.mainText {
+    font-size: 0.9rem; /* 기본 텍스트 크기 조정 */
+    font-weight: bold;
+    color: #333;
+}
+
 .subText {
-    font-size: 12px;
+    font-size: 0.875rem; /* 서브 텍스트 크기 */
     color: #777;
-    margin-left: 10px;
+    margin-left: 10px; /* 서브텍스트를 메인텍스트 오른쪽으로 이동 */
+    flex-shrink: 0; /* 서브 텍스트가 줄어들지 않도록 설정 */
 }
 
 .backButton {
@@ -107,11 +116,11 @@
     margin: 10px 0;
     background-color: white;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 8px; /* 모서리를 둥글게 처리 */
     cursor: pointer;
-    font-size: 16px;
+    font-size: 0.9rem; /* 기본 텍스트 크기 조정 */
     transition: background-color 0.3s ease;
-    text-align: left;
+    text-align: center;
 }
 
 .backButton:hover {

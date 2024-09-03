@@ -19,36 +19,36 @@ function CheckSignUpPage() {
             <div className={styles.SignUpBody}>
                 <div className={styles.container}>
                     <div className={styles.welcomeMessage}>
-                        <h1>TeacHub</h1>
+                        <div className={styles.title}>TeacHub</div>
                         <p>TeacHub 회원가입 방식을 선택해 주세요.</p>
                     </div>
                     <div className={styles.signupOptions}>
                         <button className={styles.optionButton} onClick={handleSignUpWithEmail}>
                             <EmailIcon className={styles.icon} />
-                            <div>
+                            <div className={styles.textContainer}>
                                 <span className={styles.mainText}>TeacHub 회원가입</span>
-                                <span className={styles.subText}>아이디와 비밀번호로 TeacHub 회원가입</span>
+                                <span className={styles.subText}>아이디와 비밀번호로 회원가입</span>
                             </div>
                         </button>
                         <button className={styles.optionButton}>
                             <GoogleIcon className={styles.icon} />
-                            <div>
+                            <div className={styles.textContainer}>
                                 <span className={styles.mainText}>Google로 회원가입</span>
-                                <span className={styles.subText}>구글로 인증하여 TeacHub 회원가입</span>
+                                <span className={styles.subText}>구글로 인증하여 회원가입</span>
                             </div>
                         </button>
                         <button className={styles.optionButton}>
                             <NaverIcon className={styles.icon} />
-                            <div>
+                            <div className={styles.textContainer}>
                                 <span className={styles.mainText}>Naver로 회원가입</span>
-                                <span className={styles.subText}>네이버로 인증하여 TeacHub 회원가입</span>
+                                <span className={styles.subText}>네이버로 인증하여 회원가입</span>
                             </div>
                         </button>
                         <button className={styles.optionButton}>
                             <AppleIcon className={styles.icon} />
-                            <div>
+                            <div className={styles.textContainer}>
                                 <span className={styles.mainText}>Apple로 회원가입</span>
-                                <span className={styles.subText}>애플로 인증하여 TeacHub 회원가입</span>
+                                <span className={styles.subText}>애플로 인증하여 회원가입</span>
                             </div>
                         </button>
                         <button className={styles.backButton} onClick={() => navigate('/')}>
