@@ -15,6 +15,7 @@ a {
     min-height: 100vh;
     align-items: center;
     background-color: var(--background-color);
+    margin: 20px auto 100px auto;
 }
 
 .header {
