@@ -1,6 +1,6 @@
 .ScrollContainer {
     height: 100vh;
-    overflow-y: auto; /* 기본적으로 스크롤을 활성화 */
+    overflow-y: auto;
 }
 
 .container {
@@ -8,9 +8,9 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    height: calc(100vh - 10vh); /* ScrollContainer 내에서 전체 높이를 사용 */
+    height: calc(100vh); /* ScrollContainer 내에서 전체 높이를 사용 */
     max-width: 1200px;
-    margin: 20px auto 0 auto;
+    margin: 20px auto 100px auto;
     background-color: rgba(230, 230, 250, 0.1);
     box-sizing: border-box;
     border-radius: 10px;
