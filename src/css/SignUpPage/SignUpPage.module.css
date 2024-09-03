@@ -14,10 +14,8 @@
     padding: 20px;
     box-sizing: border-box;
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     color: #333; /* 기본 텍스트 색상 */
-    transform: scale(0.9); /* zoom 대신 사용 */
-    transform-origin: top center; /* 확대/축소 기준점 */
 }
 
 .container {
@@ -30,8 +28,8 @@
     color: inherit; /* 부모의 색상을 상속받음 */
 }
 
-.container h1 {
-    font-size: 2rem; /* 로고 크기를 줄여서 더 잘 보이도록 */
+.title {
+    font-size: 1.6rem; /* TeacHub 로고 크기를 1.6rem로 조정 */
     margin-bottom: 20px;
     color: #333;
     font-weight: bold;

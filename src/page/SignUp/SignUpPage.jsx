@@ -285,7 +285,7 @@ function SignUpPage() {
         <div className={styles.ScrollContainer}>
             <div className={styles.SignUpBody}>
                 <div className={styles.container}>
-                    <h1>TeacHub</h1>
+                    <h1 className={styles.title}>TeacHub</h1>
                     <form className={styles.form} onSubmit={handleSignUp}>
                         <div className={styles.inputContainer}>
                             <UserIcon />
