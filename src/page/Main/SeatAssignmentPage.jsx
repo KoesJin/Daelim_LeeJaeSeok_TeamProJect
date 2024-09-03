@@ -89,9 +89,6 @@ const SeatAssignmentPage = () => {
                     </div>
                 </div>
             </div>
-            <div>
-                <Link to="/mainpage">뒤로가기</Link>
-            </div>
         </>
     );
 };
