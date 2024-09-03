@@ -10,6 +10,12 @@ const GlobalStyle = createGlobalStyle`
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      
     }
 
     .fade-enter {
@@ -49,7 +55,8 @@ function Root() {
             !accessToken &&
             location.pathname !== '/signuppage' &&
             location.pathname !== '/checksignuppage' &&
-            location.pathname !== '/findpassword'
+            location.pathname !== '/findpassword' &&
+            location.pathname !== '/findid'
         ) {
             navigate('/');
         }
@@ -64,7 +71,8 @@ function Root() {
             {location.pathname !== '/' &&
                 location.pathname !== '/signuppage' &&
                 location.pathname !== '/checksignuppage' &&
-                location.pathname !== '/findpassword' && <Header />}
+                location.pathname !== '/findpassword' &&
+                location.pathname !== '/findid' && <Header />}
             <TransitionGroup>
                 <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
                     <AnimationContainer>
