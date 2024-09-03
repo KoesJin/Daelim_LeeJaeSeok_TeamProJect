@@ -26,8 +26,8 @@
     margin-top: 20px; /* 여백을 줄여서 화면이 작을 때 더 잘 보이도록 */
 }
 
-.container h1 {
-    font-size: 2rem; /* 로고 크기를 줄여서 더 잘 보이도록 */
+.title {
+    font-size: 1.6rem; /* TeacHub 로고 크기 유지 */
     margin-bottom: 20px;
     color: #333;
     font-weight: bold;
@@ -57,7 +57,7 @@
     flex: 1;
     padding: 10px 0;
     border: none;
-    font-size: 1rem;
+    font-size: 0.9rem; /* 일관된 크기로 조정 */
     background-color: transparent;
     color: #333;
     box-shadow: none;
@@ -71,6 +71,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    font-size: 0.9rem; /* 일관된 크기로 조정 */
 }
 
 .rememberMeContainer input {
@@ -81,7 +82,7 @@
     padding: 15px;
     border: none;
     border-radius: 0;
-    font-size: 1rem;
+    font-size: 0.9rem; /* 일관된 크기로 조정 */
     font-weight: bold;
     cursor: pointer;
     background-color: #e6e6fa;
@@ -96,18 +97,11 @@
     box-shadow: none;
 }
 
-.links {
-    font-size: 0.9rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .link {
     cursor: pointer;
     color: #333;
     margin: 0 10px;
-    font-weight: bold;
+    font-size: 0.8rem; /* 일관된 크기로 조정 */
 }
 
 .link:hover {
@@ -115,7 +109,7 @@
 }
 
 .separator {
-    font-size: 1rem; /* 구분 기호 크기 증가 */
+    font-size: 0.9rem; /* 일관된 크기로 조정 */
     margin: 0 5px; /* 구분 기호 주위에 여백 추가 */
     font-weight: bold;
     color: #333;
@@ -134,7 +128,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 0;
-    font-size: 1rem;
+    font-size: 0.9rem; /* 일관된 크기로 조정 */
     font-weight: bold;
     cursor: pointer;
     background-color: #fff;
@@ -155,7 +149,7 @@
 .footer {
     margin-top: 20px;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.9rem; /* 일관된 크기로 조정 */
 }
 
 .footer span {
@@ -163,6 +157,7 @@
     color: #333;
     margin: 0 5px;
     font-weight: bold;
+    font-size: 0.9rem; /* 일관된 크기로 조정 */
 }
 
 .footer span:hover {
@@ -171,7 +166,7 @@
 
 .corp {
     margin-top: 10px;
-    font-size: 0.9rem;
+    font-size: 0.9rem; /* 일관된 크기로 조정 */
     color: #666;
 }
 
@@ -224,6 +219,7 @@
     text-align: left;
     line-height: 1.6; /* 텍스트 줄 간격 조절 */
     color: #444; /* 텍스트 색상 변경 */
+    font-size: 1rem; /* 일관된 크기로 조정 */
 }
 
 .modalContent h2 {
@@ -238,7 +234,7 @@
 
 .modalContent li {
     margin-bottom: 10px;
-    font-size: 1rem;
+    font-size: 1rem; /* 일관된 크기로 조정 */
     color: #555;
 }
 
@@ -253,8 +249,8 @@
         margin-top: 10px; /* 화면이 작아질 때 여백을 줄임 */
     }
 
-    .logo {
-        font-size: 1.5rem;
+    .container h1 {
+        font-size: 2rem; /* TeacHub 로고 크기 유지 */
     }
 }
 
@@ -268,7 +264,7 @@
         margin-top: 5px; /* 화면이 아주 작아질 때 여백을 줄임 */
     }
 
-    .logo {
-        font-size: 1.2rem;
+    .container h1 {
+        font-size: 2rem; /* TeacHub 로고 크기 유지 */
     }
 }
