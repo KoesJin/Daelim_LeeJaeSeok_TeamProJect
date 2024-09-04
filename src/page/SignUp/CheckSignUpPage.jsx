@@ -4,7 +4,7 @@ import styles from '../../css/SignUpPage/CheckSignUpPage/CheckSignUpPage.module.
 import AppleIcon from '../../svg/LoginPage/AppleIcon';
 import GoogleIcon from '../../svg/LoginPage/GoogleIcon';
 import NaverIcon from '../../svg/LoginPage/NaverIcon';
-import EmailIcon from '../../svg/SignUpPage/EmailIcon';
+import EmailIcon from '../../svg/CheckSignUpPage/EmailIcon';
 
 function CheckSignUpPage() {
     // useNavigate 훅
@@ -27,7 +27,7 @@ function CheckSignUpPage() {
                             <EmailIcon className={styles.icon} />
                             <div className={styles.textContainer}>
                                 <span className={styles.mainText}>TeacHub 회원가입</span>
-                                <span className={styles.subText}>아이디와 비밀번호로 회원가입</span>
+                                <span className={styles.subText}>이메일과 비밀번호로 회원가입</span>
                             </div>
                         </button>
                         <button className={styles.optionButton}>

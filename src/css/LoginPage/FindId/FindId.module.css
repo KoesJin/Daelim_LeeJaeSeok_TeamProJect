@@ -4,22 +4,35 @@
     overflow-y: hidden; /* 기본적으로 스크롤을 비활성화 */
 }
 
-/* 회원가입 본문 */
-.SignUpBody {
+/* 본문 스타일 */
+.FindIdBody {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: flex-start; /* 상단 정렬 */
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    padding-top: 50px; /* 상단 여백 추가 */
     width: 100%;
     box-sizing: border-box;
     font-size: 0.9rem; /* 기본 텍스트 크기 조정 */
     color: #333; /* 기본 텍스트 색상 */
-    padding-top: 50px;
 }
 
-/* 컨테이너 */
+/* 상단 로고 스타일 */
+.header {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.logoText {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+/* 컨테이너 스타일 */
 .container {
     background: #fff;
     padding: 30px 30px;
@@ -28,22 +41,11 @@
     text-align: center;
     box-sizing: border-box;
     color: inherit; /* 부모의 색상을 상속받음 */
+    border-radius: 8px; /* 모서리를 둥글게 처리 */
 }
 
-/* 환영 메시지 */
-.welcomeMessage {
-    margin-bottom: 20px;
-}
-
+/* 제목 스타일 */
 .title {
-    font-size: 1.6rem; /* TeacHub 로고 크기 */
-    margin-bottom: 50px;
-    color: #333;
-    font-weight: bold;
-    text-align: center;
-}
-
-.welcomeMessage p {
     font-size: 0.9rem;
     font-weight: bold;
     margin-bottom: 20px;
@@ -51,25 +53,34 @@
     text-align: center;
 }
 
-/* 회원가입 옵션들 */
-.signupOptions {
+/* 소제목 스타일 */
+.subtitle {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* 옵션 그룹 스타일 */
+.optionGroup {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 500px;
+    margin-bottom: 20px;
 }
 
-/* 회원가입 옵션 버튼 */
-.optionButton {
+/* 개별 옵션 스타일 */
+.option {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* 아이콘과 텍스트를 왼쪽 정렬 */
+    justify-content: flex-start;
     padding: 15px 20px; /* 버튼 내 여백을 추가하여 더 넓게 보이도록 조정 */
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px; /* 모서리를 둥글게 처리 */
     cursor: pointer;
-    font-size: 1rem; /* 기본 텍스트 크기 조정 */
+    font-size: 0.9rem; /* 기본 텍스트 크기 조정 */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     text-align: left; /* 텍스트를 왼쪽 정렬 */
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* 버튼에 가벼운 그림자 추가 */
@@ -80,16 +91,17 @@
     text-overflow: ellipsis; /* 넘친 텍스트에 생략(...) 표시 */
 }
 
-.optionButton svg {
+.option:hover {
+    background-color: #f7f7f7;
+}
+
+/* 아이콘 스타일 */
+.option svg {
     margin-right: 15px;
     font-size: 1.5rem; /* 아이콘 크기 */
 }
 
-.optionButton:hover {
-    background-color: #f7f7f7;
-}
-
-/* 텍스트 컨테이너 */
+/* 텍스트 컨테이너 스타일 */
 .textContainer {
     display: flex;
     flex-direction: row;
@@ -99,12 +111,14 @@
     text-align: left; /* 텍스트를 왼쪽 정렬 */
 }
 
+/* 메인 텍스트 스타일 */
 .mainText {
     font-size: 0.9rem; /* 기본 텍스트 크기 조정 */
     font-weight: bold;
     color: #333;
 }
 
+/* 서브텍스트 스타일 */
 .subText {
     font-size: 0.875rem; /* 서브 텍스트 크기 */
     color: #777;
@@ -112,6 +126,14 @@
     flex-shrink: 0; /* 서브 텍스트가 줄어들지 않도록 설정 */
 }
 
+/* 뒤로가기 버튼 컨테이너 스타일 */
+.backButtonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* 뒤로가기 버튼 스타일 */
 .backButton {
     display: flex;
     align-items: center;

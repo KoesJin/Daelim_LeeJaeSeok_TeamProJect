@@ -1,36 +1,35 @@
+/* 공통 스타일 */
 .ScrollContainer {
     height: 100vh;
-    overflow-y: hidden; /* 기본적으로 스크롤을 비활성화 */
+    overflow-y: auto; /* 화면이 작을 때 스크롤이 가능하도록 설정 */
 }
 
 .SignUpBody {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* 상단 정렬 */
     align-items: center;
     min-height: 100vh;
     margin: 0;
     width: 100%;
-    padding: 20px;
+    padding-top: 50px; /* 상단 여백 추가 */
     box-sizing: border-box;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 0.9rem;
-    color: #333; /* 기본 텍스트 색상 */
+    overflow-y: auto; /* 화면이 작을 때 스크롤이 가능하도록 설정 */
 }
 
 .container {
     background: #fff;
-    padding: 40px 30px;
+    padding: 30px 30px;
     width: 100%;
     max-width: 500px;
     text-align: center;
     box-sizing: border-box;
-    color: inherit; /* 부모의 색상을 상속받음 */
 }
 
 .title {
-    font-size: 1.6rem; /* TeacHub 로고 크기를 1.6rem로 조정 */
-    margin-bottom: 20px;
+    font-size: 1.6rem; /* TeacHub 로고 크기 */
+    margin-bottom: 50px; /* 아래 여백을 충분히 확보 */
+    margin-top: 5px; /* 상단 여백 제거 */
     color: #333;
     font-weight: bold;
     text-align: center;
@@ -41,7 +40,6 @@
     flex-direction: column;
     width: 100%;
     margin-bottom: 20px;
-    color: inherit; /* 폼의 텍스트도 부모의 색상을 상속받음 */
 }
 
 .inputContainer {
@@ -50,22 +48,20 @@
     border-bottom: 1px solid #ccc;
     margin-bottom: 15px;
     padding-bottom: 5px;
-    color: inherit; /* 입력 필드와 아이콘도 부모의 색상을 상속받음 */
 }
 
 .inputContainer svg {
     margin-right: 10px;
-    color: #000; /* SVG 아이콘은 검은색으로 유지 */
 }
 
 .signUpInput {
     flex: 1;
     padding: 10px 0;
     border: none;
+    font-size: 0.9rem; /* 일관된 크기로 조정 */
     background-color: transparent;
+    color: #333;
     box-shadow: none;
-    font-size: inherit; /* 폼 입력도 기본 폰트 설정을 상속 */
-    color: inherit; /* 폼 입력도 부모의 색상을 상속 */
 }
 
 .signUpInput:focus {
@@ -74,20 +70,56 @@
 
 .button {
     padding: 15px;
-    border: none;
-    font-size: inherit;
-    font-weight: bold;
-    cursor: pointer;
     background-color: #e6e6fa;
-    color: #333; /* 버튼 텍스트 색상은 회색으로 유지 */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 20px;
     text-align: center;
+    margin-top: 20px;
 }
 
 .button:hover {
     background-color: #d8bfd8;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 중복 체크 버튼 스타일 */
+.duplicateButton {
+    background-color: #e6e6fa;
+    border: none;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.duplicateButton:hover {
+    background-color: #d8bfd8;
     box-shadow: none;
+}
+
+.link {
+    cursor: pointer;
+    margin: 0 10px;
+    font-size: 0.9rem; /* 일관된 크기로 조정 */
+}
+
+.link:hover {
+    color: #555;
+}
+
+.separator {
+    font-size: 0.9rem; /* 일관된 크기로 조정 */
+    margin: 0 5px; /* 구분 기호 주위에 여백 추가 */
+    font-weight: bold;
+    color: #333;
 }
 
 /* 공통 스타일 적용 */
@@ -116,24 +148,7 @@
     color: #333; /* 원하는 색상으로 변경 */
 }
 
-/* 중복 체크 버튼 스타일 */
-.duplicateButton {
-    background-color: #e6e6fa;
-    border: none;
-    padding: 8px 12px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-left: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.duplicateButton:hover {
-    background-color: #d8bfd8;
-    box-shadow: none;
-}
-
+/* 중복 체크 버튼 위치 조정 */
 .inputContainer {
     display: flex;
     align-items: center;
