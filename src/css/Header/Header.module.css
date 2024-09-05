@@ -1,9 +1,84 @@
+/* 배경 스타일은 그대로 두고 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 검은색 반투명 배경 */
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    z-index: 1000;
+}
+
+.modal.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 슬라이드 효과는 모달의 콘텐츠에만 적용 */
+.modalContent {
+    background-color: #fff;
+    padding: 20px;
+    width: 300px;
+    height: 100vh;
+    overflow-y: auto;
+    transform: translateX(-100%); /* 처음에 왼쪽으로 완전히 숨김 */
+    transition: transform 0.5s ease; /* 슬라이드 효과 */
+}
+
+.modal.open .modalContent {
+    transform: translateX(0); /* 모달이 열릴 때 화면 안으로 슬라이드 */
+}
+
+/* 채팅 모달 스타일 */
+.chatModal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end; /* 우측에 모달 위치 */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    z-index: 1000;
+}
+
+.chatModal.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 슬라이드 효과는 채팅 모달의 콘텐츠에만 적용 */
+.chatModalContent {
+    background-color: #fff;
+    padding: 20px;
+    width: 500px; /* 넓게 조정 */
+    height: 100vh;
+    overflow-y: auto;
+    transform: translateX(100%); /* 처음에 오른쪽으로 완전히 숨김 */
+    transition: transform 0.5s ease; /* 슬라이드 효과 */
+}
+
+.chatModal.open .chatModalContent {
+    transform: translateX(0); /* 모달이 열릴 때 화면 안으로 슬라이드 */
+}
+
+/* 기타 스타일 */
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    border-bottom: 1.5px solid rgb(238, 238, 238);
+    border-bottom: 2.2px solid rgb(230, 230, 248);
     position: fixed; /* 헤더를 화면 상단에 고정 */
     top: 0;
     left: 0;
@@ -49,30 +124,6 @@
 }
 
 /* 메뉴 모달 스타일 */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 1000;
-}
-
-.modalContent {
-    background-color: #fff;
-    padding: 20px;
-    width: 300px;
-    height: 100vh;
-    overflow-y: auto;
-}
-
 .modalHeader {
     display: flex;
     justify-content: space-between;
@@ -138,31 +189,6 @@
 }
 
 /* 채팅 모달 스타일 */
-.chatModal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end; /* 우측에 모달 위치 */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 1000;
-}
-
-.chatModalContent {
-    background-color: #fff;
-    padding: 20px;
-    width: 500px; /* 넓게 조정 */
-    height: 100vh;
-    overflow-y: auto;
-}
-
-/* 채팅 프로필 사이드바 스타일 */
 .profile {
     display: flex;
     align-items: center;
@@ -259,10 +285,4 @@
 .chatTitle {
     flex-grow: 1;
     text-align: center;
-}
-
-/* 모달 오픈 스타일 */
-.open {
-    opacity: 1;
-    visibility: visible;
 }
