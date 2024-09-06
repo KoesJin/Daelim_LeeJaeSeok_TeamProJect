@@ -150,6 +150,7 @@
     text-align: center;
     color: #333;
     font-weight: bold;
+    width: 100%;
 }
 
 .backButton:hover {
