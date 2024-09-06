@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/LoginPage/LoginPage.module.css';
-import UserIcon from '../../svg/LoginPage/UserIcon';
-import PasswordIcon from '../../svg/LoginPage/PasswordIcon';
+import { FaUser, FaLock } from 'react-icons/fa'; // react-icons에서 FaUser, FaLock 불러오기
 import KakaoIcon from '../../svg/LoginPage/KakaoIcon';
 import GoogleIcon from '../../svg/LoginPage/GoogleIcon';
 import NaverIcon from '../../svg/LoginPage/NaverIcon';
 import AppleIcon from '../../svg/LoginPage/AppleIcon';
-import { Title } from 'chart.js';
 
 function LoginPage() {
-    //로그인 정보
+    // 로그인 정보
     const [userId, setUserId] = useState('');
     const [userPw, setUserPw] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
 
-    //모달
+    // 모달
     const [modalContent, setModalContent] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const openModal = (content) => {
@@ -66,7 +64,7 @@ function LoginPage() {
                 const jwtToken = result.data.jwtToken.accessToken; // 서버로부터 받은 액세스 토큰
                 const jslName = result.data.userName; // userName 받아옴
 
-                // 중복 로그인을 막기위한 코드
+                // 중복 로그인을 막기 위한 코드
                 const existingToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
                 if (existingToken) {
                     localStorage.removeItem('Authorization');
@@ -101,7 +99,7 @@ function LoginPage() {
                     <div className={styles.title}>TeacHub</div>
                     <form className={styles.form} onSubmit={handleLogin}>
                         <div className={styles.inputContainer}>
-                            <UserIcon />
+                            <FaUser className={styles.icon} /> {/* 아이디 아이콘 */}
                             <input
                                 type="text"
                                 placeholder="아이디"
@@ -111,7 +109,7 @@ function LoginPage() {
                             />
                         </div>
                         <div className={styles.inputContainer}>
-                            <PasswordIcon />
+                            <FaLock className={styles.icon} /> {/* 비밀번호 아이콘 */}
                             <input
                                 type="password"
                                 placeholder="비밀번호"

@@ -4,7 +4,7 @@ import styles from '../../css/SignUpPage/CheckSignUpPage/CheckSignUpPage.module.
 import AppleIcon from '../../svg/LoginPage/AppleIcon';
 import GoogleIcon from '../../svg/LoginPage/GoogleIcon';
 import NaverIcon from '../../svg/LoginPage/NaverIcon';
-import EmailIcon from '../../svg/CheckSignUpPage/EmailIcon';
+import { FaEnvelope } from 'react-icons/fa'; // Font Awesome 아이콘 import
 
 function CheckSignUpPage() {
     // useNavigate 훅
@@ -24,7 +24,7 @@ function CheckSignUpPage() {
                     </div>
                     <div className={styles.signupOptions}>
                         <button className={styles.optionButton} onClick={handleSignUpWithEmail}>
-                            <EmailIcon className={styles.icon} />
+                            <FaEnvelope className={styles.icon} /> {/* 이메일 아이콘을 FaEnvelope로 변경 */}
                             <div className={styles.textContainer}>
                                 <span className={styles.mainText}>TeacHub 회원가입</span>
                                 <span className={styles.subText}>이메일과 비밀번호로 회원가입</span>

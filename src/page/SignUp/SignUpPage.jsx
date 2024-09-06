@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/SignUpPage/SignUpPage.module.css'; // CSS 모듈 import
-import UserIcon from '../../svg/SignUpPage/UserIcon'; // User 아이콘 import
-import EmailIcon from '../../svg/SignUpPage/EmailIcon'; // Email 아이콘 import
-import PasswordIcon from '../../svg/SignUpPage/PasswordIcon'; // Password 아이콘 import
-import PhoneIcon from '../../svg/SignUpPage/PhoneIcon'; // Phone 아이콘 import
-import DateIcon from '../../svg/SignUpPage/DateIcon'; // Date 아이콘 import
-import SchoolIcon from '../../svg/SignUpPage/SchoolIcon'; // School 아이콘 import
-import ClassIcon from '../../svg/SignUpPage/ClassIcon'; // Class 아이콘 import
+import { FaUser, FaEnvelope, FaLock, FaPhone, FaCalendarAlt, FaSchool, FaChalkboardTeacher } from 'react-icons/fa'; // Font Awesome 아이콘 import
 
 function SignUpPage() {
     //회원가입 정보
@@ -288,7 +282,7 @@ function SignUpPage() {
                     <h1 className={styles.title}>TeacHub</h1>
                     <form className={styles.form} onSubmit={handleSignUp}>
                         <div className={styles.inputContainer}>
-                            <UserIcon />
+                            <FaUser className={styles.icon} />
                             <input
                                 type="text"
                                 placeholder="아이디"
@@ -302,7 +296,7 @@ function SignUpPage() {
                             </button>
                         </div>
                         <div className={styles.inputContainer}>
-                            <PasswordIcon />
+                            <FaLock className={styles.icon} />
                             <input
                                 type="password"
                                 placeholder="비밀번호"
@@ -313,7 +307,7 @@ function SignUpPage() {
                             />
                         </div>
                         <div className={styles.inputContainer}>
-                            <PasswordIcon />
+                            <FaLock className={styles.icon} />
                             <input
                                 type="password"
                                 placeholder="비밀번호 확인"
@@ -324,7 +318,7 @@ function SignUpPage() {
                             />
                         </div>
                         <div className={styles.inputContainer}>
-                            <UserIcon />
+                            <FaUser className={styles.icon} />
                             <input
                                 type="text"
                                 placeholder="이름"
@@ -335,7 +329,7 @@ function SignUpPage() {
                             />
                         </div>
                         <div className={styles.inputContainer}>
-                            <PhoneIcon />
+                            <FaPhone className={styles.icon} />
                             <input
                                 type="text"
                                 placeholder="전화번호"
@@ -349,7 +343,7 @@ function SignUpPage() {
                             </button>
                         </div>
                         <div className={styles.inputContainer}>
-                            <DateIcon />
+                            <FaCalendarAlt className={styles.icon} />
                             <input
                                 type="date"
                                 placeholder="생년월일"
@@ -359,9 +353,7 @@ function SignUpPage() {
                             />
                         </div>
                         <div className={styles.inputContainer}>
-                            <div>
-                                <EmailIcon />
-                            </div>
+                            <FaEnvelope className={styles.icon} />
                             <input
                                 type="email"
                                 placeholder="이메일"
@@ -375,7 +367,7 @@ function SignUpPage() {
                             </button>
                         </div>
                         <div className={styles.inputContainer}>
-                            <SchoolIcon />
+                            <FaSchool className={styles.icon} />
                             <input
                                 type="text"
                                 placeholder="학교명"
@@ -386,7 +378,7 @@ function SignUpPage() {
                             />
                         </div>
                         <div className={styles.inputContainer}>
-                            <ClassIcon />
+                            <FaChalkboardTeacher className={styles.icon} />
                             <input
                                 type="text"
                                 placeholder="반"

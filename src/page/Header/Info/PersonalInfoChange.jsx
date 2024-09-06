@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../../css/Header/PersonalInfoChange/PersonalInfoChange.module.css';
-import UserIcon from '../../../svg/SignUpPage/UserIcon';
-import PhoneIcon from '../../../svg/SignUpPage/PhoneIcon';
-import DateIcon from '../../../svg/SignUpPage/DateIcon';
-import EmailIcon from '../../../svg/SignUpPage/EmailIcon';
-import SchoolIcon from '../../../svg/SignUpPage/SchoolIcon';
-import ClassIcon from '../../../svg/SignUpPage/ClassIcon';
+import { FaUser, FaPhone, FaCalendarAlt, FaEnvelope, FaSchool, FaChalkboardTeacher } from 'react-icons/fa'; // Font Awesome 아이콘 import
 import { useNavigate } from 'react-router-dom';
 
 const PersonalInfoChange = () => {
@@ -18,7 +13,7 @@ const PersonalInfoChange = () => {
     const [schoolName, setSchoolName] = useState('');
     const [classNum, setClassNum] = useState('');
 
-    // userId 가져오는 useEffect 훅 -> 앤드포인트에서 useId가 있어야만 detail이 가져와지기 떄문
+    // userId 가져오는 useEffect 훅
     useEffect(() => {
         const storedUserId = localStorage.getItem('userId');
         if (storedUserId && userId !== storedUserId) {
@@ -40,36 +35,16 @@ const PersonalInfoChange = () => {
     const handleSaveChanges = async (e) => {
         e.preventDefault();
 
-        // 이름 유효성 검사
-        // 전화번호가 비어있는지 확인
-        if (!userName) {
-            alert('이름을 입력해 주세요.');
-            return;
-        }
+        // 유효성 검사
         const nameRegex = /^[가-힣]{2,5}$/;
         if (!nameRegex.test(userName)) {
             alert('이름은 2자에서 5자 사이의 한글만 입력 가능합니다.');
             return;
         }
 
-        // 전화번호 유효성 검사
-        // 전화번호가 비어있는지 확인
-        if (!userNum) {
-            alert('전화번호를 입력해 주세요.');
-            return;
-        }
-
-        // // 전화번호가 11자리이며, 숫자로만 이루어져 있는지 확인
         const phoneRegex = /^010\d{8}$/;
         if (!phoneRegex.test(userNum)) {
             alert('전화번호는 010으로 시작하고, "-"를 제외한 11자리 숫자로만 이루어져야 합니다. 예: 01012345678');
-            return;
-        }
-
-        // 학교명 유효성 검사
-        // 학교명이 비어있는지 확인
-        if (!schoolName) {
-            alert('학교 이름을 입력해 주세요.');
             return;
         }
 
@@ -79,34 +54,24 @@ const PersonalInfoChange = () => {
             return;
         }
 
-        // 반 유효성 검사
-        // 반이 비어있는지 확인
-        if (!classNum) {
-            alert('반을 입력해 주세요.');
-            return;
-        }
-
         const classRegex = /^\d{1,2}$/;
         if (!classRegex.test(classNum)) {
             alert('반은 1~2자리 숫자로만 이루어져 있어야 합니다.');
             return;
         }
 
-        //앤드포인트
         try {
             let baseURL = '';
             if (process.env.NODE_ENV === 'development') {
                 baseURL = 'http://121.139.20.242:8859';
             }
 
-            // /user 포함된 앤드포인트에 사용 해야함
             const bearerToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
             if (!bearerToken) {
                 alert('사용자가 인증되지 않았습니다.');
                 return;
             }
 
-            // /user/update, /user/updatepassword 포함된 앤드포인트에 사용 해야함
             const pwbearerToken = localStorage.getItem('PasswordVerAuth') || sessionStorage.getItem('PasswordVerAuth');
             if (!pwbearerToken) {
                 alert('사용자가 인증되지 않았습니다.');
@@ -118,8 +83,8 @@ const PersonalInfoChange = () => {
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
-                    Authorization: bearerToken, // /user 포함된 앤드포인트에 사용 해야함
-                    PasswordVerAuth: pwbearerToken, // /user/update, /user/updatepassword 포함된 앤드포인트에 사용 해야함
+                    Authorization: bearerToken,
+                    PasswordVerAuth: pwbearerToken,
                 },
                 body: JSON.stringify({
                     userName,
@@ -133,9 +98,7 @@ const PersonalInfoChange = () => {
 
             if (result.status === '200') {
                 alert(result.message);
-                // Header에 있는 userName localStorage를 변경해주기 위해 사용
                 localStorage.setItem('userName', userName);
-                // Header에 있는 userName이 바로 변경되지 않아 사용
                 window.location.reload();
             } else {
                 alert(result.message);
@@ -192,7 +155,7 @@ const PersonalInfoChange = () => {
                 <h2>개인정보 변경</h2>
                 <form className={styles.form} onSubmit={handleSaveChanges}>
                     <div className={styles.inputContainer}>
-                        <UserIcon />
+                        <FaUser className={styles.icon} />
                         <input
                             type="text"
                             placeholder="아이디"
@@ -202,7 +165,7 @@ const PersonalInfoChange = () => {
                         />
                     </div>
                     <div className={styles.inputContainer}>
-                        <UserIcon />
+                        <FaUser className={styles.icon} />
                         <input
                             type="text"
                             placeholder="이름"
@@ -212,7 +175,7 @@ const PersonalInfoChange = () => {
                         />
                     </div>
                     <div className={styles.inputContainer}>
-                        <PhoneIcon />
+                        <FaPhone className={styles.icon} />
                         <input
                             type="text"
                             placeholder="전화번호"
@@ -222,7 +185,7 @@ const PersonalInfoChange = () => {
                         />
                     </div>
                     <div className={styles.inputContainer}>
-                        <DateIcon />
+                        <FaCalendarAlt className={styles.icon} />
                         <input
                             type="date"
                             placeholder="생년월일"
@@ -232,7 +195,7 @@ const PersonalInfoChange = () => {
                         />
                     </div>
                     <div className={styles.inputContainer}>
-                        <EmailIcon />
+                        <FaEnvelope className={styles.icon} />
                         <input
                             type="email"
                             placeholder="이메일"
@@ -242,7 +205,7 @@ const PersonalInfoChange = () => {
                         />
                     </div>
                     <div className={styles.inputContainer}>
-                        <SchoolIcon />
+                        <FaSchool className={styles.icon} />
                         <input
                             type="text"
                             placeholder="학교명"
@@ -252,11 +215,11 @@ const PersonalInfoChange = () => {
                         />
                     </div>
                     <div className={styles.inputContainer}>
-                        <ClassIcon />
+                        <FaChalkboardTeacher className={styles.icon} />
                         <input
                             type="text"
                             placeholder="반"
-                            defaultValue={classNum}
+                            defaultValue={`${classNum}반`}
                             onChange={(e) => setClassNum(e.target.value)}
                             className={styles.inputField}
                         />
