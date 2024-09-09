@@ -128,11 +128,11 @@ function SignUpPage() {
         }
     };
 
-    // 이메일 중복 검사 함수
+    // 이메일 인증 함수
     const handleCheckuserEmail = async (e) => {
         e.preventDefault();
 
-        // 아이디가 비어있는지 확인
+        // 이메일이 비어있는지 확인
         if (!userEmail) {
             alert('이메일을 입력해 주세요.');
             return;
@@ -140,7 +140,7 @@ function SignUpPage() {
 
         try {
             // 중복 검사 앤드포인트
-            const duplicateTest_response = await fetch(`${baseURL}/api/user/checkEmail/${userEmail}`, {
+            const duplicateTest_response = await fetch(`${baseURL}/api/user/checkEmail`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -192,7 +192,7 @@ function SignUpPage() {
 
         // 이메일 중복 체크 코드
         if (!emailDuplicateChecked) {
-            alert('이메일 중복 확인을 먼저 해주세요.');
+            alert('이메일 인증을 먼저 해주세요.');
             return;
         }
 
@@ -363,7 +363,7 @@ function SignUpPage() {
                                 maxLength="25"
                             />
                             <button type="button" className={styles.duplicateButton} onClick={handleCheckuserEmail}>
-                                중복 확인
+                                이메일 인증
                             </button>
                         </div>
                         <div className={styles.inputContainer}>
