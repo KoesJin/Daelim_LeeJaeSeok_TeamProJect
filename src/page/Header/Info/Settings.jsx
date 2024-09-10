@@ -68,7 +68,7 @@ const Settings = () => {
                 return;
             }
 
-            const response = await fetch(`${baseURL}/api/user/delete`, {
+            const response = await fetch(`${baseURL}/api/user/delete/${userId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -87,6 +87,12 @@ const Settings = () => {
             if (result.status === '200') {
                 alert(result.message);
                 navigate('/');
+                localStorage.removeItem('Authorization');
+                sessionStorage.removeItem('Authorization');
+                localStorage.removeItem('PasswordVerAuth');
+                sessionStorage.removeItem('PasswordVerAuth');
+
+                localStorage.removeItem('userName');
                 localStorage.removeItem('userId');
             } else {
                 alert(result.message);
