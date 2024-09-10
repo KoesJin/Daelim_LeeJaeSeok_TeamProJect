@@ -219,7 +219,7 @@ const PersonalInfoChange = () => {
                         <input
                             type="text"
                             placeholder="반"
-                            defaultValue={`${classNum}반`}
+                            defaultValue={classNum}
                             onChange={(e) => setClassNum(e.target.value)}
                             className={styles.inputField}
                         />
