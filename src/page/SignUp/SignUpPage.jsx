@@ -15,10 +15,21 @@ function SignUpPage() {
     const [schoolName, setSchoolName] = useState('');
     const [classNum, setClassNum] = useState('');
 
+    // 인증번호
+    const [emailAddr, setEamilAddr] = useState('');
+
     // 중복체크 정보
     const [idDuplicateChecked, setIdDuplicateChecked] = useState(false);
     const [numDuplicateChecked, setNumDuplicateChecked] = useState(false);
+
+    // 중복체크 및 인증
     const [emailDuplicateChecked, setEmailDuplicateChecked] = useState(false);
+
+    // 인증번호 요청 상태
+    const [isCodeSent, setIsCodeSent] = useState(false);
+
+    // 이메일 인증 완료 상태
+    const [isEmailVerified, setIsEmailVerified] = useState(false);
 
     // navigate 훅
     const navigate = useNavigate();
@@ -74,7 +85,6 @@ function SignUpPage() {
                 setIdDuplicateChecked(true);
             } else {
                 alert(result.message);
-                setIdDuplicateChecked(false);
             }
         } catch (error) {
             console.error('Error during username check:', error);
@@ -120,7 +130,6 @@ function SignUpPage() {
                 setNumDuplicateChecked(true);
             } else {
                 alert(result.message);
-                setNumDuplicateChecked(false);
             }
         } catch (error) {
             console.error('Error during username check:', error);
@@ -158,13 +167,50 @@ function SignUpPage() {
             if (result.status === '200') {
                 alert(result.message);
                 setEmailDuplicateChecked(true);
+                setIsCodeSent(true); // 인증번호 입력란 활성화
             } else {
                 alert(result.message);
-                setEmailDuplicateChecked(false);
             }
         } catch (error) {
             console.error('Error during username check:', error);
-            alert('중복 검사 중 오류가 발생했습니다.');
+            alert('이메일 인증 도중 오류가 발생했습니다.');
+        }
+    };
+
+    // 이메일 인증번호 확인 함수
+    const handleVerifyCode = async (e) => {
+        e.preventDefault();
+
+        if (!emailAddr) {
+            alert('인증번호를 입력해 주세요.');
+            return;
+        }
+
+        try {
+            // 중복 검사 앤드포인트
+            const duplicateTest_response = await fetch(`${baseURL}/api/user/verificationSignUpEmailCode`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                body: JSON.stringify({
+                    emailAddr,
+                }),
+            });
+
+            // 응답 결과 처리
+            const result = await duplicateTest_response.json();
+            console.log(result);
+
+            if (result.status === '200') {
+                alert(result.message);
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            console.error('Error during username check:', error);
+            alert('인증코드 인증 도중 오류가 발생했습니다.');
         }
     };
 
@@ -361,11 +407,37 @@ function SignUpPage() {
                                 onChange={(e) => setUserEmail(e.target.value)}
                                 className={styles.signUpInput}
                                 maxLength="25"
+                                disabled={isCodeSent} // 인증 요청 후 비활성화
                             />
-                            <button type="button" className={styles.duplicateButton} onClick={handleCheckuserEmail}>
-                                이메일 인증
-                            </button>
+                            {!isCodeSent && (
+                                <button type="button" className={styles.duplicateButton} onClick={handleCheckuserEmail}>
+                                    이메일 인증
+                                </button>
+                            )}
                         </div>
+
+                        {/* 인증번호 입력칸 및 인증 버튼 */}
+                        {isCodeSent && (
+                            <div className={styles.inputContainer}>
+                                <FaLock className={styles.icon} />
+                                <input
+                                    type="text"
+                                    placeholder="인증번호 입력"
+                                    value={emailAddr}
+                                    onChange={(e) => setEamilAddr(e.target.value)}
+                                    className={styles.signUpInput}
+                                    disabled={isEmailVerified} // 인증 완료 시 입력 칸도 비활성화 가능
+                                />
+                                {!isEmailVerified && (
+                                    <button type="button" className={styles.duplicateButton} onClick={handleVerifyCode}>
+                                        인증
+                                    </button>
+                                )}
+                            </div>
+                        )}
+
+                        {isEmailVerified && <p>이메일 인증이 완료되었습니다.</p>}
+
                         <div className={styles.inputContainer}>
                             <FaSchool className={styles.icon} />
                             <input
