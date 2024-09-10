@@ -10,12 +10,15 @@ const GlobalStyle = createGlobalStyle`
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      overflow: hidden;
+      
     }
 
     html {
       scroll-behavior: smooth;
-      
+    }
+
+    body {
+      overflow-y: hidden; /* 가로 스크롤을 막되 세로 스크롤은 허용 */
     }
 
     .fade-enter {
@@ -40,6 +43,7 @@ const GlobalStyle = createGlobalStyle`
 const AnimationContainer = styled.div`
     width: 100%;
     height: 100%;
+    overflow: hidden;
 `;
 
 function Root() {
