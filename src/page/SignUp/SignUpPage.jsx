@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/SignUpPage/SignUpPage.module.css'; // CSS 모듈 import
-import { FaUser, FaEnvelope, FaLock, FaPhone, FaCalendarAlt, FaSchool, FaChalkboardTeacher } from 'react-icons/fa'; // Font Awesome 아이콘 import
+import {
+    FaUser,
+    FaEnvelope,
+    FaLock,
+    FaPhone,
+    FaCalendarAlt,
+    FaSchool,
+    FaChalkboardTeacher,
+    FaKey,
+} from 'react-icons/fa'; // Font Awesome 아이콘 import
 
 function SignUpPage() {
     //회원가입 정보
@@ -426,7 +435,7 @@ function SignUpPage() {
                         {/* 인증번호 입력칸 및 인증 버튼 */}
                         {isCodeSent && (
                             <div className={styles.inputContainer}>
-                                <FaLock className={styles.icon} />
+                                <FaKey className={styles.icon} />
                                 <input
                                     type="text"
                                     placeholder="인증번호 입력"
