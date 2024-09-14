@@ -86,7 +86,7 @@ const PasswordChange = () => {
             }
 
             const response = await fetch(`${baseURL}/api/user/updatePassword/${userId}`, {
-                method: 'PUT',
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',

@@ -79,7 +79,7 @@ const PersonalInfoChange = () => {
             }
 
             const response = await fetch(`${baseURL}/api/user/update/${userId}`, {
-                method: 'PUT',
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
