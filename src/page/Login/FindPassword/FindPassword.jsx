@@ -1,124 +1,198 @@
-import React, { useState, useEffect } from 'react';
-import { FaEnvelope, FaUser, FaLock, FaKey } from 'react-icons/fa'; // Font Awesome 아이콘 사용
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../../../css/LoginPage/FindPassword/FindPassword.module.css';
+import styles from '../../../css/LoginPage/FindPassword/FindPassword.module.css'; // CSS 모듈 import
+import { FaUser, FaEnvelope, FaLock, FaKey } from 'react-icons/fa'; // Font Awesome 아이콘 import
 
-const FindPassword = () => {
-    // 유저 정보
-    const [userId, setUserId] = useState(''); // 아이디 상태 추가
-    const [userEmail, setUserEmail] = useState('');
+function FindPassword() {
+    //회원가입 정보
+    const [userId, setUserId] = useState('');
     const [userPw, setUserPw] = useState('');
     const [userConPw, setUserConPw] = useState('');
+    const [userEmail, setUserEmail] = useState('');
 
-    // 인증번호 변수
-    const [verificationCode, setVerificationCode] = useState('');
+    // 인증번호
+    const [inputCode, setInputCode] = useState('');
 
-    // 타이머 변수
-    const [time, setTime] = useState(300);
-    const [isRunning, setIsRunning] = useState(false);
+    // 인증번호 요청 상태
+    const [isCodeSent, setIsCodeSent] = useState(false);
 
-    // 이메일 입력란 상태
-    const [isEmailVisible, setIsEmailVisible] = useState(true);
+    // 이메일 인증 완료 상태
+    const [isEmailVerified, setIsEmailVerified] = useState(false);
 
-    // 인증번호 유무 상태
-    const [isVerificationVisible, setIsVerificationVisible] = useState(false);
-
-    // 인증번호 입력란 상태
-    const [isVerificationTableVisible, setIsVerificationTableVisible] = useState(true);
-
-    // 비밀번호 입력란 상태
-    const [isPasswordEnabled, setIsPasswordEnabled] = useState(false);
-
-    // useNavigate 훅
+    // navigate 훅
     const navigate = useNavigate();
 
-    // 타이머 관리하는 useEffect
-    useEffect(() => {
-        if (isRunning && time > 0) {
-            const timer = setInterval(() => {
-                setTime((prevTime) => prevTime - 1);
-            }, 1000);
-
-            return () => clearInterval(timer); // 타이머 클리어
-        }
-    }, [isRunning, time]);
-
-    // 타이머 시작
-    const startTimer = () => {
-        setIsRunning(true);
-    };
-
-    // 초 단위의 시간을 `분:초` 형식의 문자열로 변환하는 함수
-    const formatTime = (seconds) => {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-    };
+    //baseURL 설정
+    let baseURL = '';
+    if (process.env.NODE_ENV === 'development') {
+        baseURL = 'http://121.139.20.242:8859';
+    }
 
     // 이메일 인증 함수
-    const handleEmaiVerification = (e) => {
+    const handleCheckuserEmail = async (e) => {
         e.preventDefault();
 
-        // 이메일이 존재하는지 확인
+        // 이메일이 비어있는지 확인
         if (!userEmail) {
             alert('이메일을 입력해 주세요.');
             return;
         }
 
-        // 이메일 유효성 검사
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const isValid = emailRegex.test(userEmail);
+        try {
+            // 중복 검사 앤드포인트
+            const duplicateTest_response = await fetch(`${baseURL}/api/user/sendEmail`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                body: JSON.stringify({
+                    userEmail,
+                    userId,
+                }),
+            });
 
-        if (!isValid) {
-            alert('유효하지 않은 이메일 형식입니다.');
-            return;
-        }
+            // 응답 결과 처리
+            const result = await duplicateTest_response.json();
+            console.log(result);
 
-        // 타이머 시작 코드 -> 인증코드로 바뀔 예정
-        if (!isRunning) {
-            // 인증번호 입력란 표시
-            alert('인증번호가 발급되었습니다.');
-
-            setIsVerificationVisible(true);
-            setIsEmailVisible(false);
-
-            // 타이머 시작
-            startTimer();
+            if (result.status === '200') {
+                alert(result.message);
+                setIsCodeSent(true); // 인증번호 입력란 활성화
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            console.error('Error during username check:', error);
+            alert('이메일 인증 도중 오류가 발생했습니다.');
         }
     };
 
-    // 인증번호 확인 함수
-    const handleVerificationConfirm = (e) => {
+    // 이메일 인증번호 확인 함수
+    const handleVerifyCode = async (e) => {
         e.preventDefault();
 
-        setIsPasswordEnabled(true);
-        alert('인증번호가 확인되었습니다.');
-        setIsVerificationTableVisible(false);
-        setIsRunning(false);
-    };
-
-    // 정보 변경 함수
-    const handleInfoChange = () => {
-        // 이메일이 존재하는지 확인
-        if (!userEmail) {
-            alert('이메일을 입력해 주세요.');
+        if (!inputCode) {
+            alert('인증번호를 입력해 주세요.');
             return;
         }
 
-        // 이메일 유효성 검사
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const isValid = emailRegex.test(userEmail);
+        try {
+            // 인증코드 확인 앤드포인트
+            const duplicateTest_response = await fetch(`${baseURL}/api/user/verificationEmailCode`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                body: JSON.stringify({
+                    userId,
+                    userEmail,
+                    inputCode,
+                }),
+            });
 
-        if (!isValid) {
-            alert('유효하지 않은 이메일 형식입니다.');
+            // 응답 결과 처리
+            const result = await duplicateTest_response.json();
+            console.log(result);
+
+            if (result.status === '200') {
+                const jwtToken = result.data.accessEmailToken;
+
+                // 'Bearer ' 접두사를 추가하여 JWT 토큰을 로컬 스토리지와 세션 스토리지에 저장
+                const bearerToken = `Bearer ${jwtToken}`;
+                localStorage.setItem('EmailVerAuth', bearerToken);
+                sessionStorage.setItem('EmailVerAuth', bearerToken);
+
+                alert(result.message);
+                setIsEmailVerified(true);
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            console.error('Error during username check:', error);
+            alert('인증코드 인증 도중 오류가 발생했습니다.');
+        }
+    };
+
+    // 비밀번호 찾기에서 비밀번호 변경 함수
+    const handleFindPassowrd = async (e) => {
+        e.preventDefault();
+
+        // 비밀번호 유효성 검사 (최소 8자, 영어와 숫자 포함, 한글 미포함)
+        if (!userPw) {
+            alert('새 비밀번호를 입력해 주세요.');
             return;
         }
 
-        // 이메일과 인증번호 인증이 되지 않으면 변경할 수 없습니다.
-        alert('정보 변경에 실패하였습니다.');
+        if (!userConPw) {
+            alert('새 비밀번호 확인을 입력해 주세요.');
+            return;
+        }
+
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+~`|}{[\]:;?\/><.,]{8,}$/;
+        const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+
+        if (!passwordRegex.test(userPw)) {
+            alert('비밀번호는 최소 8자 이상이어야 하며, 영어와 숫자를 포함해야 합니다.');
+            return;
+        }
+
+        if (koreanRegex.test(userPw)) {
+            alert('비밀번호에 한글은 포함될 수 없습니다.');
+            return;
+        }
+
+        // 비밀번호와 비밀번호 확인이 일치하는지 확인
+        if (userPw !== userConPw) {
+            alert('새 비밀번호와 새 비밀번호 확인이 일치하지 않습니다.');
+            return;
+        }
+
+        //앤드포인트
+        try {
+            let baseURL = '';
+            if (process.env.NODE_ENV === 'development') {
+                baseURL = 'http://121.139.20.242:8859';
+            }
+
+            // 이메일 검증 토큰 확인
+            const EmailbearerToken = localStorage.getItem('EmailVerAuth') || sessionStorage.getItem('EmailVerAuth');
+            if (!EmailbearerToken) {
+                alert('사용자가 인증되지 않았습니다.');
+                return;
+            }
+
+            const response = await fetch(`${baseURL}/api/user/findPassword`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    EmailVerAuth: EmailbearerToken,
+                },
+                body: JSON.stringify({
+                    userId,
+                    userPw,
+                    userConPw,
+                }),
+            });
+
+            const result = await response.json();
+
+            if (result.status === '200') {
+                alert(result.message);
+                navigate('/');
+                localStorage.removeItem('EmailVerAuth');
+                sessionStorage.removeItem('EmailVerAuth');
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            alert('비밀번호를 변경할 수 없습니다.');
+        }
     };
 
-    // 엔터 키가 눌렸을 때 기본 동작을 막음
+    // 엔터 키 입력 막는 함수
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -129,24 +203,22 @@ const FindPassword = () => {
         <div className={styles.ScrollContainer}>
             <div className={styles.FindPasswordBody}>
                 <div className={styles.container}>
-                    <div className={styles.title}>TeacHub</div>
-                    <form className={styles.form} onSubmit={handleInfoChange} onKeyPress={handleKeyPress}>
-                        {/* 아이디 입력란 */}
+                    <h1 className={styles.title}>TeacHub</h1>
+                    <form className={styles.form} onKeyDown={handleKeyPress} onSubmit={handleFindPassowrd}>
                         <div className={styles.inputContainer}>
-                            <FaUser />
+                            <FaUser className={styles.icon} />
                             <input
                                 type="text"
                                 placeholder="아이디"
                                 value={userId}
                                 onChange={(e) => setUserId(e.target.value)}
                                 className={styles.signUpInput}
-                                maxLength="25"
+                                maxLength="20"
+                                disabled={isEmailVerified}
                             />
                         </div>
-
-                        {/* 이메일 입력란 */}
                         <div className={styles.inputContainer}>
-                            <FaEnvelope />
+                            <FaEnvelope className={styles.icon} />
                             <input
                                 type="email"
                                 placeholder="이메일"
@@ -154,76 +226,67 @@ const FindPassword = () => {
                                 onChange={(e) => setUserEmail(e.target.value)}
                                 className={styles.signUpInput}
                                 maxLength="25"
-                                disabled={!isEmailVisible}
-                                style={{
-                                    backgroundColor: isEmailVisible ? 'transparent' : '#f0f0f0',
-                                }}
+                                disabled={isEmailVerified} // 인증 요청 후 비활성화
                             />
-                            {isRunning && time > 0 && <span className={styles.timer}>{formatTime(time)}</span>}
-                            <button type="button" className={styles.duplicateButton} onClick={handleEmaiVerification}>
-                                인증
-                            </button>
+                            {!isEmailVerified && (
+                                <button type="button" className={styles.duplicateButton} onClick={handleCheckuserEmail}>
+                                    이메일 인증
+                                </button>
+                            )}
                         </div>
 
-                        {/* 인증번호 입력란 */}
-                        {isVerificationVisible && (
+                        {/* 인증번호 입력칸 및 인증 버튼 */}
+                        {isCodeSent && (
                             <div className={styles.inputContainer}>
-                                <FaKey />
+                                <FaKey className={styles.icon} />
                                 <input
                                     type="text"
-                                    placeholder="인증번호"
-                                    value={verificationCode}
-                                    onChange={(e) => setVerificationCode(e.target.value)}
+                                    placeholder="인증번호 입력"
+                                    value={inputCode}
+                                    onChange={(e) => setInputCode(e.target.value)}
                                     className={styles.signUpInput}
-                                    maxLength="6"
-                                    disabled={!isVerificationTableVisible}
-                                    style={{
-                                        backgroundColor: isVerificationTableVisible ? 'transparent' : '#f0f0f0',
-                                    }}
+                                    disabled={isEmailVerified} // 인증 완료 시 입력 칸도 비활성화 가능
                                 />
-                                <button
-                                    type="button"
-                                    className={styles.duplicateButton}
-                                    onClick={handleVerificationConfirm}
-                                >
-                                    확인
-                                </button>
+                                {!isEmailVerified && (
+                                    <button type="button" className={styles.duplicateButton} onClick={handleVerifyCode}>
+                                        인증
+                                    </button>
+                                )}
                             </div>
                         )}
 
-                        {/* 비밀번호 입력란 */}
-                        <div className={styles.inputContainer}>
-                            <FaLock />
-                            <input
-                                type="password"
-                                placeholder="새 비밀번호"
-                                value={userPw}
-                                onChange={(e) => setUserPw(e.target.value)}
-                                className={styles.signUpInput}
-                                maxLength="20"
-                                disabled={!isPasswordEnabled} // 인증 완료 전까지 비활성화
-                                style={{
-                                    backgroundColor: isPasswordEnabled ? 'transparent' : '#f0f0f0',
-                                }}
-                            />
-                        </div>
-                        <div className={styles.inputContainer}>
-                            <FaLock />
-                            <input
-                                type="password"
-                                placeholder="새 비밀번호 확인"
-                                value={userConPw}
-                                onChange={(e) => setUserConPw(e.target.value)}
-                                className={styles.signUpInput}
-                                maxLength="20"
-                                disabled={!isPasswordEnabled} // 인증 완료 전까지 비활성화
-                                style={{
-                                    backgroundColor: isPasswordEnabled ? 'transparent' : '#f0f0f0',
-                                }}
-                            />
-                        </div>
+                        {isEmailVerified && <p>이메일 인증이 완료되었습니다.</p>}
 
-                        <button className={styles.button}>변경하기</button>
+                        {isEmailVerified && (
+                            <>
+                                <div className={styles.inputContainer}>
+                                    <FaLock className={styles.icon} />
+                                    <input
+                                        type="password"
+                                        placeholder="새 비밀번호"
+                                        value={userPw}
+                                        onChange={(e) => setUserPw(e.target.value)}
+                                        className={styles.signUpInput}
+                                        maxLength="20"
+                                    />
+                                </div>
+                                <div className={styles.inputContainer}>
+                                    <FaLock className={styles.icon} />
+                                    <input
+                                        type="password"
+                                        placeholder="새 비밀번호 확인"
+                                        value={userConPw}
+                                        onChange={(e) => setUserConPw(e.target.value)}
+                                        className={styles.signUpInput}
+                                        maxLength="20"
+                                    />
+                                </div>
+                                <button type="submit" className={styles.button}>
+                                    변경하기
+                                </button>
+                            </>
+                        )}
+
                         <button className={styles.button} onClick={() => navigate('/')}>
                             뒤로가기
                         </button>
@@ -232,6 +295,6 @@ const FindPassword = () => {
             </div>
         </div>
     );
-};
+}
 
 export default FindPassword;
