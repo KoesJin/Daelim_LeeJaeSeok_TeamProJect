@@ -76,9 +76,8 @@ function LoginPage() {
                 localStorage.setItem('Authorization', bearerToken);
                 sessionStorage.setItem('Authorization', bearerToken);
 
-                // userId를 새로고침해도 남아있게 하기 위해 localStorage로 저장
+                // userId 설정
                 localStorage.setItem('userId', userId);
-
                 // userName 설정
                 localStorage.setItem('userName', jslName);
 
