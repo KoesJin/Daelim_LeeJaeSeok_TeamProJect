@@ -16,13 +16,13 @@ function SignUpPage() {
     const [classNum, setClassNum] = useState('');
 
     // 인증번호
-    const [emailAddr, setEamilAddr] = useState('');
+    const [inputCode, setInputCode] = useState('');
 
-    // 중복체크 정보
+    // 아이디 , 전화번호 중복체크 정보
     const [idDuplicateChecked, setIdDuplicateChecked] = useState(false);
     const [numDuplicateChecked, setNumDuplicateChecked] = useState(false);
 
-    // 중복체크 및 인증
+    // 이메일 중복체크 및 인증
     const [emailDuplicateChecked, setEmailDuplicateChecked] = useState(false);
 
     // 인증번호 요청 상태
@@ -181,7 +181,7 @@ function SignUpPage() {
     const handleVerifyCode = async (e) => {
         e.preventDefault();
 
-        if (!emailAddr) {
+        if (!inputCode) {
             alert('인증번호를 입력해 주세요.');
             return;
         }
@@ -195,7 +195,8 @@ function SignUpPage() {
                     Accept: 'application/json',
                 },
                 body: JSON.stringify({
-                    emailAddr,
+                    userEmail,
+                    inputCode,
                 }),
             });
 
@@ -205,6 +206,7 @@ function SignUpPage() {
 
             if (result.status === '200') {
                 alert(result.message);
+                setIsEmailVerified(true);
             } else {
                 alert(result.message);
             }
@@ -239,6 +241,11 @@ function SignUpPage() {
         // 이메일 중복 체크 코드
         if (!emailDuplicateChecked) {
             alert('이메일 인증을 먼저 해주세요.');
+            return;
+        }
+
+        if (!isEmailVerified) {
+            alert('인증번호 인증을 먼저 해주세요.');
             return;
         }
 
@@ -282,7 +289,7 @@ function SignUpPage() {
 
         const classRegex = /^\d{1,2}$/;
         if (!classRegex.test(classNum)) {
-            alert('반은 1~2자리 숫자로만 이루어져 있어야 합니다.');
+            alert('반은 1~99의 숫자로만 이루어져 있어야 합니다.');
             return;
         }
 
@@ -407,9 +414,9 @@ function SignUpPage() {
                                 onChange={(e) => setUserEmail(e.target.value)}
                                 className={styles.signUpInput}
                                 maxLength="25"
-                                disabled={isCodeSent} // 인증 요청 후 비활성화
+                                disabled={isEmailVerified} // 인증 요청 후 비활성화
                             />
-                            {!isCodeSent && (
+                            {!isEmailVerified && (
                                 <button type="button" className={styles.duplicateButton} onClick={handleCheckuserEmail}>
                                     이메일 인증
                                 </button>
@@ -423,10 +430,11 @@ function SignUpPage() {
                                 <input
                                     type="text"
                                     placeholder="인증번호 입력"
-                                    value={emailAddr}
-                                    onChange={(e) => setEamilAddr(e.target.value)}
+                                    value={inputCode}
+                                    onChange={(e) => setInputCode(e.target.value)}
                                     className={styles.signUpInput}
                                     disabled={isEmailVerified} // 인증 완료 시 입력 칸도 비활성화 가능
+                                    maxLength="6"
                                 />
                                 {!isEmailVerified && (
                                     <button type="button" className={styles.duplicateButton} onClick={handleVerifyCode}>
