@@ -1,89 +1,113 @@
 .headerContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10px;
-    height: 75px;
-    border-bottom: 1px solid #cdcdcd;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  height: 75px;
+  border-bottom: 1px solid #cdcdcd;
 }
 
+.headerIndex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1400px;
+  height: 75px;
+  margin: 0 auto;
+}
 .leftSection {
-    display: flex;
-    flex-direction: column; /* 상하 배치 */
-    justify-content: center;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column; /* 상하 배치 */
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .leftBar {
-    width: 30px;
-    height: 4.5px;
-    margin: 3px 0; /* 위아래 간격 */
-    border-radius: 10px;
-    background: #30a04d;
+  width: 30px;
+  height: 4.5px;
+  margin: 3px 0; /* 위아래 간격 */
+  border-radius: 10px;
+  background: #30a04d;
 }
 
 .mainTitle {
-    margin-left: 10px;
-    height: 30px;
-    object-fit: cover;
+  margin-left: 10px;
+  height: 30px;
+  object-fit: cover;
 }
 
 .teacherInfo {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    color: #000;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #000;
 }
 
 .teacherName {
-    font-weight: 700;
-    margin-right: 5px;
+  font-weight: 700;
+  margin-right: 5px;
 }
 
 .teacherTitle {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 .chatIcon {
-    margin-left: 10px;
-    display: flex;
-    align-items: center;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
 }
 
 /* 반응형 디자인 */
-@media (max-width: 768px) {
-    .headerContainer {
-        height: 50px;
-    }
+/*크게 1024, 768, 476을 기준으로 두고 작업*/
+/*너무 많은 미디어 쿼리 사용은 지양하고, 화면 줄이는 과정에서 부자연스러운 모션을 다 잡으려고 하기보단 최대한 위 세 픽셀에 맞춰 눈에 덜 띄게하는
+선에서 작업하면 좋을 것 같습니다 ! */
+/*476이하는 모바일 버전 디자인을 좀 더 고안해봐야 할 듯 함 */
 
-    .MainTitle {
-        height: 25px;
-    }
+@media (max-width: 1401px) {
+  .headerIndex {
+    width: 1023px;
+  }
+}
 
-    .leftBar {
-        width: 25px;
-    }
+@media (max-width: 1030px) {
+  .headerIndex {
+    width: 768px;
+  }
+}
 
-    .teacherInfo {
-        font-size: 14px;
-    }
+@media (max-width: 775px) {
+  .headerContainer {
+    height: 50px;
+  }
+
+  .MainTitle {
+    height: 25px;
+  }
+
+  .leftBar {
+    width: 25px;
+  }
+
+  .teacherInfo {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 480px) {
-    .headerContainer {
-        height: 40px;
-    }
+  .headerContainer {
+    height: 40px;
+  }
 
-    .MainTitle {
-        height: 20px;
-    }
+  .MainTitle {
+    height: 20px;
+  }
 
-    .leftBar {
-        width: 20px;
-    }
+  .leftBar {
+    width: 20px;
+  }
 
-    .teacherInfo {
-        font-size: 12px;
-    }
+  .teacherInfo {
+    font-size: 12px;
+  }
 }
