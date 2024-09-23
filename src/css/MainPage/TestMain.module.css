@@ -1,0 +1,97 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+.noticeBoard {
+    background-color: #fff8bd;
+    border-radius: 20px;
+    width: 80%;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.noticeTitle {
+    font-size: 26px;
+    color: #30a04d;
+}
+
+.noticeContent {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.noticeDate {
+    color: #959595;
+}
+
+.welcomeSection {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.welcomeText {
+    font-size: 36px;
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.button {
+    background-color: #30a04d;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.helpSection {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.helpText {
+    font-size: 36px;
+    font-weight: bold;
+    font-style: italic;
+    color: #000;
+}
+
+.iconSection {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.iconContainer {
+    text-align: center;
+    flex: 1;
+}
+
+.iconContainer p {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+@media (max-width: 768px) {
+    .noticeBoard,
+    .welcomeSection,
+    .helpSection {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .iconSection {
+        flex-direction: column;
+        align-items: center;
+    }
+}

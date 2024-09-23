@@ -1,0 +1,89 @@
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    height: 75px;
+    border-bottom: 1px solid #cdcdcd;
+    width: 100%;
+}
+
+.leftSection {
+    display: flex;
+    flex-direction: column; /* 상하 배치 */
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.leftBar {
+    width: 30px;
+    height: 4.5px;
+    margin: 3px 0; /* 위아래 간격 */
+    border-radius: 10px;
+    background: #30a04d;
+}
+
+.mainTitle {
+    margin-left: 10px;
+    height: 30px;
+    object-fit: cover;
+}
+
+.teacherInfo {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #000;
+}
+
+.teacherName {
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+.teacherTitle {
+    font-weight: 300;
+}
+
+.chatIcon {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .headerContainer {
+        height: 50px;
+    }
+
+    .MainTitle {
+        height: 25px;
+    }
+
+    .leftBar {
+        width: 25px;
+    }
+
+    .teacherInfo {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .headerContainer {
+        height: 40px;
+    }
+
+    .MainTitle {
+        height: 20px;
+    }
+
+    .leftBar {
+        width: 20px;
+    }
+
+    .teacherInfo {
+        font-size: 12px;
+    }
+}
