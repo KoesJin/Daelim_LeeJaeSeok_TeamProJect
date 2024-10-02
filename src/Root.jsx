@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet';
 import { createGlobalStyle, styled } from 'styled-components';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Header from './components/Header/Header';
-import TestHeader from './components/Header/TestHeader';
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -77,7 +76,7 @@ function Root() {
                 location.pathname !== '/signuppage' &&
                 location.pathname !== '/checksignuppage' &&
                 location.pathname !== '/findpassword' &&
-                location.pathname !== '/findid' && <TestHeader />}
+                location.pathname !== '/findid' && <Header />}
             <TransitionGroup>
                 <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
                     <AnimationContainer>

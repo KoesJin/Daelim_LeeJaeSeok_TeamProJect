@@ -1,97 +1,130 @@
-.mainContainer {
+.container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff;
-    font-family: 'Arial', sans-serif;
+    align-items: center; /* 세로 축 중앙 정렬 */
+    justify-content: center;
+    padding: 100px;
+    gap: 50px;
 }
 
-.noticeBoard {
-    background-color: #fff8bd;
+.notice {
+    width: 70%;
+    padding: 30px;
     border-radius: 20px;
-    width: 80%;
-    padding: 20px;
-    margin-top: 20px;
+    background-color: #fff8bd;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 공지사항을 세로 중앙 정렬 */
+}
+
+.noticeHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px; /* 제목과 내용 간의 간격 */
+}
+
+.titleWithIcon {
+    display: flex;
+    align-items: center; /* 제목과 아이콘을 동일 높이로 정렬 */
 }
 
 .noticeTitle {
-    font-size: 26px;
+    font-size: 1.3rem;
+    font-weight: 700;
     color: #30a04d;
+    margin-right: 10px; /* 아이콘과의 간격 추가 */
 }
 
-.noticeContent {
+.icon {
+    margin-top: 5px;
+    width: 33px; /* 아이콘 크기 조정 */
+    height: 32px;
+}
+
+.plusIcon {
+    cursor: pointer;
+    margin-left: auto;
+    width: 24px; /* 적절한 크기로 조정 */
+    height: 24px;
+}
+
+.noticeBody {
+    margin-top: 30px;
+}
+
+.noticeItem {
     display: flex;
-    flex-direction: column;
-    margin-top: 10px;
+    justify-content: space-between;
+    margin: 15px 0 8px 0;
 }
 
 .noticeDate {
-    color: #959595;
+    color: #a1a1a1; /* 날짜 색상 변경 */
+    font-size: 0.9rem;
+    margin-left: 10px;
 }
 
+.teacherIconWrapper {
+    width: 20%; /* 교사 아이콘의 비율 조정 */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* .teacherIcon {
+    width: 150px; 
+    height: 170px;
+} */
+
 .welcomeSection {
-    margin-top: 30px;
-    text-align: center;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 환영 문구를 왼쪽 정렬 */
 }
 
 .welcomeText {
-    font-size: 36px;
+    font-size: 2.5rem;
+    font-weight: 300;
+    text-align: left;
+    color: #000;
 }
 
-.buttonGroup {
+/* teacherName과 teacherTitle을 한 줄에 배치 */
+.teacherInfo {
     display: flex;
-    justify-content: center;
-    margin-top: 10px;
+    align-items: center; /* 수직 중앙 정렬 */
+}
+
+.teacherName {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000;
+    margin-right: 5px; /* 이름과 타이틀 간의 간격 추가 */
+}
+
+.teacherTitle {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #000;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px; /* 버튼들 사이 간격 */
+    margin-top: 20px;
 }
 
 .button {
     background-color: #30a04d;
-    color: #fff;
-    padding: 10px 20px;
-    margin: 0 10px;
-    border-radius: 20px;
+    border: none;
+    color: white;
+    border-radius: 50px;
+    padding: 3px 20px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.helpSection {
-    margin-top: 30px;
-    text-align: center;
-}
-
-.helpText {
-    font-size: 36px;
-    font-weight: bold;
-    font-style: italic;
-    color: #000;
-}
-
-.iconSection {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-    width: 100%;
-}
-
-.iconContainer {
-    text-align: center;
-    flex: 1;
-}
-
-.iconContainer p {
-    margin-top: 10px;
-    font-size: 20px;
-}
-
-@media (max-width: 768px) {
-    .noticeBoard,
-    .welcomeSection,
-    .helpSection {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .iconSection {
-        flex-direction: column;
-        align-items: center;
-    }
+.button:hover {
+    background-color: #267a37;
 }

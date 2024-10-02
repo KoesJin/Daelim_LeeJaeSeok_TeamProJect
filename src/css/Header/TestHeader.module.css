@@ -1,89 +1,288 @@
-.headerContainer {
+/* 배경 스타일은 그대로 두고 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 검은색 반투명 배경 */
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    z-index: 1000;
+}
+
+.modal.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 슬라이드 효과는 모달의 콘텐츠에만 적용 */
+.modalContent {
+    background-color: #fff;
+    padding: 20px;
+    width: 300px;
+    height: 100vh;
+    overflow-y: auto;
+    transform: translateX(-100%); /* 처음에 왼쪽으로 완전히 숨김 */
+    transition: transform 0.5s ease; /* 슬라이드 효과 */
+}
+
+.modal.open .modalContent {
+    transform: translateX(0); /* 모달이 열릴 때 화면 안으로 슬라이드 */
+}
+
+/* 채팅 모달 스타일 */
+.chatModal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end; /* 우측에 모달 위치 */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    z-index: 1000;
+}
+
+.chatModal.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 슬라이드 효과는 채팅 모달의 콘텐츠에만 적용 */
+.chatModalContent {
+    background-color: #fff;
+    padding: 20px;
+    width: 500px; /* 넓게 조정 */
+    height: 100vh;
+    overflow-y: auto;
+    transform: translateX(100%); /* 처음에 오른쪽으로 완전히 숨김 */
+    transition: transform 0.5s ease; /* 슬라이드 효과 */
+}
+
+.chatModal.open .chatModalContent {
+    transform: translateX(0); /* 모달이 열릴 때 화면 안으로 슬라이드 */
+}
+
+/* 기타 스타일 */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 2.2px solid rgb(230, 230, 248);
+    position: fixed; /* 헤더를 화면 상단에 고정 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* 헤더가 다른 요소들 위에 표시되도록 설정 */
+    background-color: white; /* 배경색을 설정해 헤더가 읽기 쉽게 유지 */
+    height: 60px; /* 헤더 높이 설정 */
+    box-sizing: border-box;
+}
+
+/* 콘텐츠가 헤더에 가려지지 않도록 margin-top 추가 */
+.content {
+    margin-top: 60px; /* 헤더 높이만큼의 상단 여백 추가 */
+}
+
+.headerButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.title {
+    font-size: 1.3rem;
+    color: #333;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.userName {
+    font-size: 1rem;
+    color: #333;
+}
+
+.chatButtonContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 아이콘과 이름 사이의 간격을 위한 조정 */
+}
+
+/* 메뉴 모달 스타일 */
+.modalHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
-    height: 75px;
-    border-bottom: 1px solid #cdcdcd;
-    width: 100%;
+    margin-bottom: 20px;
 }
 
-.leftSection {
-    display: flex;
-    flex-direction: column; /* 상하 배치 */
-    justify-content: center;
-    align-items: flex-start;
+.closeButton {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
 }
 
-.leftBar {
-    width: 30px;
-    height: 4.5px;
-    margin: 3px 0; /* 위아래 간격 */
-    border-radius: 10px;
-    background: #30a04d;
+.addButton {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    color: #007bff;
+    margin-right: auto;
 }
 
-.mainTitle {
-    margin-left: 10px;
-    height: 30px;
-    object-fit: cover;
+.modalBody {
+    padding-top: 10px;
 }
 
-.teacherInfo {
+.sidebarHeader {
     display: flex;
     align-items: center;
-    font-size: 16px;
-    color: #000;
+    margin-bottom: 20px;
 }
 
-.teacherName {
-    font-weight: 700;
-    margin-right: 5px;
+.logo {
+    font-size: 18px;
+    font-weight: bold;
 }
 
-.teacherTitle {
-    font-weight: 300;
+.menuList {
+    list-style-type: none;
+    padding: 0;
 }
 
-.chatIcon {
-    margin-left: 10px;
+.listItem {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.emptyItem {
+    color: #999;
+}
+
+.companyInfo {
+    font-size: 14px;
+    color: #666;
+}
+
+.companyDetails {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #999;
+}
+
+/* 채팅 모달 스타일 */
+.profile {
     display: flex;
     align-items: center;
+    padding: 10px;
 }
 
-/* 반응형 디자인 */
-@media (max-width: 768px) {
-    .headerContainer {
-        height: 50px;
-    }
-
-    .MainTitle {
-        height: 25px;
-    }
-
-    .leftBar {
-        width: 25px;
-    }
-
-    .teacherInfo {
-        font-size: 14px;
-    }
+.profileAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
-@media (max-width: 480px) {
-    .headerContainer {
-        height: 40px;
-    }
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+}
 
-    .MainTitle {
-        height: 20px;
-    }
+.profileName {
+    font-weight: bold;
+}
 
-    .leftBar {
-        width: 20px;
-    }
+.profileStatus {
+    color: gray;
+}
 
-    .teacherInfo {
-        font-size: 12px;
-    }
+.searchBar {
+    margin: 10px 0;
+}
+
+.searchInput {
+    flex-grow: 1;
+}
+
+.contactList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.contactAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.contactName {
+    font-weight: bold;
+}
+
+.contactMessage {
+    color: gray;
+}
+
+/* 개별 채팅 창 스타일 */
+.chatWindow {
+    height: calc(100vh - 180px); /* 필요에 따라 조정 */
+    overflow-y: auto;
+    background: #f8f8f8;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.chatInput {
+    min-width: 450px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 20px;
+    margin: 0 10px;
+}
+
+.backButton {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.chatTitle {
+    flex-grow: 1;
+    text-align: center;
 }

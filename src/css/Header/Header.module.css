@@ -1,4 +1,4 @@
-/* 배경 스타일은 그대로 두고 */
+/* 모달 */
 .modal {
     position: fixed;
     top: 0;
@@ -35,94 +35,6 @@
     transform: translateX(0); /* 모달이 열릴 때 화면 안으로 슬라이드 */
 }
 
-/* 채팅 모달 스타일 */
-.chatModal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end; /* 우측에 모달 위치 */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-    z-index: 1000;
-}
-
-.chatModal.open {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* 슬라이드 효과는 채팅 모달의 콘텐츠에만 적용 */
-.chatModalContent {
-    background-color: #fff;
-    padding: 20px;
-    width: 500px; /* 넓게 조정 */
-    height: 100vh;
-    overflow-y: auto;
-    transform: translateX(100%); /* 처음에 오른쪽으로 완전히 숨김 */
-    transition: transform 0.5s ease; /* 슬라이드 효과 */
-}
-
-.chatModal.open .chatModalContent {
-    transform: translateX(0); /* 모달이 열릴 때 화면 안으로 슬라이드 */
-}
-
-/* 기타 스타일 */
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    border-bottom: 2.2px solid rgb(230, 230, 248);
-    position: fixed; /* 헤더를 화면 상단에 고정 */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* 헤더가 다른 요소들 위에 표시되도록 설정 */
-    background-color: white; /* 배경색을 설정해 헤더가 읽기 쉽게 유지 */
-    height: 60px; /* 헤더 높이 설정 */
-    box-sizing: border-box;
-}
-
-/* 콘텐츠가 헤더에 가려지지 않도록 margin-top 추가 */
-.content {
-    margin-top: 60px; /* 헤더 높이만큼의 상단 여백 추가 */
-}
-
-.headerButton {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.title {
-    font-size: 1.3rem;
-    color: #333;
-    font-weight: bold;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    box-sizing: border-box;
-    cursor: pointer;
-}
-
-.userName {
-    font-size: 1rem;
-    color: #333;
-}
-
-.chatButtonContainer {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* 아이콘과 이름 사이의 간격을 위한 조정 */
-}
-
 /* 메뉴 모달 스타일 */
 .modalHeader {
     display: flex;
@@ -151,15 +63,9 @@
     padding-top: 10px;
 }
 
-.sidebarHeader {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.logo {
-    font-size: 18px;
-    font-weight: bold;
+.memuLogo {
+    height: 1.5rem;
+    margin-top: 10px;
 }
 
 .menuList {
@@ -168,7 +74,7 @@
 }
 
 .listItem {
-    padding: 10px 0;
+    padding: 15px 0;
     border-bottom: 1px solid #ccc;
     cursor: pointer;
 }
@@ -177,112 +83,88 @@
     color: #999;
 }
 
-.companyInfo {
-    font-size: 14px;
-    color: #666;
-}
-
 .companyDetails {
-    margin-top: 10px;
+    margin-top: 200px;
     font-size: 12px;
     color: #999;
 }
 
-/* 채팅 모달 스타일 */
-.profile {
+/* 전체 컨테이너 */
+.container {
+    padding: 20px 50px;
+    width: 100%;
+    border-bottom: 1px solid #cdcdcd;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px;
 }
 
-.profileAvatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.profileInfo {
+/* 왼쪽 섹션: 메뉴 아이콘 */
+.leftSection {
+    flex: 1;
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
 }
 
-.profileName {
-    font-weight: bold;
-}
-
-.profileStatus {
-    color: gray;
-}
-
-.searchBar {
-    margin: 10px 0;
-}
-
-.searchInput {
-    flex-grow: 1;
-}
-
-.contactList {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.contactItem {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-}
-
-.contactAvatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.contactInfo {
-    display: flex;
-    flex-direction: column;
-}
-
-.contactName {
-    font-weight: bold;
-}
-
-.contactMessage {
-    color: gray;
-}
-
-/* 개별 채팅 창 스타일 */
-.chatWindow {
-    height: calc(100vh - 180px); /* 필요에 따라 조정 */
-    overflow-y: auto;
-    background: #f8f8f8;
-    margin-bottom: 10px;
-    padding: 10px;
-}
-
-.chatInput {
-    min-width: 450px;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    position: fixed;
-    bottom: 20px;
-    margin: 0 10px;
-}
-
-.backButton {
-    background-color: transparent;
-    border: none;
-    font-size: 20px;
+.menuIcon {
     cursor: pointer;
 }
 
-.chatTitle {
-    flex-grow: 1;
-    text-align: center;
+/* 중앙 섹션: 타이틀 */
+.centerSection {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* 오른쪽 섹션: 선생님 정보 및 채팅 아이콘 */
+.rightSection {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* 중앙 타이틀 이미지 */
+.mainTitle {
+    height: 2rem;
+    cursor: pointer;
+}
+
+/* 오른쪽 사용자 정보 */
+.teacherInfo {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    color: #000;
+    margin-right: 20px; /* 채팅 아이콘과 간격 */
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+.teacherName {
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+.teacherTitle {
+    font-weight: 300;
+}
+
+.ChatIcon {
+    cursor: pointer;
+}
+
+/* 반응형 디자인 */
+/*크게 1024, 768, 476을 기준으로 두고 작업*/
+/*너무 많은 미디어 쿼리 사용은 지양하고, 화면 줄이는 과정에서 부자연스러운 모션을 다 잡으려고 하기보단 최대한 위 세 픽셀에 맞춰 눈에 덜 띄게하는
+선에서 작업하면 좋을 것 같습니다 ! */
+/*476이하는 모바일 버전 디자인을 좀 더 고안해봐야 할 듯 함 */
+
+@media (max-width: 480px) {
+    .mainTitle {
+        height: 1.5rem;
+    }
 }

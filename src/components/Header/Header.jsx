@@ -1,38 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../css/Header/Header.module.css';
-import { FaBars, FaComments, FaTimes, FaArrowLeft, FaUserPlus } from 'react-icons/fa';
-import ProfileSidebar from '../ProfileSideBar/ProfileSidebar';
+import ChatIcon from '../../svg/MainPage/Chat/ChatIcon';
+import MainTitle from '../../img/TeacHub.png';
+import MenuIcon from '../../svg/MainPage/MenuIcon';
 import { useNavigate } from 'react-router-dom';
+import { FaTimes } from 'react-icons/fa';
 
 const Header = () => {
     //모달
     const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
-    const [isChatModalOpen, setIsChatModalOpen] = useState(false);
-    const [selectedChat, setSelectedChat] = useState(null);
     const [userName, setUserName] = useState('');
+
+    // 메뉴 모달
     const toggleMenuModal = () => {
         setIsMenuModalOpen(!isMenuModalOpen);
     };
 
     const closeMenuModal = () => {
         setIsMenuModalOpen(false);
-    };
-
-    const toggleChatModal = () => {
-        setIsChatModalOpen(!isChatModalOpen);
-    };
-
-    const closeChatModal = () => {
-        setIsChatModalOpen(false);
-        setSelectedChat(null);
-    };
-
-    const openChat = (contact) => {
-        setSelectedChat(contact);
-    };
-
-    const goBack = () => {
-        setSelectedChat(null);
     };
 
     //navigate 훅
@@ -64,33 +49,21 @@ const Header = () => {
     };
 
     return (
-        <>
-            <div className={styles.header}>
-                <button onClick={toggleMenuModal} className={styles.headerButton}>
-                    <FaBars />
-                </button>
-                <div className={styles.title} onClick={() => navigate('/mainpage')}>
-                    TeacHub
+        <div className={styles.container}>
+            {/* 좌측 메뉴 아이콘 */}
+            <div className={styles.leftSection}>
+                <div onClick={toggleMenuModal}>
+                    <MenuIcon className={styles.menuIcon} />
                 </div>
-                <div className={styles.chatButtonContainer}>
-                    <div className={styles.userName}>{userName}님</div>
-                    <button onClick={toggleChatModal} className={styles.headerButton}>
-                        <FaComments style={{ marginBottom: '5px' }} />
-                    </button>
-                </div>
-                {/* 메뉴 모달 */}
                 <div className={`${styles.modal} ${isMenuModalOpen ? styles.open : ''}`}>
                     <div className={styles.modalContent}>
                         <div className={styles.modalHeader}>
-                            <h5>로고 위치</h5>
+                            <img src={MainTitle} alt="MainTitle" className={styles.memuLogo} />
                             <button className={styles.closeButton} onClick={closeMenuModal}>
                                 <FaTimes />
                             </button>
                         </div>
                         <div className={styles.modalBody}>
-                            <div className={styles.sidebarHeader}>
-                                <div className={styles.logo}>목록</div>
-                            </div>
                             <ul className={styles.menuList}>
                                 <li
                                     className={styles.listItem}
@@ -121,54 +94,43 @@ const Header = () => {
                                 </li>
                             </ul>
                             <div className={styles.companyInfo}>
-                                회사 정보
                                 <div className={styles.companyDetails}>
-                                    여기에는 회사 정보를 입력합니다. 예를 들어, 회사 주소, 연락처, 이메일 등이 들어갈 수
-                                    있습니다.
+                                    TeacHub는 교육 기술 솔루션을 통해 전 세계 교육자와 학생들에게 보다 나은 학습 환경을
+                                    제공합니다. 저희의 목표는 인공지능과 빅데이터를 활용하여 교육의 모든 측면에서 혁신을
+                                    이루는 것입니다.
+                                    <br />
+                                    <br />
+                                    <strong>주소:</strong> 경기도 안양시 동안구 임곡로 29
+                                    <br />
+                                    <strong>연락처:</strong> 010-2479-9363
+                                    <br />
+                                    <strong>이메일:</strong> lovesky00317@brtech.co.kr
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {/* 채팅 목록 모달 */}
-                <div className={`${styles.chatModal} ${isChatModalOpen && !selectedChat ? styles.open : ''}`}>
-                    <div className={styles.chatModalContent}>
-                        <div className={styles.modalHeader}>
-                            <button className={styles.addButton}>
-                                <FaUserPlus />
-                            </button>
-                            <h5>채팅 목록</h5>
-                            <button className={styles.closeButton} onClick={closeChatModal}>
-                                <FaTimes />
-                            </button>
-                        </div>
-                        <div className={styles.modalBody}>
-                            <ProfileSidebar onSelectContact={openChat} />
-                        </div>
-                    </div>
-                </div>
-                {/* 개별 채팅 모달 */}
-                <div className={`${styles.chatModal} ${selectedChat ? styles.open : ''}`}>
-                    <div className={styles.chatModalContent}>
-                        <div className={styles.modalHeader}>
-                            <button className={styles.backButton} onClick={goBack}>
-                                <FaArrowLeft />
-                            </button>
-                            <h5 className={styles.chatTitle}>{selectedChat?.name}</h5>
-                            <button className={styles.closeButton} onClick={closeChatModal}>
-                                <FaTimes />
-                            </button>
-                        </div>
-                        <div className={styles.modalBody}>
-                            <div className={styles.chatWindow}>{/* 채팅 내용이 표시될 부분 */}</div>
-                            <input className={styles.chatInput} type="text" placeholder="메시지를 입력하세요..." />
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div className={styles.content}></div>
-            {/* Heder 아래 공백주기 위함 */}
-        </>
+
+            {/* 중앙 타이틀 */}
+            <div className={styles.centerSection}>
+                <img
+                    src={MainTitle}
+                    alt="MainTitle"
+                    className={styles.mainTitle}
+                    onClick={() => navigate('/mainpage')}
+                />
+            </div>
+
+            {/* 우측 이름 및 채팅 아이콘 */}
+            <div className={styles.rightSection}>
+                <div className={styles.teacherInfo}>
+                    <span className={styles.teacherName}>{userName}</span>
+                    <span className={styles.teacherTitle}>선생님</span>
+                </div>
+                <ChatIcon className={styles.ChatIcon} />
+            </div>
+        </div>
     );
 };
 
