@@ -1,35 +1,13 @@
 import React from 'react';
 
-const PlusIcon = () => {
+const PlusIcon = ({ className }) => {
     return (
-        <div style={{ position: 'relative', width: 30, height: 30 }}>
+        <svg className={className} width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
             {/* 세로 막대 */}
-            <div
-                style={{
-                    width: 3,
-                    height: 28.5,
-                    position: 'absolute',
-                    left: '50%',
-                    top: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    borderRadius: 10,
-                    background: '#30a04d',
-                }}
-            />
+            <rect x="13.5" y="1" width="3" height="28" rx="1.5" fill="#30a04d" />
             {/* 가로 막대 */}
-            <div
-                style={{
-                    width: 28.5,
-                    height: 3,
-                    position: 'absolute',
-                    left: '50%',
-                    top: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    borderRadius: 10,
-                    background: '#30a04d',
-                }}
-            />
-        </div>
+            <rect x="1" y="13.5" width="28" height="3" rx="1.5" fill="#30a04d" />
+        </svg>
     );
 };
 

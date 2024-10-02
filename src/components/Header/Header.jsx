@@ -58,7 +58,7 @@ const Header = () => {
                 <div className={`${styles.modal} ${isMenuModalOpen ? styles.open : ''}`}>
                     <div className={styles.modalContent}>
                         <div className={styles.modalHeader}>
-                            <img src={MainTitle} alt="MainTitle" className={styles.memuLogo} />
+                            <img src={MainTitle} alt="MainTitle" className={styles.menuLogo} />
                             <button className={styles.closeButton} onClick={closeMenuModal}>
                                 <FaTimes />
                             </button>

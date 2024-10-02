@@ -63,7 +63,8 @@
     padding-top: 10px;
 }
 
-.memuLogo {
+/* 수정된 코드 */
+.menuLogo {
     height: 1.5rem;
     margin-top: 10px;
 }
@@ -91,7 +92,7 @@
 
 /* 전체 컨테이너 */
 .container {
-    padding: 20px 50px;
+    padding: 20px 100px;
     width: 100%;
     border-bottom: 1px solid #cdcdcd;
     display: flex;
@@ -138,10 +139,6 @@
     font-size: 1.1rem;
     color: #000;
     margin-right: 20px; /* 채팅 아이콘과 간격 */
-
-    @media (max-width: 768px) {
-        display: none;
-    }
 }
 
 .teacherName {
@@ -158,13 +155,65 @@
 }
 
 /* 반응형 디자인 */
-/*크게 1024, 768, 476을 기준으로 두고 작업*/
-/*너무 많은 미디어 쿼리 사용은 지양하고, 화면 줄이는 과정에서 부자연스러운 모션을 다 잡으려고 하기보단 최대한 위 세 픽셀에 맞춰 눈에 덜 띄게하는
-선에서 작업하면 좋을 것 같습니다 ! */
-/*476이하는 모바일 버전 디자인을 좀 더 고안해봐야 할 듯 함 */
+/* 1024px 이하 */
+@media (max-width: 1024px) {
+    .container {
+        padding: 20px 50px; /* 좌우 패딩 감소 */
+    }
 
-@media (max-width: 480px) {
+    .mainTitle {
+        height: 1.8rem; /* 타이틀 크기 감소 */
+    }
+
+    .teacherInfo {
+        font-size: 1rem; /* 폰트 크기 감소 */
+    }
+}
+
+/* 768px 이하 */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 30px;
+    }
+
+    .teacherInfo {
+        display: none; /* 선생님 정보 숨김 */
+    }
+
     .mainTitle {
         height: 1.5rem;
+    }
+}
+
+/* 476px 이하 - 모바일 버전 */
+@media (max-width: 476px) {
+    .container {
+        padding: 15px 20px;
+    }
+
+    .menuIcon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .mainTitle {
+        height: 1.2rem;
+    }
+
+    .ChatIcon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .modalContent {
+        width: 80%; /* 모달 너비를 화면의 80%로 조정 */
+    }
+
+    .listItem {
+        padding: 10px 0; /* 리스트 아이템 간격 조정 */
+    }
+
+    .companyDetails {
+        margin-top: 100px; /* 회사 정보 위치 조정 */
     }
 }

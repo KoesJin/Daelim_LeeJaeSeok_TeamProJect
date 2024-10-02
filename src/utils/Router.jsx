@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import Root from '../Root';
-import MainPage from '../page/Main/MainPage';
+import MainPage from '../page/Main/Main';
 import LoginPage from '../page/Login/LoginPage';
 import StudentManagementPage from '../page/Main/StudentManagementPage';
 import AIWorkbookPage from '../page/Main/AIWorkbookPage';
@@ -17,7 +17,6 @@ import PersonalInfoChange from '../page/Header/Info/PersonalInfoChange';
 import PasswordChange from '../page/Header/Info/PasswordChange';
 import FindPassword from '../page/Login/FindPassword/FindPassword';
 import FindId from '../page/Login/FindId/FindId';
-import TestMain from '../page/Main/TestMain';
 
 const router = createBrowserRouter([
     {
@@ -45,13 +44,9 @@ const router = createBrowserRouter([
                 path: '/signuppage',
                 element: <SignUpPage />,
             },
-            // {
-            //     path: '/mainpage',
-            //     element: <MainPage />,
-            // },
             {
                 path: '/mainpage',
-                element: <TestMain />,
+                element: <MainPage />,
             },
             {
                 path: '/checkinfo',

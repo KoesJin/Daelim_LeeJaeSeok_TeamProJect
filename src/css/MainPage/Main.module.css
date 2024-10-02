@@ -1,0 +1,369 @@
+/* .ScrollContainer */
+.ScrollContainer {
+    height: 85vh;
+}
+
+/* .container */
+.container {
+    display: flex;
+    flex-wrap: wrap; /* 자식 요소 넘침 처리 */
+    justify-content: space-between;
+    align-items: flex-start; /* 상단 정렬 */
+    padding: 100px 50px 100px 100px;
+    gap: 50px;
+}
+
+.notice {
+    width: 50%;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: #fff8bd;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */ /* 필요에 따라 유지하거나 제거합니다 */
+    max-height: 400px; /* 최대 높이 설정 */
+}
+
+.noticeHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px; /* 제목과 내용 간의 간격 */
+}
+
+.titleWithIcon {
+    display: flex;
+    align-items: center; /* 제목과 아이콘을 동일 높이로 정렬 */
+}
+
+.noticeTitle {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #30a04d;
+    margin-right: 10px; /* 아이콘과의 간격 추가 */
+    cursor: pointer;
+}
+
+.icon {
+    margin-top: 5px;
+    width: 33px; /* 아이콘 크기 조정 */
+    height: 32px;
+}
+
+.plusIcon {
+    cursor: pointer;
+    margin-left: auto;
+    width: 24px; /* 적절한 크기로 조정 */
+    height: 24px;
+}
+
+.noticeBody {
+    margin-top: 30px;
+}
+
+.noticeItem {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0 8px 0;
+}
+
+.noticeDate {
+    color: #a1a1a1; /* 날짜 색상 변경 */
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+.rightSection {
+    display: flex;
+}
+
+.teacherIcon {
+    width: 150px; /* 아이콘 크기 */
+    height: 170px;
+    margin-right: 20px; /* 아이콘과 정보 사이 간격 */
+}
+
+.welcomeSection {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 왼쪽 정렬 */
+}
+
+.welcomeText {
+    font-size: 2.5rem;
+    font-weight: 300;
+    text-align: left;
+    color: #000;
+}
+
+/* teacherName과 teacherTitle을 한 줄에 배치 */
+.teacherInfoWrapper {
+    display: flex;
+    align-items: center; /* 아이콘과 정보를 수직 중앙 정렬 */
+}
+
+.teacherInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.teacherNameTitle {
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+}
+
+.teacherName {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000;
+    margin-right: 5px; /* 이름과 타이틀 간의 간격 추가 */
+}
+
+.teacherTitle {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #000;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px; /* 버튼들 사이 간격 */
+    margin-top: 20px;
+}
+
+.button {
+    background-color: #30a04d;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 3px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #267a37;
+}
+
+/* help Text */
+.helpText {
+    margin-top: 50px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: left;
+    color: #000;
+}
+
+.helpSection {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.teachCongSection {
+    display: flex;
+    flex-wrap: wrap; /* 자식 요소 넘침 처리 */
+    justify-content: center; /* 가로로 가운데 정렬 */
+    align-items: center; /* 세로로 가운데 정렬 */
+    gap: 150px; /* 아이템 간의 간격 조절 */
+    margin-top: 100px;
+}
+
+.teachCongItem {
+    display: flex;
+    flex-direction: column; /* 아이콘과 텍스트를 세로로 배치 */
+    align-items: center; /* 아이콘과 텍스트를 가로로 가운데 정렬 */
+    cursor: pointer;
+}
+
+.teachCongItem p {
+    margin-top: 10px; /* 아이콘과 텍스트 사이의 간격 */
+    text-align: center; /* 텍스트를 가운데 정렬 */
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+/* 미디어 쿼리 */
+
+/* 해상도 1430px 이하 */
+@media (max-width: 1480px) {
+    .container {
+        padding: 80px;
+        gap: 40px;
+    }
+
+    .notice {
+        width: 100%;
+        margin-bottom: 50px;
+        max-height: none; /* 최대 높이 제한 해제 */
+    }
+
+    .welcomeSection {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .teacherInfoWrapper {
+        flex-direction: column;
+    }
+
+    .teacherIcon {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .teachCongSection {
+        gap: 100px;
+    }
+}
+
+/* 해상도 1040px 이하 */
+@media (max-width: 1040px) {
+    .container {
+        flex-direction: column;
+        padding: 50px;
+        gap: 30px;
+    }
+
+    .notice {
+        width: 100%;
+        margin-bottom: 30px;
+        max-height: none;
+    }
+
+    .welcomeSection {
+        width: 100%;
+        align-items: center;
+    }
+
+    .teacherInfoWrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .welcomeText,
+    .teacherName,
+    .teacherTitle {
+        font-size: 2rem;
+    }
+
+    .teachCongSection {
+        flex-direction: column;
+        gap: 50px;
+        margin-top: 50px;
+    }
+
+    .teachCongItem {
+        width: 100%;
+    }
+}
+
+/* 해상도 480px 이하 */
+@media (max-width: 480px) {
+    .container {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .notice {
+        width: 100%;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .noticeTitle {
+        font-size: 1.1rem;
+    }
+
+    .icon {
+        width: 25px;
+        height: 24px;
+    }
+
+    .plusIcon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .noticeBody {
+        margin-top: 20px;
+    }
+
+    .noticeItem {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .noticeItem span:first-child {
+        margin-bottom: 5px;
+    }
+
+    .noticeDate {
+        font-size: 0.8rem;
+    }
+
+    .welcomeSection {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .teacherInfoWrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .teacherIcon {
+        width: 100px;
+        height: auto;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .welcomeText,
+    .teacherName,
+    .teacherTitle {
+        font-size: 1.5rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .button {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .helpText {
+        font-size: 1.8rem;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .teachCongSection {
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 30px;
+    }
+
+    .teachCongItem {
+        width: 100%;
+    }
+
+    .teachCongItem p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-height: 1030px) {
+    .ScrollContainer {
+        overflow-y: auto; /* 작은 화면에서만 스크롤을 활성화 */
+    }
+}

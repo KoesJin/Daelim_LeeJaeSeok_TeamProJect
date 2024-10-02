@@ -4,6 +4,8 @@
     "private": true,
     "homepage": "https://jsl.comon.kr/",
     "dependencies": {
+        "@react-three/drei": "^9.114.0",
+        "@react-three/fiber": "^8.17.9",
         "@tanstack/react-query": "^5.22.2",
         "@testing-library/jest-dom": "^5.17.0",
         "@testing-library/react": "^13.4.0",
@@ -15,6 +17,7 @@
         "bootstrap-icons": "^1.11.3",
         "chart.js": "^4.4.3",
         "date-fns": "^3.6.0",
+        "formik": "^2.4.6",
         "gh-pages": "^6.1.1",
         "http-proxy-middleware": "^3.0.0",
         "rc-rate": "^2.13.0",
@@ -37,8 +40,10 @@
         "react-scroll": "^1.9.0",
         "react-transition-group": "^4.4.5",
         "recoil": "^0.7.7",
-        "styled-components": "^6.1.8",
-        "web-vitals": "^2.1.4"
+        "styled-components": "^6.1.13",
+        "three": "^0.169.0",
+        "web-vitals": "^2.1.4",
+        "yup": "^1.4.0"
     },
     "scripts": {
         "start": "react-scripts start",
