@@ -44,6 +44,9 @@ const Header = () => {
             localStorage.removeItem('userName');
             localStorage.removeItem('userId');
 
+            localStorage.removeItem('studentId');
+            sessionStorage.removeItem('studentId');
+
             navigate('/'); // 메인 페이지로 부드럽게 전환
         }
     };
