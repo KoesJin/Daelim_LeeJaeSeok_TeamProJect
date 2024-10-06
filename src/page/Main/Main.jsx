@@ -6,7 +6,7 @@ import TeacherIcon from '../../svg/MainPage/TeacherIcon';
 import { useNavigate } from 'react-router-dom';
 import TeachCong from '../../svg/MainPage/TeachCong';
 
-const TestMain = () => {
+const Main = () => {
     // 이름 정보
     const [userName, setUserName] = useState('');
 
@@ -97,4 +97,4 @@ const TestMain = () => {
     );
 };
 
-export default TestMain;
+export default Main;
