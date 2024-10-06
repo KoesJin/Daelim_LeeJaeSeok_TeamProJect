@@ -14,9 +14,13 @@ const StudentManagementPage = () => {
 
     // 페이지 상태
     const [page, setPage] = useState(0); // 현재 페이지 번호
+    const [maxPage, setMaxPage] = useState(0); // 전체 페이지 번호
 
     // 학생 목록 상태
     const [studentData, setStudentData] = useState([]); // 학생 정보를 담을 배열
+
+    // 수정 중인 학생의 ID를 저장하는 상태
+    const [editingStudentId, setEditingStudentId] = useState(null);
 
     // 스크롤 컨테이너 참조 생성
     const scrollContainerRef = useRef(null);
@@ -60,14 +64,18 @@ const StudentManagementPage = () => {
         e.preventDefault();
 
         // 유효성 검사
-        if (!studentName.match(/^[가-힣]{2,4}$/)) {
-            alert('이름은 2~4자의 한글만 입력 가능합니다.');
+        const nameRegex = /^[가-힣]{2,5}$/;
+        if (!nameRegex.test(studentName)) {
+            alert('이름은 2자에서 4자 사이의 한글만 입력 가능합니다.');
             return;
         }
-        if (!studentNum.match(/^\d{11}$/)) {
-            alert('전화번호는 11자리 숫자로 입력해야 합니다.');
+
+        const phoneRegex = /^010\d{8}$/;
+        if (!phoneRegex.test(studentNum)) {
+            alert('전화번호는 010으로 시작하고, "-"를 제외한 11자리 숫자로만 이루어져야 합니다. 예: 01012345678');
             return;
         }
+
         if (!studentDate.match(/^\d{4}-\d{2}-\d{2}$/)) {
             alert('생년월일은 YYYY-MM-DD 형식으로 입력해야 합니다.');
             return;
@@ -126,6 +134,11 @@ const StudentManagementPage = () => {
 
             if (result.status === '200') {
                 setStudentData(result.data);
+                if (result.data.length < 12) {
+                    setMaxPage(page); // 12개 미만이면 현재 페이지가 마지막 페이지
+                } else {
+                    setMaxPage(page + 1); // 12개면 다음 페이지가 있을 가능성이 있음
+                }
             } else {
                 alert('학생 정보가 없습니다.');
             }
@@ -165,7 +178,77 @@ const StudentManagementPage = () => {
         }
     };
 
-    // 스크롤 탑 함수
+    //학생 정보 수정 함수
+    const handleSaveChanges = async (e) => {
+        e.preventDefault();
+
+        // 유효성 검사
+        const studentCodeRegex = /^[1-9]$|^[1-3][0-9]$|^40$/;
+        if (!studentCodeRegex.test(studentCode)) {
+            alert('학생 번호는 1부터 40까지의 숫자만 입력 가능합니다.');
+            return;
+        }
+
+        const nameRegex = /^[가-힣]{2,5}$/;
+        if (!nameRegex.test(studentName)) {
+            alert('이름은 2자에서 4자 사이의 한글만 입력 가능합니다.');
+            return;
+        }
+
+        const phoneRegex = /^010\d{8}$/;
+        if (!phoneRegex.test(studentNum)) {
+            alert('전화번호는 010으로 시작하고, "-"를 제외한 11자리 숫자로만 이루어져야 합니다. 예: 01012345678');
+            return;
+        }
+
+        try {
+            let baseURL = '';
+            if (process.env.NODE_ENV === 'development') {
+                baseURL = 'http://121.139.20.242:8859';
+            }
+
+            const bearerToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
+            if (!bearerToken) {
+                alert('사용자가 인증되지 않았습니다.');
+                return;
+            }
+
+            const response = await fetch(`${baseURL}/api/student/update`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: bearerToken,
+                },
+                body: JSON.stringify({
+                    studentName,
+                    studentNum,
+                    studentCode,
+                    userId,
+                    studentId: editingStudentId,
+                }),
+            });
+
+            const result = await response.json();
+
+            if (result.status === '200') {
+                alert(result.message);
+                setEditingStudentId(null);
+                window.location.reload();
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            alert('정보를 변경할 수 없습니다.');
+        }
+    };
+
+    // 학생 정보 수정 모드를 위한 함수
+    const handleEditClick = (studentId) => {
+        setEditingStudentId(studentId); // 수정할 학생의 ID 저장
+    };
+
+    // 스크롤 탑 함수 -> 그냥 div가 아닌 css 영역떄문에 useRef 사용
     const scrollToTop = () => {
         if (scrollContainerRef.current) {
             scrollContainerRef.current.scrollTop = 0;
@@ -196,22 +279,77 @@ const StudentManagementPage = () => {
                         <tbody>
                             {studentData.map((student, index) => (
                                 <tr key={index}>
-                                    <td>{student.studentCode}</td> {/* 학생 번호 */}
-                                    <td>{student.studentName}</td> {/* 학생 이름 */}
-                                    <td>{student.studentNum}</td> {/* 전화번호 */}
+                                    <td>
+                                        {editingStudentId === student.studentId ? (
+                                            <input
+                                                type="text"
+                                                defaultValue={student.studentCode}
+                                                onChange={(e) => setStudentCode(e.target.value)}
+                                                className={styles.inputField}
+                                            />
+                                        ) : (
+                                            student.studentCode
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editingStudentId === student.studentId ? (
+                                            <input
+                                                type="text"
+                                                defaultValue={student.studentName}
+                                                onChange={(e) => setStudentName(e.target.value)}
+                                                className={styles.inputField}
+                                            />
+                                        ) : (
+                                            student.studentName
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editingStudentId === student.studentId ? (
+                                            <input
+                                                type="text"
+                                                defaultValue={student.studentNum}
+                                                onChange={(e) => setStudentNum(e.target.value)}
+                                                className={styles.inputField}
+                                            />
+                                        ) : (
+                                            student.studentNum
+                                        )}
+                                    </td>
                                     <td>{student.studentDate}</td> {/* 생년월일 */}
                                     <td>{student.studentGender}</td> {/* 성별 */}
-                                    <td>{student.studentGrade}학년</td> {/* 학년 */}
+                                    <td>{student.studentGrade}</td> {/* 학년 */}
                                     <td>{student.classNum}반</td> {/* 반 */}
                                     <td className={styles.actions}>
-                                        <button className={styles.editButton}>수정</button>
-                                        <div className={styles.separator}>|</div>
-                                        <button
-                                            className={styles.deleteButton}
-                                            onClick={() => handleDeleteStudent(student.studentId)}
-                                        >
-                                            삭제
-                                        </button>
+                                        {editingStudentId === student.studentId ? (
+                                            <>
+                                                <button className={styles.editButton} onClick={handleSaveChanges}>
+                                                    저장
+                                                </button>
+                                                <div className={styles.separator}>|</div>
+                                                <button
+                                                    className={styles.deleteButton}
+                                                    onClick={() => setEditingStudentId(null)}
+                                                >
+                                                    취소
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <button
+                                                    className={styles.editButton}
+                                                    onClick={() => handleEditClick(student.studentId)}
+                                                >
+                                                    수정
+                                                </button>
+                                                <div className={styles.separator}>|</div>
+                                                <button
+                                                    className={styles.deleteButton}
+                                                    onClick={() => handleDeleteStudent(student.studentId)}
+                                                >
+                                                    삭제
+                                                </button>
+                                            </>
+                                        )}
                                     </td>
                                 </tr>
                             ))}
@@ -220,7 +358,7 @@ const StudentManagementPage = () => {
                     <div className={styles.pagination}>
                         <button
                             className={styles.pageButton}
-                            onClick={() => setPage((prevPage) => Math.max(prevPage - 1, 0))}
+                            onClick={() => setPage((prevPage) => Math.max(prevPage - 1, 0))} // 0 이하로 내려가는걸 방지할려고 Math.max 함수 사용
                             disabled={page === 0}
                         >
                             이전
@@ -228,7 +366,7 @@ const StudentManagementPage = () => {
                         <button
                             className={styles.pageButton}
                             onClick={() => setPage((prevPage) => prevPage + 1)}
-                            disabled={page === +1}
+                            disabled={page === maxPage} // 마지막 페이지일 때 "다음" 버튼 비활성화
                         >
                             다음
                         </button>
