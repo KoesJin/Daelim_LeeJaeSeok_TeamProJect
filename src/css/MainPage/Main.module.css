@@ -6,7 +6,6 @@
 /* .container */
 .container {
     display: flex;
-    flex-wrap: wrap; /* 자식 요소 넘침 처리 */
     justify-content: space-between;
     align-items: flex-start; /* 상단 정렬 */
     padding: 100px 50px 100px 100px;
@@ -15,7 +14,7 @@
 
 .notice {
     width: 50%;
-    padding: 30px;
+    padding: 30px 30px 15px 30px;
     border-radius: 20px;
     background-color: #fff8bd;
     display: flex;
@@ -86,7 +85,6 @@
 .welcomeSection {
     width: 30%;
     display: flex;
-    flex-direction: column;
     align-items: flex-start; /* 왼쪽 정렬 */
 }
 
@@ -188,15 +186,200 @@
 
 /* 해상도 1430px 이하 */
 @media (max-width: 1480px) {
+    .ScrollContainer {
+        padding-bottom: 100px;
+    }
     .container {
-        padding: 80px;
-        gap: 40px;
+        padding: 100px 50px 30px 100px;
+    }
+
+    .notice {
+        width: 50%;
+        margin-bottom: 50px;
+        max-height: none; /* 최대 높이 제한 해제 */
+    }
+
+    .welcomeSection {
+        display: flex;
+        width: 50%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .helpText {
+        font-size: 2.3rem;
+    }
+
+    .teacherIcon {
+        margin-right: 20px;
+    }
+
+    .teachCongSection {
+        gap: 80px;
+    }
+}
+
+/* 1024px 이하에서의 미디어 쿼리 */
+@media (max-width: 1024px) {
+    .ScrollContainer {
+        padding-bottom: 100px;
+    }
+
+    .container {
+        padding: 100px 20px 20px 50px;
+
+        justify-content: space-between; /* 요소 간 간격 균등 분배 */
+    }
+
+    .notice {
+        width: 50%; /* 한 줄에 두 개가 들어가도록 너비 조정 */
+        margin-bottom: 30px;
+        max-height: none;
+    }
+
+    .welcomeSection {
+        width: 45%; /* notice와 동일한 너비로 설정 */
+        align-items: center;
+        justify-content: flex-start;
+        text-align: center;
+    }
+
+    .teacherInfoWrapper {
+        align-items: flex-end;
+        justify-content: center;
+        padding-top: 25px;
+    }
+
+    .teacherIcon {
+        width: 120px;
+        height: auto;
+        margin-right: 10px; /* 가운데 정렬을 위해 오른쪽 마진 제거 */
+        margin-bottom: 15px;
+    }
+
+    .button {
+        border-radius: 10px;
+        padding: 3px 5px;
+    }
+
+    .welcomeText,
+    .teacherName,
+    .teacherTitle {
+        font-size: 1.8rem;
+    }
+
+    .helpText {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .teachCongSection {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 50px;
+    }
+
+    .teachCongItem {
+        width: 30%; /* 한 줄에 3개씩 배치되도록 너비 조정 */
+        margin-bottom: 20px;
+    }
+}
+
+/* 768px 이하에서의 미디어 쿼리 */
+@media (max-width: 768px) {
+    .ScrollContainer {
+        padding-bottom: 100px;
+    }
+
+    .container {
+        padding: 50px 20px 20px 20px;
+        flex-direction: column; /* 요소들을 세로로 배치 */
+        align-items: center;
+    }
+
+    .notice,
+    .welcomeSection {
+        width: 100%; /* 전체 너비 사용 */
+        margin-bottom: 30px;
+    }
+
+    .welcomeSection {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .teacherInfoWrapper {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0;
+    }
+
+    .teacherIcon {
+        width: 100px;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .welcomeText,
+    .teacherName,
+    .teacherTitle {
+        font-size: 1.5rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .button {
+        width: 100%;
+        text-align: center;
+        padding: 5px;
+    }
+
+    .helpText {
+        font-size: 1.8rem;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .teachCongSection {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 30px;
+        justify-content: center;
+    }
+
+    .teachCongItem {
+        width: 45%; /* 한 줄에 2개씩 배치되도록 너비 조정 */
+        margin-bottom: 20px;
+    }
+
+    .teachCongItem p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .ScrollContainer {
+        padding-bottom: 100px;
+    }
+
+    .container {
+        padding: 50px 20px 20px 20px;
+        flex-direction: column;
+        align-items: center;
     }
 
     .notice {
         width: 100%;
-        margin-bottom: 50px;
-        max-height: none; /* 최대 높이 제한 해제 */
+        margin-bottom: 30px;
     }
 
     .welcomeSection {
@@ -206,62 +389,39 @@
     }
 
     .teacherInfoWrapper {
-        flex-direction: column;
-    }
-
-    .teacherIcon {
-        margin-right: 0;
-        margin-bottom: 20px;
-    }
-
-    .teachCongSection {
-        gap: 100px;
-    }
-}
-
-/* 해상도 1040px 이하 */
-@media (max-width: 1040px) {
-    .container {
-        flex-direction: column;
-        padding: 50px;
-        gap: 30px;
-    }
-
-    .notice {
-        width: 100%;
-        margin-bottom: 30px;
-        max-height: none;
-    }
-
-    .welcomeSection {
-        width: 100%;
         align-items: center;
-    }
-
-    .teacherInfoWrapper {
-        flex-direction: column;
-        align-items: center;
+        text-align: center;
     }
 
     .welcomeText,
     .teacherName,
     .teacherTitle {
-        font-size: 2rem;
+        font-size: 1.5rem;
+    }
+
+    .helpText {
+        font-size: 1.8rem;
     }
 
     .teachCongSection {
-        flex-direction: column;
-        gap: 50px;
-        margin-top: 50px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 30px;
+        justify-content: center;
     }
 
     .teachCongItem {
-        width: 100%;
+        width: 45%;
+        margin-bottom: 20px;
     }
 }
 
 /* 해상도 480px 이하 */
 @media (max-width: 480px) {
+    .ScrollContainer {
+        padding-bottom: 100px;
+    }
     .container {
         flex-direction: column;
         padding: 20px;
@@ -359,6 +519,10 @@
 
     .teachCongItem p {
         font-size: 1rem;
+    }
+
+    .helpText {
+        font-size: 1.2rem;
     }
 }
 
