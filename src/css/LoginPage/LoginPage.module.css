@@ -1,284 +1,331 @@
-/* 공통 스타일 */
+/* ScrollContainer */
 .ScrollContainer {
     height: 100vh;
-    overflow-y: auto; /* 화면이 작을 때 스크롤이 가능하도록 설정 */
+    overflow-y: auto;
+    background-color: #fff;
 }
 
+/* LoginBody */
 .LoginBody {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
-    min-height: 100vh; /* 최소 높이를 100vh로 설정 */
-    margin: 0;
-    width: 100%;
-    padding-top: 50px; /* 상단 여백 추가 */
-    box-sizing: border-box;
-    overflow-y: auto; /* 화면이 작을 때 스크롤이 가능하도록 설정 */
+    position: relative;
+    padding: 3rem;
 }
 
+/* Container */
 .container {
-    background: #fff;
-    padding: 30px 30px;
     width: 100%;
     max-width: 500px;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-.title {
-    font-size: 1.6rem; /* TeacHub 로고 크기 유지 */
-    margin-bottom: 50px;
-    color: #333;
-    font-weight: bold;
-    text-align: center;
-}
-
-.form {
+    position: relative;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+/* 메인 로고 */
+.mainLogo {
+    width: 177px;
+    height: 30px;
+    object-fit: cover;
+    margin-bottom: 3rem;
+}
+
+/* 폼 스타일 */
+.form {
     width: 100%;
-    margin-bottom: 20px;
 }
 
 .inputContainer {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 15px;
-    padding-bottom: 5px;
+    width: 100%;
+    position: relative;
+    margin-bottom: 1.25rem;
 }
 
-.inputContainer svg {
-    margin-right: 10px;
+.icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #30a04d;
 }
 
 .loginInput {
-    flex: 1;
-    padding: 10px 0;
-    border: none;
-    font-size: 0.9rem; /* 일관된 크기로 조정 */
-    background-color: transparent;
-    color: #333;
-    box-shadow: none;
-}
-
-.loginInput:focus {
-    outline: none;
+    width: 100%;
+    padding: 0.9375rem 0.9375rem 0.9375rem 2.8125rem;
+    border: 0.125rem solid #30a04d;
+    border-radius: 0.625rem;
+    font-size: 1rem;
+    color: #000;
 }
 
 .rememberMeContainer {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
-    font-size: 0.9rem; /* 일관된 크기로 조정 */
+    margin-bottom: 1.25rem;
 }
 
-.rememberMeContainer input {
-    margin-right: 10px;
+.checkbox {
+    margin-right: 0.625rem;
 }
 
-.button {
-    padding: 15px;
-    background-color: #e6e6fa;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #333;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-}
-
-.button:hover {
-    background-color: #d8bfd8;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.link {
-    cursor: pointer;
-    margin: 0 10px;
-    font-size: 0.9rem; /* 일관된 크기로 조정 */
-}
-
-.link:hover {
-    color: #555;
-}
-
-.separator {
-    font-size: 0.9rem; /* 일관된 크기로 조정 */
-    margin: 0 5px; /* 구분 기호 주위에 여백 추가 */
-    font-weight: bold;
-    color: #333;
-}
-
-.socialLoginContainer {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    width: 100%; /* 부모 컨테이너의 전체 너비를 사용 */
-}
-
-.socialLoginButton {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* 아이콘과 텍스트를 왼쪽 정렬 */
-    padding: 15px 20px; /* 버튼 내 여백을 추가하여 더 넓게 보이도록 조정 */
-    border: 1px solid #ccc;
-    border-radius: 8px; /* 모서리를 둥글게 처리 */
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    background-color: #fff;
-    color: #333;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 10px; /* 버튼 간의 간격 조정 */
-    text-align: left; /* 텍스트를 왼쪽 정렬 */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* 버튼에 가벼운 그림자 추가 */
-    width: 100%; /* 버튼의 너비를 부모 컨테이너에 맞춤 */
-}
-
-.socialLoginButton:hover {
-    background-color: #f7f7f7;
-}
-
-.socialLoginButton svg {
-    margin-right: 15px; /* 아이콘과 텍스트 사이의 간격 조정 */
-    font-size: 1.5rem; /* 아이콘 크기 조정 */
-}
-
-.socialLoginText {
-    flex-grow: 1; /* 텍스트 부분이 남은 공간을 채우도록 설정 */
-    text-align: left; /* 텍스트를 왼쪽 정렬 */
-    font-weight: bold;
-}
-
-.socialLoginSubText {
-    font-size: 0.875rem;
-    color: #777;
-    margin-left: 40px; /* 서브텍스트를 메인텍스트 오른쪽으로 이동 */
-}
-
-.footer {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 0.9rem; /* 일관된 크기로 조정 */
-}
-
-.footer span {
-    cursor: pointer;
-    color: #333;
-    margin: 0 5px;
-    font-weight: bold;
-    font-size: 0.9rem; /* 일관된 크기로 조정 */
-}
-
-.footer span:hover {
-    color: #555;
-}
-
-.corp {
-    margin-top: 10px;
-    font-size: 0.9rem; /* 일관된 크기로 조정 */
-    color: #666;
-}
-
-.modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
+.loginButton {
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* 배경을 더 어둡고 반투명하게 설정 */
+    padding: 0.9375rem;
+    background-color: #30a04d;
+    border: none;
+    border-radius: 0.625rem;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 1.25rem;
+}
+
+.loginButton:hover {
+    background-color: #267a37;
+}
+
+/* 링크 스타일 */
+.links {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* 다른 요소보다 위에 나타나도록 설정 */
-    backdrop-filter: blur(5px); /* 배경에 블러 효과 추가 */
+    margin-bottom: 1.25rem;
 }
 
-.modal {
-    background-color: #fff;
-    padding: 30px;
-    width: 90%;
-    max-width: 600px; /* 모달을 더 넓게 설정 */
-    max-height: 80vh; /* 최대 높이를 설정하여 스크롤 가능하게 */
-    overflow-y: auto; /* 내용이 많을 경우 스크롤 추가 */
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); /* 더 부드러운 그림자 */
-    border-radius: 12px; /* 둥근 모서리 */
-    position: relative;
-}
-
-.modalHeader {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.closeButton {
-    font-size: 1.8rem;
-    border: none;
-    background: none;
+.link {
+    font-size: 0.9375rem;
+    color: #9d9d9d;
     cursor: pointer;
+    margin: 0 0.3125rem; /* 좌우 간격 추가 */
+}
+
+.separator {
+    color: #9d9d9d;
+}
+
+/* 구분선 */
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: #9d9d9d;
+    margin: 20px 0px 40px 0;
+}
+
+/* 소셜 로그인 제목 */
+.socialLoginTitle {
+    display: none; /* 기본적으로 숨김 */
+    font-size: 1rem;
     font-weight: bold;
-    transition: color 0.3s ease;
+    margin-bottom: 1rem;
 }
 
-.closeButton:hover {
-    color: #333; /* 호버 시 색상을 진하게 */
+/* 소셜 로그인 컨테이너 */
+.socialLoginContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9375rem;
+    align-items: center; /* 가운데 정렬 */
 }
 
-.modalContent {
-    margin-top: 20px;
-    text-align: left;
-    line-height: 1.6; /* 텍스트 줄 간격 조절 */
-    color: #444; /* 텍스트 색상 변경 */
-    font-size: 1rem; /* 일관된 크기로 조정 */
+.socialLoginButton {
+    width: 100%;
+    padding: 0.9375rem;
+    border: 0.0625rem solid #30a04d;
+    border-radius: 0.625rem;
+    background-color: #fff;
+    color: #0d6525;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
-.modalContent h2 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #333;
+.socialIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.625rem; /* 아이콘과 텍스트 사이 간격 추가 */
 }
 
-.modalContent ul {
-    padding-left: 20px;
+.socialText {
+    flex: 1; /* 텍스트가 줄바꿈되지 않도록 */
 }
 
-.modalContent li {
-    margin-bottom: 10px;
-    font-size: 1rem; /* 일관된 크기로 조정 */
-    color: #555;
+.socialLoginButton:hover {
+    background-color: #f0f0f0;
 }
 
 /* 반응형 디자인 */
-@media (max-width: 768px) {
-    .LoginBody {
-        padding: 10px;
-    }
 
+/* 1440px 이상 */
+@media (min-width: 1440px) {
     .container {
-        padding: 20px;
-        margin-top: 10px; /* 화면이 작아질 때 여백을 줄임 */
-    }
-
-    .container h1 {
-        font-size: 2rem; /* TeacHub 로고 크기 유지 */
+        max-width: 31.25rem;
     }
 }
 
+/* 1024px 이하 */
+@media (max-width: 64rem) {
+    .mainLogo {
+        margin-bottom: 2.5rem;
+    }
+
+    .loginButton {
+        font-size: 1.125rem;
+    }
+
+    .socialLoginButton {
+        font-size: 0.9375rem;
+    }
+}
+
+/* 768px 이하 */
+@media (max-width: 768px) {
+    .mainLogo {
+        width: 150px;
+        height: auto;
+        margin-bottom: 2rem;
+    }
+
+    .loginInput {
+        padding: 0.9375rem 0.9375rem 0.9375rem 2.5rem;
+        font-size: 0.875rem;
+    }
+
+    .icon {
+        left: 0.625rem;
+    }
+
+    .loginButton {
+        font-size: 1rem;
+    }
+
+    .socialLoginButton {
+        font-size: 0.875rem;
+    }
+
+    .socialIcon {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    .links {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.625rem;
+    }
+
+    .separator {
+        display: none;
+    }
+}
+
+/* 480px 이하 */
 @media (max-width: 480px) {
-    .LoginBody {
-        padding: 5px;
+    .mainLogo {
+        width: 120px;
+        height: auto;
+        margin-bottom: 1.55rem;
     }
 
-    .container {
-        padding: 15px;
-        margin-top: 5px; /* 화면이 아주 작아질 때 여백을 줄임 */
+    .loginInput {
+        padding: 0.625rem 0.625rem 0.625rem 2rem;
+        font-size: 0.75rem;
     }
 
-    .container h1 {
-        font-size: 2rem; /* TeacHub 로고 크기 유지 */
+    .icon {
+        left: 0.5rem;
+    }
+
+    .loginButton {
+        font-size: 0.875rem;
+        padding: 0.625rem;
+    }
+
+    .socialLoginContainer {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.625rem;
+    }
+
+    .socialLoginButton {
+        width: 3rem;
+        height: 3rem;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .socialText {
+        display: none; /* 텍스트 숨기기 */
+    }
+
+    .socialIcon {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0; /* 아이콘과 텍스트 간격 제거 */
+    }
+
+    .links {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.625rem;
+    }
+
+    .link {
+        font-size: 0.75rem;
+    }
+
+    .footer {
+        margin-top: 1.25rem;
+    }
+    .socialLoginTitle {
+        display: block;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    /* 소셜 로그인 버튼들 */
+    .socialLoginContainer {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    /* 소셜 로그인 버튼 */
+    .socialLoginButton {
+        width: 3rem;
+        height: 3rem;
+        padding: 0;
+        justify-content: center;
+        position: relative; /* 추가 */
+    }
+
+    /* 아이콘 아래에 라벨 추가 */
+    .socialLoginButton::after {
+        content: attr(data-label);
+        position: absolute;
+        bottom: -1.2rem; /* 아이콘 아래에 위치 */
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #000;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* 소셜 텍스트 숨기기 */
+    .socialText {
+        display: none;
+    }
+
+    /* 아이콘 */
+    .socialIcon {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin: 0; /* 아이콘과 텍스트 간격 제거 */
     }
 }
