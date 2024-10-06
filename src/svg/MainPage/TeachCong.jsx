@@ -1,7 +1,14 @@
 import React from 'react';
 
-const TeachCong = (props) => (
-    <svg width="90" height="83" viewBox="0 0 90 83" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+const TeachCong = ({ className }) => (
+    <svg
+        className={className}
+        width="90"
+        height="83"
+        viewBox="0 0 90 83"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
         <ellipse cx="43.6766" cy="56.0294" rx="16.3235" ry="4.41176" fill="#30A04D" />
         <path
             d="M52.0589 62.8677C52.0589 66.6443 48.6022 69.7059 44.3383 69.7059C40.0743 69.7059 36.6177 66.6443 36.6177 62.8677C36.6177 59.091 40.0743 56.0294 44.3383 56.0294C48.6022 56.0294 52.0589 59.091 52.0589 62.8677Z"
