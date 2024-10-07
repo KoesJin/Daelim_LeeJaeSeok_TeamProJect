@@ -107,7 +107,7 @@ const Header = () => {
                                     <br />
                                     <strong>연락처:</strong> 010-2479-9363
                                     <br />
-                                    <strong>이메일:</strong> lovesky00317@brtech.co.kr
+                                    <strong>이메일:</strong> gosky@gosky.kr
                                 </div>
                             </div>
                         </div>
