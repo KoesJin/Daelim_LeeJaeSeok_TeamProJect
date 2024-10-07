@@ -1,62 +1,81 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../../css/SignUpPage/CheckSignUpPage/CheckSignUpPage.module.css'; // CSS 모듈 import
-import AppleIcon from '../../svg/LoginPage/AppleIcon';
-import GoogleIcon from '../../svg/LoginPage/GoogleIcon';
-import NaverIcon from '../../svg/LoginPage/NaverIcon';
-import { FaEnvelope } from 'react-icons/fa'; // Font Awesome 아이콘 import
+import styles from '../../css/SignUpPage/CheckSignUpPage/CheckSignUpPage.module.css';
+
+// 이미지 및 아이콘 import
+import MainLogo from '../../img/TeacHub.png';
+import AppleLogo from '../../img/AppleLogo.png';
+import GoogleLogo from '../../img/GoogleLogo.png';
+import NaverLogo from '../../img/NaverLogo.png';
+import TeachCong from '../../svg/CheckSignUpPage/TeachCong';
 
 function CheckSignUpPage() {
-    // useNavigate 훅
     const navigate = useNavigate();
-
-    const handleSignUpWithEmail = () => {
-        navigate('/signuppage');
-    };
 
     return (
         <div className={styles.ScrollContainer}>
-            <div className={styles.SignUpBody}>
-                <div className={styles.container}>
-                    <div className={styles.welcomeMessage}>
-                        <div className={styles.title}>TeacHub</div>
-                        <p>TeacHub 회원가입 방식을 선택해 주세요.</p>
-                    </div>
-                    <div className={styles.signupOptions}>
-                        <button className={styles.optionButton} onClick={handleSignUpWithEmail}>
-                            <FaEnvelope className={styles.icon} /> {/* 이메일 아이콘을 FaEnvelope로 변경 */}
-                            <div className={styles.textContainer}>
-                                <span className={styles.mainText}>TeacHub 회원가입</span>
-                                <span className={styles.subText}>이메일과 비밀번호로 회원가입</span>
-                            </div>
-                        </button>
-                        <button className={styles.optionButton}>
-                            <GoogleIcon className={styles.icon} />
-                            <div className={styles.textContainer}>
-                                <span className={styles.mainText}>Google로 회원가입</span>
-                                <span className={styles.subText}>구글로 인증하여 회원가입</span>
-                            </div>
-                        </button>
-                        <button className={styles.optionButton}>
-                            <NaverIcon className={styles.icon} />
-                            <div className={styles.textContainer}>
-                                <span className={styles.mainText}>Naver로 회원가입</span>
-                                <span className={styles.subText}>네이버로 인증하여 회원가입</span>
-                            </div>
-                        </button>
-                        <button className={styles.optionButton}>
-                            <AppleIcon className={styles.icon} />
-                            <div className={styles.textContainer}>
-                                <span className={styles.mainText}>Apple로 회원가입</span>
-                                <span className={styles.subText}>애플로 인증하여 회원가입</span>
-                            </div>
-                        </button>
-                        <button className={styles.backButton} onClick={() => navigate('/')}>
-                            <div>
-                                <span className={styles.mainText}>뒤로가기</span>
-                            </div>
+            <div className={styles.CheckSignUpBody}>
+                <img src={MainLogo} alt="TeacHub Logo" className={styles.mainLogo} />
+
+                <p className={styles.title}>
+                    <span className={styles.titleBold}>회원가입 방식</span>
+                    <span className={styles.titleRegular}>을 선택해주세요!</span>
+                </p>
+
+                <div className={styles.optionsWrapper}>
+                    {/* TeacHub Option */}
+                    {/* TeacHub Option */}
+                    <div className={`${styles.optionContainer} ${styles.teachHubOption}`}>
+                        <p className={styles.optionTitle}>
+                            <span>TeacHub</span>
+                            <br />
+                            <span>회원가입</span>
+                        </p>
+                        <p className={styles.subText}>이메일 및 비밀번호로 회원가입</p> {/* 서브 텍스트 추가 */}
+                        <TeachCong className={styles.teachCongLogo} />
+                        <button className={styles.signUpButton} onClick={() => navigate('/signuppage')}>
+                            가입하기
                         </button>
                     </div>
+
+                    {/* Google Option */}
+                    <div className={styles.optionContainer}>
+                        <p className={styles.optionTitle}>
+                            <span>Google</span>
+                            <br />
+                            <span>회원가입</span>
+                        </p>
+                        <p className={styles.subText}>Google 계정으로 간편하게 가입</p> {/* 서브 텍스트 추가 */}
+                        <img src={GoogleLogo} alt="Google Logo" className={styles.GoogleLogo} />
+                        <button className={styles.signUpButton}>가입하기</button>
+                    </div>
+
+                    {/* Naver Option */}
+                    <div className={styles.optionContainer}>
+                        <p className={styles.optionTitle}>
+                            <span>Naver</span>
+                            <br />
+                            <span>회원가입</span>
+                        </p>
+                        <p className={styles.subText}>Naver 계정으로 간편하게 가입</p> {/* 서브 텍스트 추가 */}
+                        <img src={NaverLogo} alt="Naver Logo" className={styles.NaverLogo} />
+                        <button className={styles.signUpButton}>가입하기</button>
+                    </div>
+
+                    {/* Apple Option */}
+                    <div className={styles.optionContainer}>
+                        <p className={styles.optionTitle}>
+                            <span>Apple</span>
+                            <br />
+                            <span>회원가입</span>
+                        </p>
+                        <p className={styles.subText}>Apple 계정으로 간편하게 가입</p> {/* 서브 텍스트 추가 */}
+                        <img src={AppleLogo} alt="Apple Logo" className={styles.appleLogo} />
+                        <button className={styles.signUpButton}>가입하기</button>
+                    </div>
+                </div>
+                <div className={styles.backButton} onClick={() => navigate('/')}>
+                    <p className={styles.backButtonText}>뒤로가기</p>
                 </div>
             </div>
         </div>

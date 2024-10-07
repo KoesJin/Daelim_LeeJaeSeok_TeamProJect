@@ -1,142 +1,218 @@
-/* 스크롤 컨테이너 */
 .ScrollContainer {
     height: 100vh;
-    overflow-y: hidden; /* 기본적으로 스크롤을 비활성화 */
-}
-
-/* 회원가입 본문 */
-.SignUpBody {
+    overflow-y: auto;
+    background-color: #fff;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 0.9rem; /* 기본 텍스트 크기 조정 */
-    color: #333; /* 기본 텍스트 색상 */
-    padding-top: 50px;
-}
-
-/* 컨테이너 */
-.container {
-    background: #fff;
-    padding: 30px 30px;
-    width: 100%;
-    max-width: 500px;
-    text-align: center;
-    box-sizing: border-box;
-    color: inherit; /* 부모의 색상을 상속받음 */
-}
-
-/* 환영 메시지 */
-.welcomeMessage {
-    margin-bottom: 20px;
-}
-
-.title {
-    font-size: 1.6rem; /* TeacHub 로고 크기 */
-    margin-bottom: 50px;
-    color: #333;
-    font-weight: bold;
-    text-align: center;
-}
-
-.welcomeMessage p {
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
-}
-
-/* 회원가입 옵션들 */
-.signupOptions {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 500px;
-}
-
-/* 회원가입 옵션 버튼 */
-.optionButton {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* 아이콘과 텍스트를 왼쪽 정렬 */
-    padding: 15px 20px; /* 버튼 내 여백을 추가하여 더 넓게 보이도록 조정 */
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px; /* 모서리를 둥글게 처리 */
-    cursor: pointer;
-    font-size: 1rem; /* 기본 텍스트 크기 조정 */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    text-align: left; /* 텍스트를 왼쪽 정렬 */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* 버튼에 가벼운 그림자 추가 */
-    margin-bottom: 10px; /* 버튼 간의 간격 조정 */
-    width: 100%; /* 버튼의 너비를 부모 컨테이너에 맞춤 */
-    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
-    overflow: hidden; /* 텍스트가 넘칠 경우 숨김 */
-    text-overflow: ellipsis; /* 넘친 텍스트에 생략(...) 표시 */
-}
-
-.optionButton svg {
-    margin-right: 15px;
-    font-size: 1.5rem; /* 아이콘 크기 */
-}
-
-.optionButton:hover {
-    background-color: #f7f7f7;
-}
-
-/* 텍스트 컨테이너 */
-.textContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    flex-grow: 1; /* 텍스트 부분이 남은 공간을 채우도록 설정 */
-    text-align: left; /* 텍스트를 왼쪽 정렬 */
-}
-
-.mainText {
-    font-size: 0.9rem; /* 기본 텍스트 크기 조정 */
-    font-weight: bold;
-    color: #333;
-}
-
-.subText {
-    font-size: 0.875rem; /* 서브 텍스트 크기 */
-    color: #777;
-    margin-left: 10px; /* 서브텍스트를 메인텍스트 오른쪽으로 이동 */
-    flex-shrink: 0; /* 서브 텍스트가 줄어들지 않도록 설정 */
-}
-
-.backButton {
-    display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 15px;
-    margin: 10px 0;
-    background-color: #e6e6fa;
-    border: 1px solid #ddd;
-    border-radius: 8px; /* 모서리를 둥글게 처리 */
-    color: #333;
+    align-items: center;
+}
+
+.CheckSignUpBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+}
+
+/* Back Button */
+.backButton {
+    width: 30%;
+    height: 55px;
+    border-radius: 10px;
+    background: #30a04d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    font-size: 0.9rem; /* 기본 텍스트 크기 조정 */
-    transition: background-color 0.3s ease;
-    text-align: center;
-    color: #333;
-    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-top: 100px;
+}
+
+.backButtonText {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #fff;
+    margin: 0;
 }
 
 .backButton:hover {
-    background-color: #d8bfd8;
+    background-color: #267a37;
 }
 
-/* 작은 화면에서 스크롤 활성화 */
-@media (max-height: 850px) {
-    .ScrollContainer {
-        overflow-y: auto; /* 작은 화면에서만 스크롤을 활성화 */
-    }
+/* Main Logo */
+.mainLogo {
+    width: 177px;
+    height: 30px;
+    object-fit: cover;
+    margin-bottom: 3.3rem;
+}
+
+/* Title */
+.title {
+    font-size: 1.8rem;
+    text-align: center;
+    color: #242424;
+    margin-bottom: 2%;
+}
+
+.titleBold {
+    font-weight: 600;
+}
+
+.titleRegular {
+    font-weight: normal;
+}
+
+/* Option Containers */
+.optionsWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 3%;
+}
+
+.optionContainer {
+    width: 300px;
+    height: 500px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    padding: 4% 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 좌측 정렬을 위해 flex-start 사용 */
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s ease, box-shadow 0.5s ease, border 0.5s ease;
+}
+
+.optionContainer:hover {
+    border: 2px solid #30a04d; /* 테두리 색상 변경 */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+    transform: translateY(-10px) scale(1.05); /* 약간 위로 이동 및 확대 */
+}
+
+.optionTitle {
+    opacity: 0.8;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #242424;
+    margin-bottom: 20px;
+    text-align: left; /* 좌측 정렬 */
+    padding-left: 10px; /* 텍스트 왼쪽 여백 추가 */
+    transition: color 0.5s ease, transform 0.5s ease;
+}
+
+/* Hover 상태에서 중앙 정렬 */
+.optionContainer:hover {
+    justify-content: flex-start; /* 세로 가운데 정렬 */
+    align-items: center; /* 가로 가운데 정렬 */
+}
+
+/* Hover 상태에서 변경 */
+.optionContainer:hover .optionTitle {
+    color: #30a04d; /* 텍스트 색상 변경 */
+    font-size: 2.2rem; /* 텍스트 크기 조정 */
+    transform: translateX(-5%); /* 텍스트 왼쪽으로 밀기 */
+}
+
+.optionContainer:hover .subText {
+    display: block;
+    font-size: 1rem;
+    color: #757575;
+    margin-bottom: 20px;
+    transition: opacity 0.5s ease;
+}
+
+.subText {
+    display: none;
+    opacity: 0;
+}
+
+.optionContainer:hover .subText {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+/* SignUp Button */
+.signUpButton {
+    display: none;
+    background-color: #30a04d;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    opacity: 0; /* 기본적으로 투명 */
+    transition: opacity 0.5s ease, background-color 0.3s ease;
+}
+
+.optionContainer:hover .signUpButton {
+    display: block;
+    opacity: 1; /* 호버 시 나타남 */
+}
+
+.signUpButton:hover {
+    background-color: #267a37;
+    transition: background-color 0.3s ease;
+}
+
+/* 로고 숨기기 */
+.appleLogo,
+.teachCongLogo,
+.GoogleLogo,
+.NaverLogo {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.optionContainer:hover .appleLogo,
+.optionContainer:hover .teachCongLogo,
+.optionContainer:hover .GoogleLogo,
+.optionContainer:hover .NaverLogo {
+    opacity: 0; /* 호버 시 로고 숨김 */
+}
+
+/* Apple Logo */
+.appleLogo {
+    width: 290px;
+    height: 310px;
+    object-fit: cover;
+    margin-top: auto;
+    opacity: 0.75;
+    position: absolute;
+    right: -50px;
+    bottom: -70px;
+}
+
+.teachCongLogo {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+    margin-top: auto;
+    position: absolute;
+    right: 0px;
+    bottom: -30px;
+}
+
+.GoogleLogo {
+    width: 200px;
+    height: 280px;
+    object-fit: cover;
+    opacity: 0.8;
+    position: absolute;
+    right: -10px;
+    bottom: -50px;
+}
+
+.NaverLogo {
+    width: 215px;
+    height: 225px;
+    object-fit: cover;
+    margin-top: auto;
+    position: absolute;
+    right: -10px;
+    bottom: -20px;
 }
