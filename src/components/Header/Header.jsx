@@ -77,11 +77,51 @@ const Header = () => {
                                 >
                                     학생 관리
                                 </li>
-                                <li className={styles.listItem}>AI 문제집</li>
-                                <li className={styles.listItem}>시간표</li>
-                                <li className={styles.listItem}>투표</li>
-                                <li className={styles.listItem}>문자 발송</li>
-                                <li className={styles.listItem}>자리 선정</li>
+                                <li
+                                    className={styles.listItem}
+                                    onClick={() => {
+                                        navigate('/schedule');
+                                        closeMenuModal();
+                                    }}
+                                >
+                                    AI 문제집
+                                </li>
+                                <li
+                                    className={styles.listItem}
+                                    onClick={() => {
+                                        navigate('/tool');
+                                        closeMenuModal();
+                                    }}
+                                >
+                                    시간표
+                                </li>
+                                <li
+                                    className={styles.listItem}
+                                    onClick={() => {
+                                        navigate('/send-message');
+                                        closeMenuModal();
+                                    }}
+                                >
+                                    투표
+                                </li>
+                                <li
+                                    className={styles.listItem}
+                                    onClick={() => {
+                                        navigate('/ai-workbook');
+                                        closeMenuModal();
+                                    }}
+                                >
+                                    문자 발송
+                                </li>
+                                <li
+                                    className={styles.listItem}
+                                    onClick={() => {
+                                        navigate('/seat-assignment');
+                                        closeMenuModal();
+                                    }}
+                                >
+                                    자리 선정
+                                </li>
                                 <li
                                     className={styles.listItem}
                                     onClick={() => {
