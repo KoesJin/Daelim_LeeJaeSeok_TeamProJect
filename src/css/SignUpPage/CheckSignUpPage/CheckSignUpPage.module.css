@@ -243,6 +243,12 @@
     }
 }
 
+@media (max-height: 820px) {
+    .ScrollContainer {
+        overflow-y: auto; /* 스크롤 가능하게 설정 */
+    }
+}
+
 /* 1024px 해상도 */
 @media (max-width: 1024px) {
     .ScrollContainer {
