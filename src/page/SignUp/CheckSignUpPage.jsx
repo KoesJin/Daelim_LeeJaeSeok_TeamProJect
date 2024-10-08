@@ -47,7 +47,9 @@ function CheckSignUpPage() {
                         </p>
                         <p className={styles.subText}>Google 계정으로 간편하게 가입</p> {/* 서브 텍스트 추가 */}
                         <img src={GoogleLogo} alt="Google Logo" className={styles.GoogleLogo} />
-                        <button className={styles.signUpButton}>가입하기</button>
+                        <button className={styles.signUpButton} onClick={() => alert('준비중입니다.')}>
+                            가입하기
+                        </button>
                     </div>
 
                     {/* Naver Option */}
@@ -59,7 +61,9 @@ function CheckSignUpPage() {
                         </p>
                         <p className={styles.subText}>Naver 계정으로 간편하게 가입</p> {/* 서브 텍스트 추가 */}
                         <img src={NaverLogo} alt="Naver Logo" className={styles.NaverLogo} />
-                        <button className={styles.signUpButton}>가입하기</button>
+                        <button className={styles.signUpButton} onClick={() => alert('준비중입니다.')}>
+                            가입하기
+                        </button>
                     </div>
 
                     {/* Apple Option */}
@@ -71,7 +75,9 @@ function CheckSignUpPage() {
                         </p>
                         <p className={styles.subText}>Apple 계정으로 간편하게 가입</p> {/* 서브 텍스트 추가 */}
                         <img src={AppleLogo} alt="Apple Logo" className={styles.appleLogo} />
-                        <button className={styles.signUpButton}>가입하기</button>
+                        <button className={styles.signUpButton} onClick={() => alert('준비중입니다.')}>
+                            가입하기
+                        </button>
                     </div>
                 </div>
                 <div className={styles.backButton} onClick={() => navigate('/')}>
