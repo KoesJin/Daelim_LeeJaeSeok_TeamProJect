@@ -32,7 +32,7 @@ function CheckSignUpPage() {
                             <span>회원가입</span>
                         </p>
                         <p className={styles.subText}>이메일 및 비밀번호로 회원가입</p> {/* 서브 텍스트 추가 */}
-                        <TeachCong className={styles.teachCongLogo} />
+                        <TeachCong className={styles.teachCongLogo} onDragStart={(e) => e.preventDefault()} />
                         <button className={styles.signUpButton} onClick={() => navigate('/signuppage')}>
                             가입하기
                         </button>
@@ -46,7 +46,12 @@ function CheckSignUpPage() {
                             <span>회원가입</span>
                         </p>
                         <p className={styles.subText}>Google 계정으로 간편하게 가입</p> {/* 서브 텍스트 추가 */}
-                        <img src={GoogleLogo} alt="Google Logo" className={styles.GoogleLogo} />
+                        <img
+                            src={GoogleLogo}
+                            alt="Google Logo"
+                            className={styles.GoogleLogo}
+                            onDragStart={(e) => e.preventDefault()}
+                        />
                         <button className={styles.signUpButton} onClick={() => alert('준비중입니다.')}>
                             가입하기
                         </button>
@@ -60,7 +65,12 @@ function CheckSignUpPage() {
                             <span>회원가입</span>
                         </p>
                         <p className={styles.subText}>Naver 계정으로 간편하게 가입</p> {/* 서브 텍스트 추가 */}
-                        <img src={NaverLogo} alt="Naver Logo" className={styles.NaverLogo} />
+                        <img
+                            src={NaverLogo}
+                            alt="Naver Logo"
+                            className={styles.NaverLogo}
+                            onDragStart={(e) => e.preventDefault()}
+                        />
                         <button className={styles.signUpButton} onClick={() => alert('준비중입니다.')}>
                             가입하기
                         </button>
@@ -74,7 +84,12 @@ function CheckSignUpPage() {
                             <span>회원가입</span>
                         </p>
                         <p className={styles.subText}>Apple 계정으로 간편하게 가입</p> {/* 서브 텍스트 추가 */}
-                        <img src={AppleLogo} alt="Apple Logo" className={styles.appleLogo} />
+                        <img
+                            src={AppleLogo}
+                            alt="Apple Logo"
+                            className={styles.appleLogo}
+                            onDragStart={(e) => e.preventDefault()}
+                        />
                         <button className={styles.signUpButton} onClick={() => alert('준비중입니다.')}>
                             가입하기
                         </button>
