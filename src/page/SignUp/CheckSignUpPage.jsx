@@ -33,7 +33,11 @@ function CheckSignUpPage() {
                         </p>
                         <p className={styles.subText}>이메일 및 비밀번호로 회원가입</p> {/* 서브 텍스트 추가 */}
                         <TeachCong className={styles.teachCongLogo} onDragStart={(e) => e.preventDefault()} />
-                        <button className={styles.signUpButton} onClick={() => navigate('/signuppage')}>
+                        <button
+                            className={styles.signUpButton}
+                            onClick={() => navigate('/signuppage')}
+                            onTouchEnd={() => navigate('/signuppage')} // 모바일에서 터치 시 작동하도록 추가
+                        >
                             가입하기
                         </button>
                     </div>
