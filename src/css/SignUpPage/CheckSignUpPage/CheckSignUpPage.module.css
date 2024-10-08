@@ -1,16 +1,15 @@
+/* 기본 스타일 (기본 화면 크기) */
 .ScrollContainer {
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: hidden;
     background-color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .CheckSignUpBody {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
     padding: 3rem;
 }
 
@@ -25,7 +24,7 @@
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 .backButtonText {
@@ -76,20 +75,20 @@
     border-radius: 10px;
     background: #fff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    text-align: left; /* 텍스트 왼쪽 정렬 */
+    text-align: left;
     padding: 4% 2%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* 좌측 정렬을 위해 flex-start 사용 */
+    align-items: flex-start;
     position: relative;
     overflow: hidden;
     transition: transform 0.5s ease, box-shadow 0.5s ease, border 0.5s ease;
 }
 
 .optionContainer:hover {
-    border: 2px solid #30a04d; /* 테두리 색상 변경 */
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
-    transform: translateY(-10px) scale(1.05); /* 약간 위로 이동 및 확대 */
+    border: 2px solid #30a04d;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px) scale(1.05);
 }
 
 .optionTitle {
@@ -98,22 +97,22 @@
     font-weight: 600;
     color: #242424;
     margin-bottom: 20px;
-    text-align: left; /* 좌측 정렬 */
-    padding-left: 10px; /* 텍스트 왼쪽 여백 추가 */
+    text-align: left;
+    padding-left: 10px;
     transition: color 0.5s ease, transform 0.5s ease;
 }
 
 /* Hover 상태에서 중앙 정렬 */
 .optionContainer:hover {
-    justify-content: flex-start; /* 세로 가운데 정렬 */
-    align-items: center; /* 가로 가운데 정렬 */
+    justify-content: flex-start;
+    align-items: center;
 }
 
 /* Hover 상태에서 변경 */
 .optionContainer:hover .optionTitle {
-    color: #30a04d; /* 텍스트 색상 변경 */
-    font-size: 2.2rem; /* 텍스트 크기 조정 */
-    transform: translateX(-5%); /* 텍스트 왼쪽으로 밀기 */
+    color: #30a04d;
+    font-size: 2.2rem;
+    transform: translateX(-5%);
 }
 
 .optionContainer:hover .subText {
@@ -145,13 +144,13 @@
     border-radius: 10px;
     cursor: pointer;
     border: none;
-    opacity: 0; /* 기본적으로 투명 */
+    opacity: 0;
     transition: opacity 0.5s ease, background-color 0.3s ease;
 }
 
 .optionContainer:hover .signUpButton {
     display: block;
-    opacity: 1; /* 호버 시 나타남 */
+    opacity: 1;
 }
 
 .signUpButton:hover {
@@ -172,10 +171,9 @@
 .optionContainer:hover .teachCongLogo,
 .optionContainer:hover .GoogleLogo,
 .optionContainer:hover .NaverLogo {
-    opacity: 0; /* 호버 시 로고 숨김 */
+    opacity: 0;
 }
 
-/* Apple Logo */
 .appleLogo {
     width: 290px;
     height: 310px;
@@ -215,4 +213,232 @@
     position: absolute;
     right: -10px;
     bottom: -20px;
+}
+
+/* 반응형 스타일 */
+
+/* 1440px 해상도 */
+@media (max-width: 1440px) {
+    .CheckSignUpBody {
+        padding: 3rem; /* 패딩을 줄여서 전체적인 공간 조정 */
+    }
+
+    .optionContainer {
+        width: 250px; /* 옵션 컨테이너 크기 줄이기 */
+        height: 440px;
+    }
+
+    .optionTitle {
+        font-size: 1.7rem; /* 27.2px */
+    }
+
+    .signUpButton {
+        font-size: 1.1rem; /* 17.6px */
+    }
+
+    .backButton {
+        margin-top: 5rem;
+    }
+}
+
+/* 1024px 해상도 */
+@media (max-width: 1024px) {
+    .ScrollContainer {
+        overflow-y: auto; /* 스크롤 가능하게 설정 */
+    }
+
+    .CheckSignUpBody {
+        padding: 2rem;
+    }
+
+    .mainLogo {
+        width: 130px;
+        height: 22px;
+        margin-bottom: 2rem;
+    }
+
+    .title {
+        margin-bottom: 5%;
+    }
+
+    .optionsWrapper {
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+    }
+
+    .optionContainer {
+        width: 300px; /* 옵션 컨테이너 크기 줄이기 */
+        height: 390px;
+    }
+
+    .optionTitle {
+        font-size: 1.6rem; /* 25.6px */
+    }
+
+    .signUpButton {
+        font-size: 1rem; /* 16px */
+    }
+
+    .backButton {
+        margin-top: 3.5rem;
+    }
+}
+
+/* 768px 해상도 (태블릿) */
+@media (max-width: 768px) {
+    .ScrollContainer {
+        overflow-y: auto; /* 스크롤 가능하게 설정 */
+    }
+
+    .CheckSignUpBody {
+        padding: 1.5rem;
+    }
+
+    .mainLogo {
+        width: 130px;
+        height: 22px;
+        margin-bottom: 2rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        text-align: center;
+        color: #242424;
+        margin-bottom: 5%;
+    }
+
+    .optionsWrapper {
+        gap: 2rem;
+    }
+
+    .optionContainer {
+        width: 290px; /* 옵션 컨테이너 크기 줄이기 */
+        height: 390px;
+    }
+
+    .optionTitle {
+        font-size: 1.5rem; /* 24px */
+    }
+
+    .signUpButton {
+        font-size: 0.9375rem; /* 15px */
+    }
+
+    .backButton {
+        margin-top: 3rem;
+        width: 50%;
+    }
+
+    .backButtonText {
+        font-size: 1.25rem; /* 20px */
+    }
+}
+
+/* 480px 해상도 (모바일) */
+@media (max-width: 480px) {
+    .ScrollContainer {
+        overflow-y: auto; /* 스크롤 가능하게 설정 */
+    }
+
+    .CheckSignUpBody {
+        padding: 1rem;
+    }
+
+    .mainLogo {
+        width: 115px;
+        height: 20px;
+        margin-bottom: 1.5rem;
+    }
+
+    .title {
+        font-size: 1.3rem;
+        text-align: center;
+        color: #242424;
+        margin-bottom: 5%;
+    }
+
+    .optionsWrapper {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .optionContainer {
+        width: 300px; /* 옵션 컨테이너 크기 줄이기 */
+        height: 390px;
+        margin-top: 10px;
+    }
+
+    .optionTitle {
+        font-size: 1.4rem; /* 22.4px */
+    }
+
+    .subText {
+        font-size: 0.875rem; /* 14px */
+    }
+
+    .signUpButton {
+        font-size: 0.875rem; /* 14px */
+        padding: 0.5rem 1rem;
+    }
+
+    .backButton {
+        margin-top: 2.5rem;
+        width: 60%;
+        height: 45px;
+    }
+
+    .backButtonText {
+        font-size: 1rem; /* 16px */
+    }
+}
+
+/* 360px 해상도 (모바일) */
+@media (max-width: 360px) {
+    .mainLogo {
+        width: 115px;
+        height: 20px;
+        margin-bottom: 1.3rem;
+    }
+
+    .title {
+        font-size: 1.2rem;
+        text-align: center;
+        color: #242424;
+        margin-bottom: 5%;
+    }
+
+    .optionsWrapper {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .optionContainer {
+        width: 250px; /* 옵션 컨테이너 크기 줄이기 */
+        height: 340px;
+        margin-top: 10px;
+    }
+
+    .optionTitle {
+        font-size: 1.4rem; /* 22.4px */
+    }
+
+    .subText {
+        font-size: 0.875rem; /* 14px */
+    }
+
+    .signUpButton {
+        font-size: 0.875rem; /* 14px */
+        padding: 0.5rem 1rem;
+    }
+
+    .backButton {
+        margin-top: 2.5rem;
+        width: 60%;
+        height: 45px;
+    }
+
+    .backButtonText {
+        font-size: 1rem; /* 16px */
+    }
 }
