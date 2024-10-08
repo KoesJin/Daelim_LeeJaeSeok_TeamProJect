@@ -80,7 +80,7 @@ const Header = () => {
                                 <li
                                     className={styles.listItem}
                                     onClick={() => {
-                                        navigate('/schedule');
+                                        navigate('/ai-workbook');
                                         closeMenuModal();
                                     }}
                                 >
@@ -89,7 +89,7 @@ const Header = () => {
                                 <li
                                     className={styles.listItem}
                                     onClick={() => {
-                                        navigate('/tool');
+                                        navigate('/schedule');
                                         closeMenuModal();
                                     }}
                                 >
@@ -98,16 +98,16 @@ const Header = () => {
                                 <li
                                     className={styles.listItem}
                                     onClick={() => {
-                                        navigate('/send-message');
+                                        navigate('/tool');
                                         closeMenuModal();
                                     }}
                                 >
-                                    투표
+                                    수업도구
                                 </li>
                                 <li
                                     className={styles.listItem}
                                     onClick={() => {
-                                        navigate('/ai-workbook');
+                                        navigate('/send-message');
                                         closeMenuModal();
                                     }}
                                 >
