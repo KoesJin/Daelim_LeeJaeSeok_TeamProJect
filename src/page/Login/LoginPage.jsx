@@ -152,19 +152,27 @@ function LoginPage() {
                     <div className={styles.socialLoginContainer}>
                         <button className={styles.socialLoginButton} data-label="카카오톡">
                             <KakaoIcon className={styles.socialIcon} />
-                            <span className={styles.socialText}>카카오 계정으로 로그인</span>
+                            <span className={styles.socialText} onClick={() => alert('준비중입니다.')}>
+                                카카오 계정으로 로그인
+                            </span>
                         </button>
                         <button className={styles.socialLoginButton} data-label="구글">
                             <GoogleIcon className={styles.socialIcon} />
-                            <span className={styles.socialText}>구글 계정으로 로그인</span>
+                            <span className={styles.socialText} onClick={() => alert('준비중입니다.')}>
+                                구글 계정으로 로그인
+                            </span>
                         </button>
                         <button className={styles.socialLoginButton} data-label="네이버">
                             <NaverIcon className={styles.socialIcon} />
-                            <span className={styles.socialText}>네이버 계정으로 로그인</span>
+                            <span className={styles.socialText} onClick={() => alert('준비중입니다.')}>
+                                네이버 계정으로 로그인
+                            </span>
                         </button>
                         <button className={styles.socialLoginButton} data-label="애플">
                             <AppleIcon className={styles.socialIcon} />
-                            <span className={styles.socialText}>애플 계정으로 로그인</span>
+                            <span className={styles.socialText} onClick={() => alert('준비중입니다.')}>
+                                애플 계정으로 로그인
+                            </span>
                         </button>
                     </div>
                 </div>
