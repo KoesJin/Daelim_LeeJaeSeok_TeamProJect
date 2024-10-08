@@ -244,8 +244,20 @@ const StudentManagementPage = () => {
     };
 
     // 학생 정보 수정 모드를 위한 함수
+    // 학생 정보 수정 모드를 위한 함수
     const handleEditClick = (studentId) => {
-        setEditingStudentId(studentId); // 수정할 학생의 ID 저장
+        // studentData 배열에서 선택한 학생의 데이터를 찾음
+        const selectedStudent = studentData.find((student) => student.studentId === studentId);
+
+        if (selectedStudent) {
+            // 선택한 학생의 데이터를 상태로 설정
+            setStudentName(selectedStudent.studentName);
+            setStudentNum(selectedStudent.studentNum);
+            setStudentCode(selectedStudent.studentCode);
+
+            // 수정 중인 학생의 ID를 상태로 저장
+            setEditingStudentId(studentId);
+        }
     };
 
     // 스크롤 탑 함수 -> 그냥 div가 아닌 css 영역떄문에 useRef 사용
