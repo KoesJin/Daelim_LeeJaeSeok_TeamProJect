@@ -57,7 +57,9 @@ const Main = () => {
                                     <div className={styles.button} onClick={() => navigate('/checkinfo')}>
                                         마이페이지
                                     </div>
-                                    <div className={styles.button}>내 쪽지함</div>
+                                    <div className={styles.button} onClick={() => alert('준비중입니다.')}>
+                                        내 쪽지함
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -79,9 +81,9 @@ const Main = () => {
                         <TeachCong />
                         <p>시간표</p>
                     </div>
-                    <div className={styles.teachCongItem} onClick={() => navigate('/vote')}>
+                    <div className={styles.teachCongItem} onClick={() => navigate('/tool')}>
                         <TeachCong />
-                        <p>투표</p>
+                        <p>수업도구</p>
                     </div>
                     <div className={styles.teachCongItem} onClick={() => navigate('/send-message')}>
                         <TeachCong />
