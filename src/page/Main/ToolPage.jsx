@@ -7,6 +7,7 @@ import VoteIcon from '../../svg/MainPage/ToolPage/VoteIcon';
 import LadderIcon from '../../svg/MainPage/ToolPage/LadderIcon';
 import QuizIcon from '../../svg/MainPage/ToolPage/QuizIcon';
 import RandomPickerIcon from '../../svg/MainPage/ToolPage/RandomPickerIcon';
+import SeatIcon from '../../svg/MainPage/ToolPage/SeatIcon'; // 자리 선정 아이콘 추가
 
 const ToolPage = () => {
     const navigate = useNavigate();
@@ -19,8 +20,8 @@ const ToolPage = () => {
                 {/* 투표 도구 */}
                 <div
                     className={styles.toolItem}
-                    onClick={() => alert('준비중입니다.')}
                     // onClick={() => navigate('/vote')}
+                    onClick={() => alert('준비중입니다.')}
                 >
                     <VoteIcon className={styles.icon} />
                     <p className={styles.toolName}>투표</p>
@@ -29,8 +30,8 @@ const ToolPage = () => {
                 {/* 사다리타기 도구 */}
                 <div
                     className={styles.toolItem}
-                    onClick={() => alert('준비중입니다.')}
                     // onClick={() => navigate('/ladder')}
+                    onClick={() => alert('준비중입니다.')}
                 >
                     <LadderIcon className={styles.icon} />
                     <p className={styles.toolName}>사다리타기</p>
@@ -39,8 +40,8 @@ const ToolPage = () => {
                 {/* 퀴즈 도구 */}
                 <div
                     className={styles.toolItem}
-                    onClick={() => alert('준비중입니다.')}
                     // onClick={() => navigate('/quiz')}
+                    onClick={() => alert('준비중입니다.')}
                 >
                     <QuizIcon className={styles.icon} />
                     <p className={styles.toolName}>퀴즈</p>
@@ -49,11 +50,17 @@ const ToolPage = () => {
                 {/* 랜덤 추첨기 도구 */}
                 <div
                     className={styles.toolItem}
-                    onClick={() => alert('준비중입니다.')}
                     // onClick={() => navigate('/random-picker')}
+                    onClick={() => alert('준비중입니다.')}
                 >
                     <RandomPickerIcon className={styles.icon} />
                     <p className={styles.toolName}>랜덤 추첨기</p>
+                </div>
+
+                {/* 자리 선정 도구 */}
+                <div className={styles.toolItem} onClick={() => alert('준비중입니다.')}>
+                    <SeatIcon className={styles.icon} />
+                    <p className={styles.toolName}>자리 선정</p>
                 </div>
             </div>
 
