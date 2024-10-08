@@ -6,7 +6,6 @@ import LoginPage from '../page/Login/LoginPage';
 import StudentManagementPage from '../page/Main/StudentManagementPage';
 import AIWorkbookPage from '../page/Main/AIWorkbookPage';
 import SchedulePage from '../page/Main/SchedulePage';
-import VotePage from '../page/Main/VotePage';
 import SendMessagePage from '../page/Main/SendMessagePage';
 import SeatAssignmentPage from '../page/Main/SeatAssignmentPage';
 import SignUpPage from '../page/SignUp/SignUpPage';
@@ -17,6 +16,7 @@ import PersonalInfoChange from '../page/Header/Info/PersonalInfoChange';
 import PasswordChange from '../page/Header/Info/PasswordChange';
 import FindPassword from '../page/Login/FindPassword/FindPassword';
 import FindId from '../page/Login/FindId/FindId';
+import ToolPage from '../page/Main/ToolPage';
 
 const router = createBrowserRouter([
     {
@@ -77,8 +77,8 @@ const router = createBrowserRouter([
                 element: <SchedulePage />,
             },
             {
-                path: '/vote',
-                element: <VotePage />,
+                path: '/tool',
+                element: <ToolPage />,
             },
             {
                 path: '/send-message',

@@ -1,0 +1,109 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh; /* height 대신 min-height 사용 */
+    background-color: #f9f9f9;
+    padding: 80px 20px; /* 양쪽 padding을 줄여 작은 화면에서도 적절한 여백 */
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #30a04d;
+    margin-bottom: 40px;
+    position: sticky; /* 스크롤 시 타이틀 고정 */
+    top: 0;
+    background-color: #f9f9f9; /* 배경색 추가 */
+    padding: 10px 0;
+    z-index: 100; /* 다른 요소보다 위에 표시 */
+}
+
+.toolGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.toolItem {
+    background-color: #ffffff;
+    border: 2px solid #30a04d;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.toolItem:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+.toolName {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #242424;
+}
+
+.backButtonWrapper {
+    margin-top: 40px;
+}
+
+.backButton {
+    font-size: 1.2rem;
+    color: white;
+    background-color: #30a04d;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.backButton:hover {
+    background-color: #267a37;
+}
+
+/* 578px 이하 */
+@media (max-width: 578px) {
+    .container {
+        overflow-y: auto;
+        padding-bottom: 120px;
+    }
+}
+
+/* 360px 이하 */
+@media (max-width: 360px) {
+    .title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
+
+    .toolItem {
+        padding: 20px;
+    }
+
+    .icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .toolName {
+        font-size: 1.2rem;
+    }
+
+    .backButton {
+        font-size: 1rem;
+        padding: 8px 15px;
+    }
+}
