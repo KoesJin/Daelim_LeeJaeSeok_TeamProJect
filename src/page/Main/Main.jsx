@@ -89,10 +89,10 @@ const Main = () => {
                         <TeachCong />
                         <p>문자 발송</p>
                     </div>
-                    <div className={styles.teachCongItem} onClick={() => navigate('/seat-assignment')}>
+                    {/* <div className={styles.teachCongItem} onClick={() => navigate('/seat-assignment')}>
                         <TeachCong />
                         <p>자리선정</p>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>
