@@ -184,6 +184,12 @@
 
 /* 미디어 쿼리 */
 
+@media (max-width: 1600px) {
+    .ScrollContainer {
+        padding-bottom: 100px;
+    }
+}
+
 /* 해상도 1430px 이하 */
 @media (max-width: 1480px) {
     .ScrollContainer {
