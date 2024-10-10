@@ -113,7 +113,7 @@ const Header = () => {
                                 >
                                     문자 발송
                                 </li>
-                                <li
+                                {/* <li
                                     className={styles.listItem}
                                     onClick={() => {
                                         navigate('/seat-assignment');
@@ -121,7 +121,7 @@ const Header = () => {
                                     }}
                                 >
                                     자리 선정
-                                </li>
+                                </li> */}
                                 <li
                                     className={styles.listItem}
                                     onClick={() => {
