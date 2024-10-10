@@ -64,7 +64,7 @@ const StudentManagementPage = () => {
         e.preventDefault();
 
         // 유효성 검사
-        const nameRegex = /^[가-힣]{2,5}$/;
+        const nameRegex = /^[가-힣]{2,4}$/;
         if (!nameRegex.test(studentName)) {
             alert('이름은 2자에서 4자 사이의 한글만 입력 가능합니다.');
             return;
@@ -82,11 +82,18 @@ const StudentManagementPage = () => {
         }
 
         try {
+            const bearerToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
+            if (!bearerToken) {
+                alert('사용자가 인증되지 않았습니다.');
+                return;
+            }
+
             const response = await fetch(`${baseURL}/api/student/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
+                    Authorization: bearerToken,
                 },
                 body: JSON.stringify({
                     studentName,
@@ -189,7 +196,7 @@ const StudentManagementPage = () => {
             return;
         }
 
-        const nameRegex = /^[가-힣]{2,5}$/;
+        const nameRegex = /^[가-힣]{2,4}$/;
         if (!nameRegex.test(studentName)) {
             alert('이름은 2자에서 4자 사이의 한글만 입력 가능합니다.');
             return;
@@ -298,6 +305,7 @@ const StudentManagementPage = () => {
                                                 defaultValue={student.studentCode}
                                                 onChange={(e) => setStudentCode(e.target.value)}
                                                 className={styles.inputField}
+                                                maxLength={2}
                                             />
                                         ) : (
                                             student.studentCode
@@ -310,6 +318,7 @@ const StudentManagementPage = () => {
                                                 defaultValue={student.studentName}
                                                 onChange={(e) => setStudentName(e.target.value)}
                                                 className={styles.inputField}
+                                                maxLength={4}
                                             />
                                         ) : (
                                             student.studentName
@@ -322,6 +331,7 @@ const StudentManagementPage = () => {
                                                 defaultValue={student.studentNum}
                                                 onChange={(e) => setStudentNum(e.target.value)}
                                                 className={styles.inputField}
+                                                maxLength={11}
                                             />
                                         ) : (
                                             student.studentNum
@@ -427,6 +437,7 @@ const StudentManagementPage = () => {
                                                 required
                                                 className={styles.inputField}
                                                 placeholder="이름"
+                                                maxLength={4}
                                             />
                                         </td>
                                         <td>
