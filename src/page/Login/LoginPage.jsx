@@ -120,7 +120,9 @@ function LoginPage() {
                                 onChange={(e) => setRememberMe(e.target.checked)}
                                 className={styles.checkbox}
                             />
-                            <label htmlFor="rememberMe">아이디 기억하기</label>
+                            <label htmlFor="rememberMe" className={styles.rememberMeLabel}>
+                                아이디 기억하기
+                            </label>
                         </div>
                         <button type="submit" className={styles.loginButton}>
                             로그인

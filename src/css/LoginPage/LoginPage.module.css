@@ -70,6 +70,12 @@
     margin-right: 0.625rem;
 }
 
+.rememberMeLabel {
+    /* 추가: 라벨에 대한 클래스 */
+    font-size: 1rem; /* 기본 폰트 크기 */
+    color: #000; /* 필요한 경우 색상 지정 */
+}
+
 .loginButton {
     width: 100%;
     padding: 0.9375rem;
@@ -223,6 +229,20 @@
     .separator {
         display: none;
     }
+
+    /* 추가: 기억하기 체크박스와 라벨 폰트 크기 조정 */
+    .rememberMeContainer {
+        margin-bottom: 1rem;
+    }
+
+    .checkbox {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .rememberMeLabel {
+        font-size: 0.875rem;
+    }
 }
 
 /* 480px 이하 */
@@ -284,6 +304,7 @@
     .footer {
         margin-top: 1.25rem;
     }
+
     .socialLoginTitle {
         display: block;
         text-align: center;
@@ -304,14 +325,14 @@
         height: 3rem;
         padding: 0;
         justify-content: center;
-        position: relative; /* 추가 */
+        position: relative;
     }
 
     /* 아이콘 아래에 라벨 추가 */
     .socialLoginButton::after {
         content: attr(data-label);
         position: absolute;
-        bottom: -1.2rem; /* 아이콘 아래에 위치 */
+        bottom: -1.2rem;
         font-size: 0.75rem;
         font-weight: 700;
         color: #000;
@@ -319,15 +340,18 @@
         width: 100%;
     }
 
-    /* 소셜 텍스트 숨기기 */
-    .socialText {
-        display: none;
+    /* 아이디 기억하기 체크박스와 라벨 폰트 크기 및 간격 조정 */
+    .rememberMeContainer {
+        margin-bottom: 0.875rem;
     }
 
-    /* 아이콘 */
-    .socialIcon {
-        width: 1.5rem;
-        height: 1.5rem;
-        margin: 0; /* 아이콘과 텍스트 간격 제거 */
+    .checkbox {
+        width: 0.875rem;
+        height: 0.875rem;
+        margin-right: 0.5rem;
+    }
+
+    .rememberMeLabel {
+        font-size: 0.75rem;
     }
 }
