@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Settings = () => {
     // 회원 정보
     const [userId, setUserId] = useState('');
-    const [currentPw, setCurrentPw] = useState('');
+    const [userPw, setUserPw] = useState('');
 
     // userId 가져오기
     useEffect(() => {
@@ -36,7 +36,7 @@ const Settings = () => {
         e.preventDefault();
 
         // 비밀번호 빈칸 체크 확인
-        if (!currentPw) {
+        if (!userPw) {
             alert('비밀번호를 입력해 주세요.');
             return;
         }
@@ -68,7 +68,7 @@ const Settings = () => {
                 return;
             }
 
-            const response = await fetch(`${baseURL}/api/user/delete/${userId}`, {
+            const response = await fetch(`${baseURL}/api/user/delete?userId=${userId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -77,8 +77,7 @@ const Settings = () => {
                     PasswordVerAuth: pwbearerToken, // /user/delete ,/user/update, /user/updatepassword 포함된 앤드포인트에 사용 해야함
                 },
                 body: JSON.stringify({
-                    userId,
-                    currentPw,
+                    userPw,
                 }),
             });
 
@@ -112,8 +111,12 @@ const Settings = () => {
                 <button className={styles.optionButton} onClick={() => navigate('/passwordchange')}>
                     비밀번호 변경
                 </button>
-                <button className={styles.optionButton} onClick={() => navigate('')}>
-                    빈칸
+                <button
+                    className={styles.optionButton}
+                    onClick={() => alert('준비중입니다.')}
+                    // onClick={() => navigate('')}
+                >
+                    출석표
                 </button>
                 <button className={styles.optionButton} onClick={() => navigate('')}>
                     빈칸
@@ -134,8 +137,8 @@ const Settings = () => {
                         <form onSubmit={handleConfirmDelete}>
                             <input
                                 type="password"
-                                value={currentPw}
-                                onChange={(e) => setCurrentPw(e.target.value)}
+                                value={userPw}
+                                onChange={(e) => setUserPw(e.target.value)}
                                 placeholder="비밀번호를 입력하세요"
                                 className={styles.modalInput}
                             />

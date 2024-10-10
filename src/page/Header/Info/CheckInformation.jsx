@@ -42,14 +42,14 @@ const CheckInformation = () => {
                 return;
             }
 
-            const response = await fetch(`${baseURL}/api/user/confirmPassword/${userId}`, {
+            const response = await fetch(`${baseURL}/api/user/confirmPassword`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
                     Authorization: bearerToken, // /user 포함된 앤드포인트에 사용 해야함
                 },
-                body: JSON.stringify({ userPw }),
+                body: JSON.stringify({ userId, userPw }),
             });
 
             const result = await response.json();

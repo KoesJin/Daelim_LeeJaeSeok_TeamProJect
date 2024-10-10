@@ -78,7 +78,7 @@ const PersonalInfoChange = () => {
                 return;
             }
 
-            const response = await fetch(`${baseURL}/api/user/update/${userId}`, {
+            const response = await fetch(`${baseURL}/api/user/update?userId=${userId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
