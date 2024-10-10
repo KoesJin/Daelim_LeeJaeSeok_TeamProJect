@@ -1,7 +1,12 @@
+// src/components/MainPage/AIWorkbookPage/AIWorkbookPage.jsx
 import React, { useState, useEffect } from 'react';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import MyDocument from '../../utils/DownloadFile/MyDocument'; // 기존 PDF 생성 컴포넌트
+import MyWordDocument from '../../utils/DownloadFile/MyWordDocument'; // 새 워드 생성 컴포넌트
 import styles from '../../css/MainPage/AIWorkbookPage/AIWorkbookPage.module.css';
 
-// topicData를 컴포넌트 외부로 이동
+// topicData 외부로 이동
 const topicData = {
     math: {
         '1학년': ['자연수'],
@@ -64,6 +69,13 @@ const AIWorkbookPage = () => {
     const [questions, setQuestions] = useState([]);
     const [questionCount, setQuestionCount] = useState(0);
 
+    // 시험지에 추가된 문제들
+    const [testPaper, setTestPaper] = useState([]);
+
+    // 반 정보 상태
+    const [className, setClassName] = useState(''); // 반 정보
+    const [studentName, setStudentName] = useState(''); // 학생 이름
+
     // subject 또는 grade가 변경될 때 topics 업데이트
     useEffect(() => {
         if (subject && grade) {
@@ -79,6 +91,7 @@ const AIWorkbookPage = () => {
         }
     }, [subject]);
 
+    // 문제 가져오기 함수
     const fetchQuestions = () => {
         const topicsParam = selectedTopics.join(',');
         const endpoint = fetchType === 'all' ? '/jsl_api/all_questions' : '/jsl_api';
@@ -105,6 +118,71 @@ const AIWorkbookPage = () => {
             });
     };
 
+    // 드래그 종료 시 호출되는 함수
+    const onDragEnd = (result) => {
+        const { source, destination } = result;
+
+        // 목적지가 없으면 아무 작업도 수행하지 않음
+        if (!destination) return;
+
+        // 소스와 목적지가 동일한 경우 순서 변경
+        if (source.droppableId === destination.droppableId) {
+            if (source.droppableId === 'availableQuestions') {
+                const reordered = Array.from(questions);
+                const [moved] = reordered.splice(source.index, 1);
+                reordered.splice(destination.index, 0, moved);
+                setQuestions(reordered);
+            } else if (source.droppableId === 'testPaper') {
+                const reordered = Array.from(testPaper);
+                const [moved] = reordered.splice(source.index, 1);
+                reordered.splice(destination.index, 0, moved);
+                setTestPaper(reordered);
+            }
+        } else {
+            // 소스와 목적지가 다르면 이동
+            if (source.droppableId === 'availableQuestions' && destination.droppableId === 'testPaper') {
+                const sourceClone = Array.from(questions);
+                const destClone = Array.from(testPaper);
+                const [moved] = sourceClone.splice(source.index, 1);
+                // 중복 허용 여부 확인
+                if (!allowDuplicates && destClone.find((q) => q.problem_number === moved.problem_number)) {
+                    alert('이미 시험지에 추가된 문제입니다.');
+                    return;
+                }
+                destClone.splice(destination.index, 0, moved);
+                setQuestions(sourceClone);
+                setTestPaper(destClone);
+            } else if (source.droppableId === 'testPaper' && destination.droppableId === 'availableQuestions') {
+                const sourceClone = Array.from(testPaper);
+                const destClone = Array.from(questions);
+                const [moved] = sourceClone.splice(source.index, 1);
+                destClone.splice(destination.index, 0, moved);
+                setTestPaper(sourceClone);
+                setQuestions(destClone);
+            }
+        }
+    };
+
+    // 클릭하여 시험지에 추가하는 함수
+    const handleAddQuestion = (question) => {
+        if (!allowDuplicates && testPaper.find((q) => q.problem_number === question.problem_number)) {
+            alert('이미 시험지에 추가된 문제입니다.');
+            return;
+        }
+        // 시험지에 추가
+        setTestPaper((prev) => [...prev, question]);
+        // 사용 가능한 문제에서 제거
+        setQuestions((prev) => prev.filter((q) => q.problem_number !== question.problem_number));
+    };
+
+    // 클릭하여 시험지에서 제거하는 함수
+    const handleRemoveQuestion = (question) => {
+        // 시험지에서 제거
+        setTestPaper((prev) => prev.filter((q) => q.problem_number !== question.problem_number));
+        // 사용 가능한 문제에 추가
+        setQuestions((prev) => [...prev, question]);
+    };
+
     return (
         <div className={styles.container}>
             <header className={styles.header}>
@@ -113,6 +191,7 @@ const AIWorkbookPage = () => {
             <main className={styles.main}>
                 {/* 선택 섹션 */}
                 <div className={styles.selection}>
+                    {/* 과목 선택 섹션 */}
                     <section className={styles.section}>
                         <label htmlFor="subject">과목 선택</label>
                         <select id="subject" value={subject} onChange={(e) => setSubject(e.target.value)}>
@@ -121,6 +200,7 @@ const AIWorkbookPage = () => {
                         </select>
                     </section>
 
+                    {/* 학년 선택 섹션 */}
                     <section className={styles.section}>
                         <label htmlFor="grade">학년 선택</label>
                         <select id="grade" value={grade} onChange={(e) => setGrade(e.target.value)}>
@@ -132,6 +212,7 @@ const AIWorkbookPage = () => {
                         </select>
                     </section>
 
+                    {/* 단원 선택 섹션 */}
                     <section className={styles.section}>
                         <label htmlFor="topic">단원 선택 (드래그로 중복 선택 가능)</label>
                         <select
@@ -148,6 +229,7 @@ const AIWorkbookPage = () => {
                         </select>
                     </section>
 
+                    {/* 문제 가져오기 타입 섹션 */}
                     <section className={styles.section}>
                         <label>
                             <input
@@ -160,11 +242,18 @@ const AIWorkbookPage = () => {
                             랜덤 문제 가져오기
                         </label>
                         <label>
-                            <input type="radio" name="fetchType" value="all" onChange={() => setFetchType('all')} />
+                            <input
+                                type="radio"
+                                name="fetchType"
+                                value="all"
+                                checked={fetchType === 'all'}
+                                onChange={() => setFetchType('all')}
+                            />
                             모든 문제 가져오기
                         </label>
                     </section>
 
+                    {/* 난이도 설정 섹션 (fetchType이 'selected'일 때 표시) */}
                     {fetchType === 'selected' && (
                         <>
                             <section className={styles.section}>
@@ -172,7 +261,9 @@ const AIWorkbookPage = () => {
                                 <input
                                     type="number"
                                     value={difficulty.num_easy}
-                                    onChange={(e) => setDifficulty({ ...difficulty, num_easy: e.target.value })}
+                                    onChange={(e) =>
+                                        setDifficulty({ ...difficulty, num_easy: parseInt(e.target.value, 10) || 0 })
+                                    }
                                     min="0"
                                 />
                             </section>
@@ -181,7 +272,9 @@ const AIWorkbookPage = () => {
                                 <input
                                     type="number"
                                     value={difficulty.num_medium}
-                                    onChange={(e) => setDifficulty({ ...difficulty, num_medium: e.target.value })}
+                                    onChange={(e) =>
+                                        setDifficulty({ ...difficulty, num_medium: parseInt(e.target.value, 10) || 0 })
+                                    }
                                     min="0"
                                 />
                             </section>
@@ -190,7 +283,9 @@ const AIWorkbookPage = () => {
                                 <input
                                     type="number"
                                     value={difficulty.num_hard}
-                                    onChange={(e) => setDifficulty({ ...difficulty, num_hard: e.target.value })}
+                                    onChange={(e) =>
+                                        setDifficulty({ ...difficulty, num_hard: parseInt(e.target.value, 10) || 0 })
+                                    }
                                     min="0"
                                 />
                             </section>
@@ -207,34 +302,179 @@ const AIWorkbookPage = () => {
                         </>
                     )}
 
+                    {/* 반 입력 섹션 */}
+                    <section className={styles.section}>
+                        <label htmlFor="className">반 선택</label>
+                        <input
+                            id="className"
+                            type="text"
+                            value={className}
+                            onChange={(e) => setClassName(e.target.value)}
+                            placeholder="예: 1반"
+                        />
+                    </section>
+
+                    {/* 학생 이름 입력 섹션 */}
+                    <section className={styles.section}>
+                        <label htmlFor="studentName">학생 이름</label>
+                        <input
+                            id="studentName"
+                            type="text"
+                            value={studentName}
+                            onChange={(e) => setStudentName(e.target.value)}
+                            placeholder="예: 홍길동"
+                        />
+                    </section>
+
+                    {/* 문제 가져오기 버튼 섹션 */}
                     <section className={styles.section}>
                         <button onClick={fetchQuestions}>문제 가져오기</button>
+                    </section>
+
+                    {/* PDF 및 워드 다운로드 버튼 섹션 */}
+                    <section className={styles.section}>
+                        {testPaper.length > 0 && (
+                            <>
+                                <PDFDownloadLink
+                                    document={
+                                        <MyDocument
+                                            testPaper={testPaper}
+                                            grade={grade}
+                                            className={className}
+                                            studentName={studentName}
+                                        />
+                                    }
+                                    fileName="test_paper.pdf"
+                                    className={styles.pdfButton}
+                                >
+                                    {({ loading }) => (loading ? 'PDF 생성 중...' : '시험지 PDF 다운로드')}
+                                </PDFDownloadLink>
+                                <MyWordDocument
+                                    testPaper={testPaper}
+                                    grade={grade}
+                                    className={className}
+                                    studentName={studentName}
+                                />
+                            </>
+                        )}
                     </section>
                 </div>
 
                 {/* 질문 섹션 */}
                 <div className={styles.questionsContainer}>
-                    <section className={styles.section}>
-                        <div id="questionCount">총 {questionCount}개의 문제가 로드되었습니다.</div>
-                        <div id="questions">
-                            {questions.map((question) => (
-                                <div key={question.problem_number} className={styles.question}>
-                                    <p className={styles.questionTitle}>
-                                        문제 번호: {question.problem_number} (난이도: {question.difficulty_level})
-                                    </p>
-                                    <p>
-                                        <strong>문제:</strong> {question.problem}
-                                    </p>
-                                    <p>
-                                        <strong>보기:</strong> {question.answer}
-                                    </p>
-                                    <p>
-                                        <strong>해답:</strong> {question.correct_answer_text}
-                                    </p>
-                                </div>
-                            ))}
+                    {/* 드래그 앤 드롭 컨테이너 */}
+                    <DragDropContext onDragEnd={onDragEnd}>
+                        <div className={styles.dragDropContainer}>
+                            {/* 사용 가능한 문제 영역 */}
+                            <Droppable droppableId="availableQuestions">
+                                {(provided) => (
+                                    <div
+                                        className={styles.availableQuestions}
+                                        ref={provided.innerRef}
+                                        {...provided.droppableProps}
+                                    >
+                                        <h2>사용 가능한 문제</h2>
+                                        <div className={styles.count}>
+                                            <span>총 {questionCount}개의 문제</span>
+                                        </div>
+                                        {questions.map((question, index) => (
+                                            <Draggable
+                                                key={question.problem_number}
+                                                draggableId={question.problem_number.toString()}
+                                                index={index}
+                                            >
+                                                {(provided) => (
+                                                    <div
+                                                        className={styles.questionItem}
+                                                        ref={provided.innerRef}
+                                                        {...provided.draggableProps}
+                                                        {...provided.dragHandleProps}
+                                                        onClick={() => handleAddQuestion(question)}
+                                                        role="button"
+                                                        tabIndex={0}
+                                                        onKeyPress={(e) => {
+                                                            if (e.key === 'Enter' || e.key === ' ') {
+                                                                handleAddQuestion(question);
+                                                            }
+                                                        }}
+                                                    >
+                                                        <p>
+                                                            <strong>번호:</strong> {question.problem_number}
+                                                        </p>
+                                                        <p>
+                                                            <strong>난이도:</strong> {question.difficulty_level}
+                                                        </p>
+                                                        <p>
+                                                            <strong>문제:</strong> {question.problem}
+                                                        </p>
+                                                        {['multiple choice', 'true/false'].includes(
+                                                            question.question_type
+                                                        ) && (
+                                                            <p>
+                                                                <strong>보기:</strong> {question.answer}
+                                                            </p>
+                                                        )}
+                                                    </div>
+                                                )}
+                                            </Draggable>
+                                        ))}
+                                        {provided.placeholder}
+                                    </div>
+                                )}
+                            </Droppable>
+
+                            {/* 시험지 영역 */}
+                            <Droppable droppableId="testPaper">
+                                {(provided) => (
+                                    <div
+                                        className={styles.testPaper}
+                                        ref={provided.innerRef}
+                                        {...provided.droppableProps}
+                                    >
+                                        <h2>시험지</h2>
+                                        <div className={styles.count}>
+                                            <span>추가된 문제 수: {testPaper.length}</span>
+                                        </div>
+                                        {testPaper.map((question, index) => (
+                                            <Draggable
+                                                key={`test-${question.problem_number}-${index}`} // 중복 방지를 위해 index 추가
+                                                draggableId={`test-${question.problem_number}-${index}`}
+                                                index={index}
+                                            >
+                                                {(provided) => (
+                                                    <div
+                                                        className={styles.questionItem}
+                                                        ref={provided.innerRef}
+                                                        {...provided.draggableProps}
+                                                        {...provided.dragHandleProps}
+                                                        onClick={() => handleRemoveQuestion(question)}
+                                                        role="button"
+                                                        tabIndex={0}
+                                                        onKeyPress={(e) => {
+                                                            if (e.key === 'Enter' || e.key === ' ') {
+                                                                handleRemoveQuestion(question);
+                                                            }
+                                                        }}
+                                                    >
+                                                        <p>
+                                                            <strong>번호:</strong> {question.problem_number}
+                                                        </p>
+                                                        <p>
+                                                            <strong>난이도:</strong> {question.difficulty_level}
+                                                        </p>
+                                                        <p>
+                                                            <strong>문제:</strong> {question.problem}
+                                                        </p>
+                                                    </div>
+                                                )}
+                                            </Draggable>
+                                        ))}
+                                        {provided.placeholder}
+                                    </div>
+                                )}
+                            </Droppable>
                         </div>
-                    </section>
+                    </DragDropContext>
                 </div>
             </main>
             <footer className={styles.footer}>&copy; Jsl 문제 은행</footer>
