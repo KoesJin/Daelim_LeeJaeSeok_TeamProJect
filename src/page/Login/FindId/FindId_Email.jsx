@@ -6,7 +6,7 @@ import MainTitle from '../../../img/TeacHub.png'; // 메인 로고 이미지 imp
 
 function FindId_email() {
     // 회원가입 정보
-    const userId = '';
+
     const [userEmail, setUserEmail] = useState('');
 
     // navigate 훅
@@ -45,7 +45,6 @@ function FindId_email() {
                 },
                 body: JSON.stringify({
                     userEmail,
-                    userId,
                 }),
             });
 
