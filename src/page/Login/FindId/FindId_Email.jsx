@@ -55,6 +55,7 @@ function FindId_email() {
 
             if (result.status === '200') {
                 alert(result.message);
+                navigate('/');
             } else {
                 alert(result.message);
             }

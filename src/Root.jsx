@@ -58,8 +58,12 @@ function Root() {
             !accessToken &&
             location.pathname !== '/signuppage' &&
             location.pathname !== '/checksignuppage' &&
-            location.pathname !== '/findpassword' &&
-            location.pathname !== '/findid'
+            location.pathname !== '/findpassword-email' &&
+            location.pathname !== '/findpassword-phone' &&
+            location.pathname !== '/checkfindid' &&
+            location.pathname !== '/findid-email' &&
+            location.pathname !== '/findid-phone' &&
+            location.pathname !== '/checkfindpassword'
         ) {
             navigate('/');
         }
@@ -74,8 +78,12 @@ function Root() {
             {location.pathname !== '/' &&
                 location.pathname !== '/signuppage' &&
                 location.pathname !== '/checksignuppage' &&
-                location.pathname !== '/findpassword' &&
-                location.pathname !== '/findid' && <Header />}
+                location.pathname !== '/findpassword-email' &&
+                location.pathname !== '/findpassword-phone' &&
+                location.pathname !== '/checkfindid' &&
+                location.pathname !== '/findid-email' &&
+                location.pathname !== '/findid-phone' &&
+                location.pathname !== '/checkfindpassword' && <Header />}
             <TransitionGroup>
                 <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
                     <AnimationContainer>

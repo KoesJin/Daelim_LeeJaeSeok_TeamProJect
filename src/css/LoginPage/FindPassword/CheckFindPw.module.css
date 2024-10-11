@@ -1,41 +1,15 @@
-/* 기본 스타일 (기본 화면 크기) */
+/* 기본 스타일 */
 .ScrollContainer {
     height: 100vh;
-    overflow-y: hidden;
+    /* overflow-y: auto; */
     background-color: #fff;
 }
 
-.CheckSignUpBody {
+.CheckFindPwBody {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
     padding: 3rem;
-}
-
-/* Back Button */
-.backButton {
-    width: 30%;
-    height: 55px;
-    border-radius: 10px;
-    background: #30a04d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 6rem;
-}
-
-.backButtonText {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: #fff;
-    margin: 0;
-}
-
-.backButton:hover {
-    background-color: #267a37;
 }
 
 /* Main Logo */
@@ -82,13 +56,14 @@
     align-items: flex-start;
     position: relative;
     overflow: hidden;
-    transition: transform 0.5s ease, box-shadow 0.5s ease, border 0.5s ease;
+    transition: transform 0.5s ease, box-shadow 0.5s ease, border 0.5s ease, align-items 0.5s ease;
 }
 
 .optionContainer:hover {
     border: 2px solid #30a04d;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     transform: translateY(-10px) scale(1.05);
+    align-items: center; /* 중앙 정렬 */
 }
 
 .optionTitle {
@@ -99,28 +74,15 @@
     margin-bottom: 20px;
     text-align: left;
     padding-left: 10px;
-    transition: color 0.5s ease, transform 0.5s ease;
+    transition: color 0.5s ease, transform 0.5s ease, text-align 0.5s ease;
 }
 
-/* Hover 상태에서 중앙 정렬 */
-.optionContainer:hover {
-    justify-content: flex-start;
-    align-items: center;
-}
-
-/* Hover 상태에서 변경 */
 .optionContainer:hover .optionTitle {
     color: #30a04d;
     font-size: 2.2rem;
-    transform: translateX(-5%);
-}
-
-.optionContainer:hover .subText {
-    display: block;
-    font-size: 1rem;
-    color: #757575;
-    margin-bottom: 20px;
-    transition: opacity 0.5s ease;
+    transform: translateX(0);
+    text-align: center; /* 중앙 정렬 */
+    padding-left: 0; /* 왼쪽 패딩 제거 */
 }
 
 .subText {
@@ -130,8 +92,12 @@
 
 .optionContainer:hover .subText {
     display: block;
+    font-size: 1rem;
+    color: #757575;
+    margin-bottom: 20px;
     opacity: 1;
     transition: opacity 0.5s ease;
+    text-align: center; /* 중앙 정렬 */
 }
 
 /* SignUp Button */
@@ -146,8 +112,7 @@
     border: none;
     opacity: 0;
     transition: opacity 0.5s ease, background-color 0.3s ease;
-    z-index: 10; /* 필요에 따라 z-index 값을 조정 */
-    pointer-events: auto; /* 클릭 이벤트 허용 */
+    z-index: 10;
 }
 
 .optionContainer:hover .signUpButton {
@@ -160,61 +125,46 @@
     transition: background-color 0.3s ease;
 }
 
-/* 로고 숨기기 */
-.appleLogo,
-.teachCongLogo,
-.GoogleLogo,
-.NaverLogo {
-    opacity: 1;
-    transition: opacity 0.5s ease;
-}
-
-.optionContainer:hover .appleLogo,
-.optionContainer:hover .teachCongLogo,
-.optionContainer:hover .GoogleLogo,
-.optionContainer:hover .NaverLogo {
-    opacity: 0;
-}
-
-.appleLogo {
-    width: 290px;
-    height: 310px;
-    object-fit: cover;
-    margin-top: auto;
-    opacity: 0.75;
-    position: absolute;
-    right: -50px;
-    bottom: -70px;
-}
-
-.teachCongLogo {
+/* 아이콘 스타일 */
+.optionIcon {
     width: 200px;
     height: 250px;
     object-fit: cover;
     margin-top: auto;
     position: absolute;
-    right: 0px;
-    bottom: -30px;
+    right: 10px;
+    bottom: -15px;
+    opacity: 0.75;
+    transition: opacity 0.5s ease;
 }
 
-.GoogleLogo {
-    width: 200px;
-    height: 280px;
-    object-fit: cover;
-    opacity: 0.8;
-    position: absolute;
-    right: -10px;
-    bottom: -50px;
+.optionContainer:hover .optionIcon {
+    opacity: 0;
 }
 
-.NaverLogo {
-    width: 215px;
-    height: 225px;
-    object-fit: cover;
-    margin-top: auto;
-    position: absolute;
-    right: -10px;
-    bottom: -20px;
+/* Back Button */
+.backButton {
+    width: 30%;
+    height: 55px;
+    border-radius: 10px;
+    background: #30a04d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 6rem;
+}
+
+.backButtonText {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #fff;
+    margin: 0;
+}
+
+.backButton:hover {
+    background-color: #267a37;
 }
 
 /* 반응형 스타일 */
@@ -223,23 +173,6 @@
 @media (max-width: 1440px) {
     .CheckSignUpBody {
         padding: 3rem; /* 패딩을 줄여서 전체적인 공간 조정 */
-    }
-
-    .optionContainer {
-        width: 250px; /* 옵션 컨테이너 크기 줄이기 */
-        height: 440px;
-    }
-
-    .optionTitle {
-        font-size: 1.7rem; /* 27.2px */
-    }
-
-    .signUpButton {
-        font-size: 1.1rem; /* 17.6px */
-    }
-
-    .backButton {
-        margin-top: 10rem;
     }
 }
 

@@ -14,9 +14,11 @@ import CheckInformation from '../page/Header/Info/CheckInformation';
 import Settings from '../page/Header/Info/Settings';
 import PersonalInfoChange from '../page/Header/Info/PersonalInfoChange';
 import PasswordChange from '../page/Header/Info/PasswordChange';
-import FindPassword from '../page/Login/FindPassword/FindPassword';
-import FindId from '../page/Login/FindId/FindId';
 import ToolPage from '../page/Main/ToolPage';
+import CheckFindPw from '../page/Login/FindPassword/CheckFindPw';
+import FindPassword_email from '../page/Login/FindPassword/FindPassword_email';
+import CheckFindId from '../page/Login/FindId/CheckFindId';
+import FindId_email from '../page/Login/FindId/FindId_Email';
 
 const router = createBrowserRouter([
     {
@@ -24,66 +26,98 @@ const router = createBrowserRouter([
         element: <Root />,
         // errorElement: <ErrorPage />, 에러페이지
         children: [
+            // 기본 경로 로그인 페이지
             {
                 path: '',
                 element: <LoginPage />,
             },
+            //아이디 찾기
             {
-                path: '/findpassword',
-                element: <FindPassword />,
+                path: '/checkfindid',
+                element: <CheckFindId />,
             },
             {
-                path: '/findid',
-                element: <FindId />,
+                path: '/findid-email',
+                element: <FindId_email />,
             },
+            // {
+            //     path: '/findid-phone',
+            //     element: <FindId_phone />,
+            // },
+            //비밀번호 찾기
+            {
+                path: '/checkfindpassword',
+                element: <CheckFindPw />,
+            },
+            {
+                path: '/findpassword-email',
+                element: <FindPassword_email />,
+            },
+            // {
+            //     path: '/findpassword-phone',
+            //     element: <FindPassword_phone />,
+            // },
+            //회원가입 선택 창
             {
                 path: '/checksignuppage',
                 element: <CheckSignUpPage />,
             },
+            //회원가입
             {
                 path: '/signuppage',
                 element: <SignUpPage />,
             },
+            //메인페이지
             {
                 path: '/mainpage',
                 element: <MainPage />,
             },
+            // 정보수정 페이지
             {
                 path: '/checkinfo',
                 element: <CheckInformation />,
             },
+            // 정보 관리 페이지
             {
                 path: '/setting',
                 element: <Settings />,
             },
+            // 정보 변경 페이지
             {
                 path: '/personalinfo',
                 element: <PersonalInfoChange />,
             },
+            // 비밀번호 변경 페이지
             {
                 path: '/passwordchange',
                 element: <PasswordChange />,
             },
+            // 학생관리 페이지
             {
                 path: '/studentmanagement',
                 element: <StudentManagementPage />,
             },
+            // Ai 문제집 페이지
             {
                 path: '/ai-workbook',
                 element: <AIWorkbookPage />,
             },
+            // 시간표 페이지
             {
                 path: '/schedule',
                 element: <SchedulePage />,
             },
+            // 수업 도구 페이지
             {
                 path: '/tool',
                 element: <ToolPage />,
             },
+            // 문자 발송 페이지
             {
                 path: '/send-message',
                 element: <SendMessagePage />,
             },
+            // 자리 배치 페이지
             {
                 path: '/seat-assignment',
                 element: <SeatAssignmentPage />,

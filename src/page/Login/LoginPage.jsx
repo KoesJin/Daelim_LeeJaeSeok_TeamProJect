@@ -131,11 +131,11 @@ function LoginPage() {
 
                     {/* 링크들 */}
                     <div className={styles.links}>
-                        <span className={styles.link} onClick={() => navigate('/findid')}>
+                        <span className={styles.link} onClick={() => navigate('/checkfindid')}>
                             아이디 찾기
                         </span>
                         <span className={styles.separator}>|</span>
-                        <span className={styles.link} onClick={() => navigate('/findpassword')}>
+                        <span className={styles.link} onClick={() => navigate('/checkfindpassword')}>
                             비밀번호 찾기
                         </span>
                         <span className={styles.separator}>|</span>
@@ -152,12 +152,12 @@ function LoginPage() {
 
                     {/* 소셜 로그인 버튼들 */}
                     <div className={styles.socialLoginContainer}>
-                        <button className={styles.socialLoginButton} data-label="카카오톡">
+                        {/* <button className={styles.socialLoginButton} data-label="카카오톡">
                             <KakaoIcon className={styles.socialIcon} />
                             <span className={styles.socialText} onClick={() => alert('준비중입니다.')}>
                                 카카오 계정으로 로그인
                             </span>
-                        </button>
+                        </button> */}
                         <button className={styles.socialLoginButton} data-label="구글">
                             <GoogleIcon className={styles.socialIcon} />
                             <span className={styles.socialText} onClick={() => alert('준비중입니다.')}>
