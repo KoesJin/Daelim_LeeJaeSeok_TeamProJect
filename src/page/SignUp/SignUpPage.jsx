@@ -147,6 +147,15 @@ function SignUpPage() {
             return;
         }
 
+        // 이메일 유효성 검사 정규식
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // 이메일 유효성 검사
+        if (!emailRegex.test(userEmail)) {
+            alert('유효한 이메일 주소를 입력해 주세요.');
+            return;
+        }
+
         try {
             // 중복 검사 앤드포인트
             const duplicateTest_response = await fetch(`${baseURL}/api/user/checkEmail`, {
