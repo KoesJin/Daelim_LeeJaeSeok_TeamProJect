@@ -1,6 +1,6 @@
 .wrap {
     height: 100vh;
-    background-color: #f9f9f9;
+    background-color: #fff;
     overflow-y: auto; /* 스크롤 가능하게 설정 */
 }
 
@@ -9,8 +9,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 30px 20px 80px 20px;
-    min-height: 100vh; /* 최소 높이 설정 */
+    padding: 3rem 3rem 5rem 3rem;
     box-sizing: border-box;
 }
 
