@@ -75,30 +75,33 @@ const CheckInformation = () => {
     };
 
     return (
-        <div className={styles.CheckInformationContainer}>
-            <div className={styles.container}>
-                <h2>정보 확인</h2>
-                <form>
-                    <div className={styles.inputContainer}>
-                        <FaUser className={styles.icon} />
-                        <div className={styles.userName}>{userId}</div>
-                    </div>
-                    <div className={styles.inputContainer}>
-                        <FaLock className={styles.icon} />
-                        <input
-                            type="password"
-                            className={styles.CheckInformationInput}
-                            onChange={(e) => setUserPw(e.target.value)}
-                            placeholder="비밀번호"
-                        />
-                    </div>
-                    <button className={styles.saveButton} onClick={handleCkeckPw}>
-                        확인
-                    </button>
-                </form>
-                <button className={styles.cancelButton} onClick={() => navigate('/mainpage')}>
-                    뒤로가기
-                </button>
+        <div className={styles.ScrollContainer}>
+            <div className={styles.CheckInformationContainer}>
+                <div className={styles.container}>
+                    <h1 className={styles.title}>정보확인</h1>
+                    <form>
+                        <div className={styles.inputContainer}>
+                            <input
+                                type="text"
+                                value={userId}
+                                className={styles.CheckInformationInput}
+                                placeholder="아이디"
+                                disabled
+                            />
+                        </div>
+                        <div className={styles.inputContainer}>
+                            <input
+                                type="password"
+                                className={styles.CheckInformationInput}
+                                onChange={(e) => setUserPw(e.target.value)}
+                                placeholder="비밀번호"
+                            />
+                        </div>
+                        <button className={styles.saveButton} onClick={handleCkeckPw}>
+                            확인
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     );
