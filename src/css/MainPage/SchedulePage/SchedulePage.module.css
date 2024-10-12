@@ -1,7 +1,7 @@
 .wrap {
     height: 100vh;
     background-color: #fff;
-    overflow-y: auto; /* 스크롤 가능하게 설정 */
+    overflow-y: hidden; /* 스크롤 가능하게 설정 */
 }
 
 .container {
@@ -9,15 +9,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 3rem 3rem 5rem 3rem;
+    padding: 3rem;
     box-sizing: border-box;
 }
 
 .title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #30a04d;
-    margin-bottom: 30px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #242424;
+    margin-bottom: 40px;
     text-align: center;
 }
 
@@ -72,26 +72,15 @@
     background-color: #f0f0f0;
 }
 
-.backButtonWrapper {
-    margin-top: 40px;
-    margin-bottom: 30px; /* 추가 여백 */
-}
-
-.backButton {
-    font-size: 1.2rem;
-    color: white;
-    background-color: #30a04d;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.backButton:hover {
-    background-color: #267a37;
-}
-
 /* 반응형 스타일 */
+
+@media (max-height: 930px) {
+    .wrap {
+        padding-bottom: 6rem;
+        overflow-y: auto; /* 스크롤 가능하게 설정 */
+    }
+}
+
 /* 768px 이하 */
 @media (max-width: 768px) {
     .table {
@@ -109,17 +98,20 @@
         font-size: 1rem;
         padding: 10px;
     }
+
+    .title {
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: #242424;
+        margin-bottom: 40px;
+        text-align: center;
+    }
 }
 
 /* 490px 이하 */
-@media (max-width: 490px) {
-    /* .container {
-        padding: 30px 10px;
-    } */
-
+@media (max-width: 570px) {
     .title {
-        font-size: 2rem; /* 제목 크기 축소 */
-        margin-bottom: 20px;
+        font-size: 1.1rem; /* 제목 크기 축소 */
     }
 
     .table {
@@ -138,15 +130,5 @@
     .cell {
         font-size: 0.8rem; /* 텍스트 크기 축소 */
         padding: 10px;
-    }
-
-    .backButtonWrapper {
-        margin-top: 30px;
-        margin-bottom: 20px;
-    }
-
-    .backButton {
-        font-size: 1rem;
-        padding: 8px 15px;
     }
 }

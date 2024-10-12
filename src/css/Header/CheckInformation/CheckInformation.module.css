@@ -30,9 +30,9 @@
 
 /* 타이틀 스타일 */
 .title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #30a04d;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #242424;
     margin-bottom: 40px;
     text-align: center;
 }
@@ -112,34 +112,6 @@
     }
 }
 
-/* 768px 이하 화면용 미디어 쿼리 */
-@media (max-width: 768px) {
-    .container {
-        padding: 25px 20px;
-        max-width: 450px;
-    }
-
-    .title {
-        font-size: 2.3rem; /* 2.3rem으로 축소 */
-        margin-bottom: 30px;
-    }
-
-    .inputField {
-        height: 50px; /* 높이 조정 */
-        font-size: 0.95rem; /* 15px */
-    }
-
-    .saveButton,
-    .backButton {
-        padding: 12px;
-        font-size: 0.95rem; /* 15px */
-    }
-
-    .label {
-        font-size: 0.95rem; /* 15px */
-    }
-}
-
 /* 480px 이하 화면용 미디어 쿼리 */
 @media (max-width: 480px) {
     .container {
@@ -148,8 +120,7 @@
     }
 
     .title {
-        font-size: 2rem; /* 2rem으로 축소 */
-        margin-bottom: 20px;
+        font-size: 1.3rem;
     }
 
     .inputField {
@@ -168,34 +139,6 @@
     }
 }
 
-/* 410px 이하 화면용 미디어 쿼리 */
-@media (max-width: 410px) {
-    .container {
-        padding: 18px 12px;
-        max-width: 400px;
-    }
-
-    .title {
-        font-size: 1.6rem; /* 1.6rem으로 축소 */
-        margin-bottom: 18px;
-    }
-
-    .inputField {
-        height: 35px; /* 높이 조정 */
-        font-size: 0.85rem; /* 13.6px */
-    }
-
-    .saveButton,
-    .backButton {
-        padding: 8px;
-        font-size: 0.85rem; /* 13.6px */
-    }
-
-    .label {
-        font-size: 0.85rem; /* 13.6px */
-    }
-}
-
 /* 320px 이하 화면용 추가 미디어 쿼리 */
 @media (max-width: 320px) {
     .container {
@@ -204,8 +147,7 @@
     }
 
     .title {
-        font-size: 1.2rem; /* 1.2rem으로 축소 */
-        margin-bottom: 15px;
+        font-size: 1.1rem;
     }
 
     .inputField {

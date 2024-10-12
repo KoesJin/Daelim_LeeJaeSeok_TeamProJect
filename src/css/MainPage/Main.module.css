@@ -186,10 +186,10 @@
 
 /* 미디어 쿼리 */
 
-@media (max-height: 815px) {
+@media (max-height: 830px) {
     .ScrollContainer {
         overflow-y: auto; /* 작은 화면에서만 스크롤을 활성화 */
-        padding-bottom: 5rem;
+        padding-bottom: 8rem;
     }
 }
 

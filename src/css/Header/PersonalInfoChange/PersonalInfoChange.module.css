@@ -22,9 +22,9 @@
 }
 
 .title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #30a04d;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #242424;
     margin-bottom: 40px;
     text-align: center;
 }
@@ -118,9 +118,8 @@
         max-width: 450px;
     }
 
-    .container h2 {
-        font-size: 1.8rem;
-        margin-bottom: 25px;
+    .title {
+        font-size: 1.3rem;
     }
 
     .inputText,
@@ -147,9 +146,8 @@
         max-width: 420px;
     }
 
-    .container h2 {
-        font-size: 1.6rem;
-        margin-bottom: 20px;
+    .title {
+        font-size: 1.1rem;
     }
 
     .inputText,
@@ -169,35 +167,6 @@
     }
 }
 
-/* 410px 이하 화면용 미디어 쿼리 */
-@media (max-width: 410px) {
-    .container {
-        padding: 18px 12px;
-        max-width: 400px;
-    }
-
-    .container h2 {
-        font-size: 1.4rem;
-        margin-bottom: 18px;
-    }
-
-    .inputText,
-    .disabledInputField {
-        height: 35px;
-        font-size: 0.85rem; /* 13.6px */
-    }
-
-    .saveButton,
-    .backButton {
-        padding: 8px;
-        font-size: 0.85rem; /* 13.6px */
-    }
-
-    .label {
-        font-size: 0.85rem; /* 13.6px */
-    }
-}
-
 /* 320px 이하 화면용 추가 미디어 쿼리 */
 @media (max-width: 320px) {
     .container {
@@ -205,9 +174,8 @@
         max-width: 350px;
     }
 
-    .container h2 {
-        font-size: 1.2rem;
-        margin-bottom: 15px;
+    .title {
+        font-size: 1rem;
     }
 
     .inputText,

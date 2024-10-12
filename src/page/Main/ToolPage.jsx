@@ -15,7 +15,7 @@ const ToolPage = () => {
     return (
         <div className={styles.ScrollContainer}>
             <div className={styles.container}>
-                <h1 className={styles.title}>수업 도구</h1>
+                <h1 className={styles.title}>수업도구</h1>
 
                 <div className={styles.toolGrid}>
                     {/* 투표 도구 */}
@@ -64,12 +64,6 @@ const ToolPage = () => {
                         <p className={styles.toolName}>자리 선정</p>
                     </div>
                 </div>
-
-                {/* <div className={styles.backButtonWrapper}>
-                    <Link to="/mainpage" className={styles.backButton}>
-                        뒤로가기
-                    </Link>
-                </div> */}
             </div>
         </div>
     );

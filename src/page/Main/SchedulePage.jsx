@@ -29,12 +29,6 @@ const SchedulePage = () => {
                         </div>
                     ))}
                 </div>
-
-                <div className={styles.backButtonWrapper}>
-                    <Link to="/mainpage" className={styles.backButton}>
-                        뒤로가기
-                    </Link>
-                </div>
             </div>
         </div>
     );

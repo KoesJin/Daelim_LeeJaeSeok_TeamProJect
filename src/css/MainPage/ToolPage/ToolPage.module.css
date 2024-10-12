@@ -13,9 +13,9 @@
 }
 
 .title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #30a04d;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #242424;
     margin-bottom: 40px;
     text-align: center;
     position: relative; /* 상단 고정 해제 */
@@ -57,24 +57,6 @@
     font-weight: 500;
     color: #242424;
 }
-/* 
-.backButtonWrapper {
-    margin-top: 40px;
-} */
-
-/* .backButton {
-    font-size: 1.2rem;
-    color: white;
-    background-color: #30a04d;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.backButton:hover {
-    background-color: #267a37;
-} */
 
 @media (max-height: 700px) {
     .ScrollContainer {
@@ -83,30 +65,18 @@
     }
 }
 
-@media (max-width: 736px) {
+@media (max-width: 768px) {
     .ScrollContainer {
         padding-bottom: 5rem;
         overflow-y: auto; /* 스크롤 가능하게 설정 */
     }
 }
 
-/* 578px 이하 */
-@media (max-width: 578px) {
-    .title {
-        font-size: 2.2rem;
-        margin-bottom: 35px;
-    }
-}
-
 /* 360px 이하 */
 @media (max-width: 360px) {
     .title {
-        font-size: 2rem;
-        margin-bottom: 30px;
-        padding-top: 20px;
-        text-align: center;
+        font-size: 1.3rem;
     }
-
     .toolItem {
         padding: 20px;
     }
@@ -119,9 +89,4 @@
     .toolName {
         font-size: 1.2rem;
     }
-
-    /* .backButton {
-        font-size: 1rem;
-        padding: 8px 15px;
-    } */
 }
