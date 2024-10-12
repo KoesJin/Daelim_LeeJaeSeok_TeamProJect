@@ -1,12 +1,15 @@
+.ScrollContainer {
+    height: 100vh;
+    overflow-y: hidden;
+    background-color: #fff;
+}
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    height: 100vh;
-    background-color: #f9f9f9;
-    padding: 80px 20px; /* 상하좌우 padding */
-    overflow-y: auto; /* 스크롤 가능하게 설정 */
+    padding: 3rem;
 }
 
 .title {
@@ -54,12 +57,12 @@
     font-weight: 500;
     color: #242424;
 }
-
+/* 
 .backButtonWrapper {
     margin-top: 40px;
-}
+} */
 
-.backButton {
+/* .backButton {
     font-size: 1.2rem;
     color: white;
     background-color: #30a04d;
@@ -71,20 +74,24 @@
 
 .backButton:hover {
     background-color: #267a37;
-}
+} */
 
-@media (max-width: 1640px) {
-    .container {
-        padding-bottom: 120px;
+@media (max-height: 700px) {
+    .ScrollContainer {
+        padding-bottom: 5rem;
+        overflow-y: auto; /* 스크롤 가능하게 설정 */
     }
 }
+
+@media (max-width: 736px) {
+    .ScrollContainer {
+        padding-bottom: 5rem;
+        overflow-y: auto; /* 스크롤 가능하게 설정 */
+    }
+}
+
 /* 578px 이하 */
 @media (max-width: 578px) {
-    .container {
-        overflow-y: auto;
-        padding-bottom: 120px;
-    }
-
     .title {
         font-size: 2.2rem;
         margin-bottom: 35px;
@@ -113,8 +120,8 @@
         font-size: 1.2rem;
     }
 
-    .backButton {
+    /* .backButton {
         font-size: 1rem;
         padding: 8px 15px;
-    }
+    } */
 }
