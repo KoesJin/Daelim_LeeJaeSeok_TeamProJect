@@ -36,9 +36,9 @@ const PersonalInfoChange = () => {
         e.preventDefault();
 
         // 유효성 검사
-        const nameRegex = /^[가-힣]{2,5}$/;
+        const nameRegex = /^[가-힣]{2,4}$/;
         if (!nameRegex.test(userName)) {
-            alert('이름은 2자에서 5자 사이의 한글만 입력 가능합니다.');
+            alert('이름은 2자에서 4자 사이의 한글만 입력 가능합니다.');
             return;
         }
 
@@ -172,6 +172,7 @@ const PersonalInfoChange = () => {
                             defaultValue={userName}
                             onChange={(e) => setUserName(e.target.value)}
                             className={styles.inputField}
+                            maxLength={4}
                         />
                     </div>
                     <div className={styles.inputContainer}>
@@ -182,6 +183,7 @@ const PersonalInfoChange = () => {
                             defaultValue={userNum}
                             onChange={(e) => setUserNum(e.target.value)}
                             className={styles.inputField}
+                            maxLength={11}
                         />
                     </div>
                     <div className={styles.inputContainer}>
@@ -212,6 +214,7 @@ const PersonalInfoChange = () => {
                             defaultValue={schoolName}
                             onChange={(e) => setSchoolName(e.target.value)}
                             className={styles.inputField}
+                            maxLength={15}
                         />
                     </div>
                     <div className={styles.inputContainer}>
@@ -222,6 +225,7 @@ const PersonalInfoChange = () => {
                             defaultValue={classNum}
                             onChange={(e) => setClassNum(e.target.value)}
                             className={styles.inputField}
+                            maxLength={2}
                         />
                     </div>
                     <button type="submit" className={styles.saveButton}>
@@ -231,7 +235,7 @@ const PersonalInfoChange = () => {
                         type="button"
                         className={styles.saveButton}
                         onClick={() => {
-                            navigate('/setting');
+                            navigate('/mypage');
                         }}
                     >
                         뒤로가기

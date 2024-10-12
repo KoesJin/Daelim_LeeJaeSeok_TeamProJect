@@ -150,7 +150,7 @@ const PasswordChange = () => {
                     </div>
                     <button className={styles.saveButton}>변경 사항 저장</button>
                 </form>
-                <button className={styles.saveButton} onClick={() => navigate('/setting')}>
+                <button className={styles.saveButton} onClick={() => navigate('/mypage')}>
                     뒤로 가기
                 </button>
             </div>
