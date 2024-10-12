@@ -1,37 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../../css/Header/PasswordChange/PasswordChange.module.css';
-import { FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const PasswordChange = () => {
-    // 비밀번호 , 변경할 비밀번호 , 변경할 비밀번호 확인 정보
+    // 비밀번호 상태 관리
     const [currentPw, setCurrentPw] = useState('');
     const [userPw, setUserPw] = useState('');
     const [userConPw, setUserConPw] = useState('');
 
-    // 앤드포인트의 userId 받아오기 위한 정보
+    // userId 상태 관리
     const [userId, setUserId] = useState('');
 
-    //useNavigate 훅
+    // useNavigate 훅
     const navigate = useNavigate();
 
     // userId 가져오는 useEffect 훅
     useEffect(() => {
-        // 새로고침 시에도 localStorage에서 userName를 불러오게함
-        const storedUserName = localStorage.getItem('userId');
-        if (storedUserName) {
-            setUserId(storedUserName);
+        const storedUserId = localStorage.getItem('userId');
+        if (storedUserId) {
+            setUserId(storedUserId);
         }
     }, []);
 
-    //비밀번호 저장 함수
+    // 비밀번호 저장 함수
     const handleSaveChanges = async (e) => {
         e.preventDefault();
 
         // 비밀번호 유효성 검사 (최소 8자, 영어와 숫자 포함, 한글 미포함)
-
         if (!currentPw) {
-            alert('비밀번호를 입력해 주세요.');
+            alert('현재 비밀번호를 입력해 주세요.');
             return;
         }
 
@@ -64,21 +61,19 @@ const PasswordChange = () => {
             return;
         }
 
-        //앤드포인트
+        // 앤드포인트
         try {
             let baseURL = '';
             if (process.env.NODE_ENV === 'development') {
                 baseURL = 'http://121.139.20.242:8859';
             }
 
-            // /user 포함된 앤드포인트에 사용 해야함
             const bearerToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
             if (!bearerToken) {
                 alert('사용자가 인증되지 않았습니다.');
                 return;
             }
 
-            // /user/delete ,/user/update, /user/updatepassword 포함된 앤드포인트에 사용 해야함
             const pwbearerToken = localStorage.getItem('PasswordVerAuth') || sessionStorage.getItem('PasswordVerAuth');
             if (!pwbearerToken) {
                 alert('사용자가 인증되지 않았습니다.');
@@ -90,8 +85,8 @@ const PasswordChange = () => {
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
-                    Authorization: bearerToken, // /user 포함된 앤드포인트에 사용 해야함
-                    PasswordVerAuth: pwbearerToken, // /user/delete ,/user/update, /user/updatepassword 포함된 앤드포인트에 사용 해야함
+                    Authorization: bearerToken,
+                    PasswordVerAuth: pwbearerToken,
                 },
                 body: JSON.stringify({
                     currentPw,
@@ -104,55 +99,77 @@ const PasswordChange = () => {
 
             if (result.status === '200') {
                 alert(result.message);
-                navigate('/setting');
+                navigate('/mypage');
             } else {
                 alert(result.message);
             }
         } catch (error) {
-            alert('정보를 변경할 수 없습니다.');
+            alert('비밀번호를 변경할 수 없습니다.');
         }
     };
 
     return (
-        <div className={styles.PasswordChangeContainer}>
-            <div className={styles.container}>
-                <h2>비밀번호 변경</h2>
-                <form onSubmit={handleSaveChanges}>
-                    <div className={styles.inputContainer}>
-                        <FaLock className={styles.icon} />
-                        <input
-                            type="password"
-                            className={styles.inputField}
-                            placeholder="비밀번호"
-                            value={currentPw}
-                            onChange={(e) => setCurrentPw(e.target.value)}
-                        />
-                    </div>
-                    <div className={styles.inputContainer}>
-                        <FaLock className={styles.icon} />
-                        <input
-                            type="password"
-                            className={styles.inputField}
-                            placeholder="새 비밀번호"
-                            value={userPw}
-                            onChange={(e) => setUserPw(e.target.value)}
-                        />
-                    </div>
-                    <div className={styles.inputContainer}>
-                        <FaLock className={styles.icon} />
-                        <input
-                            type="password"
-                            className={styles.inputField}
-                            placeholder="새 비밀번호 확인"
-                            value={userConPw}
-                            onChange={(e) => setUserConPw(e.target.value)}
-                        />
-                    </div>
-                    <button className={styles.saveButton}>변경 사항 저장</button>
-                </form>
-                <button className={styles.saveButton} onClick={() => navigate('/mypage')}>
-                    뒤로 가기
-                </button>
+        <div className={styles.ScrollContainer}>
+            <div className={styles.InfoContainer}>
+                <div className={styles.container}>
+                    {/* 제목을 h1으로 변경 */}
+                    <h1 className={styles.title}>비밀번호 변경</h1>
+                    <form className={styles.form} onSubmit={handleSaveChanges}>
+                        {/* 현재 비밀번호 입력 필드 */}
+                        <div className={styles.formGroup}>
+                            <label htmlFor="currentPw" className={styles.label}>
+                                현재 비밀번호
+                            </label>
+                            <input
+                                type="password"
+                                id="currentPw"
+                                placeholder="현재 비밀번호를 입력해주세요"
+                                value={currentPw}
+                                onChange={(e) => setCurrentPw(e.target.value)}
+                                className={styles.inputText}
+                            />
+                        </div>
+
+                        {/* 새 비밀번호 입력 필드 */}
+                        <div className={styles.formGroup}>
+                            <label htmlFor="userPw" className={styles.label}>
+                                새 비밀번호
+                            </label>
+                            <input
+                                type="password"
+                                id="userPw"
+                                placeholder="새 비밀번호를 입력해주세요"
+                                value={userPw}
+                                onChange={(e) => setUserPw(e.target.value)}
+                                className={styles.inputText}
+                            />
+                        </div>
+
+                        {/* 새 비밀번호 확인 입력 필드 */}
+                        <div className={styles.formGroup}>
+                            <label htmlFor="userConPw" className={styles.label}>
+                                새 비밀번호 확인
+                            </label>
+                            <input
+                                type="password"
+                                id="userConPw"
+                                placeholder="새 비밀번호를 다시 입력해주세요"
+                                value={userConPw}
+                                onChange={(e) => setUserConPw(e.target.value)}
+                                className={styles.inputText}
+                            />
+                        </div>
+
+                        {/* 변경 사항 저장 버튼 */}
+                        <button type="submit" className={styles.saveButton}>
+                            변경 사항 저장
+                        </button>
+                        {/* 뒤로 가기 버튼 */}
+                        <button type="button" className={styles.backButton} onClick={() => navigate('/mypage')}>
+                            뒤로 가기
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     );
