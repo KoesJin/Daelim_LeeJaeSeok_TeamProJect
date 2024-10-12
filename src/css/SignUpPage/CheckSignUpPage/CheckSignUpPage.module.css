@@ -16,7 +16,7 @@
 /* Back Button */
 .backButton {
     width: 30%;
-    height: 55px;
+    padding: 0.55rem;
     border-radius: 10px;
     background: #30a04d;
     display: flex;

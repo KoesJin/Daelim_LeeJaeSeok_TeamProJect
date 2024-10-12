@@ -64,7 +64,7 @@
 .signUpButton,
 .backButton {
     width: 100%;
-    padding: 1rem;
+    padding: 0.9rem;
     border-radius: 10px;
     background: #30a04d;
     color: white;
