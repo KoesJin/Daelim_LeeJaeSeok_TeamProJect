@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../../css/Header/PersonalInfoChange/PersonalInfoChange.module.css';
-import { FaUser, FaPhone, FaCalendarAlt, FaEnvelope, FaSchool, FaChalkboardTeacher } from 'react-icons/fa'; // Font Awesome 아이콘 import
 import { useNavigate } from 'react-router-dom';
 
 const PersonalInfoChange = () => {
-    // 회원정보
+    // 회원정보 상태 관리
     const [userId, setUserId] = useState('');
     const [userName, setUserName] = useState('');
     const [userNum, setUserNum] = useState('');
@@ -21,17 +20,16 @@ const PersonalInfoChange = () => {
         }
     }, []); // 한번만 실행
 
-    // userId가 있을시에 handleTakeInfo 실행시키는 useEffect 훅
+    // userId가 있을 시 정보 가져오기
     useEffect(() => {
         if (userId) {
             handleTakeInfo();
         }
-    }, [userId]); // userId가 변경될 때만 handleTakeInfo 실행
+    }, [userId]);
 
-    //useNavigate 훅
     const navigate = useNavigate();
 
-    //정보수정 저장 함수
+    // 정보수정 저장 함수
     const handleSaveChanges = async (e) => {
         e.preventDefault();
 
@@ -108,7 +106,7 @@ const PersonalInfoChange = () => {
         }
     };
 
-    //회원 정보 불러오는 함수
+    // 회원 정보 불러오는 함수
     const handleTakeInfo = async () => {
         try {
             let baseURL = '';
@@ -150,97 +148,131 @@ const PersonalInfoChange = () => {
     };
 
     return (
-        <div className={styles.PersonalInfoChangeContainer}>
-            <div className={styles.container}>
-                <h2>개인정보 변경</h2>
-                <form className={styles.form} onSubmit={handleSaveChanges}>
-                    <div className={styles.inputContainer}>
-                        <FaUser className={styles.icon} />
-                        <input
-                            type="text"
-                            placeholder="아이디"
-                            value={userId}
-                            className={styles.disabledInputField}
-                            disabled
-                        />
-                    </div>
-                    <div className={styles.inputContainer}>
-                        <FaUser className={styles.icon} />
-                        <input
-                            type="text"
-                            placeholder="이름"
-                            defaultValue={userName}
-                            onChange={(e) => setUserName(e.target.value)}
-                            className={styles.inputField}
-                            maxLength={4}
-                        />
-                    </div>
-                    <div className={styles.inputContainer}>
-                        <FaPhone className={styles.icon} />
-                        <input
-                            type="text"
-                            placeholder="전화번호"
-                            defaultValue={userNum}
-                            onChange={(e) => setUserNum(e.target.value)}
-                            className={styles.inputField}
-                            maxLength={11}
-                        />
-                    </div>
-                    <div className={styles.inputContainer}>
-                        <FaCalendarAlt className={styles.icon} />
-                        <input
-                            type="date"
-                            placeholder="생년월일"
-                            value={userDate}
-                            className={styles.disabledInputField}
-                            disabled
-                        />
-                    </div>
-                    <div className={styles.inputContainer}>
-                        <FaEnvelope className={styles.icon} />
-                        <input
-                            type="email"
-                            placeholder="이메일"
-                            value={userEmail}
-                            className={styles.disabledInputField}
-                            disabled
-                        />
-                    </div>
-                    <div className={styles.inputContainer}>
-                        <FaSchool className={styles.icon} />
-                        <input
-                            type="text"
-                            placeholder="학교명"
-                            defaultValue={schoolName}
-                            onChange={(e) => setSchoolName(e.target.value)}
-                            className={styles.inputField}
-                            maxLength={15}
-                        />
-                    </div>
-                    <div className={styles.inputContainer}>
-                        <FaChalkboardTeacher className={styles.icon} />
-                        <input
-                            type="text"
-                            placeholder="반"
-                            defaultValue={classNum}
-                            onChange={(e) => setClassNum(e.target.value)}
-                            className={styles.inputField}
-                            maxLength={2}
-                        />
-                    </div>
-                    <button type="submit" className={styles.saveButton}>
-                        변경 사항 저장
-                    </button>
-                    <button
-                        type="button"
-                        className={styles.saveButton}
-                        onClick={() => {
-                            navigate('/mypage');
-                        }}
-                    >
-                        뒤로가기
-                    </button>
-                </form>
+        <div className={styles.ScrollContainer}>
+            <div className={styles.InfoContainer}>
+                <div className={styles.container}>
+                    <h1 className={styles.title}>개인정보 변경</h1>
+                    <form className={styles.form} onSubmit={handleSaveChanges}>
+                        {/* 아이디 입력 필드 */}
+                        <div className={styles.formGroup}>
+                            <label htmlFor="userId" className={styles.label}>
+                                아이디
+                            </label>
+                            <input
+                                type="text"
+                                id="userId"
+                                placeholder="아이디"
+                                value={userId}
+                                className={styles.disabledInputField}
+                                disabled
+                            />
+                        </div>
+
+                        {/* 이름 입력 필드 */}
+                        <div className={styles.formGroup}>
+                            <label htmlFor="userName" className={styles.label}>
+                                이름
+                            </label>
+                            <input
+                                type="text"
+                                id="userName"
+                                placeholder="이름을 입력해주세요"
+                                value={userName}
+                                onChange={(e) => setUserName(e.target.value)}
+                                className={styles.inputText}
+                                maxLength={4}
+                            />
+                        </div>
+
+                        {/* 전화번호 입력 필드 */}
+                        <div className={styles.formGroup}>
+                            <label htmlFor="userNum" className={styles.label}>
+                                전화번호
+                            </label>
+                            <input
+                                type="text"
+                                id="userNum"
+                                placeholder="전화번호를 입력해주세요"
+                                value={userNum}
+                                onChange={(e) => setUserNum(e.target.value)}
+                                className={styles.inputText}
+                                maxLength={11}
+                            />
+                        </div>
+
+                        {/* 생년월일 입력 필드 */}
+                        <div className={styles.formGroup}>
+                            <label htmlFor="userDate" className={styles.label}>
+                                생년월일
+                            </label>
+                            <input
+                                type="date"
+                                id="userDate"
+                                placeholder="생년월일"
+                                value={userDate}
+                                className={styles.disabledInputField}
+                                disabled
+                            />
+                        </div>
+
+                        {/* 이메일 입력 필드 */}
+                        <div className={styles.formGroup}>
+                            <label htmlFor="userEmail" className={styles.label}>
+                                이메일
+                            </label>
+                            <input
+                                type="email"
+                                id="userEmail"
+                                placeholder="이메일을 입력해주세요"
+                                value={userEmail}
+                                className={styles.disabledInputField}
+                                disabled
+                            />
+                        </div>
+
+                        {/* 학교명 입력 필드 */}
+                        <div className={styles.formGroup}>
+                            <label htmlFor="schoolName" className={styles.label}>
+                                학교명
+                            </label>
+                            <input
+                                type="text"
+                                id="schoolName"
+                                placeholder="학교명을 입력해주세요"
+                                value={schoolName}
+                                onChange={(e) => setSchoolName(e.target.value)}
+                                className={styles.inputText}
+                                maxLength={15}
+                            />
+                        </div>
+
+                        {/* 반 입력 필드 */}
+                        <div className={styles.formGroup}>
+                            <label htmlFor="classNum" className={styles.label}>
+                                반
+                            </label>
+                            <input
+                                type="text"
+                                id="classNum"
+                                placeholder="반을 입력해주세요"
+                                value={classNum}
+                                onChange={(e) => setClassNum(e.target.value)}
+                                className={styles.inputText}
+                                maxLength={2}
+                            />
+                        </div>
+
+                        {/* 변경 사항 저장 버튼 */}
+                        <button type="submit" className={styles.saveButton}>
+                            변경 사항 저장
+                        </button>
+
+                        {/* 뒤로가기 버튼 */}
+                        <button type="button" className={styles.backButton} onClick={() => navigate('/mypage')}>
+                            뒤로가기
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     );

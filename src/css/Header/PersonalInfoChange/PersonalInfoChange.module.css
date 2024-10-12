@@ -1,97 +1,83 @@
-.PersonalInfoChangeContainer {
-    height: calc(100vh - 10vh);
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 5vh;
+.ScrollContainer {
+    height: 100vh;
     overflow-y: auto;
-    color: #333; /* 전체 컨테이너 내 텍스트 색상 */
+    background-color: #fff;
+}
+
+.InfoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 3rem 8rem 3rem;
 }
 
 .container {
     background: #fff;
-    padding: 30px 30px;
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
     text-align: center;
     box-sizing: border-box;
-    color: inherit; /* 부모의 색상을 상속받음 */
+    color: inherit;
+    margin-top: 20px;
 }
 
-.container h2 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: #333;
-    font-weight: bold;
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #30a04d;
+    margin-bottom: 40px;
     text-align: center;
 }
 
-.inputContainer {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 15px;
-    padding-bottom: 5px;
-    color: inherit; /* 입력 필드와 아이콘도 부모의 색상을 상속받음 */
+.form {
     width: 100%;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.inputContainer svg {
-    margin-right: 10px;
-    color: #000; /* SVG 아이콘은 검은색으로 유지 */
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-.inputField {
-    flex: 1;
-    padding: 10px 3px;
-    border: none;
-    background-color: transparent;
-    box-shadow: none;
-    font-size: inherit;
-    color: inherit;
+.label {
+    font-size: 1rem; /* 16px */
+    color: #9d9d9d;
+    margin-bottom: 5px;
+}
+
+.inputText,
+.disabledInputField {
+    width: 100%;
+    height: 55px;
+    border: 2px solid #30a04d;
+    border-radius: 10px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-size: 1rem; /* 16px */
+    flex-shrink: 0; /* 추가 */
 }
 
 .disabledInputField {
-    flex: 1;
-    padding: 10px 3px;
-    border: none;
     background-color: #f0f0f0; /* 회색 배경 */
-    box-shadow: none;
-    font-size: inherit;
     color: #a0a0a0; /* 회색 텍스트 */
 }
 
-.inputField:focus {
+.inputText:focus {
     outline: none;
+    border-color: #267a37;
 }
 
-.inputField::placeholder {
-    color: #333; /* placeholder의 색상도 일관되게 유지 */
+.inputText::placeholder,
+.disabledInputField::placeholder {
+    color: #999;
     opacity: 1;
 }
 
-/* 웹킷 기반 브라우저 (Chrome, Safari 등) */
-.inputField::-webkit-input-placeholder {
-    color: #333; /* 원하는 색상으로 변경 */
-}
-
-/* Mozilla 기반 브라우저 (Firefox) */
-.inputField::-moz-placeholder {
-    color: #333; /* 원하는 색상으로 변경 */
-}
-
-/* Microsoft Edge 및 구형 Internet Explorer */
-.inputField:-ms-input-placeholder {
-    color: #333; /* 원하는 색상으로 변경 */
-}
-
-/* Internet Explorer 10+ */
-.inputField::-ms-input-placeholder {
-    color: #333; /* 원하는 색상으로 변경 */
-}
-
-.saveButton {
+.saveButton,
+.backButton {
     padding: 15px;
     border: none;
     font-size: 1rem;
@@ -100,52 +86,143 @@
     background-color: #e6e6fa;
     color: #333;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 20px;
     text-align: center;
     width: 100%;
+    border-radius: 10px;
+}
+
+.saveButton {
+    background-color: #30a04d;
+    color: #fff;
 }
 
 .saveButton:hover {
-    background-color: #d8bfd8;
-    box-shadow: none;
+    background-color: #267a37;
 }
 
-.modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+.backButton {
+    background-color: #30a04d;
+    color: #fff;
 }
 
-.modalContent {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-    position: relative;
-    color: #333; /* 모달 내 텍스트 색상 */
+.backButton:hover {
+    background-color: #267a37;
 }
 
-.closeButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
+/* 반응형 디자인 */
+
+/* 768px 이하 화면용 미디어 쿼리 */
+@media (max-width: 768px) {
+    .container {
+        padding: 25px 20px;
+        max-width: 450px;
+    }
+
+    .container h2 {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+
+    .inputText,
+    .disabledInputField {
+        height: 40px;
+        font-size: 0.95rem; /* 15px */
+    }
+
+    .saveButton,
+    .backButton {
+        padding: 12px;
+        font-size: 0.95rem; /* 15px */
+    }
+
+    .label {
+        font-size: 0.95rem; /* 15px */
+    }
 }
 
-.modalContent h3 {
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 1.5rem;
+/* 480px 이하 화면용 미디어 쿼리 */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 15px;
+        max-width: 420px;
+    }
+
+    .container h2 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
+    .inputText,
+    .disabledInputField {
+        height: 38px;
+        font-size: 0.9rem; /* 14px */
+    }
+
+    .saveButton,
+    .backButton {
+        padding: 10px;
+        font-size: 0.9rem; /* 14px */
+    }
+
+    .label {
+        font-size: 0.9rem; /* 14px */
+    }
+}
+
+/* 410px 이하 화면용 미디어 쿼리 */
+@media (max-width: 410px) {
+    .container {
+        padding: 18px 12px;
+        max-width: 400px;
+    }
+
+    .container h2 {
+        font-size: 1.4rem;
+        margin-bottom: 18px;
+    }
+
+    .inputText,
+    .disabledInputField {
+        height: 35px;
+        font-size: 0.85rem; /* 13.6px */
+    }
+
+    .saveButton,
+    .backButton {
+        padding: 8px;
+        font-size: 0.85rem; /* 13.6px */
+    }
+
+    .label {
+        font-size: 0.85rem; /* 13.6px */
+    }
+}
+
+/* 320px 이하 화면용 추가 미디어 쿼리 */
+@media (max-width: 320px) {
+    .container {
+        padding: 15px 10px;
+        max-width: 350px;
+    }
+
+    .container h2 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .inputText,
+    .disabledInputField {
+        height: 30px;
+        font-size: 0.8rem; /* 12.8px */
+    }
+
+    .saveButton,
+    .backButton {
+        padding: 6px;
+        font-size: 0.8rem; /* 12.8px */
+    }
+
+    .label {
+        font-size: 0.8rem; /* 12.8px */
+    }
 }
