@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../../css/Header/CheckInformation/CheckInformation.module.css';
-import { FaUser, FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const CheckInformation = () => {
@@ -64,7 +63,7 @@ const CheckInformation = () => {
                 sessionStorage.setItem('PasswordVerAuth', bearerToken);
 
                 alert(result.message);
-                navigate('/setting');
+                navigate('/mypage');
             } else {
                 alert(result.message);
             }

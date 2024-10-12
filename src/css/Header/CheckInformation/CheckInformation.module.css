@@ -14,7 +14,7 @@
 .container {
     background: #fff;
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
     text-align: center;
     box-sizing: border-box;
     color: inherit;
@@ -68,8 +68,7 @@
 }
 
 /* Buttons */
-.saveButton,
-.cancelButton {
+.saveButton {
     width: 100%;
     padding: 0.9rem;
     border-radius: 10px;
@@ -80,19 +79,12 @@
     margin-bottom: 15px;
     cursor: pointer;
     font-weight: bold;
-}
-
-.saveButton {
     margin-top: 15px;
+    transition: background-color 0.3s;
 }
 
-.cancelButton {
-    background: #28a745;
-}
-
-.saveButton:hover,
-.cancelButton:hover {
-    opacity: 0.9;
+.saveButton:hover {
+    background-color: #267a37;
 }
 
 /* Placeholder color */
@@ -105,15 +97,9 @@
 
 /* 768px resolution (tablet) */
 @media (max-width: 768px) {
-    .container {
-        padding: 1.5rem;
+    .title {
+        font-size: 2.3rem;
     }
-
-    .container h2 {
-        font-size: 1.4rem;
-        margin-bottom: 35px;
-    }
-
     .inputContainer {
         padding: 7px;
     }
@@ -122,8 +108,7 @@
         font-size: 0.875rem;
     }
 
-    .saveButton,
-    .cancelButton {
+    .saveButton {
         font-size: 0.9375rem;
         padding: 0.625rem;
     }
@@ -131,17 +116,13 @@
 
 @media (max-height: 480px) {
     .ScrollContainer {
-        padding-bottom: 2rem;
+        padding-bottom: 3rem;
         overflow-y: auto; /* 스크롤 가능하게 설정 */
     }
 }
 
 /* 480px resolution (mobile) */
 @media (max-width: 480px) {
-    .container {
-        padding: 1rem;
-    }
-
     .title {
         font-size: 2rem;
     }
@@ -154,8 +135,7 @@
         font-size: 0.8125rem;
     }
 
-    .saveButton,
-    .cancelButton {
+    .saveButton {
         font-size: 0.875rem;
         padding: 0.5rem;
     }
