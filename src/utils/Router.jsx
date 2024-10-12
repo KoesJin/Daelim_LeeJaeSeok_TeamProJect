@@ -11,7 +11,6 @@ import SeatAssignmentPage from '../page/Main/SeatAssignmentPage';
 import SignUpPage from '../page/SignUp/SignUpPage';
 import CheckSignUpPage from '../page/SignUp/CheckSignUpPage';
 import CheckInformation from '../page/Header/Info/CheckInformation';
-import Settings from '../page/Header/Info/Settings';
 import PersonalInfoChange from '../page/Header/Info/PersonalInfoChange';
 import PasswordChange from '../page/Header/Info/PasswordChange';
 import ToolPage from '../page/Main/ToolPage';
@@ -19,6 +18,7 @@ import CheckFindPw from '../page/Login/FindPassword/CheckFindPw';
 import FindPassword_email from '../page/Login/FindPassword/FindPassword_email';
 import CheckFindId from '../page/Login/FindId/CheckFindId';
 import FindId_email from '../page/Login/FindId/FindId_Email';
+import MyPage from '../page/Header/Info/MyPage';
 
 const router = createBrowserRouter([
     {
@@ -77,10 +77,10 @@ const router = createBrowserRouter([
                 path: '/checkinfo',
                 element: <CheckInformation />,
             },
-            // 정보 관리 페이지
+            // 마이페이지
             {
-                path: '/setting',
-                element: <Settings />,
+                path: '/mypage',
+                element: <MyPage />,
             },
             // 정보 변경 페이지
             {

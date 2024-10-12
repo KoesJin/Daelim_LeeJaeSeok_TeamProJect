@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../../../css/Header/Settings/Settings.module.css';
+import styles from '../../../css/Header/MyPage/MyPage.module.css';
 import { useNavigate } from 'react-router-dom';
 
-const Settings = () => {
+const MyPage = () => {
     // 회원 정보
     const [userId, setUserId] = useState('');
     const [userPw, setUserPw] = useState('');
@@ -102,58 +102,67 @@ const Settings = () => {
     };
 
     return (
-        <div className={styles.SettingsContainer}>
-            <div className={styles.container}>
-                <h2>내 정보 관리</h2>
-                <button className={styles.optionButton} onClick={() => navigate('/personalinfo')}>
-                    개인정보 변경
-                </button>
-                <button className={styles.optionButton} onClick={() => navigate('/passwordchange')}>
-                    비밀번호 변경
-                </button>
-                <button
-                    className={styles.optionButton}
-                    onClick={() => alert('준비중입니다.')}
-                    // onClick={() => navigate('')}
-                >
-                    출석표
-                </button>
-                <button className={styles.optionButton} onClick={() => navigate('')}>
-                    빈칸
-                </button>
-                <button className={styles.deletButton} onClick={handleDeleteClick}>
-                    회원 탈퇴
-                </button>
-            </div>
-
-            {showModal && (
-                <div className={styles.modalOverlay}>
-                    <div className={styles.modalContent}>
-                        <button className={styles.closeButton} onClick={handleCloseModal}>
-                            &times;
+        <div className={styles.ScrollContainer}>
+            <div className={styles.SettingsContainer}>
+                <div className={styles.container}>
+                    <h1 className={styles.title}>마이페이지</h1>
+                    <div className={styles.buttonContainer}>
+                        <button className={styles.optionButton} onClick={() => navigate('/personalinfo')}>
+                            개인정보 변경
                         </button>
-                        <h2>회원 탈퇴</h2>
-                        <p>계정을 삭제하려면 현재 사용중인 비밀번호를 입력하세요</p>
-                        <form onSubmit={handleConfirmDelete}>
-                            <input
-                                type="password"
-                                value={userPw}
-                                onChange={(e) => setUserPw(e.target.value)}
-                                placeholder="비밀번호를 입력하세요"
-                                className={styles.modalInput}
-                            />
-                            <div className={styles.checkboxContainer}>
-                                <input type="checkbox" checked={isChecked} onClick={() => setIsChecked(!isChecked)} />
-                                <label htmlFor="agree">동의합니다.</label>
-                            </div>
-                            <p className={styles.warningText}>계정삭제 모든 정보가 삭제되며 복구 불가능합니다.</p>
-                            <button className={styles.deletButton}>탈퇴 하기</button>
-                        </form>
+                        <button className={styles.optionButton} onClick={() => navigate('/passwordchange')}>
+                            비밀번호 변경
+                        </button>
+                        <button
+                            className={styles.optionButton}
+                            onClick={() => alert('준비중입니다.')}
+                            // onClick={() => navigate('')}
+                        >
+                            출석표
+                        </button>
+                        <button className={styles.optionButton} onClick={() => navigate('')}>
+                            빈칸
+                        </button>
+                        <button className={styles.deleteButton} onClick={handleDeleteClick}>
+                            회원 탈퇴
+                        </button>
                     </div>
                 </div>
-            )}
+
+                {showModal && (
+                    <div className={styles.modalOverlay}>
+                        <div className={styles.modalContent}>
+                            <button className={styles.closeButton} onClick={handleCloseModal}>
+                                &times;
+                            </button>
+                            <h2 className={styles.modalTitle}>회원 탈퇴</h2>
+                            <p className={styles.modalText}>계정을 삭제하려면 현재 사용중인 비밀번호를 입력하세요</p>
+                            <form onSubmit={handleConfirmDelete}>
+                                <input
+                                    type="password"
+                                    value={userPw}
+                                    onChange={(e) => setUserPw(e.target.value)}
+                                    placeholder="비밀번호를 입력하세요"
+                                    className={styles.modalInput}
+                                />
+                                <div className={styles.checkboxContainer}>
+                                    <input
+                                        type="checkbox"
+                                        checked={isChecked}
+                                        onChange={() => setIsChecked(!isChecked)}
+                                        id="agree"
+                                    />
+                                    <label htmlFor="agree">동의합니다.</label>
+                                </div>
+                                <p className={styles.warningText}>계정삭제 모든 정보가 삭제되며 복구 불가능합니다.</p>
+                                <button className={styles.deleteButton}>탈퇴 하기</button>
+                            </form>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
 
-export default Settings;
+export default MyPage;

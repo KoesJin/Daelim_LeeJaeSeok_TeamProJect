@@ -1,0 +1,186 @@
+/* 기본 스타일 */
+.ScrollContainer {
+    height: 100vh;
+    overflow-y: hidden;
+    background-color: #fff;
+}
+
+.SettingsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+}
+
+.container {
+    background: #fff;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-sizing: border-box;
+    color: inherit;
+    margin-top: 20px;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #30a04d;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.buttonContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.optionButton,
+.deleteButton {
+    width: 100%;
+    padding: 0.9rem;
+    border-radius: 10px;
+    background-color: #30a04d;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem; /* 20px */
+    flex-shrink: 0;
+    transition: background-color 0.3s;
+}
+
+.deleteButton {
+    background-color: #ff4d4d; /* 탈퇴 버튼은 빨간색으로 변경 */
+}
+
+.optionButton:hover {
+    background-color: #267a37;
+}
+.deleteButton:hover {
+    background-color: #d32f2f;
+}
+
+/* 모달 스타일 */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContent {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.closeButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.modalTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modalText {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modalInput {
+    width: 100%;
+    padding: 0.9rem;
+    border: 2px solid #30a04d;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.modalInput::placeholder {
+    color: #9d9d9d;
+}
+
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.checkboxContainer input[type='checkbox'] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+}
+
+.warningText {
+    color: red;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+/* 반응형 디자인 */
+
+@media (max-height: 600px) {
+    .ScrollContainer {
+        padding-bottom: 5rem;
+        overflow-y: auto; /* 스크롤 가능하게 설정 */
+    }
+}
+
+/* 768 미디어 쿼리 */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.3rem; /* 16px */
+    }
+
+    .optionButton,
+    .deleteButton {
+        padding: 0.8rem;
+        font-size: 1.125rem; /* 18px */
+    }
+
+    .modalInput {
+        padding: 0.8rem;
+        font-size: 0.9rem; /* 15px */
+    }
+}
+
+/* 480px 이하 화면용 미디어 쿼리 */
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem; /* 16px */
+    }
+
+    .optionButton,
+    .deleteButton {
+        padding: 0.7rem;
+        font-size: 0.8rem; /* 16px */
+    }
+
+    .modalInput {
+        padding: 0.7rem;
+        font-size: 0.8rem; /* 14px */
+    }
+}
