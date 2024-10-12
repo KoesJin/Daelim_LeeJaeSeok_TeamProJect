@@ -1,6 +1,8 @@
 /* .ScrollContainer */
 .ScrollContainer {
     height: 100vh;
+    overflow-y: hidden;
+    background-color: #fff;
 }
 
 /* .container */
@@ -184,17 +186,15 @@
 
 /* 미디어 쿼리 */
 
-@media (max-width: 1600px) {
+@media (max-height: 815px) {
     .ScrollContainer {
-        padding-bottom: 100px;
+        overflow-y: auto; /* 작은 화면에서만 스크롤을 활성화 */
+        padding-bottom: 5rem;
     }
 }
 
 /* 해상도 1430px 이하 */
 @media (max-width: 1480px) {
-    .ScrollContainer {
-        padding-bottom: 100px;
-    }
     .container {
         padding: 100px 50px 30px 100px;
     }
@@ -228,12 +228,12 @@
 /* 1024px 이하에서의 미디어 쿼리 */
 @media (max-width: 1024px) {
     .ScrollContainer {
-        padding-bottom: 100px;
+        overflow-y: auto;
+        padding-bottom: 5rem;
     }
 
     .container {
-        padding: 100px 20px 20px 50px;
-
+        padding: 100px 20px 0px 50px;
         justify-content: space-between; /* 요소 간 간격 균등 분배 */
     }
 
@@ -295,10 +295,6 @@
 
 /* 768px 이하에서의 미디어 쿼리 */
 @media (max-width: 768px) {
-    .ScrollContainer {
-        padding-bottom: 100px;
-    }
-
     .container {
         padding: 50px 20px 20px 20px;
         flex-direction: column; /* 요소들을 세로로 배치 */
@@ -373,10 +369,6 @@
 }
 
 @media (max-width: 768px) {
-    .ScrollContainer {
-        padding-bottom: 100px;
-    }
-
     .container {
         padding: 50px 20px 20px 20px;
         flex-direction: column;
@@ -425,9 +417,6 @@
 
 /* 해상도 480px 이하 */
 @media (max-width: 480px) {
-    .ScrollContainer {
-        padding-bottom: 100px;
-    }
     .container {
         flex-direction: column;
         padding: 20px;
@@ -529,11 +518,5 @@
 
     .helpText {
         font-size: 1.2rem;
-    }
-}
-
-@media (max-height: 1030px) {
-    .ScrollContainer {
-        overflow-y: auto; /* 작은 화면에서만 스크롤을 활성화 */
     }
 }
