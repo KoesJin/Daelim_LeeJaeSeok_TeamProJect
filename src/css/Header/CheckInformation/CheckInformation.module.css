@@ -1,26 +1,34 @@
+/* 전체 스크롤 컨테이너 */
 .ScrollContainer {
     height: 100vh;
-    overflow-y: hidden;
-    background-color: #fff;
+    overflow-y: auto; /* 스크롤 동작을 일관되게 설정 */
+    background-color: #fff; /* 배경색을 #fff로 설정 */
 }
 
-.CheckInformationContainer {
+/* 정보 확인 컨테이너 */
+.checkInfoContainer {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    padding: 3rem;
+    padding: 3rem; /* 패딩을 일관되게 설정 */
+    box-sizing: border-box;
 }
 
+/* 내부 컨테이너 */
 .container {
-    background: #fff;
+    background: #fff; /* 배경색을 #fff로 설정 */
     width: 100%;
     max-width: 400px;
     text-align: center;
     box-sizing: border-box;
     color: inherit;
     margin-top: 20px;
+    border: none; /* 테두리 제거 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    box-shadow: none; /* 그림자 제거 */
 }
 
+/* 타이틀 스타일 */
 .title {
     font-size: 2.5rem;
     font-weight: 700;
@@ -28,115 +36,190 @@
     margin-bottom: 40px;
     text-align: center;
 }
-.userName {
-    font-size: 1rem;
-    color: #333;
-    text-align: left;
+
+/* 폼 스타일 */
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.inputContainer {
-    height: 55px;
+/* 폼 그룹 스타일 */
+.formGroup {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* 레이블 스타일 */
+.label {
+    font-size: 1rem; /* 16px */
+    color: #9d9d9d;
+    margin-bottom: 5px;
+}
+
+/* 입력 필드 스타일 */
+.inputField {
     width: 100%;
-    margin-bottom: 20px;
+    height: 55px; /* 입력 필드 높이 */
+    border: 2px solid #30a04d; /* 전체 테두리 유지 */
     border-radius: 10px;
     padding: 0 10px;
-    border: 2px solid #30a04d;
     box-sizing: border-box;
-    flex-shrink: 0; /* 추가 */
-}
-
-.icon {
-    margin-right: 10px;
-    color: #000;
-}
-
-.CheckInformationInput {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    background: none;
-    font-size: 1rem;
-    margin-right: 0.3rem;
-    background-color: transparent;
-    box-shadow: none;
-    color: inherit;
-}
-
-.CheckInformationInput:focus {
-    outline: none;
-}
-
-/* Buttons */
-.saveButton {
-    width: 100%;
-    padding: 0.9rem;
-    border-radius: 10px;
-    background: #30a04d;
-    color: white;
-    border: none;
-    font-size: 1.125rem;
-    margin-bottom: 15px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 15px;
-    transition: background-color 0.3s;
-}
-
-.saveButton:hover {
-    background-color: #267a37;
-}
-
-/* Placeholder color */
-.CheckInformationInput::placeholder {
+    font-size: 1rem; /* 16px */
     color: #333;
+    background-color: #fff; /* 배경색을 #fff로 설정 */
+}
+
+.inputField:focus {
+    outline: none;
+    border-color: #267a37; /* 포커스 시 테두리 색상 변경 */
+}
+
+.inputField::placeholder {
+    color: #999;
     opacity: 1;
 }
 
-/* Responsive styles */
-
-/* 768px resolution (tablet) */
-@media (max-width: 768px) {
-    .title {
-        font-size: 2.3rem;
-    }
-    .inputContainer {
-        padding: 7px;
-    }
-
-    .CheckInformationInput {
-        font-size: 0.875rem;
-    }
-
-    .saveButton {
-        font-size: 0.9375rem;
-        padding: 0.625rem;
-    }
+/* 버튼 스타일 */
+.saveButton {
+    margin-top: 10px;
+    padding: 15px;
+    border: none;
+    font-size: 1rem; /* 16px */
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #30a04d; /* 버튼 배경색 */
+    color: #fff; /* 버튼 텍스트 색상 */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    width: 100%;
+    border-radius: 10px;
 }
 
-@media (max-height: 480px) {
+.saveButton:hover {
+    background-color: #267a37; /* 호버 시 배경색 변경 */
+    box-shadow: none; /* 그림자 제거 */
+}
+
+/* 반응형 디자인 */
+
+@media (max-height: 515px) {
     .ScrollContainer {
-        padding-bottom: 3rem;
+        padding-bottom: 5rem;
         overflow-y: auto; /* 스크롤 가능하게 설정 */
     }
 }
 
-/* 480px resolution (mobile) */
-@media (max-width: 480px) {
+/* 768px 이하 화면용 미디어 쿼리 */
+@media (max-width: 768px) {
+    .container {
+        padding: 25px 20px;
+        max-width: 450px;
+    }
+
     .title {
-        font-size: 2rem;
+        font-size: 2.3rem; /* 2.3rem으로 축소 */
+        margin-bottom: 30px;
     }
 
-    .inputContainer {
-        padding: 5px;
+    .inputField {
+        height: 50px; /* 높이 조정 */
+        font-size: 0.95rem; /* 15px */
     }
 
-    .CheckInformationInput {
-        font-size: 0.8125rem;
+    .saveButton,
+    .backButton {
+        padding: 12px;
+        font-size: 0.95rem; /* 15px */
     }
 
-    .saveButton {
-        font-size: 0.875rem;
-        padding: 0.5rem;
+    .label {
+        font-size: 0.95rem; /* 15px */
+    }
+}
+
+/* 480px 이하 화면용 미디어 쿼리 */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 15px;
+        max-width: 420px;
+    }
+
+    .title {
+        font-size: 2rem; /* 2rem으로 축소 */
+        margin-bottom: 20px;
+    }
+
+    .inputField {
+        height: 38px; /* 높이 조정 */
+        font-size: 0.9rem; /* 14px */
+    }
+
+    .saveButton,
+    .backButton {
+        padding: 10px;
+        font-size: 0.9rem; /* 14px */
+    }
+
+    .label {
+        font-size: 0.9rem; /* 14px */
+    }
+}
+
+/* 410px 이하 화면용 미디어 쿼리 */
+@media (max-width: 410px) {
+    .container {
+        padding: 18px 12px;
+        max-width: 400px;
+    }
+
+    .title {
+        font-size: 1.6rem; /* 1.6rem으로 축소 */
+        margin-bottom: 18px;
+    }
+
+    .inputField {
+        height: 35px; /* 높이 조정 */
+        font-size: 0.85rem; /* 13.6px */
+    }
+
+    .saveButton,
+    .backButton {
+        padding: 8px;
+        font-size: 0.85rem; /* 13.6px */
+    }
+
+    .label {
+        font-size: 0.85rem; /* 13.6px */
+    }
+}
+
+/* 320px 이하 화면용 추가 미디어 쿼리 */
+@media (max-width: 320px) {
+    .container {
+        padding: 15px 10px;
+        max-width: 350px;
+    }
+
+    .title {
+        font-size: 1.2rem; /* 1.2rem으로 축소 */
+        margin-bottom: 15px;
+    }
+
+    .inputField {
+        height: 30px; /* 높이 조정 */
+        font-size: 0.8rem; /* 12.8px */
+    }
+
+    .saveButton,
+    .backButton {
+        padding: 6px;
+        font-size: 0.8rem; /* 12.8px */
+    }
+
+    .label {
+        font-size: 0.8rem; /* 12.8px */
     }
 }

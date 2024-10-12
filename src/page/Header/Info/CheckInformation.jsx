@@ -3,7 +3,7 @@ import styles from '../../../css/Header/CheckInformation/CheckInformation.module
 import { useNavigate } from 'react-router-dom';
 
 const CheckInformation = () => {
-    //로그인 정보
+    // 로그인 정보 상태 관리
     const [userId, setUserId] = useState('');
     const [userPw, setUserPw] = useState('');
 
@@ -12,15 +12,14 @@ const CheckInformation = () => {
 
     // userId 가져오는 useEffect 훅
     useEffect(() => {
-        // 새로고침 시 localStorage에서 userName를 불러오게함
-        const storedUserName = localStorage.getItem('userId');
-        if (storedUserName) {
-            setUserId(storedUserName);
+        const storedUserId = localStorage.getItem('userId');
+        if (storedUserId) {
+            setUserId(storedUserId);
         }
     }, []);
 
     // 정보 확인 함수
-    const handleCkeckPw = async (e) => {
+    const handleCheckPw = async (e) => {
         e.preventDefault();
 
         if (!userPw) {
@@ -34,7 +33,7 @@ const CheckInformation = () => {
                 baseURL = 'http://121.139.20.242:8859';
             }
 
-            // /user 포함된 앤드포인트에 사용 해야함
+            // /user 포함된 앤드포인트에 사용
             const bearerToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
             if (!bearerToken) {
                 alert('사용자가 인증되지 않았습니다.');
@@ -46,7 +45,7 @@ const CheckInformation = () => {
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
-                    Authorization: bearerToken, // /user 포함된 앤드포인트에 사용 해야함
+                    Authorization: bearerToken, // /user 포함된 앤드포인트에 사용
                 },
                 body: JSON.stringify({ userId, userPw }),
             });
@@ -58,9 +57,9 @@ const CheckInformation = () => {
                 const jwtToken = result.data.accessPwToken;
 
                 // 'Bearer ' 접두사를 추가하여 JWT 토큰을 로컬 스토리지와 세션 스토리지에 저장
-                const bearerToken = `Bearer ${jwtToken}`;
-                localStorage.setItem('PasswordVerAuth', bearerToken);
-                sessionStorage.setItem('PasswordVerAuth', bearerToken);
+                const passwordAuthToken = `Bearer ${jwtToken}`;
+                localStorage.setItem('PasswordVerAuth', passwordAuthToken);
+                sessionStorage.setItem('PasswordVerAuth', passwordAuthToken);
 
                 alert(result.message);
                 navigate('/mypage');
@@ -68,35 +67,50 @@ const CheckInformation = () => {
                 alert(result.message);
             }
         } catch (error) {
-            console.error('Error logging in:', error);
+            console.error('Error confirming password:', error);
             alert('비밀번호가 잘못되었습니다.');
         }
     };
 
     return (
         <div className={styles.ScrollContainer}>
-            <div className={styles.CheckInformationContainer}>
+            <div className={styles.checkInfoContainer}>
                 <div className={styles.container}>
-                    <h1 className={styles.title}>정보확인</h1>
-                    <form>
-                        <div className={styles.inputContainer}>
+                    {/* 제목을 h1으로 변경 */}
+                    <h1 className={styles.title}>정보 확인</h1>
+                    <form onSubmit={handleCheckPw} className={styles.form}>
+                        {/* 아이디 입력 필드 */}
+                        <div className={styles.formGroup}>
+                            <label htmlFor="userId" className={styles.label}>
+                                아이디
+                            </label>
                             <input
                                 type="text"
+                                id="userId"
                                 value={userId}
-                                className={styles.CheckInformationInput}
-                                placeholder="아이디"
+                                placeholder="아이디를 입력해주세요"
+                                className={styles.inputField}
                                 disabled
                             />
                         </div>
-                        <div className={styles.inputContainer}>
+
+                        {/* 비밀번호 입력 필드 */}
+                        <div className={styles.formGroup}>
+                            <label htmlFor="userPw" className={styles.label}>
+                                비밀번호
+                            </label>
                             <input
                                 type="password"
-                                className={styles.CheckInformationInput}
+                                id="userPw"
+                                value={userPw}
                                 onChange={(e) => setUserPw(e.target.value)}
-                                placeholder="비밀번호"
+                                placeholder="비밀번호를 입력해주세요"
+                                className={styles.inputField}
                             />
                         </div>
-                        <button className={styles.saveButton} onClick={handleCkeckPw}>
+
+                        {/* 확인 버튼 */}
+                        <button type="submit" className={styles.saveButton}>
                             확인
                         </button>
                     </form>
