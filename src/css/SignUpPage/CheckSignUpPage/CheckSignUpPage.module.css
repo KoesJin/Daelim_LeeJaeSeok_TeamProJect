@@ -237,10 +237,6 @@
     .signUpButton {
         font-size: 1.1rem; /* 17.6px */
     }
-
-    .backButton {
-        margin-top: 10rem;
-    }
 }
 
 @media (max-height: 860px) {
