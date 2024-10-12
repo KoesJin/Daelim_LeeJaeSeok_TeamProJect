@@ -186,7 +186,7 @@
 }
 
 /* 476px 이하 - 모바일 버전 */
-@media (max-width: 476px) {
+@media (max-width: 480px) {
     .container {
         padding: 15px 20px;
     }

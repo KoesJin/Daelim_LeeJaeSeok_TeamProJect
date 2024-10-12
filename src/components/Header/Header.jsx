@@ -129,7 +129,7 @@ const Header = () => {
                                         closeMenuModal();
                                     }}
                                 >
-                                    내 정보 관리
+                                    마이페이지
                                 </li>
 
                                 <li className={styles.listItem} onClick={handleLogout}>
