@@ -18,18 +18,16 @@ function SignUpPage() {
     // 인증번호
     const [inputCode, setInputCode] = useState('');
 
-    // 아이디 , 전화번호 중복체크 정보
+    // 아이디 , 전화번호 , 이메일 중복체크 정보
     const [idDuplicateChecked, setIdDuplicateChecked] = useState(false);
     const [numDuplicateChecked, setNumDuplicateChecked] = useState(false);
-
-    // 이메일 중복체크 및 인증
     const [emailDuplicateChecked, setEmailDuplicateChecked] = useState(false);
 
     // 인증번호 요청 상태
     const [isCodeSent, setIsCodeSent] = useState(false);
 
-    // 이메일 인증 완료 상태
-    const [isEmailVerified, setIsEmailVerified] = useState(false);
+    // 전화번호 인증 완료 상태
+    const [isPhoneVerified, setIsPhoneVerified] = useState(false);
 
     // navigate 훅
     const navigate = useNavigate();
@@ -128,6 +126,7 @@ function SignUpPage() {
             if (result.status === '200') {
                 alert(result.message);
                 setNumDuplicateChecked(true);
+                setIsCodeSent(true); // 인증번호 입력란 활성화
             } else {
                 alert(result.message);
             }
@@ -176,7 +175,6 @@ function SignUpPage() {
             if (result.status === '200') {
                 alert(result.message);
                 setEmailDuplicateChecked(true);
-                setIsCodeSent(true); // 인증번호 입력란 활성화
             } else {
                 alert(result.message);
             }
@@ -186,7 +184,7 @@ function SignUpPage() {
         }
     };
 
-    // 이메일 인증번호 확인 함수
+    // 핸드폰 인증번호 확인 함수
     const handleVerifyCode = async (e) => {
         e.preventDefault();
 
@@ -197,14 +195,14 @@ function SignUpPage() {
 
         try {
             // 중복 검사 앤드포인트
-            const duplicateTest_response = await fetch(`${baseURL}/api/user/verificationSignUpEmailCode`, {
+            const duplicateTest_response = await fetch(`${baseURL}/api/user/verificationSignUpSmsCode`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
                 },
                 body: JSON.stringify({
-                    userEmail,
+                    userNum,
                     inputCode,
                 }),
             });
@@ -215,7 +213,7 @@ function SignUpPage() {
 
             if (result.status === '200') {
                 alert(result.message);
-                setIsEmailVerified(true);
+                setIsPhoneVerified(true);
             } else {
                 alert(result.message);
             }
@@ -243,18 +241,17 @@ function SignUpPage() {
 
         // 전화번호 중복 체크 코드
         if (!numDuplicateChecked) {
-            alert('전화번호 중복 확인을 먼저 해주세요.');
+            alert('전화번호 인증을 먼저 해주세요.');
             return;
         }
 
+        if (!isPhoneVerified) {
+            alert('인증번호 인증을 먼저 해주세요.');
+            return;
+        }
         // 이메일 중복 체크 코드
         if (!emailDuplicateChecked) {
-            alert('이메일 인증을 먼저 해주세요.');
-            return;
-        }
-
-        if (!isEmailVerified) {
-            alert('인증번호 인증을 먼저 해주세요.');
+            alert('이메일 중복 확인을 먼저 해주세요.');
             return;
         }
 
@@ -397,11 +394,32 @@ function SignUpPage() {
                         onChange={(e) => setUserNum(e.target.value)}
                         className={styles.inputField}
                         maxLength={11} // 전화번호 최대 11자 (010-1234-5678)
+                        disabled={isPhoneVerified}
                     />
-                    <button type="button" className={styles.checkButton} onClick={handleCheckuserNum}>
-                        중복 확인
-                    </button>
+                    {!isPhoneVerified && (
+                        <button type="button" className={styles.checkButton} onClick={handleCheckuserNum}>
+                            인증 하기
+                        </button>
+                    )}
                 </div>
+                {isCodeSent && (
+                    <div className={styles.inputContainer}>
+                        <input
+                            type="text"
+                            placeholder="인증번호"
+                            value={inputCode}
+                            onChange={(e) => setInputCode(e.target.value)}
+                            className={styles.inputField}
+                            maxLength={6}
+                            disabled={isPhoneVerified}
+                        />
+                        {!isPhoneVerified && (
+                            <button type="button" className={styles.checkButton} onClick={handleVerifyCode}>
+                                인증
+                            </button>
+                        )}
+                    </div>
+                )}
 
                 <div className={styles.inputContainer}>
                     <input
@@ -421,33 +439,11 @@ function SignUpPage() {
                         onChange={(e) => setUserEmail(e.target.value)}
                         className={styles.inputField}
                         maxLength={25} // 이메일 최대 25자
-                        disabled={isEmailVerified}
                     />
-                    {!isEmailVerified && (
-                        <button type="button" className={styles.checkButton} onClick={handleCheckuserEmail}>
-                            인증하기
-                        </button>
-                    )}
+                    <button type="button" className={styles.checkButton} onClick={handleCheckuserEmail}>
+                        중복확인
+                    </button>
                 </div>
-
-                {isCodeSent && (
-                    <div className={styles.inputContainer}>
-                        <input
-                            type="text"
-                            placeholder="인증번호"
-                            value={inputCode}
-                            onChange={(e) => setInputCode(e.target.value)}
-                            className={styles.inputField}
-                            maxLength={6}
-                            disabled={isEmailVerified}
-                        />
-                        {!isEmailVerified && (
-                            <button type="button" className={styles.checkButton} onClick={handleVerifyCode}>
-                                인증
-                            </button>
-                        )}
-                    </div>
-                )}
 
                 <div className={styles.inputContainer}>
                     <input
