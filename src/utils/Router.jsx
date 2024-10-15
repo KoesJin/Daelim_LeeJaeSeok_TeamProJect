@@ -20,6 +20,7 @@ import CheckFindId from '../page/Login/FindId/CheckFindId';
 import FindId_email from '../page/Login/FindId/FindId_Email';
 import MyPage from '../page/Header/Info/MyPage';
 import FindId_phone from '../page/Login/FindId/FindId_phone';
+import FindPassword_phone from '../page/Login/FindPassword/FindPassword_phone';
 
 const router = createBrowserRouter([
     {
@@ -54,10 +55,10 @@ const router = createBrowserRouter([
                 path: '/findpassword-email',
                 element: <FindPassword_email />,
             },
-            // {
-            //     path: '/findpassword-phone',
-            //     element: <FindPassword_phone />,
-            // },
+            {
+                path: '/findpassword-phone',
+                element: <FindPassword_phone />,
+            },
             //회원가입 선택 창
             {
                 path: '/checksignuppage',
