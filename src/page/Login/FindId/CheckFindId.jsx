@@ -33,8 +33,8 @@ function CheckFindId() {
                         <PhoneIcon className={styles.optionIcon} onDragStart={(e) => e.preventDefault()} />
                         <button
                             className={styles.signUpButton}
-                            onClick={() => alert('준비중입니다.')}
-                            //onClick={() => navigate('/findpassword-phone')}
+                            // onClick={() => alert('준비중입니다.')}
+                            onClick={() => navigate('/findid-phone')}
                         >
                             인증하기
                         </button>

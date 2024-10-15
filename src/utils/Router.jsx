@@ -5,7 +5,7 @@ import MainPage from '../page/Main/Main';
 import LoginPage from '../page/Login/LoginPage';
 import StudentManagementPage from '../page/Main/StudentManagementPage';
 import AIWorkbookPage from '../page/Main/AIWorkbookPage';
-import SchedulePage from '../page/Main/SchedulePage';
+import SchedulePage from '../page/Main/SchedulePage/SchedulePage';
 import SendMessagePage from '../page/Main/SendMessagePage';
 import SeatAssignmentPage from '../page/Main/SeatAssignmentPage';
 import SignUpPage from '../page/SignUp/SignUpPage';
@@ -19,6 +19,7 @@ import FindPassword_email from '../page/Login/FindPassword/FindPassword_email';
 import CheckFindId from '../page/Login/FindId/CheckFindId';
 import FindId_email from '../page/Login/FindId/FindId_Email';
 import MyPage from '../page/Header/Info/MyPage';
+import FindId_phone from '../page/Login/FindId/FindId_phone';
 
 const router = createBrowserRouter([
     {
@@ -40,10 +41,10 @@ const router = createBrowserRouter([
                 path: '/findid-email',
                 element: <FindId_email />,
             },
-            // {
-            //     path: '/findid-phone',
-            //     element: <FindId_phone />,
-            // },
+            {
+                path: '/findid-phone',
+                element: <FindId_phone />,
+            },
             //비밀번호 찾기
             {
                 path: '/checkfindpassword',
