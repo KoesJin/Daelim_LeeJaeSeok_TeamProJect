@@ -15,12 +15,12 @@ import PersonalInfoChange from '../page/Header/Info/PersonalInfoChange';
 import PasswordChange from '../page/Header/Info/PasswordChange';
 import ToolPage from '../page/Main/ToolPage';
 import CheckFindPw from '../page/Login/FindPassword/CheckFindPw';
-import FindPassword_email from '../page/Login/FindPassword/FindPassword_email';
 import CheckFindId from '../page/Login/FindId/CheckFindId';
-import FindId_email from '../page/Login/FindId/FindId_Email';
 import MyPage from '../page/Header/Info/MyPage';
-import FindId_phone from '../page/Login/FindId/FindId_phone';
-import FindPassword_phone from '../page/Login/FindPassword/FindPassword_phone';
+import FindIdEmail from '../page/Login/FindId/FindId_Email';
+import FindIdPhone from '../page/Login/FindId/FindId_phone';
+import FindPasswordEmail from '../page/Login/FindPassword/FindPassword_email';
+import FindPasswordPhone from '../page/Login/FindPassword/FindPassword_phone';
 
 const router = createBrowserRouter([
     {
@@ -40,11 +40,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/findid-email',
-                element: <FindId_email />,
+                element: <FindIdEmail />,
             },
             {
                 path: '/findid-phone',
-                element: <FindId_phone />,
+                element: <FindIdPhone />,
             },
             //비밀번호 찾기
             {
@@ -53,11 +53,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/findpassword-email',
-                element: <FindPassword_email />,
+                element: <FindPasswordEmail />,
             },
             {
                 path: '/findpassword-phone',
-                element: <FindPassword_phone />,
+                element: <FindPasswordPhone />,
             },
             //회원가입 선택 창
             {

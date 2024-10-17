@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from '../../../css/LoginPage/FindPassword/FindPassword.module.css';
 import MainTitle from '../../../img/TeacHub.png'; // 메인 로고 이미지 import
 
-function FindId_phone() {
+function FindIdPhone() {
     // 회원가입 정보
 
     const [userNum, setUserNum] = useState('');
@@ -108,4 +108,4 @@ function FindId_phone() {
     );
 }
 
-export default FindId_phone;
+export default FindIdPhone;

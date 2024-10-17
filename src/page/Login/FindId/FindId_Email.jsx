@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from '../../../css/LoginPage/FindPassword/FindPassword.module.css';
 import MainTitle from '../../../img/TeacHub.png'; // 메인 로고 이미지 import
 
-function FindId_email() {
+function FindIdEmail() {
     // 회원가입 정보
 
     const [userEmail, setUserEmail] = useState('');
@@ -109,4 +109,4 @@ function FindId_email() {
     );
 }
 
-export default FindId_email;
+export default FindIdEmail;

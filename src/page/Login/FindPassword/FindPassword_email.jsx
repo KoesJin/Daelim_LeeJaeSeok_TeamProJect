@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from '../../../css/LoginPage/FindPassword/FindPassword.module.css'; // CSS 모듈 import
 import MainTitle from '../../../img/TeacHub.png'; // 메인 로고 이미지 import
 
-function FindPassword_email() {
+function FindPasswordEmail() {
     // 회원가입 정보
     const [userId, setUserId] = useState('');
     const [userPw, setUserPw] = useState('');
@@ -139,7 +139,7 @@ function FindPassword_email() {
             return;
         }
 
-        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+~`|}{[\]:;?\/><.,]{8,}$/;
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+~`|}{[\]:;?/><.,]{8,}$/;
         const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 
         if (!passwordRegex.test(userPw)) {
@@ -327,4 +327,4 @@ function FindPassword_email() {
     );
 }
 
-export default FindPassword_email;
+export default FindPasswordEmail;
