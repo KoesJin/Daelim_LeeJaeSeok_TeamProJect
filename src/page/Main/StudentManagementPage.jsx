@@ -339,7 +339,7 @@ const StudentManagementPage = () => {
                                     </td>
                                     <td>{student.studentDate}</td> {/* 생년월일 */}
                                     <td>{student.studentGender}</td> {/* 성별 */}
-                                    <td>{student.studentGrade}</td> {/* 학년 */}
+                                    <td>{student.studentGrade}학년</td> {/* 학년 */}
                                     <td>{student.classNum}반</td> {/* 반 */}
                                     <td className={styles.actions}>
                                         {editingStudentId === student.studentId ? (
