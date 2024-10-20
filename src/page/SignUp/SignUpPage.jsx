@@ -14,6 +14,7 @@ function SignUpPage() {
     const [userEmail, setUserEmail] = useState('');
     const [schoolName, setSchoolName] = useState('');
     const [classNum, setClassNum] = useState('');
+    const [grade, setGrade] = useState();
 
     // 인증번호
     const [inputCode, setInputCode] = useState('');
@@ -256,7 +257,7 @@ function SignUpPage() {
         }
 
         // 비밀번호 유효성 검사 (최소 8자, 영어와 숫자 포함, 한글 미포함)
-        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+~`|}{[\]:;?\/><.,]{8,}$/;
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+~`|}{[\]:;?><.,]{8,}$/;
         const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 
         if (!passwordRegex.test(userPw)) {
@@ -293,6 +294,12 @@ function SignUpPage() {
             return;
         }
 
+        const gradeRegex = /^\d{1,2}$/;
+        if (!gradeRegex.test(classNum)) {
+            alert('학년은 1~99의 숫자로만 이루어져 있어야 합니다.');
+            return;
+        }
+
         const classRegex = /^\d{1,2}$/;
         if (!classRegex.test(classNum)) {
             alert('반은 1~99의 숫자로만 이루어져 있어야 합니다.');
@@ -317,6 +324,7 @@ function SignUpPage() {
                     userEmail,
                     schoolName,
                     classNum,
+                    grade,
                 }),
             });
 
@@ -459,7 +467,18 @@ function SignUpPage() {
                 <div className={styles.inputContainer}>
                     <input
                         type="text"
-                        placeholder="반"
+                        placeholder="담당 학년"
+                        value={grade}
+                        onChange={(e) => setGrade(e.target.value)}
+                        className={styles.inputField}
+                        maxLength={2} // 학년 최대 2자
+                    />
+                </div>
+
+                <div className={styles.inputContainer}>
+                    <input
+                        type="text"
+                        placeholder="담당 반"
                         value={classNum}
                         onChange={(e) => setClassNum(e.target.value)}
                         className={styles.inputField}
