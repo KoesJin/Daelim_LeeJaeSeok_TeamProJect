@@ -5,7 +5,7 @@ import { FaUser, FaLock } from 'react-icons/fa';
 
 // 이미지 및 아이콘 import
 import MainTitle from '../../img/TeacHub.png';
-import KakaoIcon from '../../svg/LoginPage/KakaoIcon';
+// import KakaoIcon from '../../svg/LoginPage/KakaoIcon';
 import GoogleIcon from '../../svg/LoginPage/GoogleIcon';
 import NaverIcon from '../../svg/LoginPage/NaverIcon';
 import AppleIcon from '../../svg/LoginPage/AppleIcon';

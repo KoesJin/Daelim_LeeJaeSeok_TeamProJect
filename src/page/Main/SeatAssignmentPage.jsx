@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import styles from '../../css/MainPage/SeatAssignmentPage/SeatAssignmentPage.module.css';
 
 const SeatAssignmentPage = () => {

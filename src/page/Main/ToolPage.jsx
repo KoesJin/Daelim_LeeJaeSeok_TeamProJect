@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import styles from '../../css/MainPage/ToolPage/ToolPage.module.css'; // CSS Module import
 
 // SVG 아이콘 import
@@ -10,7 +10,7 @@ import RandomPickerIcon from '../../svg/MainPage/ToolPage/RandomPickerIcon';
 import SeatIcon from '../../svg/MainPage/ToolPage/SeatIcon'; // 자리 선정 아이콘 추가
 
 const ToolPage = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     return (
         <div className={styles.ScrollContainer}>

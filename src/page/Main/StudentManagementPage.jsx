@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react';
 import styles from '../../css/MainPage/StudentManagementPage/StudentManagementPage.module.css';
 
@@ -250,7 +251,6 @@ const StudentManagementPage = () => {
         }
     };
 
-    // 학생 정보 수정 모드를 위한 함수
     // 학생 정보 수정 모드를 위한 함수
     const handleEditClick = (studentId) => {
         // studentData 배열에서 선택한 학생의 데이터를 찾음

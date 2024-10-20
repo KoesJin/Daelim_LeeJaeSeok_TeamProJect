@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import styles from '../../../css/Header/PersonalInfoChange/PersonalInfoChange.module.css';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +11,7 @@ const PersonalInfoChange = () => {
     const [userDate, setUserDate] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [schoolName, setSchoolName] = useState('');
+    const [grade, setGrade] = useState();
     const [classNum, setClassNum] = useState('');
 
     // userId 가져오는 useEffect 훅
@@ -52,9 +54,15 @@ const PersonalInfoChange = () => {
             return;
         }
 
+        const gradeRegex = /^\d{1,2}$/;
+        if (!gradeRegex.test(classNum)) {
+            alert('학년은 1~99의 숫자로만 이루어져 있어야 합니다.');
+            return;
+        }
+
         const classRegex = /^\d{1,2}$/;
         if (!classRegex.test(classNum)) {
-            alert('반은 1~2자리 숫자로만 이루어져 있어야 합니다.');
+            alert('반은 1~99의 숫자로만 이루어져 있어야 합니다.');
             return;
         }
 
@@ -132,12 +140,13 @@ const PersonalInfoChange = () => {
 
             if (result.status === '200') {
                 const userData = result.data[0]; // 데이터가 배열로 되어있음
-                setUserId(userData.userId);
+                // setUserId(userData.userId);
                 setUserName(userData.userRealName);
                 setUserNum(userData.userNum);
                 setUserDate(userData.userDate);
                 setUserEmail(userData.userEmail);
                 setSchoolName(userData.schoolName);
+                setGrade(userData.grade);
                 setClassNum(userData.classNum);
             } else {
                 alert('회원정보를 불러오지 못하였습니다.');
@@ -246,10 +255,25 @@ const PersonalInfoChange = () => {
                             />
                         </div>
 
+                        {/* 학년 */}
+                        <div className={styles.formGroup}>
+                            <label htmlFor="grade" className={styles.label}>
+                                담당 학년
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="학년"
+                                value={grade}
+                                onChange={(e) => setGrade(e.target.value)}
+                                className={styles.inputText}
+                                maxLength={2} // 학년 최대 2자
+                            />
+                        </div>
+
                         {/* 반 입력 필드 */}
                         <div className={styles.formGroup}>
                             <label htmlFor="classNum" className={styles.label}>
-                                반
+                                담당 반
                             </label>
                             <input
                                 type="text"
