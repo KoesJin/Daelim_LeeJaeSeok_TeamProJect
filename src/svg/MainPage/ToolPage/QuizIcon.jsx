@@ -1,12 +1,41 @@
 import React from 'react';
 
 const QuizIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-        {/* SVG 내용 */}
-        <circle cx="32" cy="32" r="30" stroke="#30a04d" strokeWidth="4" fill="none" />
-        <text x="32" y="40" textAnchor="middle" fontSize="28" fill="#30a04d">
-            ?
-        </text>
+    <svg
+        className={className}
+        width="90"
+        height="83"
+        viewBox="0 0 90 83"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <ellipse cx="43.6766" cy="56.0294" rx="16.3235" ry="4.41176" fill="#30A04D" />
+        <path
+            d="M52.0589 62.8675C52.0589 66.6442 48.6022 69.7058 44.3383 69.7058C40.0743 69.7058 36.6177 66.6442 36.6177 62.8675C36.6177 59.0909 40.0743 56.0293 44.3383 56.0293C48.6022 56.0293 52.0589 59.0909 52.0589 62.8675Z"
+            fill="#D9D9D9"
+        />
+        <circle cx="44.7795" cy="39.0441" r="39.0441" fill="#30A04D" />
+        <circle cx="35.0733" cy="36.3971" r="6.39706" fill="white" />
+        <circle cx="52.7208" cy="36.3971" r="6.39706" fill="white" />
+        <circle cx="51.397" cy="36.8381" r="3.75" fill="#242424" />
+        <circle cx="36.397" cy="36.8381" r="3.75" fill="#242424" />
+        <circle cx="44.5587" cy="47.206" r="4.41176" fill="#FFF8BD" />
+        <ellipse cx="29.5589" cy="78.5294" rx="10.5882" ry="3.97059" fill="#BCB4B4" />
+        <ellipse cx="60.4413" cy="78.5294" rx="10.5882" ry="3.97059" fill="#BCB4B4" />
+        <ellipse cx="6.39706" cy="46.7646" rx="6.39706" ry="6.61765" fill="#BCB4B4" />
+        <ellipse cx="83.6031" cy="46.7646" rx="6.39706" ry="6.61765" fill="#BCB4B4" />
+        <path
+            d="M41.1702 37C41.1702 42.785 36.3334 47.5 30.3351 47.5C24.3368 47.5 19.5 42.785 19.5 37C19.5 31.215 24.3368 26.5 30.3351 26.5C36.3334 26.5 41.1702 31.215 41.1702 37Z"
+            stroke="black"
+        />
+        <path
+            d="M68.1585 37C68.1585 42.785 63.3217 47.5 57.3234 47.5C51.3251 47.5 46.4883 42.785 46.4883 37C46.4883 31.215 51.3251 26.5 57.3234 26.5C63.3217 26.5 68.1585 31.215 68.1585 37Z"
+            stroke="black"
+        />
+        <path d="M41.0737 36.1868H46.4714" stroke="black" />
+        <path d="M45 57.5L36.75 52.7369V62.2631L45 57.5Z" fill="#DF2F2F" />
+        <path d="M43.7778 57.5L52.0278 62.2631V52.7369L43.7778 57.5Z" fill="#DF2F2F" />
+        <ellipse cx="44.389" cy="57.5" rx="1.83333" ry="0.611109" fill="#DF2F2F" />
     </svg>
 );
 

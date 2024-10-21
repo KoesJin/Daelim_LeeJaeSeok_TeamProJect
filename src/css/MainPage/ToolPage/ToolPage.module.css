@@ -35,7 +35,7 @@
     background-color: #ffffff;
     border: 2px solid #30a04d;
     border-radius: 15px;
-    padding: 30px;
+    padding: 30px 30px 20px 30px;
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -47,9 +47,9 @@
 }
 
 .icon {
-    width: 80px;
+    width: 150px;
     height: 80px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .toolName {
@@ -73,8 +73,8 @@
 }
 
 /* 360px 이하 */
-@media (max-width: 360px) {
-    .title {
+/* @media (max-width: 360px) {
+    /* .title {
         font-size: 1.3rem;
     }
     .toolItem {
@@ -88,5 +88,4 @@
 
     .toolName {
         font-size: 1.2rem;
-    }
-}
+    } */
