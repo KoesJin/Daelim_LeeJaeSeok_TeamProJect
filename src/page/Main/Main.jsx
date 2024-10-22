@@ -28,10 +28,14 @@ const Main = () => {
                     <div className={styles.notice}>
                         <div className={styles.noticeHeader}>
                             <div className={styles.titleWithIcon}>
-                                <span className={styles.noticeTitle}>학급 알림장</span>
+                                <span className={styles.noticeTitle} onClick={() => alert('준비중입니다.')}>
+                                    학급 알림장
+                                </span>
                                 <NoticeIcon className={styles.icon} />
                             </div>
-                            <PlusIcon className={styles.plusIcon} />
+                            <div onClick={() => alert('준비중입니다.')}>
+                                <PlusIcon className={styles.plusIcon} />
+                            </div>
                         </div>
                         <div className={styles.noticeBody}>
                             <div className={styles.noticeItem}>
