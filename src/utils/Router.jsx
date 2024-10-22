@@ -4,7 +4,7 @@ import Root from '../Root';
 import MainPage from '../page/Main/Main';
 import LoginPage from '../page/Login/LoginPage';
 import StudentManagementPage from '../page/Main/StudentManagementPage';
-import AIWorkbookPage from '../page/Main/AIWorkbookPage';
+import AIWorkbookPage from '../page/Main/AIWorkBookPage/AIWorkbookPage';
 import SchedulePage from '../page/Main/SchedulePage/SchedulePage';
 import SendMessagePage from '../page/Main/SendMessagePage';
 import SeatAssignmentPage from '../page/Main/SeatAssignmentPage';
