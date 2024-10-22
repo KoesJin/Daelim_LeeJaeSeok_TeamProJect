@@ -1,7 +1,8 @@
+/* 전체 스타일 */
 .wrap {
     height: 100vh;
     background-color: #fff;
-    overflow-y: hidden; /* 스크롤 가능하게 설정 */
+    overflow-y: auto; /* 스크롤 가능하게 설정 */
 }
 
 .container {
@@ -9,8 +10,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 3rem;
+    padding: 3rem 3rem 20rem 3rem;
     box-sizing: border-box;
+}
+
+.header {
+    position: relative; /* 상대적인 위치를 사용 */
+    display: flex;
+    justify-content: center; /* 가운데 정렬로 변경 */
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
 }
 
 .title {
@@ -19,6 +29,25 @@
     color: #242424;
     margin-bottom: 40px;
     text-align: center;
+    flex-grow: 1; /* 타이틀이 중앙에 위치하도록 설정 */
+}
+
+.saveButton {
+    position: absolute; /* 버튼을 절대 위치로 배치 */
+    right: 0; /* 우측 정렬 */
+    background-color: #30a04d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.saveButton:hover {
+    background-color: #1e6b30;
 }
 
 .table {
@@ -30,6 +59,7 @@
     background-color: #ffffff;
     border-radius: 15px;
     padding: 20px;
+    box-sizing: border-box;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -55,42 +85,162 @@
     border-radius: 8px;
     font-weight: 600;
     color: #555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Cell 컴포넌트 스타일 */
 .cell {
+    position: relative;
     background-color: #ffffff;
     border: 2px solid #30a04d;
     border-radius: 8px;
     padding: 20px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1rem;
     color: #242424;
     transition: background-color 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    height: 120px; /* 셀 높이 고정 */
 }
 
 .cell:hover {
     background-color: #f0f0f0;
 }
 
+.cellPlusSign {
+    font-size: 2rem;
+}
+
+.cellContent {
+    font-size: 1rem;
+}
+
+/* 드롭다운 및 입력창 스타일 */
+.cellDropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cellDropdownItem {
+    padding: 10px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.cellDropdownItem:hover {
+    background-color: #f0f0f0;
+}
+
+.cellInputContainer {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cellInput {
+    width: calc(100% - 60px);
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.cellSubmitButton {
+    padding: 5px 10px;
+}
+
+/* 수정 및 삭제 버튼 스타일 */
+.editButton {
+    background-color: #30a04d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.editButton:hover {
+    background-color: #267a37;
+}
+
+.deleteButton {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+    background-color: #c9302c;
+}
+
 /* 반응형 스타일 */
 
-@media (max-height: 930px) {
-    .wrap {
-        padding-bottom: 6rem;
-        overflow-y: auto; /* 스크롤 가능하게 설정 */
+/* 1024px 이하 */
+@media (max-width: 1024px) {
+    .table {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+    }
+
+    .headerCell,
+    .timeCell {
+        font-size: 1.1rem;
+        padding: 12px;
+    }
+
+    .title {
+        font-size: 1.4rem;
+    }
+
+    .cell {
+        font-size: 1rem;
+        padding: 15px;
+        height: 100px; /* 반응형으로 셀 크기 조정 */
+    }
+
+    .cellPlusSign {
+        font-size: 1.8rem;
+    }
+
+    .cellContent {
+        font-size: 1rem;
     }
 }
 
 /* 768px 이하 */
 @media (max-width: 768px) {
     .table {
-        grid-template-columns: repeat(6, 1fr); /* 축소된 느낌을 유지하기 위해 동일한 그리드 구조 */
+        grid-template-columns: repeat(6, 1fr);
         gap: 5px;
-    }
-
-    .cell {
-        font-size: 0.9rem;
-        padding: 15px;
     }
 
     .headerCell,
@@ -101,34 +251,65 @@
 
     .title {
         font-size: 1.3rem;
-        font-weight: 500;
-        color: #242424;
-        margin-bottom: 40px;
-        text-align: center;
+    }
+
+    .cell {
+        font-size: 0.9rem;
+        padding: 10px;
+        height: 90px; /* 반응형으로 셀 크기 조정 */
+    }
+
+    .cellPlusSign {
+        font-size: 1.5rem;
+    }
+
+    .cellContent {
+        font-size: 0.9rem;
+    }
+
+    .editButton,
+    .deleteButton {
+        padding: 4px 8px;
+        font-size: 0.8rem;
     }
 }
 
-/* 490px 이하 */
+/* 570px 이하 */
 @media (max-width: 570px) {
     .title {
-        font-size: 1.1rem; /* 제목 크기 축소 */
+        font-size: 1.1rem;
     }
 
     .table {
-        grid-template-columns: repeat(6, 1fr); /* 그리드 레이아웃 유지 */
+        grid-template-columns: repeat(6, 1fr);
         gap: 5px;
-        transform: scale(0.9); /* 전체 요소 크기를 90%로 축소 */
-        transform-origin: top center; /* 축소 중심을 상단 중앙으로 고정 */
+        transform: scale(0.9);
+        transform-origin: top center;
     }
 
     .headerCell,
     .timeCell {
-        font-size: 0.9rem; /* 텍스트 크기 축소 */
+        font-size: 0.9rem;
         padding: 8px;
     }
 
     .cell {
-        font-size: 0.8rem; /* 텍스트 크기 축소 */
-        padding: 10px;
+        font-size: 0.8rem;
+        padding: 8px;
+        height: 80px; /* 더 작은 화면에서 셀 크기 조정 */
+    }
+
+    .cellPlusSign {
+        font-size: 1.2rem;
+    }
+
+    .cellContent {
+        font-size: 0.8rem;
+    }
+
+    .editButton,
+    .deleteButton {
+        padding: 3px 6px;
+        font-size: 0.7rem;
     }
 }
