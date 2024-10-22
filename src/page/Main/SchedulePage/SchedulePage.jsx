@@ -9,6 +9,10 @@ import jsPDF from 'jspdf';
 const SchedulePage = () => {
     // userId 정보
     const [userId, setUserId] = useState('');
+    // 학년 정보
+    const [grade, setGrade] = useState('');
+    // 반 정보
+    const [classNum, setClassNum] = useState('');
 
     // scheduleData를 배열로 초기화
     const [scheduleData, setScheduleData] = useState([]);
@@ -18,6 +22,22 @@ const SchedulePage = () => {
         const storedUserId = localStorage.getItem('userId');
         if (storedUserId) {
             setUserId(storedUserId);
+        }
+    }, []);
+
+    // grad 가져오기
+    useEffect(() => {
+        const storedGrade = localStorage.getItem('grade');
+        if (storedGrade) {
+            setGrade(storedGrade);
+        }
+    }, []);
+
+    // classNum 가져오기
+    useEffect(() => {
+        const storedClassNum = localStorage.getItem('classNum');
+        if (storedClassNum) {
+            setClassNum(storedClassNum);
         }
     }, []);
 
@@ -404,11 +424,13 @@ const SchedulePage = () => {
                 {/* 새로 만든 캡처용 컨테이너 */}
                 <div id="scheduleCapture" className={styles.scheduleContainer}>
                     <div className={styles.header}>
-                        <h1 className={styles.title}>시간표</h1>
+                        <h1 className={styles.title}>학급 시간표</h1>
                     </div>
                     <div className={styles.table}>
                         <div className={styles.row}>
-                            <div className={styles.headerCell}>2-4반</div>
+                            <div className={styles.headerCell}>
+                                {grade} - {classNum}
+                            </div>
                             {/* 요일 */}
                             {daysOfWeek.map((dayOfWeek, index) => (
                                 <div className={styles.headerCell} key={index}>

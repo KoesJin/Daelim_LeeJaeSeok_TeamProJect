@@ -36,16 +36,22 @@ const Header = () => {
     const handleLogout = () => {
         const confirmed = window.confirm('정말로 로그아웃 하시겠습니까?');
         if (confirmed) {
+            // 토큰 삭제
             localStorage.removeItem('Authorization');
             sessionStorage.removeItem('Authorization');
             localStorage.removeItem('PasswordVerAuth');
             sessionStorage.removeItem('PasswordVerAuth');
-
+            // 아이디 , 이름 삭제
             localStorage.removeItem('userName');
             localStorage.removeItem('userId');
-
+            // 학생 고유 아이디 삭제
             localStorage.removeItem('studentId');
             sessionStorage.removeItem('studentId');
+            // 학년 , 반 삭제
+            localStorage.removeItem('grade');
+            sessionStorage.removeItem('grade');
+            localStorage.removeItem('classNum');
+            sessionStorage.removeItem('classNum');
 
             navigate('/'); // 메인 페이지로 부드럽게 전환
         }

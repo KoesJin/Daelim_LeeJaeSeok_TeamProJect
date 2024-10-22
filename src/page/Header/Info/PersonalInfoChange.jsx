@@ -20,7 +20,23 @@ const PersonalInfoChange = () => {
         if (storedUserId && userId !== storedUserId) {
             setUserId(storedUserId);
         }
-    }, []); // 한번만 실행
+    }, []);
+
+    // grad 가져오기
+    useEffect(() => {
+        const storedGrade = localStorage.getItem('grade');
+        if (storedGrade) {
+            setGrade(storedGrade);
+        }
+    }, []);
+
+    // classNum 가져오기
+    useEffect(() => {
+        const storedClassNum = localStorage.getItem('classNum');
+        if (storedClassNum) {
+            setClassNum(storedClassNum);
+        }
+    }, []);
 
     // userId가 있을 시 정보 가져오기
     useEffect(() => {
@@ -105,6 +121,8 @@ const PersonalInfoChange = () => {
             if (result.status === '200') {
                 alert(result.message);
                 localStorage.setItem('userName', userName);
+                localStorage.setItem('grade', grade);
+                localStorage.setItem('classNum', classNum);
                 window.location.reload();
             } else {
                 alert(result.message);

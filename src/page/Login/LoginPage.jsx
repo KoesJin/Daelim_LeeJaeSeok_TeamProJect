@@ -54,7 +54,7 @@ function LoginPage() {
 
             if (result.status === '200') {
                 const jwtToken = result.data.jwtToken.accessToken; // 서버로부터 받은 액세스 토큰
-                const jslName = result.data.userName; // userName 받아옴
+                const jslData = result.data; // userName 받아옴
 
                 // 중복 로그인을 막기 위한 코드
                 const existingToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
@@ -71,7 +71,11 @@ function LoginPage() {
                 // userId 설정
                 localStorage.setItem('userId', userId);
                 // userName 설정
-                localStorage.setItem('userName', jslName);
+                localStorage.setItem('userName', jslData.userName);
+                // grade 설정
+                localStorage.setItem('grade', jslData.grade);
+                // classNum 설정
+                localStorage.setItem('classNum', jslData.classNum);
 
                 navigate('/mainpage');
             } else {

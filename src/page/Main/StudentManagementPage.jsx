@@ -13,6 +13,9 @@ const StudentManagementPage = () => {
     const [classNum, setClassNum] = useState('1'); // 1~20반으로 설정
     const [userId, setUserId] = useState('');
 
+    // 학년 정보
+    const [grade, setGrade] = useState('');
+
     // 페이지 상태
     const [page, setPage] = useState(0); // 현재 페이지 번호
     const [maxPage, setMaxPage] = useState(0); // 전체 페이지 번호
@@ -31,6 +34,22 @@ const StudentManagementPage = () => {
         const storedUserId = localStorage.getItem('userId');
         if (storedUserId) {
             setUserId(storedUserId);
+        }
+    }, []);
+
+    // grad 가져오기
+    useEffect(() => {
+        const storedGrade = localStorage.getItem('grade');
+        if (storedGrade) {
+            setGrade(storedGrade);
+        }
+    }, []);
+
+    // classNum 가져오기
+    useEffect(() => {
+        const storedClassNum = localStorage.getItem('classNum');
+        if (storedClassNum) {
+            setClassNum(storedClassNum);
         }
     }, []);
 
@@ -277,7 +296,10 @@ const StudentManagementPage = () => {
     return (
         <div className={styles.ScrollContainer} ref={scrollContainerRef}>
             <div className={styles.container}>
-                <div className={styles.classInfo}>2-4반</div> {/* 학급 정보 */}
+                <div className={styles.classInfo}>
+                    {grade}학년 - {classNum}반
+                </div>{' '}
+                {/* 학급 정보 */}
                 <button className={styles.addButton} onClick={onModalOpen}>
                     학생 등록
                 </button>
