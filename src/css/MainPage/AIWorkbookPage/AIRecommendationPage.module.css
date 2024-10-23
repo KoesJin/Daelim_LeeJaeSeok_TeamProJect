@@ -1,9 +1,4 @@
-/* 모듈화된 클래스 적용 */
-.body {
-    font-family: Arial, sans-serif;
-    margin: 40px;
-    background-color: #f4f4f9;
-}
+/* AIRecommendationPage.module.css */
 
 .container {
     margin: 0 auto;
@@ -14,23 +9,13 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.h2 {
+.heading {
     text-align: center;
     color: #333;
 }
 
-.p {
+.text {
     color: #555;
-}
-
-.questionInput {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 12px 15px;
-    margin: 15px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
 }
 
 .button {
@@ -44,13 +29,64 @@
     transition: background-color 0.3s ease;
 }
 
-.buttonHover {
+.button:hover {
     background-color: #218838;
 }
 
 .buttonDisabled {
     background-color: #a5d6a7;
     cursor: not-allowed;
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tabButton {
+    padding: 10px 20px;
+    margin: 0 5px;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.tabButton:hover {
+    background-color: #d5d5d5;
+}
+
+.tabButtonActive {
+    background-color: #28a745;
+    color: white;
+}
+
+.previewView {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.questionInput {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    margin: 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 .result {
@@ -96,34 +132,11 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.strong {
+strong {
     color: #333;
 }
 
-.img {
-    max-width: 100%;
-    height: auto;
-    border: 1px solid #ddd;
-    margin-top: 10px;
-    border-radius: 5px;
-}
-
-.addButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #52c41a;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.addButtonHover {
-    background-color: #73d13d;
-}
-
+/* 미디어 쿼리 추가 */
 @media (max-width: 768px) {
     .container {
         padding: 20px;
@@ -167,6 +180,19 @@
     cursor: pointer;
 }
 
-.addButtonHover {
+.addButton:hover {
     background-color: #73d13d;
+}
+
+.addButton2 {
+    background-color: #1ac4ab;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.addButton2:hover {
+    background-color: #3dd191;
 }

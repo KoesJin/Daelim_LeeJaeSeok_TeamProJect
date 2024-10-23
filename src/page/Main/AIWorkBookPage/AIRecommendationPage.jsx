@@ -171,7 +171,7 @@ const AIRecommendationPage = ({ addQuestion }) => {
                                             <img src={imageUrl} alt="문제 이미지" className={styles.img} />
                                             <button
                                                 onClick={() => handleAddQuestion(question)}
-                                                className={styles.addButton}
+                                                className={styles.addButton2}
                                             >
                                                 시험지에 추가
                                             </button>
