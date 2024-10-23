@@ -70,15 +70,15 @@ const PersonalInfoChange = () => {
             return;
         }
 
-        const gradeRegex = /^\d{1,2}$/;
+        const gradeRegex = /^[1-6]$/;
         if (!gradeRegex.test(classNum)) {
-            alert('학년은 1~99의 숫자로만 이루어져 있어야 합니다.');
+            alert('학년은 1부터 6 사이의 숫자로만 이루어져 있어야 합니다.');
             return;
         }
 
         const classRegex = /^\d{1,2}$/;
         if (!classRegex.test(classNum)) {
-            alert('반은 1~99의 숫자로만 이루어져 있어야 합니다.');
+            alert('반은 1 부터 99 사이의 숫자로만 이루어져 있어야 합니다.');
             return;
         }
 
@@ -112,6 +112,7 @@ const PersonalInfoChange = () => {
                     userName,
                     userNum,
                     schoolName,
+                    grade,
                     classNum,
                 }),
             });
@@ -284,7 +285,7 @@ const PersonalInfoChange = () => {
                                 value={grade}
                                 onChange={(e) => setGrade(e.target.value)}
                                 className={styles.inputText}
-                                maxLength={2} // 학년 최대 2자
+                                maxLength={1} // 학년 최대 2자
                             />
                         </div>
 
