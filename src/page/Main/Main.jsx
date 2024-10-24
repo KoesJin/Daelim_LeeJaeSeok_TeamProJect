@@ -89,7 +89,11 @@ const Main = () => {
                         <TeachCong />
                         <p>수업도구</p>
                     </div>
-                    <div className={styles.teachCongItem} onClick={() => navigate('/send-message')}>
+                    <div
+                        className={styles.teachCongItem}
+                        onClick={() => alert('준비중입니다.')}
+                        // onClick={() => navigate('/send-message')}
+                    >
                         <TeachCong />
                         <p>문자 발송</p>
                     </div>

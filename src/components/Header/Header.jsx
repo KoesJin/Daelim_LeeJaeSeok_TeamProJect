@@ -113,7 +113,8 @@ const Header = () => {
                                 <li
                                     className={styles.listItem}
                                     onClick={() => {
-                                        navigate('/send-message');
+                                        alert('준비중입니다.');
+                                        // navigate('/send-message');
                                         closeMenuModal();
                                     }}
                                 >
