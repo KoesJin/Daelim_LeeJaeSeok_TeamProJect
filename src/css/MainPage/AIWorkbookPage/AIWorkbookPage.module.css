@@ -1,3 +1,10 @@
+.ScrollContainer {
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #fff;
+    padding: 3rem 3rem 10rem 3rem;
+}
+
 .app {
     margin: 0 auto;
     padding: 30px;
@@ -113,28 +120,33 @@ h2 {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .pdfButton {
-    background-color: #1890ff;
+    background-color: #30a04d;
 }
 
 .pdfButton:hover:not(:disabled) {
-    background-color: #40a9ff;
+    background-color: #267a37;
 }
 
 .wordButton {
-    background-color: #2196f3;
+    background-color: #30a04d;
 }
 
 .wordButton:hover:not(:disabled) {
-    background-color: #218838;
+    background-color: #267a37;
 }
 
 .pdfButton:disabled,
 .wordButton:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+}
+.exportButtons {
+    display: flex;
+    gap: 10px;
 }
 
 .questionItem {
@@ -185,17 +197,15 @@ h2 {
     padding: 10px 20px;
     cursor: pointer;
     border: none;
-    background-color: #6adb66;
+    background-color: #30a04d;
     border-radius: 5px;
     transition: background-color 0.3s;
+    color: white;
+    font-weight: 600;
 }
 
 .toggleButton:hover {
-    background-color: #3661af;
-}
-
-.active {
-    background-color: #8d276e;
+    background-color: #267a37;
 }
 
 .fileList {

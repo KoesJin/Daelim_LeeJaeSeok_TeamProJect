@@ -20,8 +20,9 @@
 
 .button {
     padding: 12px 20px;
-    background-color: #28a745;
+    background-color: #30a04d;
     color: white;
+    font-weight: 600;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -38,7 +39,8 @@
     cursor: not-allowed;
 }
 
-.image {
+.img {
+    padding: 15px 5px 15px 0;
     max-width: 100%;
     height: auto;
     border: 1px solid #ddd;
@@ -173,7 +175,9 @@ strong {
     top: 10px;
     right: 10px;
     background-color: #52c41a;
+    transition: background-color 0.3s;
     color: white;
+    font-weight: 600;
     border: none;
     padding: 5px 10px;
     border-radius: 4px;
@@ -191,6 +195,8 @@ strong {
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
 }
 
 .addButton2:hover {

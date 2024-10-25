@@ -359,63 +359,68 @@ const AIWorkbookPage = () => {
     };
 
     return (
-        <div className={styles.app}>
-            {/* 버튼 컨테이너 */}
-            <div className={styles.buttonContainer}>
-                <button
-                    className={`${styles.toggleButton} ${activePage === 'recommendation' ? styles.active : ''}`}
-                    onClick={showRecommendation}
-                >
-                    AI 문제집 에서 검색
-                </button>
-                <button
-                    className={`${styles.toggleButton} ${activePage === 'workbook' ? styles.active : ''}`}
-                    onClick={showWorkbook}
-                >
-                    데이터 사전 에서 검색
-                </button>
-            </div>
-
-            {/* 메인 콘텐츠 컨테이너 */}
-            <div className={styles.mainContent}>
-                {/* 콘텐츠 조건부 렌더링 */}
-                <div className={styles.content}>
-                    {activePage === 'workbook' && <WorkbookContent addQuestion={addQuestion} />}
-                    {activePage === 'recommendation' && <AIRecommendationPage addQuestion={addQuestion} />}
+        <div className={styles.ScrollContainer}>
+            <div className={styles.app}>
+                {/* 버튼 컨테이너 */}
+                <div className={styles.buttonContainer}>
+                    <button
+                        className={`${styles.toggleButton} ${activePage === 'recommendation' ? styles.active : ''}`}
+                        onClick={showRecommendation}
+                    >
+                        AI 문제집 에서 검색
+                    </button>
+                    <button
+                        className={`${styles.toggleButton} ${activePage === 'workbook' ? styles.active : ''}`}
+                        onClick={showWorkbook}
+                    >
+                        데이터 사전 에서 검색
+                    </button>
                 </div>
 
-                {/* 시험지 관리 섹션 */}
-                <div className={styles.examPaper}>
-                    <h2>시험지</h2>
-                    {selectedQuestions.length === 0 ? (
-                        <p>시험지에 추가된 문제가 없습니다.</p>
-                    ) : (
-                        <ul className={styles.examList}>
-                            {selectedQuestions.map((question) => (
-                                <li key={question.id} className={styles.examListItem}>
-                                    <span>{question.topic}</span>
-                                    <button onClick={() => removeQuestion(question.id)} className={styles.removeButton}>
-                                        제거
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                    <div className={styles.exportButtons}>
-                        <button
-                            onClick={generatePDFAsync}
-                            disabled={selectedQuestions.length === 0}
-                            className={styles.pdfButton}
-                        >
-                            PDF로 출력
-                        </button>
-                        <button
-                            onClick={generateWordAsync}
-                            disabled={selectedQuestions.length === 0}
-                            className={styles.wordButton}
-                        >
-                            Word로 출력
-                        </button>
+                {/* 메인 콘텐츠 컨테이너 */}
+                <div className={styles.mainContent}>
+                    {/* 콘텐츠 조건부 렌더링 */}
+                    <div className={styles.content}>
+                        {activePage === 'workbook' && <WorkbookContent addQuestion={addQuestion} />}
+                        {activePage === 'recommendation' && <AIRecommendationPage addQuestion={addQuestion} />}
+                    </div>
+
+                    {/* 시험지 관리 섹션 */}
+                    <div className={styles.examPaper}>
+                        <h2>시험지</h2>
+                        {selectedQuestions.length === 0 ? (
+                            <p>시험지에 추가된 문제가 없습니다.</p>
+                        ) : (
+                            <ul className={styles.examList}>
+                                {selectedQuestions.map((question) => (
+                                    <li key={question.id} className={styles.examListItem}>
+                                        <span>{question.topic}</span>
+                                        <button
+                                            onClick={() => removeQuestion(question.id)}
+                                            className={styles.removeButton}
+                                        >
+                                            제거
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                        <div className={styles.exportButtons}>
+                            <button
+                                onClick={generatePDFAsync}
+                                disabled={selectedQuestions.length === 0}
+                                className={styles.pdfButton}
+                            >
+                                PDF로 출력
+                            </button>
+                            <button
+                                onClick={generateWordAsync}
+                                disabled={selectedQuestions.length === 0}
+                                className={styles.wordButton}
+                            >
+                                Word로 출력
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
