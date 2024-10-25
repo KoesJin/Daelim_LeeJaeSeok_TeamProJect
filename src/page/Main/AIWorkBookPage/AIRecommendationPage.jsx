@@ -142,7 +142,7 @@ const AIRecommendationPage = ({ addQuestion }) => {
                     ) : (
                         <>
                             <button onClick={addAllQuestions} className={styles.addButton}>
-                                모든 문제 시험지에 추가
+                                한 문제씩 시험지에 추가
                             </button>
                             <ul className={styles.questionList}>
                                 {result['추천된 문제'].map((question, index) => {
