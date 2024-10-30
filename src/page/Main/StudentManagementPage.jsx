@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react';
 import styles from '../../css/MainPage/StudentManagementPage/StudentManagementPage.module.css';
+import NoticeIcon from '../../svg/MainPage/NoticeIcon';
 
 const StudentManagementPage = () => {
     // 학생 정보 상태
@@ -9,8 +10,15 @@ const StudentManagementPage = () => {
     const [studentCode, setStudentCode] = useState('1'); // 학생번호 1~40번
     const [studentDate, setStudentDate] = useState('');
     const [studentGender, setStudentGender] = useState('');
-    const [studentGrade, setStudentGrade] = useState('1'); // 1~6학년으로 설정
-    const [classNum, setClassNum] = useState('1'); // 1~20반으로 설정
+    // 담당 학년 가져오기
+    const storedGrade = localStorage.getItem('grade');
+    const [studentGrade, setStudentGrade] = useState(storedGrade); // 기본값 담당 학년으로 설정
+
+    //담당 반 가져오기
+    const storedClassNum = localStorage.getItem('classNum');
+    const [classNum, setClassNum] = useState(storedClassNum); // 기본값 담당 반으로 설정
+
+    // 아이디 정보
     const [userId, setUserId] = useState('');
 
     // 학년 정보
@@ -210,9 +218,9 @@ const StudentManagementPage = () => {
         e.preventDefault();
 
         // 유효성 검사
-        const studentCodeRegex = /^[1-9]$|^[1-3][0-9]$|^40$/;
+        const studentCodeRegex = /^(?:[1-9]|[1-4][0-9]|50)$/;
         if (!studentCodeRegex.test(studentCode)) {
-            alert('학생 번호는 1부터 40까지의 숫자만 입력 가능합니다.');
+            alert('학생 번호는 1부터 50까지의 숫자만 입력 가능합니다.');
             return;
         }
 
@@ -296,13 +304,16 @@ const StudentManagementPage = () => {
     return (
         <div className={styles.ScrollContainer} ref={scrollContainerRef}>
             <div className={styles.container}>
-                <div className={styles.classInfo}>
-                    {grade}학년 - {classNum}반
-                </div>{' '}
+                <div className={styles.header}>
+                    <div className={styles.classInfo}>
+                        {grade}학년 {classNum}반 <NoticeIcon />
+                    </div>
+                    <button className={styles.addButton} onClick={onModalOpen}>
+                        학생 추가
+                    </button>
+                </div>
+
                 {/* 학급 정보 */}
-                <button className={styles.addButton} onClick={onModalOpen}>
-                    학생 등록
-                </button>
                 <div className={styles.studentBox}>
                     <table className={styles.studentTable}>
                         <thead>
@@ -326,7 +337,7 @@ const StudentManagementPage = () => {
                                                 type="text"
                                                 defaultValue={student.studentCode}
                                                 onChange={(e) => setStudentCode(e.target.value)}
-                                                className={styles.inputField}
+                                                className={`${styles.inputField} ${styles.numberInputField}`}
                                                 maxLength={2}
                                             />
                                         ) : (
@@ -339,7 +350,7 @@ const StudentManagementPage = () => {
                                                 type="text"
                                                 defaultValue={student.studentName}
                                                 onChange={(e) => setStudentName(e.target.value)}
-                                                className={styles.inputField}
+                                                className={`${styles.inputField} ${styles.nameInputField}`}
                                                 maxLength={4}
                                             />
                                         ) : (
@@ -352,7 +363,7 @@ const StudentManagementPage = () => {
                                                 type="text"
                                                 defaultValue={student.studentNum}
                                                 onChange={(e) => setStudentNum(e.target.value)}
-                                                className={styles.inputField}
+                                                className={`${styles.inputField} ${styles.phoneInputField}`}
                                                 maxLength={11}
                                             />
                                         ) : (
@@ -369,7 +380,7 @@ const StudentManagementPage = () => {
                                                 <button className={styles.editButton} onClick={handleSaveChanges}>
                                                     저장
                                                 </button>
-                                                <div className={styles.separator}>|</div>
+                                                <div className={styles.separator}>&nbsp;</div>
                                                 <button
                                                     className={styles.deleteButton}
                                                     onClick={() => setEditingStudentId(null)}
@@ -385,7 +396,7 @@ const StudentManagementPage = () => {
                                                 >
                                                     수정
                                                 </button>
-                                                <div className={styles.separator}>|</div>
+                                                <div className={styles.separator}>&nbsp;</div>
                                                 <button
                                                     className={styles.deleteButton}
                                                     onClick={() => handleDeleteStudent(student.studentId)}
@@ -422,7 +433,7 @@ const StudentManagementPage = () => {
             {openModal && (
                 <div className={styles.modalOverlay}>
                     <div className={styles.modalContent}>
-                        <h2>학생 정보 입력</h2>
+                        <h2 className={styles.info}>학생 정보 입력</h2>
                         <form onSubmit={handleAddStudent}>
                             <table className={styles.studentInfoTable}>
                                 <thead>
@@ -443,8 +454,9 @@ const StudentManagementPage = () => {
                                                 value={studentCode}
                                                 onChange={(e) => setStudentCode(e.target.value)}
                                                 required
+                                                className={styles.selectField} // 클래스 이름 추가
                                             >
-                                                {[...Array(40).keys()].map((n) => (
+                                                {[...Array(50).keys()].map((n) => (
                                                     <option key={n + 1} value={n + 1}>
                                                         {n + 1}
                                                     </option>
@@ -487,6 +499,7 @@ const StudentManagementPage = () => {
                                                 value={studentGender}
                                                 onChange={(e) => setStudentGender(e.target.value)}
                                                 required
+                                                className={styles.selectField} // 클래스 이름 추가
                                             >
                                                 <option value="">성별</option>
                                                 <option value="남">남</option>
@@ -498,6 +511,7 @@ const StudentManagementPage = () => {
                                                 value={studentGrade}
                                                 onChange={(e) => setStudentGrade(e.target.value)}
                                                 required
+                                                className={styles.selectField} // 클래스 이름 추가
                                             >
                                                 {[...Array(6).keys()].map((n) => (
                                                     <option key={n + 1} value={n + 1}>
@@ -511,6 +525,7 @@ const StudentManagementPage = () => {
                                                 value={classNum}
                                                 onChange={(e) => setClassNum(e.target.value)}
                                                 required
+                                                className={styles.selectField} // 클래스 이름 추가
                                             >
                                                 {[...Array(20).keys()].map((n) => (
                                                     <option key={n + 1} value={n + 1}>

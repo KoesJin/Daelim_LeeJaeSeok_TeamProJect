@@ -9,35 +9,47 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    height: 110vh;
-    max-width: 1200px;
-    margin: 20px auto 200px auto;
+    padding: 70px 50px 30px 50px;
+    max-width: 1100px;
+    margin: 50px auto 150px auto;
     background-color: #fff8bd;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
 }
 
-/* 학급 정보 표시 */
-.classInfo {
-    position: absolute;
-    top: 20px;
-    left: 35px;
-    font-size: 24px;
-    font-weight: bold;
+/* 헤더를 좌우로 정렬하기 위한 설정 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 30px;
+    box-sizing: border-box;
+    margin-bottom: 30px;
 }
 
-/* 학생 등록 버튼 */
+/* 학급 정보 텍스트 스타일 */
+.classInfo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #30a04d;
+}
+
+/* 추가 버튼 스타일 */
 .addButton {
     padding: 10px 20px;
-    background-color: rgb(230, 230, 248);
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
+    background-color: #30a04d;
+    color: white;
     cursor: pointer;
-    margin-bottom: 10px;
-    align-self: flex-end;
+    transition: background-color 0.3s ease;
+}
+
+.addButton:hover {
+    background-color: #267a37;
 }
 
 /* 학생 정보 리스트 박스 */
@@ -46,42 +58,80 @@
     flex-grow: 1;
     border-radius: 5px;
     padding: 20px;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 
-/* 학생 테이블 */
+/* 학생 테이블 (메인 테이블) */
 .studentTable {
     width: 100%;
     border-collapse: collapse;
 }
 
-/* 테이블 헤더 */
-/* .studentHeader {
-    text-align: center;
-    border-bottom: 1px solid red;
-} */
-
-/* 번호 열 */
-.numberHeader {
-    width: 60px; /* 학생 번호 필드 너비 */
+/* 테이블 헤더 스타일 */
+.studentTable th {
+    padding: 20px 10px; /* 여백 추가 */
+    border-bottom: 1px solid #bcb4b4;
     text-align: center;
 }
 
-/* 이름, 전화번호, 생년월일, 성별, 학년, 반 열 */
-.studentNameHeader,
-.studentInfoHeader,
-.actionHeader,
-.studentName,
-.studentInfo,
-.actions {
-    padding: 10px;
+/* 테이블 데이터 셀 */
+.studentTable td {
+    padding: 15px 10px;
     text-align: center;
 }
 
+/* 수정 및 삭제 버튼 컨테이너 */
 .actions {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.numberInputField {
+    width: 4ch;
+    max-width: 50px;
+    padding: 8px;
+    border: 1px solid #30a04d;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.nameInputField {
+    width: 7ch;
+    max-width: 70px;
+    padding: 8px;
+    border: 1px solid #30a04d;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.phoneInputField {
+    width: 13ch;
+    max-width: 120px;
+    padding: 8px;
+    border: 1px solid #30a04d;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.inputField:focus {
+    outline: none;
+    border-color: #267a37; /* 포커스 시 더 진한 색상 */
+    box-shadow: 0 0 5px rgba(38, 122, 55, 0.5);
+}
+
+.selectField {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #30a04d; /* 메인 색상 테두리 */
+    border-radius: 5px;
+}
+
+.selectField:focus {
+    outline: none;
+    border-color: #267a37;
+    box-shadow: 0 0 5px rgba(38, 122, 55, 0.5);
 }
 
 /* 모달 오버레이 */
@@ -101,7 +151,7 @@
 /* 모달 컨텐츠 */
 .modalContent {
     background-color: #fff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 60vw; /* 모달의 너비 고정 */
@@ -110,101 +160,73 @@
 }
 
 /* 모달 안 테이블 */
-.studentTable {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-}
 .studentInfoTable {
     width: 100%;
     border-collapse: collapse;
     text-align: center;
 }
 
-/* 모달 안 테이블 헤더 및 데이터 셀 */
-.studentTable th,
-.studentTable td {
-    border-bottom: 1px solid black;
+/* 모달 테이블 헤더 및 데이터 셀 */
+.studentInfoTable th {
+    padding: 15px 10px; /* 여백 추가 */
+    border-bottom: 1px solid #bcb4b4;
 }
 
-/* 입력 필드 및 셀렉트 박스 */
-.studentTable input,
-.studentTable select {
+.studentInfoHeader {
+    padding: 15px 0; /* 위아래 여백 추가 */
+}
+
+.studentInfoTable td {
+    padding: 15px 10px;
+}
+
+/* 모달 안 입력 필드 및 셀렉트 박스 */
+.studentInfoTable .inputField,
+.studentInfoTable .selectField {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
+    border: 1px solid #30a04d;
+    border-radius: 5px;
 }
 
-.studentInfoTable input,
-.studentInfoTable select {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
+.studentInfoTable .inputField:focus,
+.studentInfoTable .selectField:focus {
+    outline: none;
+    border-color: #267a37;
+    box-shadow: 0 0 5px rgba(38, 122, 55, 0.5);
 }
 
-/* 모달 안 번호 필드 */
-.studentTable .numberHeader {
-    width: 60px; /* 학생 번호 필드 너비 */
-}
-
-/* 모달 안 이름 필드 */
-.studentTable .studentNameHeader {
-    width: 100px; /* 이름 필드 너비 */
-}
-
-/* 모달 안 전화번호, 생년월일 필드 */
-.studentTable .studentHeader {
-    width: 120px; /* 전화번호, 생년월일 필드 너비 */
-}
-
-.studentInfoTable .numberHeader {
-    width: 60px; /* 학생 번호 필드 너비 */
-}
-
-/* 모달 안 이름 필드 */
-.studentInfoTable .studentNameHeader {
-    width: 100px; /* 이름 필드 너비 */
-}
-
-/* 모달 안 전화번호, 생년월일 필드 */
-.studentInfoTable .studentInfoHeader {
-    width: 120px; /* 전화번호, 생년월일 필드 너비 */
+.info {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
 }
 
 /* 추가 및 취소 버튼 */
-.addButton,
 .cancelButton {
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
     margin-top: 20px;
-}
-
-.addButton {
-    background-color: #4caf50;
-    color: white;
-}
-
-.cancelButton {
     background-color: rgb(255, 99, 71);
     margin-left: 10px;
 }
 
 /* 수정 버튼 */
 .editButton {
-    background-color: #4caf50; /* 초록색 배경 */
+    background-color: #30a04d; /* 초록색 배경 */
     color: white;
     border: none;
     padding: 8px 16px;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: 14px;
 }
 
 .editButton:hover {
-    background-color: #45a049; /* hover 시 더 어두운 초록색 */
+    background-color: #267a37;
 }
 
 /* 삭제 버튼 */
@@ -213,7 +235,7 @@
     color: white;
     border: none;
     padding: 8px 16px;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: 14px;
@@ -234,19 +256,29 @@
 .pagination {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
 }
 
 .pageButton {
-    padding: 8px 12px;
-    margin: 0 5px;
-    border: 1px solid black;
+    padding: 8px 14px;
+    margin: 50px 5px 0px 5px;
+    border: 1px solid #30a04d;
     background-color: white;
     cursor: pointer;
-    border-radius: 5px;
+    color: #30a04d;
+    border-radius: 12px;
     transition: background-color 0.3s ease;
 }
 
+.pageButton:disabled {
+    color: #d3d3d3; /* 비활성화 시 회색으로 변경 */
+}
+
 .pageButton:hover {
-    background-color: #d5d5d5;
+    background-color: #30a04d;
+    color: white;
+}
+
+.pageButton:disabled:hover {
+    background-color: white; /* 비활성화된 버튼 호버 시 색상 변화 없음 */
+    color: #d3d3d3;
 }

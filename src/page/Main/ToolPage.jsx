@@ -15,8 +15,8 @@ const ToolPage = () => {
     return (
         <div className={styles.ScrollContainer}>
             <div className={styles.container}>
-                <h1 className={styles.title}>수업도구</h1>
-
+                {/* 공백 추가 */}
+                <h1 className={styles.title}>&nbsp;</h1>
                 <div className={styles.toolGrid}>
                     {/* 투표 도구 */}
                     <div
