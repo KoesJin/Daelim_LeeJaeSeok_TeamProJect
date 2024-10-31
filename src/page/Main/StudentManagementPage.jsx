@@ -78,6 +78,9 @@ const StudentManagementPage = () => {
 
     // 모달 열기/닫기 함수
     const onModalOpen = () => {
+        setStudentCode('1');
+        setStudentName('');
+        setStudentNum('');
         setOpenModal(!openModal);
     };
 
@@ -168,7 +171,21 @@ const StudentManagementPage = () => {
             const result = await response.json();
 
             if (result.status === '200') {
-                setStudentData(result.data);
+                // 이름순 + 번호순 정렬
+                const sortedData = result.data.sort((a, b) => {
+                    // 이름순으로 정렬
+                    const nameComparison = a.studentName.localeCompare(b.studentName, 'ko', { sensitivity: 'base' });
+
+                    // 이름이 같으면 번호순으로 정렬
+                    if (nameComparison === 0) {
+                        return a.studentCode - b.studentCode;
+                    }
+
+                    return nameComparison;
+                });
+
+                setStudentData(sortedData);
+
                 if (result.data.length < 12) {
                     setMaxPage(page); // 12개 미만이면 현재 페이지가 마지막 페이지
                 } else {
@@ -188,6 +205,11 @@ const StudentManagementPage = () => {
             const bearerToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
             if (!bearerToken) {
                 alert('사용자가 인증되지 않았습니다.');
+                return;
+            }
+            const confirmed = window.confirm('해당 학생을 삭제 하시겠습니까?');
+
+            if (!confirmed) {
                 return;
             }
 
@@ -303,250 +325,252 @@ const StudentManagementPage = () => {
 
     return (
         <div className={styles.ScrollContainer} ref={scrollContainerRef}>
-            <div className={styles.container}>
-                <div className={styles.header}>
-                    <div className={styles.classInfo}>
-                        {grade}학년 {classNum}반 <NoticeIcon />
+            <div className={styles.Body}>
+                <div className={styles.container}>
+                    <div className={styles.header}>
+                        <div className={styles.classInfo}>
+                            {grade}학년 {classNum}반 <NoticeIcon className={styles.icon} />
+                        </div>
+                        <button className={styles.addButton} onClick={onModalOpen}>
+                            학생 추가
+                        </button>
                     </div>
-                    <button className={styles.addButton} onClick={onModalOpen}>
-                        학생 추가
-                    </button>
-                </div>
 
-                {/* 학급 정보 */}
-                <div className={styles.studentBox}>
-                    <table className={styles.studentTable}>
-                        <thead>
-                            <tr className={styles.studentHeader}>
-                                <th className={styles.numberHeader}>번호</th>
-                                <th className={styles.studentNameHeader}>이름</th>
-                                <th className={styles.studentInfoHeader}>전화번호</th>
-                                <th className={styles.studentInfoHeader}>생년월일</th>
-                                <th className={styles.studentInfoHeader}>성별</th>
-                                <th className={styles.studentInfoHeader}>학년</th>
-                                <th className={styles.studentInfoHeader}>반</th>
-                                <th className={styles.actionHeader}>관리</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {studentData.map((student, index) => (
-                                <tr key={index}>
-                                    <td>
-                                        {editingStudentId === student.studentId ? (
-                                            <input
-                                                type="text"
-                                                defaultValue={student.studentCode}
-                                                onChange={(e) => setStudentCode(e.target.value)}
-                                                className={`${styles.inputField} ${styles.numberInputField}`}
-                                                maxLength={2}
-                                            />
-                                        ) : (
-                                            student.studentCode
-                                        )}
-                                    </td>
-                                    <td>
-                                        {editingStudentId === student.studentId ? (
-                                            <input
-                                                type="text"
-                                                defaultValue={student.studentName}
-                                                onChange={(e) => setStudentName(e.target.value)}
-                                                className={`${styles.inputField} ${styles.nameInputField}`}
-                                                maxLength={4}
-                                            />
-                                        ) : (
-                                            student.studentName
-                                        )}
-                                    </td>
-                                    <td>
-                                        {editingStudentId === student.studentId ? (
-                                            <input
-                                                type="text"
-                                                defaultValue={student.studentNum}
-                                                onChange={(e) => setStudentNum(e.target.value)}
-                                                className={`${styles.inputField} ${styles.phoneInputField}`}
-                                                maxLength={11}
-                                            />
-                                        ) : (
-                                            student.studentNum
-                                        )}
-                                    </td>
-                                    <td>{student.studentDate}</td> {/* 생년월일 */}
-                                    <td>{student.studentGender}</td> {/* 성별 */}
-                                    <td>{student.studentGrade}학년</td> {/* 학년 */}
-                                    <td>{student.classNum}반</td> {/* 반 */}
-                                    <td className={styles.actions}>
-                                        {editingStudentId === student.studentId ? (
-                                            <>
-                                                <button className={styles.editButton} onClick={handleSaveChanges}>
-                                                    저장
-                                                </button>
-                                                <div className={styles.separator}>&nbsp;</div>
-                                                <button
-                                                    className={styles.deleteButton}
-                                                    onClick={() => setEditingStudentId(null)}
-                                                >
-                                                    취소
-                                                </button>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <button
-                                                    className={styles.editButton}
-                                                    onClick={() => handleEditClick(student.studentId)}
-                                                >
-                                                    수정
-                                                </button>
-                                                <div className={styles.separator}>&nbsp;</div>
-                                                <button
-                                                    className={styles.deleteButton}
-                                                    onClick={() => handleDeleteStudent(student.studentId)}
-                                                >
-                                                    삭제
-                                                </button>
-                                            </>
-                                        )}
-                                    </td>
+                    {/* 학급 정보 */}
+                    <div className={styles.studentBox}>
+                        <table className={styles.studentTable}>
+                            <thead>
+                                <tr className={styles.studentHeader}>
+                                    <th className={styles.numberHeader}>번호</th>
+                                    <th className={styles.studentNameHeader}>이름</th>
+                                    <th className={styles.studentInfoHeader}>전화번호</th>
+                                    <th className={styles.studentInfoHeader}>생년월일</th>
+                                    <th className={styles.studentInfoHeader}>성별</th>
+                                    <th className={styles.studentInfoHeader}>학년</th>
+                                    <th className={styles.studentInfoHeader}>반</th>
+                                    <th className={styles.actionHeader}>관리</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <div className={styles.pagination}>
-                        <button
-                            className={styles.pageButton}
-                            onClick={() => setPage((prevPage) => Math.max(prevPage - 1, 0))} // 0 이하로 내려가는걸 방지할려고 Math.max 함수 사용
-                            disabled={page === 0}
-                        >
-                            이전
-                        </button>
-                        <button
-                            className={styles.pageButton}
-                            onClick={() => setPage((prevPage) => prevPage + 1)}
-                            disabled={page === maxPage} // 마지막 페이지일 때 "다음" 버튼 비활성화
-                        >
-                            다음
-                        </button>
+                            </thead>
+                            <tbody>
+                                {studentData.map((student, index) => (
+                                    <tr key={index}>
+                                        <td>
+                                            {editingStudentId === student.studentId ? (
+                                                <input
+                                                    type="text"
+                                                    defaultValue={student.studentCode}
+                                                    onChange={(e) => setStudentCode(e.target.value)}
+                                                    className={`${styles.inputField} ${styles.numberInputField}`}
+                                                    maxLength={2}
+                                                />
+                                            ) : (
+                                                student.studentCode
+                                            )}
+                                        </td>
+                                        <td>
+                                            {editingStudentId === student.studentId ? (
+                                                <input
+                                                    type="text"
+                                                    defaultValue={student.studentName}
+                                                    onChange={(e) => setStudentName(e.target.value)}
+                                                    className={`${styles.inputField} ${styles.nameInputField}`}
+                                                    maxLength={4}
+                                                />
+                                            ) : (
+                                                student.studentName
+                                            )}
+                                        </td>
+                                        <td>
+                                            {editingStudentId === student.studentId ? (
+                                                <input
+                                                    type="text"
+                                                    defaultValue={student.studentNum}
+                                                    onChange={(e) => setStudentNum(e.target.value)}
+                                                    className={`${styles.inputField} ${styles.phoneInputField}`}
+                                                    maxLength={11}
+                                                />
+                                            ) : (
+                                                student.studentNum
+                                            )}
+                                        </td>
+                                        <td>{student.studentDate}</td> {/* 생년월일 */}
+                                        <td>{student.studentGender}</td> {/* 성별 */}
+                                        <td>{student.studentGrade}학년</td> {/* 학년 */}
+                                        <td>{student.classNum}반</td> {/* 반 */}
+                                        <td className={styles.actions}>
+                                            {editingStudentId === student.studentId ? (
+                                                <>
+                                                    <button className={styles.editButton} onClick={handleSaveChanges}>
+                                                        저장
+                                                    </button>
+                                                    <div className={styles.separator}>&nbsp;</div>
+                                                    <button
+                                                        className={styles.deleteButton}
+                                                        onClick={() => setEditingStudentId(null)}
+                                                    >
+                                                        취소
+                                                    </button>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <button
+                                                        className={styles.editButton}
+                                                        onClick={() => handleEditClick(student.studentId)}
+                                                    >
+                                                        수정
+                                                    </button>
+                                                    <div className={styles.separator}>&nbsp;</div>
+                                                    <button
+                                                        className={styles.deleteButton}
+                                                        onClick={() => handleDeleteStudent(student.studentId)}
+                                                    >
+                                                        삭제
+                                                    </button>
+                                                </>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <div className={styles.pagination}>
+                            <button
+                                className={styles.pageButton}
+                                onClick={() => setPage((prevPage) => Math.max(prevPage - 1, 0))} // 0 이하로 내려가는걸 방지할려고 Math.max 함수 사용
+                                disabled={page === 0}
+                            >
+                                이전
+                            </button>
+                            <button
+                                className={styles.pageButton}
+                                onClick={() => setPage((prevPage) => prevPage + 1)}
+                                disabled={page === maxPage} // 마지막 페이지일 때 "다음" 버튼 비활성화
+                            >
+                                다음
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* 모달 창 */}
-            {openModal && (
-                <div className={styles.modalOverlay}>
-                    <div className={styles.modalContent}>
-                        <h2 className={styles.info}>학생 정보 입력</h2>
-                        <form onSubmit={handleAddStudent}>
-                            <table className={styles.studentInfoTable}>
-                                <thead>
-                                    <tr className={styles.studentInfoHeader}>
-                                        <th className={styles.numberHeader}>번호</th>
-                                        <th className={styles.studentNameHeader}>이름</th>
-                                        <th className={styles.studentInfoHeader}>전화번호</th>
-                                        <th className={styles.studentInfoHeader}>생년월일</th>
-                                        <th className={styles.studentInfoHeader}>성별</th>
-                                        <th className={styles.studentInfoHeader}>학년</th>
-                                        <th className={styles.studentInfoHeader}>반</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <select
-                                                value={studentCode}
-                                                onChange={(e) => setStudentCode(e.target.value)}
-                                                required
-                                                className={styles.selectField} // 클래스 이름 추가
-                                            >
-                                                {[...Array(50).keys()].map((n) => (
-                                                    <option key={n + 1} value={n + 1}>
-                                                        {n + 1}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                value={studentName}
-                                                onChange={(e) => setStudentName(e.target.value)}
-                                                required
-                                                className={styles.inputField}
-                                                placeholder="이름"
-                                                maxLength={4}
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                value={studentNum}
-                                                onChange={(e) => setStudentNum(e.target.value)}
-                                                required
-                                                maxLength="11"
-                                                className={styles.inputField}
-                                                placeholder="전화번호"
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="date"
-                                                value={studentDate}
-                                                onChange={(e) => setStudentDate(e.target.value)}
-                                                required
-                                                className={styles.inputField}
-                                            />
-                                        </td>
-                                        <td>
-                                            <select
-                                                value={studentGender}
-                                                onChange={(e) => setStudentGender(e.target.value)}
-                                                required
-                                                className={styles.selectField} // 클래스 이름 추가
-                                            >
-                                                <option value="">성별</option>
-                                                <option value="남">남</option>
-                                                <option value="여">여</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select
-                                                value={studentGrade}
-                                                onChange={(e) => setStudentGrade(e.target.value)}
-                                                required
-                                                className={styles.selectField} // 클래스 이름 추가
-                                            >
-                                                {[...Array(6).keys()].map((n) => (
-                                                    <option key={n + 1} value={n + 1}>
-                                                        {n + 1}학년
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select
-                                                value={classNum}
-                                                onChange={(e) => setClassNum(e.target.value)}
-                                                required
-                                                className={styles.selectField} // 클래스 이름 추가
-                                            >
-                                                {[...Array(20).keys()].map((n) => (
-                                                    <option key={n + 1} value={n + 1}>
-                                                        {n + 1}반
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <button type="submit" className={styles.addButton}>
-                                추가
-                            </button>
-                            <button type="button" className={styles.cancelButton} onClick={onModalOpen}>
-                                취소
-                            </button>
-                        </form>
+                {/* 모달 창 */}
+                {openModal && (
+                    <div className={styles.modalOverlay}>
+                        <div className={styles.modalContent}>
+                            <h2 className={styles.info}>학생 정보 입력</h2>
+                            <form onSubmit={handleAddStudent}>
+                                <table className={styles.studentInfoTable}>
+                                    <thead>
+                                        <tr className={styles.studentInfoHeader}>
+                                            <th className={styles.numberHeader}>번호</th>
+                                            <th className={styles.studentNameHeader}>이름</th>
+                                            <th className={styles.studentInfoHeader}>전화번호</th>
+                                            <th className={styles.studentInfoHeader}>생년월일</th>
+                                            <th className={styles.studentInfoHeader}>성별</th>
+                                            <th className={styles.studentInfoHeader}>학년</th>
+                                            <th className={styles.studentInfoHeader}>반</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <select
+                                                    value={studentCode}
+                                                    onChange={(e) => setStudentCode(e.target.value)}
+                                                    required
+                                                    className={styles.selectField} // 클래스 이름 추가
+                                                >
+                                                    {[...Array(50).keys()].map((n) => (
+                                                        <option key={n + 1} value={n + 1}>
+                                                            {n + 1}번
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    value={studentName}
+                                                    onChange={(e) => setStudentName(e.target.value)}
+                                                    required
+                                                    className={styles.inputField}
+                                                    placeholder="이름"
+                                                    maxLength={4}
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    value={studentNum}
+                                                    onChange={(e) => setStudentNum(e.target.value)}
+                                                    required
+                                                    maxLength="11"
+                                                    className={styles.inputField}
+                                                    placeholder="전화번호"
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="date"
+                                                    value={studentDate}
+                                                    onChange={(e) => setStudentDate(e.target.value)}
+                                                    required
+                                                    className={styles.inputField}
+                                                />
+                                            </td>
+                                            <td>
+                                                <select
+                                                    value={studentGender}
+                                                    onChange={(e) => setStudentGender(e.target.value)}
+                                                    required
+                                                    className={styles.selectField} // 클래스 이름 추가
+                                                >
+                                                    <option value="">성별</option>
+                                                    <option value="남">남</option>
+                                                    <option value="여">여</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select
+                                                    value={studentGrade}
+                                                    onChange={(e) => setStudentGrade(e.target.value)}
+                                                    required
+                                                    className={styles.selectField} // 클래스 이름 추가
+                                                >
+                                                    {[...Array(6).keys()].map((n) => (
+                                                        <option key={n + 1} value={n + 1}>
+                                                            {n + 1}학년
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select
+                                                    value={classNum}
+                                                    onChange={(e) => setClassNum(e.target.value)}
+                                                    required
+                                                    className={styles.selectField} // 클래스 이름 추가
+                                                >
+                                                    {[...Array(20).keys()].map((n) => (
+                                                        <option key={n + 1} value={n + 1}>
+                                                            {n + 1}반
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="submit" className={styles.addButton}>
+                                    추가
+                                </button>
+                                <button type="button" className={styles.cancelButton} onClick={onModalOpen}>
+                                    취소
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 };

@@ -4,19 +4,26 @@
     overflow-y: auto;
 }
 
+.Body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 3rem 10rem 3rem;
+    box-sizing: border-box;
+}
+
 /* 내부 컨테이너 */
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 70px 50px 30px 50px;
-    max-width: 1100px;
-    margin: 50px auto 150px auto;
+    width: 100%;
+    max-width: 1200px;
     background-color: #fff8bd;
     box-sizing: border-box;
     border-radius: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative;
 }
 
 /* 헤더를 좌우로 정렬하기 위한 설정 */
@@ -35,6 +42,14 @@
     font-size: 1.5rem;
     font-weight: bold;
     color: #30a04d;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.icon {
+    margin-top: -5px;
+    margin-left: 10px;
+    width: 35px; /* 아이콘 크기 조정 */
+    height: 35px;
 }
 
 /* 추가 버튼 스타일 */
@@ -89,11 +104,12 @@
 
 .numberInputField {
     width: 4ch;
-    max-width: 50px;
+    max-width: 35px;
     padding: 8px;
     border: 1px solid #30a04d;
-    border-radius: 5px;
+    border-radius: 8px;
     box-sizing: border-box;
+    color: #9d9d9d;
 }
 
 .nameInputField {
@@ -101,8 +117,9 @@
     max-width: 70px;
     padding: 8px;
     border: 1px solid #30a04d;
-    border-radius: 5px;
+    border-radius: 8px;
     box-sizing: border-box;
+    color: #9d9d9d;
 }
 
 .phoneInputField {
@@ -110,8 +127,9 @@
     max-width: 120px;
     padding: 8px;
     border: 1px solid #30a04d;
-    border-radius: 5px;
+    border-radius: 8px;
     box-sizing: border-box;
+    color: #9d9d9d;
 }
 
 .inputField:focus {
@@ -168,7 +186,6 @@
 
 /* 모달 테이블 헤더 및 데이터 셀 */
 .studentInfoTable th {
-    padding: 15px 10px; /* 여백 추가 */
     border-bottom: 1px solid #bcb4b4;
 }
 
@@ -178,13 +195,14 @@
 
 .studentInfoTable td {
     padding: 15px 10px;
+    width: 100px;
 }
 
 /* 모달 안 입력 필드 및 셀렉트 박스 */
 .studentInfoTable .inputField,
 .studentInfoTable .selectField {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     box-sizing: border-box;
     border: 1px solid #30a04d;
     border-radius: 5px;
@@ -247,7 +265,7 @@
 
 /* 버튼 사이의 구분선 */
 .separator {
-    margin: 0 10px;
+    margin: 0 5px;
     color: #ccc;
     font-weight: bold;
 }
@@ -281,4 +299,163 @@
 .pageButton:disabled:hover {
     background-color: white; /* 비활성화된 버튼 호버 시 색상 변화 없음 */
     color: #d3d3d3;
+}
+
+/* 화면 너비가 최대 1024px일 때 */
+@media (max-width: 1024px) {
+    /* 전체적으로 크기 줄이기 */
+    .container {
+        padding: 70px 15px 30px 15px;
+    }
+
+    .classInfo {
+        font-size: 1.3rem;
+    }
+    .studentTable th,
+    .studentTable td {
+        padding: 10px 8px;
+        font-size: 0.95rem;
+    }
+    .modalContent {
+        width: 80vw;
+    }
+    .info {
+        font-size: 1.5rem;
+    }
+
+    .editButton,
+    .deleteButton {
+        padding: 6px 8px;
+        font-size: 14px;
+    }
+}
+
+/* 화면 너비가 최대 768px일 때 */
+@media (max-width: 768px) {
+    .studentTable {
+        min-width: 800px; /* 필요에 따라 조정 */
+        table-layout: fixed;
+    }
+
+    .studentTable th,
+    .studentTable td {
+        overflow: hidden;
+    }
+
+    .studentBox {
+        overflow-x: auto;
+    }
+    .phoneInputField {
+        max-width: 80px;
+    }
+
+    /* 모달 내 폼 요소들을 세로로 배치 */
+    .studentInfoTable {
+        display: block;
+        width: 100%;
+    }
+    .studentInfoTable thead {
+        display: none;
+    }
+    .studentInfoTable tbody {
+        display: block;
+    }
+    .studentInfoTable tr {
+        display: block;
+        margin-bottom: 15px;
+    }
+    .studentInfoTable td {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .studentInfoTable td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .studentInfoTable td input,
+    .studentInfoTable td select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    /* 모달 내 버튼 조정 */
+    .modalContent button {
+        width: auto;
+        margin: 20px 5px 0 0;
+    }
+}
+
+/* 화면 너비가 최대 480px일 때 */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 10px 10px 10px;
+    }
+
+    .icon {
+        width: 30px; /* 아이콘 크기 조정 */
+        height: 30px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .classInfo {
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    .studentTable th,
+    .studentTable td {
+        font-size: 0.8rem;
+        padding: 6px 8px;
+    }
+
+    .phoneInputField {
+        width: 13ch;
+        max-width: 60px;
+    }
+
+    .modalContent {
+        width: 95vw;
+        padding: 20px;
+    }
+
+    .info {
+        font-size: 1.2rem;
+    }
+    /* 테이블의 가로 스크롤을 가능하게 함 */
+    .studentBox {
+        overflow-x: auto;
+    }
+    /* 테이블 안의 요소들이 깨지지 않도록 최소 너비 설정 */
+    .studentTable {
+        min-width: 600px; /* 필요에 따라 조정 */
+    }
+    /* 액션 버튼 조정 */
+    .actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .actions button {
+        margin-bottom: 5px;
+    }
+    .separator {
+        display: none;
+    }
+
+    /* 페이지네이션 조정 */
+    .pagination {
+        flex-direction: row;
+    }
+    .pageButton {
+        width: auto;
+        margin: 5px;
+    }
 }
