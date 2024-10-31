@@ -1,7 +1,14 @@
 import React from 'react';
 
-const ChatIcon = () => (
-    <svg width="50" height="38" viewBox="0 0 50 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+const ChatIcon = ({ className }) => (
+    <svg
+        className={className}
+        width="50"
+        height="38"
+        viewBox="0 0 50 38"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
         <ellipse cx="25" cy="17" rx="25" ry="17" fill="#30A04D" />
         <path d="M1.83872 37.8264L11.1181 22.5642L17.7675 31.5251L1.83872 37.8264Z" fill="#30A04D" />
         <circle cx="20.1339" cy="15.4939" r="5.90242" fill="white" />
