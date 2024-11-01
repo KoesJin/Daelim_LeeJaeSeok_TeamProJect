@@ -21,6 +21,8 @@ import FindIdEmail from '../page/Login/FindId/FindId_Email';
 import FindIdPhone from '../page/Login/FindId/FindId_phone';
 import FindPasswordEmail from '../page/Login/FindPassword/FindPassword_email';
 import FindPasswordPhone from '../page/Login/FindPassword/FindPassword_phone';
+import ChatListModal from '../components/ChatWindow/ChatListModal';
+import Chat from '../components/ChatWindow/Chat';
 
 const router = createBrowserRouter([
     {
@@ -125,6 +127,14 @@ const router = createBrowserRouter([
                 element: <SeatAssignmentPage />,
             },
         ],
+    },
+    {
+        path: '/chatlist',
+        element: <ChatListModal />,
+    },
+    {
+        path: '/chat',
+        element: <Chat />,
     },
 ]);
 

@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { createGlobalStyle, styled } from 'styled-components';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Header from './components/Header/Header';
+import { ChatProvider } from './utils/context/ChatContext'; // ChatProvider import
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -18,9 +19,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-    overflow-y: hidden; /* 가로 스크롤을 막고 세로 스크롤은 허용 */
+      overflow-y: hidden; /* 가로 스크롤을 막고 세로 스크롤은 허용 */
     }
-
 
     .fade-enter {
       opacity: 0;
@@ -39,19 +39,16 @@ const GlobalStyle = createGlobalStyle`
       opacity: 0;
       transition: opacity 250ms ease-out;
     }
-  `;
+`;
 
 const AnimationContainer = styled.div`
     width: 100%;
 `;
 
 function Root() {
-    //useNavigate 훅
     const navigate = useNavigate();
-    //useLocation 훅
     const location = useLocation();
 
-    //모든페이지에서 토큰값이 세션과 , 로컬에 없으면 /로 튕기게 하는 코드
     useEffect(() => {
         const accessToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
         if (
@@ -70,7 +67,7 @@ function Root() {
     }, [navigate, location.pathname]);
 
     return (
-        <>
+        <ChatProvider>
             <Helmet>
                 <title>TeacHub</title>
             </Helmet>
@@ -91,7 +88,7 @@ function Root() {
                     </AnimationContainer>
                 </CSSTransition>
             </TransitionGroup>
-        </>
+        </ChatProvider>
     );
 }
 

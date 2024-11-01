@@ -1,0 +1,105 @@
+.chatContainer {
+    display: flex;
+    flex-direction: column;
+    width: 430px;
+    height: 650px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.header {
+    background-color: #fff8bd;
+    padding: 15px;
+    text-align: center;
+
+    /* border-bottom: 1px solid #ddd; */
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+    font-size: 20px;
+    font-weight: bold;
+    color: #30a04d;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.chatArea {
+    flex: 1;
+    padding: 10px;
+    background-color: #fff8bd;
+    overflow-y: auto;
+}
+
+.myMessage {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.myMessage span {
+    background-color: #30a04d;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 16px;
+    max-width: 70%;
+    word-break: break-word;
+}
+
+.otherMessage {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.otherMessage span {
+    background-color: #fff;
+    padding: 8px 12px;
+    border-radius: 16px;
+    max-width: 70%;
+    word-break: break-word;
+}
+.inputArea {
+    display: flex;
+    align-items: center; /* 중앙 정렬 */
+    padding: 10px; /* 패딩을 줄여서 입력 칸이 위로 이동 */
+    border-top: 1px solid #ddd;
+    background-color: rgb(245, 245, 245);
+}
+
+.inputArea textarea,
+.inputArea input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    background-color: rgb(245, 245, 245);
+    outline: none;
+    font-size: 14px;
+    color: black;
+    margin-top: 0; /* 여백 제거 */
+    resize: none; /* textarea 크기 조절 비활성화 */
+    overflow-wrap: break-word; /* 긴 텍스트 자동 줄바꿈 */
+    white-space: pre-wrap; /* 줄 바꿈을 유지하고 넘치는 텍스트 자동 줄바꿈 */
+}
+
+.inputArea button {
+    background-color: #4caf50;
+    border: none;
+    color: #fff;
+    padding: 8px 16px; /* 여백 조정 */
+    margin-left: 8px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.inputArea button:hover {
+    background-color: #388e3c;
+}
+
+.sendIcon {
+    width: 15px;
+    margin-bottom: 3px;
+    margin-left: -3px;
+}

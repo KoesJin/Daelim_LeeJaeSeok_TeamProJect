@@ -63,7 +63,6 @@
     padding-top: 10px;
 }
 
-/* 수정된 코드 */
 .menuLogo {
     height: 1.5rem;
     margin-top: 10px;
@@ -150,23 +149,65 @@
     font-weight: 300;
 }
 
-.ChatIcon {
+/* 채팅 컨테이너 */
+.chatContainer {
+    position: relative;
+}
+
+/* 채팅 아이콘 */
+.chatIcon {
+    transition: opacity 0.3s ease;
     cursor: pointer;
+}
+
+.chatIconHidden {
+    opacity: 0;
+}
+
+/* 채팅하기 버튼 */
+.chatButton {
+    position: absolute;
+    margin-top: 5px;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 30px;
+    background-color: #30a04d;
+    border: none;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 1rem;
+}
+
+.chatButtonVisible {
+    opacity: 1;
 }
 
 /* 반응형 디자인 */
 /* 1024px 이하 */
 @media (max-width: 1024px) {
     .container {
-        padding: 20px 50px; /* 좌우 패딩 감소 */
+        padding: 20px 50px;
     }
 
     .mainTitle {
-        height: 1.8rem; /* 타이틀 크기 감소 */
+        height: 1.8rem;
     }
 
     .teacherInfo {
-        font-size: 1rem; /* 폰트 크기 감소 */
+        font-size: 1rem;
+    }
+
+    .chatButton {
+        width: 80px;
+        height: 30px;
+        font-size: 0.85rem;
     }
 }
 
@@ -177,15 +218,21 @@
     }
 
     .teacherInfo {
-        display: none; /* 선생님 정보 숨김 */
+        display: none;
     }
 
     .mainTitle {
         height: 1.5rem;
     }
+    .chatButton {
+        width: 100px;
+        height: 30px;
+        margin-left: -50px;
+        font-size: 1rem;
+    }
 }
 
-/* 476px 이하 - 모바일 버전 */
+/* 480px 이하 - 모바일 버전 */
 @media (max-width: 480px) {
     .container {
         padding: 15px 20px;
@@ -200,20 +247,27 @@
         height: 1.2rem;
     }
 
-    .ChatIcon {
-        width: 24px;
-        height: 24px;
+    .chatIcon {
+        width: 35px;
+        height: 40px;
+    }
+
+    .chatButton {
+        width: 70px;
+        height: 25px;
+        margin-left: -35px;
+        font-size: 0.8rem;
     }
 
     .modalContent {
-        width: 80%; /* 모달 너비를 화면의 80%로 조정 */
+        width: 80%;
     }
 
     .listItem {
-        padding: 10px 0; /* 리스트 아이템 간격 조정 */
+        padding: 10px 0;
     }
 
     .companyDetails {
-        margin-top: 100px; /* 회사 정보 위치 조정 */
+        margin-top: 100px;
     }
 }

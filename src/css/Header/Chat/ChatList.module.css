@@ -1,0 +1,82 @@
+.chatListContainer {
+    width: 430px;
+    height: 650px;
+    background-color: #fff8bd;
+    color: white;
+    /* padding: 16px 0 16px 16px; */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* 전체 컨테이너의 스크롤 숨김 */
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #30a04d;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    position: sticky;
+    top: 0;
+    background-color: #fff8bd; /* 헤더 배경색 추가 */
+    padding: 10px;
+    z-index: 100;
+}
+
+.chatList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto; /* 스크롤을 chatList에만 적용 */
+    padding: 15px; /* 스크롤바로 인해 내용 가리는 문제 해결 */
+    max-height: calc(100% - 60px); /* title 높이를 제외한 공간 할당 */
+}
+
+.chatItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.chatItem:hover {
+    background-color: #f0e09c; /* 배경과 조화를 이루는 부드러운 노란색 톤 */
+    color: #333; /* 글자 색상 변경 */
+}
+
+.chatIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #30a04d;
+}
+
+.chatInfo {
+    flex: 1;
+}
+
+.chatHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.chatName {
+    font-size: 16px;
+    font-weight: bold;
+    color: #30a04d;
+}
+
+.chatDate {
+    font-size: 12px;
+    color: #30a04d;
+}
+
+.chatMessage {
+    font-size: 14px;
+    color: black;
+}

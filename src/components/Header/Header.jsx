@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from '../../css/Header/Header.module.css';
 import ChatIcon from '../../svg/MainPage/Chat/ChatIcon';
 import MainTitle from '../../img/TeacHub.png';
 import MenuIcon from '../../svg/MainPage/MenuIcon';
 import { useNavigate } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
+import { ChatContext } from '../../utils/context/ChatContext';
 
 const Header = () => {
-    //모달
+    // 모달 상태
     const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
     const [userName, setUserName] = useState('');
 
-    // 메뉴 모달
+    // 메뉴 모달 토글 함수
     const toggleMenuModal = () => {
         setIsMenuModalOpen(!isMenuModalOpen);
     };
@@ -20,34 +21,35 @@ const Header = () => {
         setIsMenuModalOpen(false);
     };
 
-    //navigate 훅
+    // 채팅 아이콘 호버 상태
+    const [isChatHovered, setIsChatHovered] = useState(false);
+
+    // ChatContext에서 채팅 모달 열기 함수 가져오기
+    const { openChatList } = useContext(ChatContext);
+
+    // navigate 훅
     const navigate = useNavigate();
 
     // userName 가져오는 useEffect 훅
     useEffect(() => {
-        // 새로고침 시 localStorage에서 userName를 불러오게함
         const storedUserName = localStorage.getItem('userName');
         if (storedUserName) {
             setUserName(storedUserName);
         }
     }, []);
 
-    // 로그아웃
+    // 로그아웃 처리 함수
     const handleLogout = () => {
         const confirmed = window.confirm('정말로 로그아웃 하시겠습니까?');
         if (confirmed) {
-            // 토큰 삭제
             localStorage.removeItem('Authorization');
             sessionStorage.removeItem('Authorization');
             localStorage.removeItem('PasswordVerAuth');
             sessionStorage.removeItem('PasswordVerAuth');
-            // 아이디 , 이름 삭제
             localStorage.removeItem('userName');
             localStorage.removeItem('userId');
-            // 학생 고유 아이디 삭제
             localStorage.removeItem('studentId');
             sessionStorage.removeItem('studentId');
-            // 학년 , 반 삭제
             localStorage.removeItem('grade');
             sessionStorage.removeItem('grade');
             localStorage.removeItem('classNum');
@@ -114,21 +116,11 @@ const Header = () => {
                                     className={styles.listItem}
                                     onClick={() => {
                                         alert('준비중입니다.');
-                                        // navigate('/send-message');
                                         closeMenuModal();
                                     }}
                                 >
                                     문자 발송
                                 </li>
-                                {/* <li
-                                    className={styles.listItem}
-                                    onClick={() => {
-                                        navigate('/seat-assignment');
-                                        closeMenuModal();
-                                    }}
-                                >
-                                    자리 선정
-                                </li> */}
                                 <li
                                     className={styles.listItem}
                                     onClick={() => {
@@ -138,9 +130,8 @@ const Header = () => {
                                 >
                                     마이페이지
                                 </li>
-
                                 <li className={styles.listItem} onClick={handleLogout}>
-                                    로그 아웃
+                                    로그아웃
                                 </li>
                             </ul>
                             <div className={styles.companyInfo}>
@@ -178,7 +169,17 @@ const Header = () => {
                     <span className={styles.teacherName}>{userName}</span>
                     <span className={styles.teacherTitle}>선생님</span>
                 </div>
-                <ChatIcon className={styles.ChatIcon} />
+                <div
+                    className={styles.chatContainer}
+                    onMouseEnter={() => setIsChatHovered(true)}
+                    onMouseLeave={() => setIsChatHovered(false)}
+                    onClick={openChatList} // ChatContext에서 가져온 함수 사용
+                >
+                    <ChatIcon className={`${styles.chatIcon} ${isChatHovered ? styles.chatIconHidden : ''}`} />
+                    <button className={`${styles.chatButton} ${isChatHovered ? styles.chatButtonVisible : ''}`}>
+                        채팅하기
+                    </button>
+                </div>
             </div>
         </div>
     );
