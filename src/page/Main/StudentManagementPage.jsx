@@ -192,7 +192,7 @@ const StudentManagementPage = () => {
                     setMaxPage(page + 1); // 12개면 다음 페이지가 있을 가능성이 있음
                 }
             } else {
-                alert('학생 정보가 없습니다.');
+                alert(result.message);
             }
         } catch (error) {
             alert('학생 정보를 불러올 수 없습니다.');
