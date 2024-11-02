@@ -87,12 +87,14 @@
     padding: 20px 10px; /* 여백 추가 */
     border-bottom: 1px solid #bcb4b4;
     text-align: center;
+    font-weight: bold;
 }
 
 /* 테이블 데이터 셀 */
 .studentTable td {
     padding: 15px 10px;
     text-align: center;
+    font-weight: 500;
 }
 
 /* 수정 및 삭제 버튼 컨테이너 */
