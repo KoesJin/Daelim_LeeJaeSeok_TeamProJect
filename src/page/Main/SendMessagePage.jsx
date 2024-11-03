@@ -1,4 +1,7 @@
 /* eslint-disable */
+
+import React, { useEffect, useState } from 'react';
+
 import styles from '../../css/MainPage/SendMessagePage/SendMessagePage.module.css';
 
 const SendMessagePage = () => {
