@@ -54,6 +54,8 @@ const Header = () => {
             sessionStorage.removeItem('grade');
             localStorage.removeItem('classNum');
             sessionStorage.removeItem('classNum');
+            localStorage.removeItem('schoolName');
+            sessionStorage.removeItem('schoolName');
 
             navigate('/'); // 메인 페이지로 부드럽게 전환
         }
@@ -115,7 +117,7 @@ const Header = () => {
                                 <li
                                     className={styles.listItem}
                                     onClick={() => {
-                                        alert('준비중입니다.');
+                                        navigate('/send-message');
                                         closeMenuModal();
                                     }}
                                 >

@@ -122,6 +122,7 @@ const PersonalInfoChange = () => {
             if (result.status === '200') {
                 alert(result.message);
                 localStorage.setItem('userName', userName);
+                localStorage.setItem('schoolName', schoolName);
                 localStorage.setItem('grade', grade);
                 localStorage.setItem('classNum', classNum);
                 window.location.reload();

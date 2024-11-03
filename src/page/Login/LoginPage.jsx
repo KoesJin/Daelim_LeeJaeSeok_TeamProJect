@@ -76,6 +76,8 @@ function LoginPage() {
                 localStorage.setItem('grade', jslData.grade);
                 // classNum 설정
                 localStorage.setItem('classNum', jslData.classNum);
+                // schoolName 설정
+                localStorage.setItem('schoolName', jslData.schoolName);
 
                 navigate('/mainpage');
             } else {

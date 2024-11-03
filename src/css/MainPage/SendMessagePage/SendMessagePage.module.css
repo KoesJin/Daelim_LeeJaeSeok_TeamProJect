@@ -1,0 +1,116 @@
+/* 컨테이너 스타일 */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 80%;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* 메시지 입력 섹션 */
+.messageSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.messageSection h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* form 스타일 */
+.formStyle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 0; /* 상단 여백 제거 */
+    padding: 0; /* 불필요한 여백 제거 */
+}
+
+/* messageInput 및 textarea 스타일 */
+.messageInput,
+.formStyle textarea {
+    width: 100%;
+    min-height: 300px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: none;
+    font-size: 16px;
+    color: #333;
+    background-color: #f9f9f9;
+    outline: none;
+    margin-bottom: 20px;
+}
+
+/* 버튼 스타일 */
+.sendButton,
+.formStyle button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    background-color: #30a04d;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: flex-end;
+}
+
+.sendButton:hover,
+.formStyle button:hover {
+    background-color: #267a37;
+}
+
+/* 전화번호 목록 섹션 */
+.phoneListSection {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.phoneListSection h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.phoneList {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 15px;
+    background-color: #fff;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+/* 개별 연락처 항목 */
+.contactItem {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.contactItem:last-child {
+    border-bottom: none;
+}
+
+.checkbox {
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.contactName {
+    font-size: 16px;
+    color: #333;
+}

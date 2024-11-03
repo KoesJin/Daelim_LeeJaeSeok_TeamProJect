@@ -5,6 +5,7 @@ import { createGlobalStyle, styled } from 'styled-components';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Header from './components/Header/Header';
 import { ChatProvider } from './utils/context/ChatContext'; // ChatProvider import
+import { StudentProvider } from './utils/context/StudentContext';
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -51,43 +52,52 @@ function Root() {
 
     useEffect(() => {
         const accessToken = localStorage.getItem('Authorization') || sessionStorage.getItem('Authorization');
-        if (
-            !accessToken &&
-            location.pathname !== '/signuppage' &&
-            location.pathname !== '/checksignuppage' &&
-            location.pathname !== '/findpassword-email' &&
-            location.pathname !== '/findpassword-phone' &&
-            location.pathname !== '/checkfindid' &&
-            location.pathname !== '/findid-email' &&
-            location.pathname !== '/findid-phone' &&
-            location.pathname !== '/checkfindpassword'
-        ) {
+        // 토큰 검증 제외 페이지
+        const allowedPaths = [
+            '/',
+            '/signuppage',
+            '/checksignuppage',
+            '/findpassword-email',
+            '/findpassword-phone',
+            '/checkfindid',
+            '/findid-email',
+            '/findid-phone',
+            '/checkfindpassword',
+        ];
+        if (!accessToken && !allowedPaths.includes(location.pathname)) {
             navigate('/');
         }
     }, [navigate, location.pathname]);
 
+    // Header 숨김 목록
+    const hideHeaderPaths = [
+        '/',
+        '/signuppage',
+        '/checksignuppage',
+        '/findpassword-email',
+        '/findpassword-phone',
+        '/checkfindid',
+        '/findid-email',
+        '/findid-phone',
+        '/checkfindpassword',
+    ];
+
     return (
         <ChatProvider>
-            <Helmet>
-                <title>TeacHub</title>
-            </Helmet>
-            <GlobalStyle />
-            {location.pathname !== '/' &&
-                location.pathname !== '/signuppage' &&
-                location.pathname !== '/checksignuppage' &&
-                location.pathname !== '/findpassword-email' &&
-                location.pathname !== '/findpassword-phone' &&
-                location.pathname !== '/checkfindid' &&
-                location.pathname !== '/findid-email' &&
-                location.pathname !== '/findid-phone' &&
-                location.pathname !== '/checkfindpassword' && <Header />}
-            <TransitionGroup>
-                <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
-                    <AnimationContainer>
-                        <Outlet />
-                    </AnimationContainer>
-                </CSSTransition>
-            </TransitionGroup>
+            <StudentProvider>
+                <Helmet>
+                    <title>TeacHub</title>
+                </Helmet>
+                <GlobalStyle />
+                {!hideHeaderPaths.includes(location.pathname) && <Header />}
+                <TransitionGroup>
+                    <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
+                        <AnimationContainer>
+                            <Outlet />
+                        </AnimationContainer>
+                    </CSSTransition>
+                </TransitionGroup>
+            </StudentProvider>
         </ChatProvider>
     );
 }
