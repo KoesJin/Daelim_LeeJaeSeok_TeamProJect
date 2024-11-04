@@ -252,9 +252,11 @@ const StudentManagementPage = () => {
             return;
         }
 
-        const phoneRegex = /^010\d{8}$/;
+        const phoneRegex = /^010-?\d{4}-?\d{4}$/;
         if (!phoneRegex.test(studentNum)) {
-            alert('전화번호는 010으로 시작하고, "-"를 제외한 11자리 숫자로만 이루어져야 합니다. 예: 01012345678');
+            alert(
+                '전화번호는 010으로 시작하고, "-"를 포함하여 11자리 또는 13자리 숫자로만 이루어져야 합니다. 예: 010-1234-5678 또는 01012345678'
+            );
             return;
         }
 
@@ -387,7 +389,7 @@ const StudentManagementPage = () => {
                                                     defaultValue={student.studentNum}
                                                     onChange={(e) => setStudentNum(e.target.value)}
                                                     className={`${styles.inputField} ${styles.phoneInputField}`}
-                                                    maxLength={11}
+                                                    maxLength={13}
                                                 />
                                             ) : (
                                                 student.studentNum
