@@ -1,7 +1,7 @@
 /* 전체 스타일 */
 .wrap {
     height: 100vh;
-    background-color: #fff;
+    background-color: white;
     overflow-y: auto; /* 스크롤 가능하게 설정 */
 }
 
@@ -75,7 +75,7 @@
     border-radius: 15px;
     padding: 20px;
     box-sizing: border-box;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .row {
