@@ -40,7 +40,7 @@
 
 .content {
     flex: 1;
-    padding: 15px;
+    padding: 15px 0 0 0;
     display: flex;
     flex-direction: column;
 }
@@ -61,7 +61,16 @@
 }
 
 /* 채팅 및 친구 아이템 스타일 */
-.chatItem,
+.chatItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 8px 15px 8px 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
 .friendItem {
     display: flex;
     align-items: center;
@@ -112,4 +121,20 @@
 .chatMessage {
     font-size: 14px;
     color: black;
+}
+
+.chatButton {
+    padding: 5px 10px;
+    background-color: rgba(48, 160, 77, 0.5); /* 기본은 반투명 */
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.chatButton:hover {
+    background-color: #30a04d; /* 마우스 올리면 불투명한 녹색 */
+    color: #fff;
 }
