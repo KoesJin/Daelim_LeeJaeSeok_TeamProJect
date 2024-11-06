@@ -171,18 +171,8 @@ const StudentManagementPage = () => {
             const result = await response.json();
 
             if (result.status === '200') {
-                // 이름순 + 번호순 정렬
-                const sortedData = result.data.sort((a, b) => {
-                    // 이름순으로 정렬
-                    const nameComparison = a.studentName.localeCompare(b.studentName, 'ko', { sensitivity: 'base' });
-
-                    // 이름이 같으면 번호순으로 정렬
-                    if (nameComparison === 0) {
-                        return a.studentCode - b.studentCode;
-                    }
-
-                    return nameComparison;
-                });
+                // 번호순으로만 정렬
+                const sortedData = result.data.sort((a, b) => a.studentCode - b.studentCode);
 
                 setStudentData(sortedData);
 
