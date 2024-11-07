@@ -86,13 +86,23 @@ const MyPage = () => {
             if (result.status === '200') {
                 alert(result.message);
                 navigate('/');
+
                 localStorage.removeItem('Authorization');
                 sessionStorage.removeItem('Authorization');
                 localStorage.removeItem('PasswordVerAuth');
                 sessionStorage.removeItem('PasswordVerAuth');
-
                 localStorage.removeItem('userName');
                 localStorage.removeItem('userId');
+                localStorage.removeItem('studentId');
+                sessionStorage.removeItem('studentId');
+                localStorage.removeItem('grade');
+                sessionStorage.removeItem('grade');
+                localStorage.removeItem('classNum');
+                sessionStorage.removeItem('classNum');
+                localStorage.removeItem('schoolName');
+                sessionStorage.removeItem('schoolName');
+                localStorage.removeItem('chatRoomId');
+                sessionStorage.removeItem('chatRoomId');
             } else {
                 alert(result.message);
             }

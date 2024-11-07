@@ -56,6 +56,8 @@ const Header = () => {
             sessionStorage.removeItem('classNum');
             localStorage.removeItem('schoolName');
             sessionStorage.removeItem('schoolName');
+            localStorage.removeItem('chatRoomId');
+            sessionStorage.removeItem('chatRoomId');
 
             navigate('/'); // 메인 페이지로 부드럽게 전환
         }
